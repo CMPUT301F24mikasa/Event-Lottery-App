@@ -73,6 +73,8 @@
 
     enable/disable(notification object, true/false) :
         // action: add/remove that notification from self.Notification list
+        // for enable: add to general list first, then delete on backup list (saves space)
+        // for disable: add to backup list first, then delete from general list (saves space)
 
     profile_pic_generator() : 
         // automatically creates a profile picture and adds it to user object somehow
