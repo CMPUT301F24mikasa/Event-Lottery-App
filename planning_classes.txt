@@ -6,7 +6,8 @@
 
 > CONSTRUCTOR:
 
-    String text
+    String    text
+    Integer   ID     // a unique ID to differentiate b/w different notifications (IMP because: for managing Notitcations in the User class)
   
 
 > METHODS:
@@ -64,17 +65,18 @@
     String phone number (create a separate constructor including phone number, because it's optional)
     Profile picture (custom/auto)
     Notification list (initially empty)
+    Notification list backup (IMP because : if user disables a particular notification, but then wants to enable it back again ... can pull it from here)
     Notifications Toggle (T/F)
 
 > METHODS:
 
     enable/disable(notification object, true/false) :
-        // action: remove that notification from self.Notification list
+        // action: add/remove that notification from self.Notification list
 
     profile_pic_generator() : 
         // automatically creates a profile picture and adds it to user object somehow
 
-    notification_lst_updater(notification object)
+    notification_list_updater(notification object)
         // if notification toggle True => update; 
         // else == return void
 
