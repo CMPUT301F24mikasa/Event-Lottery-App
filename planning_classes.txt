@@ -3,7 +3,7 @@
 1. Notifications:
 
 > CONSTRUCTOR:
-String text
+    String text
   
 
 > METHODS:
@@ -46,12 +46,12 @@ String text
 *6. User:*
 
 > CONSTRUCTOR:
- String name
- String email
- String phone number (create a separate constructor including phone number, because it's optional)
- Profile picture (custom/auto)
- Notification list (initially empty)
- Notifications Toggle (T/F)
+    String name
+    String email
+    String phone number (create a separate constructor including phone number, because it's optional)
+    Profile picture (custom/auto)
+    Notification list (initially empty)
+    Notifications Toggle (T/F)
 
 > METHODS:
     enable/disable() : for a particular notification (inputs: notification object, true/false)
