@@ -1,0 +1,64 @@
+**List of Potential Classes and Methods with inputs and outputs**
+
+1. Notifications:
+
+> CONSTRUCTOR:
+String text
+  
+
+> METHODS:
+    enable (better to implement in User class instead?)
+    disable (better to implement in User class instead?)
+
+
+*2. Settings:*
+
+> CONSTRUCTOR:
+
+
+> METHODS:
+
+
+*3. User Shuffler:*
+
+> CONSTRUCTOR:
+
+
+> METHODS:
+
+
+*4. Events:*
+
+> CONSTRUCTOR:
+
+
+> METHODS:
+
+
+*5. Admin:*
+
+> CONSTRUCTOR:
+
+
+> METHODS:
+
+
+*6. User:*
+
+> CONSTRUCTOR:
+ String name
+ String email
+ String phone number (create a separate constructor including phone number, because it's optional)
+ Profile picture (custom/auto)
+ Notification list (initially empty)
+ Notifications Toggle (T/F)
+
+> METHODS:
+    enable/disable() : for a particular notification (inputs: notification object, true/false)
+    profile_pic_generator() : automatically creates a profile picture and adds it to user object somehow
+
+    notification_lst_updater (inputs: notification object) : [if notification toggle True == update; else == return void] 
+    notication_opt_out() : Turns the Notification Toggle to False
+
+
+*7. (to be continued)*
