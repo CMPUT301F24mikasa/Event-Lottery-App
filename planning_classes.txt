@@ -1,25 +1,21 @@
 **List of Potential Classes and Methods with inputs and outputs**
 
-1. Notifications:
+
+
+1. _________________________________________Notifications:
 
 > CONSTRUCTOR:
+
     String text
   
 
 > METHODS:
-    enable (better to implement in User class instead?)
-    disable (better to implement in User class instead?)
 
 
-*2. Settings:*
-
-> CONSTRUCTOR:
 
 
-> METHODS:
 
-
-*3. User Shuffler:*
+*2. ________________________________________Settings:*
 
 > CONSTRUCTOR:
 
@@ -27,7 +23,9 @@
 > METHODS:
 
 
-*4. Events:*
+
+
+*3. ________________________________________User Shuffler:*
 
 > CONSTRUCTOR:
 
@@ -35,7 +33,9 @@
 > METHODS:
 
 
-*5. Admin:*
+
+
+*4. __________________________________________Events:*
 
 > CONSTRUCTOR:
 
@@ -43,9 +43,22 @@
 > METHODS:
 
 
-*6. User:*
+
+
+*5. ___________________________________________Admin:*
 
 > CONSTRUCTOR:
+
+
+> METHODS:
+
+
+
+
+*6. ___________________________________________User:*
+
+> CONSTRUCTOR:
+
     String name
     String email
     String phone number (create a separate constructor including phone number, because it's optional)
@@ -54,11 +67,21 @@
     Notifications Toggle (T/F)
 
 > METHODS:
-    enable/disable() : for a particular notification (inputs: notification object, true/false)
-    profile_pic_generator() : automatically creates a profile picture and adds it to user object somehow
 
-    notification_lst_updater (inputs: notification object) : [if notification toggle True == update; else == return void] 
-    notication_opt_out() : Turns the Notification Toggle to False
+    enable/disable(notification object, true/false) :
+        // action: remove that notification from self.Notification list
+
+    profile_pic_generator() : 
+        // automatically creates a profile picture and adds it to user object somehow
+
+    notification_lst_updater(notification object)
+        // if notification toggle True => update; 
+        // else == return void
+
+    notication_opt_out(True/False) 
+        // Turns the Notification Toggle to True/False
 
 
-*7. (to be continued)*
+
+
+*7. __________________________________________(to be continued)*
