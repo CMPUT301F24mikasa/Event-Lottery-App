@@ -4,7 +4,6 @@
 
 1. _________________________________________Notifications:
 
-> CONSTRUCTOR:
 
     String    text
     Integer   ID     (auto generated: but must also be unique : so need to cross-check all existing IDs somehow --> means we need a globally accessible list of Notifications?)
@@ -21,7 +20,7 @@
 
 *2. ________________________________________Settings:*
 
-> CONSTRUCTOR:
+
 
 
 > METHODS:
@@ -31,7 +30,7 @@
 
 *3. ________________________________________User Shuffler:*
 
-> CONSTRUCTOR:
+
 
 
 > METHODS:
@@ -41,7 +40,7 @@
 
 *4. __________________________________________Events:*
 
-> CONSTRUCTOR:
+
 
 
 > METHODS:
@@ -51,7 +50,7 @@
 
 *5. ___________________________________________Admin:*
 
-> CONSTRUCTOR:
+
 
 
 > METHODS:
@@ -61,7 +60,6 @@
 
 *6. ___________________________________________User:*
 
-> CONSTRUCTOR:
 
     String name
     String email
