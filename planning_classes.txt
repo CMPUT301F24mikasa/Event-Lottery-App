@@ -7,11 +7,14 @@
 > CONSTRUCTOR:
 
     String    text
-    Integer   ID     // a unique ID to differentiate b/w different notifications (IMP because: for managing Notitcations in the User class)
+    Integer   ID     (auto generated: but must also be unique : so need to cross-check all existing IDs somehow --> means we need a globally accessible list of Notifications?)
+                     // a unique ID to differentiate b/w different notifications (IMP because: for managing Notitcations in the User class)
   
 
 > METHODS:
 
+    get_ID()
+        // usage: example - when trying to search for a disabled notification in the backup notification list in User class to enable it (i.e enter it into the general notification list)
 
 
 
