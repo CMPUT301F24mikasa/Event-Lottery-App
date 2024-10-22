@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "839876957045",
+    "project_id": "cmput301f24mikasa",
+    "storage_bucket": "cmput301f24mikasa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839876957045:android:8a342b083eb8dad4f4793c",
+        "android_client_info": {
+          "package_name": "com.example.cmput301f24mikasa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi_O2ojWVx3kXX9wNNDK1qh1w7PPLTyvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
