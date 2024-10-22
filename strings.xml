@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">CMPUT301F24mikasa</string>
+    <string name="home">HOME</string>
+    <string name="i_am_an_organizer">I am an Organizer</string>
+    <string name="i_am_an_admin">I am an Admin</string>
+    <string name="i_am_a_user">I am a User</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="manage_events">Manage Events</string>
+    <string name="manage_profiles">Manage Profiles</string>
+    <string name="manage_images">Manage Images</string>
+    <string name="manage_facilities">Manage Facilities</string>
+    <string name="view_reports">View Reports</string>
+    <string name="back">Back</string>
+    <string name="organizer_dashboard">Organizer Dashboard</string>
+    <string name="create_event">Create Event</string>
+    <string name="facility_profile">Facility Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="events">Events</string>
+    <string name="location">Location</string>
+    <string name="qr_scanner">QR Scanner</string>
+    <string name="user_notifications">User Notifications</string>
+    <string name="user_profile">User Profile</string>
+    <string name="user_events">User Events</string>
+    <string name="user_qr_scanner">User QR Scanner</string>
+    <string name="user_location">User Location</string>
+    <string name="search_facilities">Search Facilities</string>
+    <string name="description">Description</string>
+    <string name="facility_name">Facility Name</string>
+</resources>
