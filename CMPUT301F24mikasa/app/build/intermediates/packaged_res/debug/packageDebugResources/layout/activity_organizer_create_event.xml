@@ -21,7 +21,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@color/black" />
+        android:background="@drawable/default_pfp" />
 
     <Button
             android:layout_width="150dp"
@@ -62,7 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:textColorHint="@color/white"
-            android:background="@color/black"/>
+            android:background="#D4D4D4"/>
 
         <EditText
             android:id="@+id/editTextDate"
@@ -73,7 +73,7 @@
             android:hint="Date"
             android:padding="16dp"
             android:textColorHint="@color/white"
-            android:background="@color/black"
+            android:background="#D4D4D4"
             android:layout_marginStart="16dp"
             />
 
@@ -87,7 +87,7 @@
             android:padding="16dp"
             android:layout_marginTop="16dp"
             android:textColorHint="@color/white"
-            android:background="@color/black"
+            android:background="#D4D4D4"
             android:layout_marginStart="16dp"
             />
 
@@ -109,7 +109,7 @@
             android:inputType="text"
             android:hint="Description"
             android:textColorHint="@color/white"
-            android:background="@color/black"
+            android:background="#D4D4D4"
             android:gravity="start"
             />
         <LinearLayout

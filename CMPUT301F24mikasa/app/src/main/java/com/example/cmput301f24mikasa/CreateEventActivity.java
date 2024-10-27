@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CreateEventActivity extends AppCompatActivity {
@@ -35,7 +37,6 @@ public class CreateEventActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private CollectionReference eventRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 // Test data entry
                 // Find way to input capacity, maybe on facility?
                 // End date?
-                // Generate QR Code
                 HashMap<String, Object> eventDetails = new HashMap<>();
                 eventDetails.put("title", title);
                 eventDetails.put("startDate", date);
@@ -88,9 +88,10 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("description", desc);
                 eventDetails.put("capacity", 1); // edit later
                 eventDetails.put("eventID", eventID);
-                eventDetails.put("cancelledEntrants", "/user/entrant");
-                eventDetails.put("selectedEntrants", "/user/entrant");
+                eventDetails.put("cancelledEntrants", new ArrayList<>());
+                eventDetails.put("selectedEntrants", new ArrayList<>());
                 eventDetails.put("posterRef", "/media/eventMedia");
+                eventDetails.put("qrRef", ""); // update later
 
                 documentReference.set(eventDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -114,13 +115,19 @@ public class CreateEventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String eventID = documentReference.getId();
                 Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
-                if (eventCreated){
-                    //TODO
-                    // SET QR CODE TO REFERENCE POSTER AND QR CODE
-                    Toast.makeText(CreateEventActivity.this, "QR Code generated successfully!", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(CreateEventActivity.this, "Please create an event first.", Toast.LENGTH_SHORT).show();
-                }
+                //TODO
+                // Ensure that qrRef can actually store QR Code
+                documentReference.update("qrRef", qrCode).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
             }
@@ -147,4 +154,8 @@ public class CreateEventActivity extends AppCompatActivity {
         }
 
     }
-}
+
+    // If we want to retrieve th
+
+    }
+
