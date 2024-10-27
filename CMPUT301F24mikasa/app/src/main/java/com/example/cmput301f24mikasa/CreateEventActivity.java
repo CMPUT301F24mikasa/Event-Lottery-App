@@ -116,7 +116,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
                 if (eventCreated){
                     //TODO
-                    // Set reference to QR Code
+                    // SET QR CODE TO REFERENCE POSTER AND QR CODE
                     Toast.makeText(CreateEventActivity.this, "QR Code generated successfully!", Toast.LENGTH_SHORT).show();
                 } else{
                     Toast.makeText(CreateEventActivity.this, "Please create an event first.", Toast.LENGTH_SHORT).show();
