@@ -5,11 +5,26 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="ORGANIZER DASHBOARD"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/parentPanel"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/headerTextView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,17 +32,20 @@
             android:id="@+id/imageviewPanel">
 
             <ImageView
-                android:layout_margin="20dp"
-                android:background="@color/black"
                 android:id="@+id/imgProfilePicture"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/add_facility_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="0.487"
+
+                >
+
             </ImageView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -40,17 +58,21 @@
                 android:id="@+id/btnUploadPicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#0D47A1"
                 android:text="Upload Picture"
+                app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnRemovePicture"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#0D47A1"
                 android:text="Remove Picture"
+                app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -81,28 +103,29 @@
             android:hint="Enter Facility Name"
             android:padding="16dp"
             android:textColorHint="@color/white"
-            android:background="@color/black"
-android:layout_margin="20dp"            />
+            android:background="#D4D4D4"
+android:layout_margin="20dp"
+                />
+
 
             <EditText
                 android:id="@+id/editFacilityLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="#D4D4D4"
                 android:ems="10"
-                android:inputType="text"
                 android:hint="Enter Facility Location"
+                android:inputType="text"
                 android:padding="16dp"
-                android:textColorHint="@color/white"
-                android:background="@color/black"
-                android:layout_margin="20dp"            />
-
+                android:textColorHint="@color/white" />
 
             <EditText
                 android:id="@+id/editFacilityDesc"
                 android:layout_width="match_parent"
-                android:layout_height="203dp"
+                android:layout_height="150dp"
                 android:layout_margin="20dp"
-                android:background="@color/black"
+                android:background="#D4D4D4"
                 android:ems="10"
                 android:gravity="top|start"
                 android:hint="Enter Facility Description"
@@ -110,33 +133,47 @@ android:layout_margin="20dp"            />
                 android:padding="16dp"
                 android:textColorHint="@color/white" />
 
-            <Button
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottomButtonPanel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update"
-                android:id="@+id/btnUpdate"/>
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0D47A1"
+                    android:text="Back"
+                    app:cornerRadius="0dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <Button
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0D47A1"
+                    android:text="Update"
+                    app:cornerRadius="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="205dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
 
 
-
-
-
-
-
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:text="@string/back"
-        android:background="#000080"
-        android:textColor="#FFFFFF" />
 </RelativeLayout>
