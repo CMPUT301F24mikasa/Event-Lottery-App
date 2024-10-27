@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="app_name">CMPUT301F24mikasa</string>
+    <string name="back">Back</string>
+    <string name="create_event">Create Event</string>
+    <string name="description">Description</string>
+    <string name="events">Events</string>
+    <string name="facility_name">Facility Name</string>
+    <string name="facility_profile">Facility Profile</string>
+    <string name="gcm_defaultSenderId" translatable="false">839876957045</string>
+    <string name="google_api_key" translatable="false">AIzaSyAi_O2ojWVx3kXX9wNNDK1qh1w7PPLTyvM</string>
+    <string name="google_app_id" translatable="false">1:839876957045:android:8a342b083eb8dad4f4793c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAi_O2ojWVx3kXX9wNNDK1qh1w7PPLTyvM</string>
+    <string name="google_storage_bucket" translatable="false">cmput301f24mikasa.appspot.com</string>
+    <string name="home">HOME</string>
+    <string name="i_am_a_user">I am a User</string>
+    <string name="i_am_an_admin">I am an Admin</string>
+    <string name="i_am_an_organizer">I am an Organizer</string>
+    <string name="location">Location</string>
+    <string name="manage_events">Manage Events</string>
+    <string name="manage_facilities">Manage Facilities</string>
+    <string name="manage_images">Manage Images</string>
+    <string name="manage_profiles">Manage Profiles</string>
+    <string name="notifications">Notifications</string>
+    <string name="organizer_dashboard">Organizer Dashboard</string>
+    <string name="profile">Profile</string>
+    <string name="project_id" translatable="false">cmput301f24mikasa</string>
+    <string name="qr_scanner">QR Scanner</string>
+    <string name="search_facilities">Search Facilities</string>
+    <string name="user_events">User Events</string>
+    <string name="user_location">User Location</string>
+    <string name="user_notifications">User Notifications</string>
+    <string name="user_profile">User Profile</string>
+    <string name="user_qr_scanner">User QR Scanner</string>
+    <string name="view_reports">View Reports</string>
+    <style name="Base.Theme.CMPUT301F24mikasa" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.CMPUT301F24mikasa" parent="Base.Theme.CMPUT301F24mikasa"/>
+</resources>

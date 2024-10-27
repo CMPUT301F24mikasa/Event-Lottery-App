@@ -1,5 +1,7 @@
 package com.example.cmput301f24mikasa;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,11 +9,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.HashMap;
 
@@ -21,6 +31,7 @@ public class CreateEventActivity extends AppCompatActivity {
     ImageView imgEvent;
     Button btnUpload, btnGenerateQRCode, btnCreateEvent;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc;
+    Boolean eventCreated;
 
     FirebaseFirestore db;
     private CollectionReference eventRef;
@@ -30,6 +41,7 @@ public class CreateEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_create_event);
+        eventCreated = false;
 
         // Back button to return to Organizer Dashboard
         Button btnBack = findViewById(R.id.btn_back);
@@ -47,7 +59,8 @@ public class CreateEventActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         eventRef = db.collection("event");
-
+        DocumentReference documentReference = eventRef.document(); // EventID
+        String eventID = documentReference.getId();
 
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,37 +71,80 @@ public class CreateEventActivity extends AppCompatActivity {
                 String price = editTextPrice.getText().toString();
                 String desc = editTextDesc.getText().toString();
 
+                if (title.isEmpty()||date.isEmpty()||price.isEmpty()||desc.isEmpty()){
+                    Toast.makeText(CreateEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //TODO
                 // Test data entry
-                // Randomly generate eventID?
-                // Find way to input capacity
+                // Find way to input capacity, maybe on facility?
                 // End date?
-                // Find way to store QR ref
+                // Generate QR Code
                 HashMap<String, Object> eventDetails = new HashMap<>();
                 eventDetails.put("title", title);
                 eventDetails.put("startDate", date);
                 eventDetails.put("price", price);
                 eventDetails.put("description", desc);
                 eventDetails.put("capacity", 1); // edit later
-                eventDetails.put("eventID", "rfu4h2"); // edit later, maybe randomly generate?
-                // do we need an end date?
+                eventDetails.put("eventID", eventID);
                 eventDetails.put("cancelledEntrants", "/user/entrant");
                 eventDetails.put("selectedEntrants", "/user/entrant");
-                eventDetails.put("qrRef", "url to qr ref"); // edit later
                 eventDetails.put("posterRef", "/media/eventMedia");
 
-                eventRef.add(eventDetails).addOnSuccessListener(documentReference -> {
-                    Toast.makeText(CreateEventActivity.this, "Event successfully created!", Toast.LENGTH_SHORT).show();
-                });
-                eventRef.add(eventDetails).addOnFailureListener(documentReference -> {
-                    Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show();
-                });
+                documentReference.set(eventDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(CreateEventActivity.this, "Event created successfully!", Toast.LENGTH_SHORT).show();
+                        eventCreated = true;
 
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         });
 
+        btnGenerateQRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String eventID = documentReference.getId();
+                Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
+                if (eventCreated){
+                    //TODO
+                    // Set reference to QR Code
+                    Toast.makeText(CreateEventActivity.this, "QR Code generated successfully!", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(CreateEventActivity.this, "Please create an event first.", Toast.LENGTH_SHORT).show();
+                }
 
+
+            }
+        });
+    }
+
+    // Code referenced from https://stackoverflow.com/questions/8800919/how-to-generate-a-qr-code-for-an-android-application by Stefano, Downloaded 2024-10-26
+    public Bitmap generateQRCodeBitmap(String content) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512);
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+            return bmp;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
 
     }
 }
