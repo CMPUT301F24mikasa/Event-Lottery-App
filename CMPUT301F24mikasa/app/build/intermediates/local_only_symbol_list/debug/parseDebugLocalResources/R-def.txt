@@ -25,7 +25,6 @@ id btn_user_location
 id btn_user_notifications
 id btn_user_profile
 id btn_user_qr_scanner
-id btn_view_reports
 id editTextDate
 id editTextDesc
 id editTextPrice
@@ -73,6 +72,7 @@ string events
 string facility_name
 string facility_profile
 string gcm_defaultSenderId
+string generate_qr_code
 string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
@@ -92,6 +92,7 @@ string profile
 string project_id
 string qr_scanner
 string search_facilities
+string upload_picture
 string user_events
 string user_location
 string user_notifications

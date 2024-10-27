@@ -1,46 +1,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="CREATE EVENT"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/parentPanel">
+        android:id="@+id/parentPanel"
+        android:layout_below="@+id/headerTextView">
 
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/leftPanel">
+    android:id="@+id/leftPanel"
+    android:layout_gravity="center_horizontal"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/imgEvent"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/default_pfp" />
 
     <Button
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:id="@+id/btnUpload"
-            android:text="Upload picture"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp">
-        </Button>
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:id="@+id/btnUpload"
+        android:text="@string/upload_picture"
+        android:backgroundTint="#0D47A1"
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/btnGenerateQRCode"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
         android:textSize="12sp"
-        android:text="Generate QR Code">
-    </Button>
+        android:text="@string/generate_qr_code"
+        android:backgroundTint="#0D47A1"
+        android:layout_marginTop="8dp"
+        app:cornerRadius="0dp"/>
 </LinearLayout>
 
 
@@ -48,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/topPanel">
+        android:id="@+id/topPanel"
+        android:paddingVertical="16dp">
 
         <EditText
             android:id="@+id/editTextTitle"
@@ -57,12 +73,10 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Title"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
             android:textColorHint="@color/white"
-            android:background="#D4D4D4"/>
+            android:background="#D4D4D4"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/editTextDate"
@@ -71,11 +85,10 @@
             android:ems="10"
             android:inputType="date"
             android:hint="Date"
-            android:padding="16dp"
             android:textColorHint="@color/white"
             android:background="#D4D4D4"
-            android:layout_marginStart="16dp"
-            />
+            android:paddingVertical="15dp"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/editTextPrice"
@@ -84,12 +97,10 @@
             android:ems="10"
             android:inputType="number"
             android:hint="Price"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
             android:textColorHint="@color/white"
             android:background="#D4D4D4"
-            android:layout_marginStart="16dp"
-            />
+            android:paddingVertical="15dp"
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
     </LinearLayout>
@@ -100,18 +111,19 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/parentPanel"
         android:orientation="vertical">
+
         <EditText
+            android:id="@+id/editTextDesc"
             android:layout_width="match_parent"
-            android:layout_height="380dp"
+            android:layout_height="280dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:id="@+id/editTextDesc"
-            android:inputType="text"
-            android:hint="Description"
-            android:textColorHint="@color/white"
             android:background="#D4D4D4"
-            android:gravity="start"
-            />
+            android:gravity="start|top"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/white" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,8 +136,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:text="@string/back"
-                android:background="#000080"
+                android:backgroundTint="#0D47A1"
                 android:textColor="#FFFFFF"
+                app:cornerRadius="0dp"
                 />
 
             <Button
@@ -135,8 +148,10 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:text="Create Event"
-                android:background="#000080"
-                android:textColor="#FFFFFF" />
+                android:backgroundTint="#0D47A1"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="0dp"
+                />
 
         </LinearLayout>
     </LinearLayout>

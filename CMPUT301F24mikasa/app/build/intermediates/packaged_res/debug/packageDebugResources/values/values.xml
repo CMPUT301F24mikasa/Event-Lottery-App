@@ -11,6 +11,7 @@
     <string name="facility_name">Facility Name</string>
     <string name="facility_profile">Facility Profile</string>
     <string name="gcm_defaultSenderId" translatable="false">839876957045</string>
+    <string name="generate_qr_code">Generate QR Code</string>
     <string name="google_api_key" translatable="false">AIzaSyAi_O2ojWVx3kXX9wNNDK1qh1w7PPLTyvM</string>
     <string name="google_app_id" translatable="false">1:839876957045:android:8a342b083eb8dad4f4793c</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAi_O2ojWVx3kXX9wNNDK1qh1w7PPLTyvM</string>
@@ -30,6 +31,7 @@
     <string name="project_id" translatable="false">cmput301f24mikasa</string>
     <string name="qr_scanner">QR Scanner</string>
     <string name="search_facilities">Search Facilities</string>
+    <string name="upload_picture">Upload picture</string>
     <string name="user_events">User Events</string>
     <string name="user_location">User Location</string>
     <string name="user_notifications">User Notifications</string>

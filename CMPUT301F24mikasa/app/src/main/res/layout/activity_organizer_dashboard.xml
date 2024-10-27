@@ -24,7 +24,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/create_event"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -36,7 +36,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/manage_events"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/facility_profile"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -58,6 +58,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:text="@string/back"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

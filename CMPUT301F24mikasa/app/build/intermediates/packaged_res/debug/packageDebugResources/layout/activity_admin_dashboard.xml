@@ -23,7 +23,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/manage_events"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -35,7 +35,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/manage_profiles"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/manage_images"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -59,19 +59,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/manage_facilities"
-        android:background="#000080"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/btn_view_reports"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_manage_facilities"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/view_reports"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -81,6 +69,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:text="Back"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

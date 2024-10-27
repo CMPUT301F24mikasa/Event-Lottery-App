@@ -3254,7 +3254,6 @@ int id btn_user_location 0x7f080074
 int id btn_user_notifications 0x7f080075
 int id btn_user_profile 0x7f080076
 int id btn_user_qr_scanner 0x7f080077
-int id btn_view_reports 0x7f080078
 int id buttonPanel 0x7f080079
 int id cache_measures 0x7f08007a
 int id callMeasure 0x7f08007b
@@ -3971,6 +3970,7 @@ int string fab_transformation_sheet_behavior 0x7f10004a
 int string facility_name 0x7f10004b
 int string facility_profile 0x7f10004c
 int string gcm_defaultSenderId 0x7f10004d
+int string generate_qr_code 0x7f1000da
 int string google_api_key 0x7f10004e
 int string google_app_id 0x7f10004f
 int string google_crash_reporting_api_key 0x7f100050
@@ -4105,6 +4105,7 @@ int string searchview_navigation_content_description 0x7f1000d0
 int string side_sheet_accessibility_pane_title 0x7f1000d1
 int string side_sheet_behavior 0x7f1000d2
 int string status_bar_notification_info_overflow 0x7f1000d3
+int string upload_picture 0x7f1000db
 int string user_events 0x7f1000d4
 int string user_location 0x7f1000d5
 int string user_notifications 0x7f1000d6
