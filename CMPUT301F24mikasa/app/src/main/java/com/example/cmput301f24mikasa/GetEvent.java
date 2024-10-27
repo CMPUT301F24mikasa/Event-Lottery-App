@@ -18,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 // MAKE SURE YOU INITIALIZE     private GetEvent getEvent; wherever you need to retrieve an event
 
 public class GetEvent {
-
     private FirebaseFirestore db;
 
     public GetEvent(){

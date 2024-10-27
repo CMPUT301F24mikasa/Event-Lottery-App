@@ -40,20 +40,19 @@
         android:background="@drawable/default_pfp" />
 
     <Button
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:id="@+id/btnUpload"
-            android:text="Upload picture"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:id="@+id/btnUpload"
+        android:text="@string/upload_picture"
         android:backgroundTint="#0D47A1"
-        app:cornerRadius="0dp"
-        />
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/btnGenerateQRCode"
         android:layout_width="150dp"
         android:layout_height="48dp"
         android:textSize="12sp"
-        android:text="Generate QR Code"
+        android:text="@string/generate_qr_code"
         android:backgroundTint="#0D47A1"
         android:layout_marginTop="8dp"
         app:cornerRadius="0dp"/>

@@ -1,8 +1,11 @@
 package com.example.cmput301f24mikasa;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,12 +35,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CreateEventActivity extends AppCompatActivity {
-
     // Assign variables
     ImageView imgEvent;
     Button btnUpload, btnGenerateQRCode, btnCreateEvent;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc;
     Boolean eventCreated;
+
+    ActivityResultLauncher<Intent> resultLauncher;
 
     FirebaseFirestore db;
     private CollectionReference eventRef;
@@ -50,6 +58,9 @@ public class CreateEventActivity extends AppCompatActivity {
 
         imgEvent = findViewById(R.id.imgEvent);
         btnUpload = findViewById(R.id.btnUpload);
+        registerResult();
+        btnUpload.setOnClickListener(view -> pickImage());
+
         btnGenerateQRCode = findViewById(R.id.btnGenerateQRCode);
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
 
@@ -77,6 +88,8 @@ public class CreateEventActivity extends AppCompatActivity {
                     return;
                 }
 
+
+
                 //TODO
                 // Test data entry
                 // Find way to input capacity, maybe on facility?
@@ -93,6 +106,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("posterRef", "/media/eventMedia");
                 eventDetails.put("qrRef", ""); // update later
 
+
                 documentReference.set(eventDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -106,7 +120,6 @@ public class CreateEventActivity extends AppCompatActivity {
                         Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
 
@@ -128,10 +141,30 @@ public class CreateEventActivity extends AppCompatActivity {
                         Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
+    }
+
+    private void pickImage(){
+        Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+        resultLauncher.launch(intent);
+    }
+
+    private void registerResult() {
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        try {
+                            Uri imageUri = result.getData().getData();
+                            imgEvent.setImageURI(imageUri);
+                        } catch (Exception e) {
+                            Toast.makeText(CreateEventActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
     }
 
     // Code referenced from https://stackoverflow.com/questions/8800919/how-to-generate-a-qr-code-for-an-android-application by Stefano, Downloaded 2024-10-26
@@ -152,10 +185,6 @@ public class CreateEventActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
-
     }
-
-    // If we want to retrieve th
-
-    }
+}
 

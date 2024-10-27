@@ -27,4 +27,6 @@
     <string name="search_facilities">Search Facilities</string>
     <string name="description">Description</string>
     <string name="facility_name">Facility Name</string>
+    <string name="upload_picture">Upload picture</string>
+    <string name="generate_qr_code">Generate QR Code</string>
 </resources>
