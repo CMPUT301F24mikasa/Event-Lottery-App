@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -42,6 +43,28 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        //TODO
+        // Handle upload photo logic
+        btnUploadPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureUploaded = true;
+
+            }
+        });
+
+        btnRemovePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!pictureUploaded){
+                    Toast.makeText(FacilityProfileActivity.this, "No picture to remove.", Toast.LENGTH_SHORT).show();
+                }else{
+                    //TODO
+                    // Handle remove picture logic
+                }
+            }
+        });
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,18 +81,34 @@ public class FacilityProfileActivity extends AppCompatActivity {
                 facilityDetails.put("facilityLocation", facilityLocation);
                 facilityDetails.put("facilityDesc", facilityDesc);
 
-                db.collection("facility").document("facilityProfile").set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("facility").add(facilityDetails).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void unused) {
+                    public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(FacilityProfileActivity.this, "Facility profile successfully updated.", Toast.LENGTH_SHORT).show();
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(FacilityProfileActivity.this, "Failed to update profile changes", Toast.LENGTH_SHORT).show();
+
                     }
                 });
-                
+
+
+                // THIS CODE WILL OVERWRITE EXISTING FACILITIES, DO NOT USE. SCRAP LATER
+//                db.collection("facility").document("facilityProfile").set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Toast.makeText(FacilityProfileActivity.this, "Facility profile successfully updated.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(FacilityProfileActivity.this, "Failed to update profile changes", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
             }
         });
 
