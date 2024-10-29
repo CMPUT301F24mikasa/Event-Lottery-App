@@ -1,17 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/manage_images"
-        android:textColor="#000080"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:padding="10dp" />
+        android:layout_marginTop="20dp"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="MANAGE IMAGES"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_back"
@@ -20,6 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:text="@string/back"
-        android:background="#000080"
-        android:textColor="#FFFFFF" />
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="0dp"/>
 </RelativeLayout>
