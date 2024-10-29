@@ -32,6 +32,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class CreateEventActivity extends AppCompatActivity {
@@ -88,7 +89,28 @@ public class CreateEventActivity extends AppCompatActivity {
                     return;
                 }
 
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                try {
+                    int eventYear = Integer.parseInt(date);
+                    if (eventYear < 1000 || eventYear > currentYear) { 
+                        Toast.makeText(CreateEventActivity.this, "Please enter a valid 4-digit year (<= " + currentYear + ")", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(CreateEventActivity.this, "Please enter a valid numeric year", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                try {
+                    double eventPrice = Double.parseDouble(price);
+                    if (eventPrice < 0) {
+                        Toast.makeText(CreateEventActivity.this, "Price must be a positive number", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(CreateEventActivity.this, "Invalid price format", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 //TODO
                 // Test data entry
