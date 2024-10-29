@@ -18,7 +18,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         Button btnManageProfiles = findViewById(R.id.btn_manage_profiles);
         Button btnManageImages = findViewById(R.id.btn_manage_images);
         Button btnManageFacilities = findViewById(R.id.btn_manage_facilities);
-        Button btnViewReports = findViewById(R.id.btn_view_reports);
 
         // Set click listeners
         btnBack.setOnClickListener(v -> finish());
@@ -40,11 +39,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         btnManageFacilities.setOnClickListener(v -> {
             Intent intent = new Intent(AdminDashboardActivity.this, ManageFacilitiesActivity.class);
-            startActivity(intent);
-        });
-
-        btnViewReports.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboardActivity.this, ViewReportsActivity.class);
             startActivity(intent);
         });
     }

@@ -28,7 +28,6 @@
         <activity android:name=".ManageProfilesActivity" android:exported="true" />
         <activity android:name=".ManageImagesActivity" android:exported="true" />
         <activity android:name=".ManageFacilitiesActivity" android:exported="true" />
-        <activity android:name=".ViewReportsActivity" android:exported="true" />
 
         <!-- Organizer Dashboard Activities -->
         <activity android:name=".OrganizerDashboardActivity" android:exported="true" />

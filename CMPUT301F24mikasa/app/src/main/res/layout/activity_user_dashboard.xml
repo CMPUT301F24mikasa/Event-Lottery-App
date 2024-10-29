@@ -11,7 +11,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/notifications"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -23,7 +23,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/profile"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -35,7 +35,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/events"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/qr_scanner"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -59,7 +59,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/location"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -69,7 +69,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:text="@string/back"
-        android:background="#000080"
+        android:backgroundTint="#0D47A1"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>
