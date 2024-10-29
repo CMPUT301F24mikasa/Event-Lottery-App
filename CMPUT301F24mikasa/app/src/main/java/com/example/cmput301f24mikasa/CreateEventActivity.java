@@ -26,6 +26,9 @@ import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -46,11 +49,13 @@ public class CreateEventActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private CollectionReference eventRef;
+    private String eventID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_create_event);
+
         eventCreated = false;
 
         // Back button to return to Organizer Dashboard
@@ -73,7 +78,7 @@ public class CreateEventActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         eventRef = db.collection("event");
         DocumentReference documentReference = eventRef.document(); // EventID
-        String eventID = documentReference.getId();
+        eventID = documentReference.getId();
 
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +153,7 @@ public class CreateEventActivity extends AppCompatActivity {
         btnGenerateQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eventID = documentReference.getId();
+                eventID = documentReference.getId();
                 Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
                 //TODO
                 // Ensure that qrRef can actually store QR Code
@@ -179,8 +184,12 @@ public class CreateEventActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         try {
+                            imgEvent.setBackground(null); // clear drawable icon before updating
                             Uri imageUri = result.getData().getData();
                             imgEvent.setImageURI(imageUri);
+                            // upload image to storage
+                            uploadImage(imageUri);
+
                         } catch (Exception e) {
                             Toast.makeText(CreateEventActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
                         }
@@ -208,5 +217,31 @@ public class CreateEventActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    // Referenced:
+    // https://firebase.google.com/docs/storage/android/upload-files, by Google 2024-10-28
+    // https://www.youtube.com/watch?v=YgjYVbg1oiA&ab_channel=CodeWithChris by CodeWithChris, 2024-10-28
+    public void uploadImage(Uri imageUri){
+        DocumentReference documentReference = eventRef.document(eventID);
+
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        String path = "event_images/" +  eventID +"/poster.jpg";
+        StorageReference storageReference = storage.getReference().child(path);
+        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(CreateEventActivity.this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CreateEventActivity.this, "Sorry, unable to upload image. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
+
+//TODO
+// save image download url to firestore
 
