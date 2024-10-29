@@ -6,8 +6,10 @@
 # Gradle files
 .gradle/
 build/
+.gradle/8.7/dependencies-accessors/19666b7ee7477488faba75fa6199859f9eeb0a35-698a9933-6253-422f-825c-0bbbf1f31b37/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidPluginAccessors.class
 
-# Local configuration files
+
+# Local configuration fil
 local.properties
 
 # Android Studio and IntelliJ IDEA files
