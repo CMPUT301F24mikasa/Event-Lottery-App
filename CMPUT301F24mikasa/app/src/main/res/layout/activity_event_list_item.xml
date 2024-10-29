@@ -1,0 +1,49 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="#D3D3D3"> <!-- Light gray background -->
+
+    <!-- Event Title -->
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Event Title"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:padding="10dp" />
+
+    <!-- View Button -->
+    <Button
+        android:id="@+id/view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View"
+        android:background="#0D47A1"
+        android:textColor="#FFFFFF"
+        android:padding="5dp" />
+
+    <!-- Delete Button -->
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:background="#0D47A1"
+        android:textColor="#FFFFFF"
+        android:padding="5dp" />
+
+    <!-- Edit Button -->
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:background="#0D47A1"
+        android:textColor="#FFFFFF"
+        android:padding="5dp" />
+</LinearLayout>
