@@ -91,6 +91,7 @@
         <activity
             android:name="com.example.cmput301f24mikasa.UserLocationActivity"
             android:exported="true" />
+        <activity android:name="com.example.cmput301f24mikasa.WaitingListActivity" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

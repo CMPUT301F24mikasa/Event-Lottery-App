@@ -4,7 +4,7 @@
             "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-33:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\c1b2c139ef901f201b3254b1edcaf91a\\transformed\\appcompat-1.7.0\\res\\values-land\\values-land.xml",
+                    "source": "/Users/sankalpapaudel/.gradle/caches/transforms-4/c1b2c139ef901f201b3254b1edcaf91a/transformed/appcompat-1.7.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\cce0ebcf87bed81347bea0323cfd1194\\transformed\\material-1.12.0\\res\\values-land\\values-land.xml",
+                    "source": "/Users/sankalpapaudel/.gradle/caches/transforms-4/cce0ebcf87bed81347bea0323cfd1194/transformed/material-1.12.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,35,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

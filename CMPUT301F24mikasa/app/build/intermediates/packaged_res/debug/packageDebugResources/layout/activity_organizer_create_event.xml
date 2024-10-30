@@ -37,7 +37,7 @@
         android:id="@+id/imgEvent"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:background="@drawable/baseline_wallpaper_24" />
+        android:background="@drawable/default_pfp" />
 
     <Button
         android:layout_width="150dp"
@@ -45,8 +45,6 @@
         android:id="@+id/btnUpload"
         android:text="@string/upload_picture"
         android:backgroundTint="#0D47A1"
-        android:textColor="#FFFFFF"
-
         app:cornerRadius="0dp" />
 
     <Button
@@ -56,8 +54,6 @@
         android:textSize="12sp"
         android:text="@string/generate_qr_code"
         android:backgroundTint="#0D47A1"
-        android:textColor="#FFFFFF"
-
         android:layout_marginTop="8dp"
         app:cornerRadius="0dp"/>
 </LinearLayout>
@@ -80,8 +76,7 @@
             android:textColorHint="@color/white"
             android:background="#D4D4D4"
             android:paddingVertical="15dp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="16dp"/>
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/editTextDate"
@@ -93,8 +88,7 @@
             android:textColorHint="@color/white"
             android:background="#D4D4D4"
             android:paddingVertical="15dp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="16dp"/>
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/editTextPrice"
@@ -106,8 +100,7 @@
             android:textColorHint="@color/white"
             android:background="#D4D4D4"
             android:paddingVertical="15dp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="16dp"/>
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
     </LinearLayout>
@@ -129,8 +122,7 @@
             android:gravity="start|top"
             android:hint="Description"
             android:inputType="textMultiLine"
-            android:textColorHint="@color/white"
-            android:paddingStart="16dp"/>
+            android:textColorHint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

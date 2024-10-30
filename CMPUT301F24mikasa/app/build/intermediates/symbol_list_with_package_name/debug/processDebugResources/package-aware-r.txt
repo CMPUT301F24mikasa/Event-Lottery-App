@@ -3002,8 +3002,10 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable add_facility_default
 drawable avd_hide_password
 drawable avd_show_password
+drawable baseline_add_photo_alternate_24
 drawable baseline_wallpaper_24
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3150,6 +3152,10 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id TextViewDate
+id TextViewDescription
+id TextViewPrice
+id TextViewTitle
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -3225,6 +3231,8 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id back_button
+id back_button_for_waiting
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3242,6 +3250,7 @@ id btnGenerateQRCode
 id btnUpload
 id btn_admin
 id btn_back
+id btn_back2user
 id btn_create_event
 id btn_facility_profile
 id btn_manage_events
@@ -3256,6 +3265,7 @@ id btn_user_location
 id btn_user_notifications
 id btn_user_profile
 id btn_user_qr_scanner
+id button
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3301,6 +3311,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delete_button
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -3334,6 +3345,7 @@ id editTextDate
 id editTextDesc
 id editTextPrice
 id editTextTitle
+id edit_button
 id edit_query
 id edit_text_id
 id elastic
@@ -3343,6 +3355,8 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id escape
+id event_list_view
+id event_title
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3386,6 +3400,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id imgEvent
 id immediateStop
 id included
@@ -3620,6 +3635,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3657,6 +3673,7 @@ id up
 id useLogo
 id user_name
 id vertical_only
+id view_button
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -3797,6 +3814,7 @@ layout activity_admin_manage_facilities
 layout activity_admin_manage_images
 layout activity_admin_manage_profiles
 layout activity_admin_view_reports
+layout activity_event_list_item
 layout activity_event_result_list
 layout activity_event_waiting_list
 layout activity_main
@@ -3806,11 +3824,13 @@ layout activity_organizer_facility_profile
 layout activity_organizer_manage_events
 layout activity_user_dashboard
 layout activity_user_events
+layout activity_user_join_waitlist_event
 layout activity_user_location
 layout activity_user_notifications
 layout activity_user_profile
 layout activity_user_profile_list_item
 layout activity_user_qr_scanner
+layout activity_user_unjoin_waitlist_event
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
