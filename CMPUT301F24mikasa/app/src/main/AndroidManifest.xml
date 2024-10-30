@@ -42,6 +42,7 @@
         <activity android:name=".UserEventsActivity" android:exported="true" />
         <activity android:name=".UserQRScannerActivity" android:exported="true" />
         <activity android:name=".UserLocationActivity" android:exported="true" />
+        <activity android:name=".WaitingListActivity" />
 
     </application>
 </manifest>

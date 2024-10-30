@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,16 +27,12 @@ import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class CreateEventActivity extends AppCompatActivity {
@@ -49,13 +46,11 @@ public class CreateEventActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private CollectionReference eventRef;
-    private String eventID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_create_event);
-
         eventCreated = false;
 
         // Back button to return to Organizer Dashboard
@@ -78,7 +73,7 @@ public class CreateEventActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         eventRef = db.collection("event");
         DocumentReference documentReference = eventRef.document(); // EventID
-        eventID = documentReference.getId();
+        String eventID = documentReference.getId();
 
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,34 +89,15 @@ public class CreateEventActivity extends AppCompatActivity {
                     return;
                 }
 
-                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-                try {
-                    int eventYear = Integer.parseInt(date);
-                    if (eventYear < 1000 || eventYear > currentYear) { 
-                        Toast.makeText(CreateEventActivity.this, "Please enter a valid 4-digit year (<= " + currentYear + ")", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(CreateEventActivity.this, "Please enter a valid numeric year", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                try {
-                    double eventPrice = Double.parseDouble(price);
-                    if (eventPrice < 0) {
-                        Toast.makeText(CreateEventActivity.this, "Price must be a positive number", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    Toast.makeText(CreateEventActivity.this, "Invalid price format", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 //TODO
                 // Test data entry
                 // Find way to input capacity, maybe on facility?
                 // End date?
                 HashMap<String, Object> eventDetails = new HashMap<>();
+                String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                eventDetails.put("deviceID", deviceId);
                 eventDetails.put("title", title);
                 eventDetails.put("startDate", date);
                 eventDetails.put("price", price);
@@ -130,7 +106,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("eventID", eventID);
                 eventDetails.put("cancelledEntrants", new ArrayList<>());
                 eventDetails.put("selectedEntrants", new ArrayList<>());
-                eventDetails.put("posterRef", "/media/eventMedia");
+                //eventDetails.put("posterRef", "/media/eventMedia");
                 eventDetails.put("qrRef", ""); // update later
 
 
@@ -153,7 +129,7 @@ public class CreateEventActivity extends AppCompatActivity {
         btnGenerateQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eventID = documentReference.getId();
+                String eventID = documentReference.getId();
                 Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
                 //TODO
                 // Ensure that qrRef can actually store QR Code
@@ -184,12 +160,8 @@ public class CreateEventActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         try {
-                            imgEvent.setBackground(null); // clear drawable icon before updating
                             Uri imageUri = result.getData().getData();
                             imgEvent.setImageURI(imageUri);
-                            // upload image to storage
-                            uploadImage(imageUri);
-
                         } catch (Exception e) {
                             Toast.makeText(CreateEventActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
                         }
@@ -217,31 +189,5 @@ public class CreateEventActivity extends AppCompatActivity {
             return null;
         }
     }
-
-    // Referenced:
-    // https://firebase.google.com/docs/storage/android/upload-files, by Google 2024-10-28
-    // https://www.youtube.com/watch?v=YgjYVbg1oiA&ab_channel=CodeWithChris by CodeWithChris, 2024-10-28
-    public void uploadImage(Uri imageUri){
-        DocumentReference documentReference = eventRef.document(eventID);
-
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        String path = "event_images/" +  eventID +"/poster.jpg";
-        StorageReference storageReference = storage.getReference().child(path);
-        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(CreateEventActivity.this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(CreateEventActivity.this, "Sorry, unable to upload image. Please try again.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
-
-//TODO
-// save image download url to firestore
 
