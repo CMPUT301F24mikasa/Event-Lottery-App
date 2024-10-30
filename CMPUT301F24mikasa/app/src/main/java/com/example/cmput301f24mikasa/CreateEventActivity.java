@@ -89,8 +89,6 @@ public class CreateEventActivity extends AppCompatActivity {
                     return;
                 }
 
-
-
                 //TODO
                 // Test data entry
                 // Find way to input capacity, maybe on facility?
