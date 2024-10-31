@@ -1,0 +1,10 @@
+#Wed Oct 30 20:56:01 MDT 2024
+base.0=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.2=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\4\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=4/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

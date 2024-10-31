@@ -3238,8 +3238,10 @@ id baseline
 id beginOnFirstDraw
 id beginning
 id bestChoice
+id bk_button
 id blocking
 id bottom
+id bottomButtonPanel
 id bottomPanel
 id bounce
 id bounceBoth
@@ -3247,7 +3249,9 @@ id bounceEnd
 id bounceStart
 id btnCreateEvent
 id btnGenerateQRCode
+id btnUpdate
 id btnUpload
+id btnUploadPicture
 id btn_admin
 id btn_back
 id btn_back2user
@@ -3266,6 +3270,7 @@ id btn_user_notifications
 id btn_user_profile
 id btn_user_qr_scanner
 id button
+id buttonLayout
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3341,6 +3346,9 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editFacilityDesc
+id editFacilityLocation
+id editFacilityName
 id editTextDate
 id editTextDesc
 id editTextPrice
@@ -3385,6 +3393,8 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id guideline
+id guideline2
 id headerTextView
 id header_title
 id hide_ime_id
@@ -3401,7 +3411,9 @@ id ignore
 id ignoreRequest
 id image
 id imageView
+id imageviewPanel
 id imgEvent
+id imgProfilePicture
 id immediateStop
 id included
 id indeterminate
@@ -3424,6 +3436,7 @@ id line3
 id linear
 id listMode
 id list_item
+id list_view
 id m3_side_sheet
 id main
 id manage_waitlist_button
@@ -3645,6 +3658,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id textviewPanel
 id time
 id title
 id titleDividerNoCustom

@@ -1,12 +1,19 @@
 package com.example.cmput301f24mikasa;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +21,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,40 +34,38 @@ public class FacilityProfileActivity extends AppCompatActivity {
     Boolean pictureUploaded;
     Button btnUploadPicture, btnRemovePicture, btnUpdate;
     EditText editFacilityName, editFacilityLocation, editFacilityDesc;
+    Uri imageUri;
+    FirebaseFirestore db;
+    ActivityResultLauncher<Intent> resultLauncher;
+    StorageReference storageReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_facility_profile);
 
-        // Back button to return to Organizer Dashboard
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
 
-        // Corrected findViewById calls
         editFacilityDesc = findViewById(R.id.editFacilityDesc);
         editFacilityLocation = findViewById(R.id.editFacilityLocation);
         editFacilityName = findViewById(R.id.editFacilityName);
         btnUpdate = findViewById(R.id.btnUpdate);
-        btnRemovePicture = findViewById(R.id.btnRemovePicture);
+//        btnRemovePicture = findViewById(R.id.btnRemovePicture);
         btnUploadPicture = findViewById(R.id.btnUploadPicture);
+        imgProfilePicture = findViewById(R.id.imgProfilePicture);
 
         pictureUploaded = false;
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference("facility_images");
 
-        // Handle upload photo logic
-        btnUploadPicture.setOnClickListener(v -> {
-            pictureUploaded = true;
-        });
 
-        btnRemovePicture.setOnClickListener(v -> {
-            if (!pictureUploaded) {
-                Toast.makeText(FacilityProfileActivity.this, "No picture to remove.", Toast.LENGTH_SHORT).show();
-            } else {
-                // Handle remove picture logic
-            }
-        });
+        registerResult();
+        btnUploadPicture.setOnClickListener(view -> pickImage());
+
 
         btnUpdate.setOnClickListener(v -> {
             if (!pictureUploaded) {
@@ -69,22 +77,87 @@ public class FacilityProfileActivity extends AppCompatActivity {
             String facilityLocation = editFacilityLocation.getText().toString();
             String facilityDesc = editFacilityDesc.getText().toString();
 
-            Map<String, Object> facilityDetails = new HashMap<>();
-            facilityDetails.put("name", facilityName);
-            facilityDetails.put("facilityLocation", facilityLocation);
-            facilityDetails.put("facilityDesc", facilityDesc);
+            if (facilityName.isEmpty()) {
+                Toast.makeText(FacilityProfileActivity.this, "Please enter a facility name.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            if(imageUri !=null){
+                uploadFacility(facilityName, facilityLocation, facilityDesc);
+            } else {
+                Toast.makeText(this, "Please upload an image", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            db.collection("facility").add(facilityDetails).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(FacilityProfileActivity.this, "Facility profile successfully updated.", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(FacilityProfileActivity.this, "Failed to update profile changes", Toast.LENGTH_SHORT).show();
-                }
-            });
+
+    }
+
+    private void pickImage(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        resultLauncher.launch(intent);
+    }
+
+    private void uploadFacility(String facilityName, String facilityLocation, String facilityDesc){
+        StorageReference fileReference = storageReference.child(facilityName +".jpg");
+
+        fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                 fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                     @Override
+                     public void onSuccess(Uri uri) {
+
+                         Map<String, Object> facilityDetails = new HashMap<>();
+                         facilityDetails.put("name", facilityName);
+                         facilityDetails.put("facilityLocation", facilityLocation);
+                         facilityDetails.put("facilityDesc", facilityDesc);
+                         facilityDetails.put("imageURL", uri.toString());
+
+                         db.collection("facility").document(facilityName).set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                             @Override
+                             public void onSuccess(Void unused) {
+                                                         Toast.makeText(FacilityProfileActivity.this, "Facility profile has been updated.", Toast.LENGTH_SHORT).show();
+
+                             }
+                         }).addOnFailureListener(new OnFailureListener() {
+                             @Override
+                             public void onFailure(@NonNull Exception e) {
+                                                         Toast.makeText(FacilityProfileActivity.this, "Sorry, facility profile could not be updated. Please try again.", Toast.LENGTH_SHORT).show();
+
+                             }
+                         });
+
+                     }
+                 }).addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(@NonNull Exception e) {
+                Toast.makeText(FacilityProfileActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show();
+                     }
+                 });
+            }
         });
     }
+
+    private void registerResult() {
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if(result.getResultCode() == RESULT_OK && result.getData() != null){
+                            imageUri = result.getData().getData();
+                            imgProfilePicture.setImageURI(imageUri);
+                            pictureUploaded = true;
+
+                        } else{
+                            Toast.makeText(FacilityProfileActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+
 }
+
