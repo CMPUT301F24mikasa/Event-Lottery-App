@@ -8,6 +8,7 @@ MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\brand\.gradle\caches\transforms-4\a1c5ffbdfc1c6c74d3572ebecc3af90b\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\d4043811b53f0ff8b2ec1ec482bde8e7\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\c1b2c139ef901f201b3254b1edcaf91a\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\f375618b90021635594b6fd0a12fa854\transformed\glide-4.16.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\d51b1df13a667e9e79545eb7850dfade\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\brand\.gradle\caches\transforms-4\1451ea590e7b95341c912e4d2921f2b5\transformed\firebase-firestore-25.1.1\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\brand\.gradle\caches\transforms-4\e502e697b9840a8cb318467aaa870a80\transformed\firebase-storage-21.0.1\AndroidManifest.xml:15:1-39:12
@@ -49,6 +50,8 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\brand\.g
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\74c0b126257d44700cd31d28eed7ae8f\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\brand\.gradle\caches\transforms-4\f197984a75ee23e20ba4437d5cd2332d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\dce0902fb624490985c188b6239b8408\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\82536dd47993fe88cc3b560bfa62a784\transformed\gifdecoder-4.16.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\brand\.gradle\caches\transforms-4\a20a63982aa84e749d9eb8b6dce0e8e7\transformed\exifinterface-1.3.6\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\brand\.gradle\caches\transforms-4\209df2c088c50588297443320faa11d7\transformed\firebase-components-18.0.0\AndroidManifest.xml:15:1-20:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\0b0d03e006549e428c149b993e9057c8\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\brand\.gradle\caches\transforms-4\9666047627b678bc06fff79232c64d1e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
@@ -252,6 +255,8 @@ MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\brand\.gradl
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\d4043811b53f0ff8b2ec1ec482bde8e7\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\c1b2c139ef901f201b3254b1edcaf91a\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\c1b2c139ef901f201b3254b1edcaf91a\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\f375618b90021635594b6fd0a12fa854\transformed\glide-4.16.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\f375618b90021635594b6fd0a12fa854\transformed\glide-4.16.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\d51b1df13a667e9e79545eb7850dfade\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\d51b1df13a667e9e79545eb7850dfade\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\brand\.gradle\caches\transforms-4\1451ea590e7b95341c912e4d2921f2b5\transformed\firebase-firestore-25.1.1\AndroidManifest.xml:6:5-44
@@ -334,6 +339,10 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\brand\.gradle\cach
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\brand\.gradle\caches\transforms-4\f197984a75ee23e20ba4437d5cd2332d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\dce0902fb624490985c188b6239b8408\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\dce0902fb624490985c188b6239b8408\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\82536dd47993fe88cc3b560bfa62a784\transformed\gifdecoder-4.16.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\brand\.gradle\caches\transforms-4\82536dd47993fe88cc3b560bfa62a784\transformed\gifdecoder-4.16.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\brand\.gradle\caches\transforms-4\a20a63982aa84e749d9eb8b6dce0e8e7\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\brand\.gradle\caches\transforms-4\a20a63982aa84e749d9eb8b6dce0e8e7\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\brand\.gradle\caches\transforms-4\209df2c088c50588297443320faa11d7\transformed\firebase-components-18.0.0\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\brand\.gradle\caches\transforms-4\209df2c088c50588297443320faa11d7\transformed\firebase-components-18.0.0\AndroidManifest.xml:18:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\brand\.gradle\caches\transforms-4\0b0d03e006549e428c149b993e9057c8\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44

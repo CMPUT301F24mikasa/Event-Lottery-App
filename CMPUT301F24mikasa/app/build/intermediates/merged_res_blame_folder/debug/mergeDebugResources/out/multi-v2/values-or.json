@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-33:/values-or/values-or.xml",
+            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-34:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\c1b2c139ef901f201b3254b1edcaf91a\\transformed\\appcompat-1.7.0\\res\\values-or\\values-or.xml",

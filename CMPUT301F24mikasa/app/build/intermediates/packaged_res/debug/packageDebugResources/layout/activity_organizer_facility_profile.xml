@@ -94,6 +94,7 @@
                 android:padding="16dp"
                 android:textColorHint="@color/white"
                 android:background="#D4D4D4"
+                android:textColor="@android:color/white"
                 android:layout_margin="20dp"
                 />
 
@@ -108,7 +109,9 @@
                 android:hint="Enter Facility Location"
                 android:inputType="text"
                 android:padding="16dp"
-                android:textColorHint="@color/white" />
+                android:textColorHint="@color/white"
+                android:textColor="@android:color/white"
+                />
 
             <EditText
                 android:id="@+id/editFacilityDesc"
@@ -121,7 +124,9 @@
                 android:hint="Enter Facility Description"
                 android:inputType="textMultiLine"
                 android:padding="16dp"
-                android:textColorHint="@color/white" />
+                android:textColorHint="@color/white"
+                android:textColor="@android:color/white"
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bottomButtonPanel"
