@@ -5,13 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -23,10 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -36,32 +36,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CreateEventActivity extends AppCompatActivity {
-    // Assign variables
+
     ImageView imgEvent;
     Button btnUpload, btnGenerateQRCode, btnCreateEvent;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc;
     Boolean eventCreated;
-
-    ActivityResultLauncher<Intent> resultLauncher;
-
+    Uri imageUri;
     FirebaseFirestore db;
-    private CollectionReference eventRef;
+    StorageReference storageReference;
+    ActivityResultLauncher<Intent> resultLauncher;
+    CollectionReference eventRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_create_event);
-        eventCreated = false;
 
         // Back button to return to Organizer Dashboard
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
 
+        eventCreated = false;
         imgEvent = findViewById(R.id.imgEvent);
         btnUpload = findViewById(R.id.btnUpload);
-        registerResult();
-        btnUpload.setOnClickListener(view -> pickImage());
-
         btnGenerateQRCode = findViewById(R.id.btnGenerateQRCode);
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
 
@@ -72,82 +69,44 @@ public class CreateEventActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         eventRef = db.collection("event");
-        DocumentReference documentReference = eventRef.document(); // EventID
-        String eventID = documentReference.getId();
+        storageReference = FirebaseStorage.getInstance().getReference("event_images");
 
-        btnCreateEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // add to database
-                String title = editTextTitle.getText().toString();
-                String date = editTextDate.getText().toString();
-                String price = editTextPrice.getText().toString();
-                String desc = editTextDesc.getText().toString();
+        registerResult();
+        btnUpload.setOnClickListener(view -> pickImage());
 
-                if (title.isEmpty()||date.isEmpty()||price.isEmpty()||desc.isEmpty()){
-                    Toast.makeText(CreateEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        btnCreateEvent.setOnClickListener(v -> {
+            String title = editTextTitle.getText().toString();
+            String date = editTextDate.getText().toString();
+            String price = editTextPrice.getText().toString();
+            String desc = editTextDesc.getText().toString();
 
-                //TODO
-                // Test data entry
-                // Find way to input capacity, maybe on facility?
-                // End date?
-                HashMap<String, Object> eventDetails = new HashMap<>();
-                String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                eventDetails.put("deviceID", deviceId);
-                eventDetails.put("title", title);
-                eventDetails.put("startDate", date);
-                eventDetails.put("price", price);
-                eventDetails.put("description", desc);
-                eventDetails.put("capacity", 1); // edit later
-                eventDetails.put("eventID", eventID);
-                eventDetails.put("cancelledEntrants", new ArrayList<>());
-                eventDetails.put("selectedEntrants", new ArrayList<>());
-                //eventDetails.put("posterRef", "/media/eventMedia");
-                eventDetails.put("qrRef", ""); // update later
+            if (title.isEmpty() || date.isEmpty() || price.isEmpty() || desc.isEmpty()) {
+                Toast.makeText(CreateEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-
-                documentReference.set(eventDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(CreateEventActivity.this, "Event created successfully!", Toast.LENGTH_SHORT).show();
-                        eventCreated = true;
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            if (imageUri != null) {
+                createEvent(title, date, price, desc);
+            } else {
+                Toast.makeText(CreateEventActivity.this, "Please upload an image", Toast.LENGTH_SHORT).show();
             }
         });
 
-        btnGenerateQRCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String eventID = documentReference.getId();
-                Bitmap qrCode = generateQRCodeBitmap(eventID); // QR Code references eventID
-                //TODO
-                // Ensure that qrRef can actually store QR Code
-                documentReference.update("qrRef", qrCode).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+        btnGenerateQRCode.setOnClickListener(v -> {
+            DocumentReference documentReference = eventRef.document();
+            String eventID = documentReference.getId();
+            Bitmap qrCode = generateQRCodeBitmap(eventID);
+            documentReference.update("qrRef", eventID).addOnSuccessListener(aVoid ->
+                    Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show()
+            ).addOnFailureListener(e ->
+                    Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
+            );
         });
     }
 
-    private void pickImage(){
-        Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+    private void pickImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
         resultLauncher.launch(intent);
     }
 
@@ -157,18 +116,49 @@ public class CreateEventActivity extends AppCompatActivity {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        try {
-                            Uri imageUri = result.getData().getData();
+                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                            imageUri = result.getData().getData();
                             imgEvent.setImageURI(imageUri);
-                        } catch (Exception e) {
-                            Toast.makeText(CreateEventActivity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CreateEventActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
         );
     }
 
-    // Code referenced from https://stackoverflow.com/questions/8800919/how-to-generate-a-qr-code-for-an-android-application by Stefano, Downloaded 2024-10-26
+    private void createEvent(String title, String date, String price, String desc) {
+        StorageReference fileRef = storageReference.child(title + ".jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    HashMap<String, Object> eventDetails = new HashMap<>();
+                    String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                    eventDetails.put("deviceID", deviceId);
+                    eventDetails.put("title", title);
+                    eventDetails.put("startDate", date);
+                    eventDetails.put("price", price);
+                    eventDetails.put("description", desc);
+                    eventDetails.put("capacity", 1);
+                    eventDetails.put("imageURL", uri.toString());
+                    eventDetails.put("cancelledEntrants", new ArrayList<>());
+                    eventDetails.put("selectedEntrants", new ArrayList<>());
+
+                    eventRef.document(title).set(eventDetails).addOnSuccessListener(aVoid ->
+                            Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show()
+                    ).addOnFailureListener(e ->
+                            Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show()
+                    );
+                }).addOnFailureListener(e ->
+                        Toast.makeText(CreateEventActivity.this, "Sorry, image upload failed. Please try again.", Toast.LENGTH_SHORT).show()
+                );
+            }
+        }).addOnFailureListener(e ->
+                Toast.makeText(CreateEventActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show()
+        );
+    }
+
     public Bitmap generateQRCodeBitmap(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
@@ -188,4 +178,3 @@ public class CreateEventActivity extends AppCompatActivity {
         }
     }
 }
-
