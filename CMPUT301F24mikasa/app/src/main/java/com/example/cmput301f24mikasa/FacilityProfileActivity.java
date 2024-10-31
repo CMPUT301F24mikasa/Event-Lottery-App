@@ -1,9 +1,11 @@
 package com.example.cmput301f24mikasa;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import com.bumptech.glide.Glide;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,19 +39,25 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
     ImageView imgProfilePicture;
     Boolean pictureUploaded;
-    Button btnUploadPicture, btnRemovePicture, btnUpdate;
+    Button btnUploadPicture, btnUpdate;
     EditText editFacilityName, editFacilityLocation, editFacilityDesc;
     Uri imageUri;
     FirebaseFirestore db;
     ActivityResultLauncher<Intent> resultLauncher;
     StorageReference storageReference;
+    String deviceID;
 
 
 
+
+    @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_facility_profile);
+
+        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
 
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
@@ -53,7 +66,6 @@ public class FacilityProfileActivity extends AppCompatActivity {
         editFacilityLocation = findViewById(R.id.editFacilityLocation);
         editFacilityName = findViewById(R.id.editFacilityName);
         btnUpdate = findViewById(R.id.btnUpdate);
-//        btnRemovePicture = findViewById(R.id.btnRemovePicture);
         btnUploadPicture = findViewById(R.id.btnUploadPicture);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
 
@@ -61,8 +73,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference("facility_images");
-
-
+        loadFacilityFromDeviceID(deviceID);
         registerResult();
         btnUploadPicture.setOnClickListener(view -> pickImage());
 
@@ -81,8 +92,8 @@ public class FacilityProfileActivity extends AppCompatActivity {
                 Toast.makeText(FacilityProfileActivity.this, "Please enter a facility name.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            
-            if(imageUri !=null){
+
+            if(pictureUploaded || imageUri !=null){
                 uploadFacility(facilityName, facilityLocation, facilityDesc);
             } else {
                 Toast.makeText(this, "Please upload an image", Toast.LENGTH_SHORT).show();
@@ -98,6 +109,35 @@ public class FacilityProfileActivity extends AppCompatActivity {
         resultLauncher.launch(intent);
     }
 
+    private void loadFacilityFromDeviceID(String deviceID){
+        Query query = db.collection("facility").whereEqualTo("ownerDeviceID", deviceID);
+        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+
+            if (!queryDocumentSnapshots.isEmpty()) {
+
+
+                DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
+                String facilityName = documentSnapshot.getString("facilityName");
+                String facilityLocation = documentSnapshot.getString("facilityLocation");
+                String facilityDesc = documentSnapshot.getString("facilityDesc");
+                String imageUrl = documentSnapshot.getString("imageURL");
+
+                btnUpdate.setText("Update");
+
+                // https://github.com/bumptech/glide, Referenced 2024-10-31
+                Glide.with(this).load(imageUrl).into(imgProfilePicture);
+                imgProfilePicture.setBackground(null);
+
+
+                editFacilityDesc.setText(facilityDesc);
+                editFacilityName.setText(facilityName);
+                editFacilityLocation.setText(facilityLocation);
+            } else{
+                Toast.makeText(this, "Please create a facility", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void uploadFacility(String facilityName, String facilityLocation, String facilityDesc){
         StorageReference fileReference = storageReference.child(facilityName +".jpg");
 
@@ -109,10 +149,12 @@ public class FacilityProfileActivity extends AppCompatActivity {
                      public void onSuccess(Uri uri) {
 
                          Map<String, Object> facilityDetails = new HashMap<>();
-                         facilityDetails.put("name", facilityName);
+                         facilityDetails.put("facilityName", facilityName);
                          facilityDetails.put("facilityLocation", facilityLocation);
                          facilityDetails.put("facilityDesc", facilityDesc);
                          facilityDetails.put("imageURL", uri.toString());
+                         facilityDetails.put("ownerDeviceID", deviceID); // Store the owner device ID
+
 
                          db.collection("facility").document(facilityName).set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
