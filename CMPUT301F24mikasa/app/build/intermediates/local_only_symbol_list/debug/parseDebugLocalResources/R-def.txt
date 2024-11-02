@@ -4,6 +4,7 @@ color black
 color white
 drawable add_facility_default
 drawable baseline_add_photo_alternate_24
+drawable baseline_photo_24
 drawable baseline_wallpaper_24
 drawable default_pfp
 drawable ic_launcher_background

@@ -3006,6 +3006,7 @@ drawable add_facility_default
 drawable avd_hide_password
 drawable avd_show_password
 drawable baseline_add_photo_alternate_24
+drawable baseline_photo_24
 drawable baseline_wallpaper_24
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
