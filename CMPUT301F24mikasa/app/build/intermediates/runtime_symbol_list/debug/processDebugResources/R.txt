@@ -3005,6 +3005,7 @@ int drawable add_facility_default 0x7f070078
 int drawable avd_hide_password 0x7f070079
 int drawable avd_show_password 0x7f07007a
 int drawable baseline_add_photo_alternate_24 0x7f07007b
+int drawable baseline_photo_24 0x7f070100
 int drawable baseline_wallpaper_24 0x7f07007c
 int drawable btn_checkbox_checked_mtrl 0x7f07007d
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07007e
