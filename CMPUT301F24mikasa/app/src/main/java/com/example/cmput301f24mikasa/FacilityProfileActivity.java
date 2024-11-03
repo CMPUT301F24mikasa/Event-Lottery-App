@@ -109,13 +109,11 @@ public class FacilityProfileActivity extends AppCompatActivity {
         resultLauncher.launch(intent);
     }
 
-    private void loadFacilityFromDeviceID(String deviceID){
+    private void loadFacilityFromDeviceID(String deviceID) {
         Query query = db.collection("facility").whereEqualTo("ownerDeviceID", deviceID);
         query.get().addOnSuccessListener(queryDocumentSnapshots -> {
 
             if (!queryDocumentSnapshots.isEmpty()) {
-
-
                 DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
                 String facilityName = documentSnapshot.getString("facilityName");
                 String facilityLocation = documentSnapshot.getString("facilityLocation");
@@ -124,18 +122,22 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
                 btnUpdate.setText("Update");
 
-                // https://github.com/bumptech/glide, Referenced 2024-10-31
-                Glide.with(this).load(imageUrl).into(imgProfilePicture);
-                imgProfilePicture.setBackground(null);
-
+                // Load the image if URL is present
+                if (imageUrl != null && !imageUrl.isEmpty()) {
+                    Glide.with(this).load(imageUrl).into(imgProfilePicture);
+                    imgProfilePicture.setBackground(null);
+                    pictureUploaded = true; // Set pictureUploaded to true if image URL exists
+                }
 
                 editFacilityDesc.setText(facilityDesc);
                 editFacilityName.setText(facilityName);
                 editFacilityLocation.setText(facilityLocation);
-            } else{
+            } else {
                 Toast.makeText(this, "Please create a facility", Toast.LENGTH_SHORT).show();
             }
-        });
+        }).addOnFailureListener(e ->
+                Toast.makeText(this, "Error loading facility data.", Toast.LENGTH_SHORT).show()
+        );
     }
 
     private void uploadFacility(String facilityName, String facilityLocation, String facilityDesc){
@@ -144,39 +146,39 @@ public class FacilityProfileActivity extends AppCompatActivity {
         fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                 fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                     @Override
-                     public void onSuccess(Uri uri) {
+                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
 
-                         Map<String, Object> facilityDetails = new HashMap<>();
-                         facilityDetails.put("facilityName", facilityName);
-                         facilityDetails.put("facilityLocation", facilityLocation);
-                         facilityDetails.put("facilityDesc", facilityDesc);
-                         facilityDetails.put("imageURL", uri.toString());
-                         facilityDetails.put("ownerDeviceID", deviceID); // Store the owner device ID
+                        Map<String, Object> facilityDetails = new HashMap<>();
+                        facilityDetails.put("facilityName", facilityName);
+                        facilityDetails.put("facilityLocation", facilityLocation);
+                        facilityDetails.put("facilityDesc", facilityDesc);
+                        facilityDetails.put("imageURL", uri.toString());
+                        facilityDetails.put("ownerDeviceID", deviceID); // Store the owner device ID
 
 
-                         db.collection("facility").document(facilityName).set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-                             @Override
-                             public void onSuccess(Void unused) {
-                                                         Toast.makeText(FacilityProfileActivity.this, "Facility profile has been updated.", Toast.LENGTH_SHORT).show();
+                        db.collection("facility").document(facilityName).set(facilityDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(FacilityProfileActivity.this, "Facility profile has been updated.", Toast.LENGTH_SHORT).show();
 
-                             }
-                         }).addOnFailureListener(new OnFailureListener() {
-                             @Override
-                             public void onFailure(@NonNull Exception e) {
-                                                         Toast.makeText(FacilityProfileActivity.this, "Sorry, facility profile could not be updated. Please try again.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(FacilityProfileActivity.this, "Sorry, facility profile could not be updated. Please try again.", Toast.LENGTH_SHORT).show();
 
-                             }
-                         });
+                            }
+                        });
 
-                     }
-                 }).addOnFailureListener(new OnFailureListener() {
-                     @Override
-                     public void onFailure(@NonNull Exception e) {
-                Toast.makeText(FacilityProfileActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show();
-                     }
-                 });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(FacilityProfileActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
