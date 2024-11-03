@@ -46,6 +46,7 @@ public class CreateEventActivity extends AppCompatActivity {
     StorageReference storageReference;
     ActivityResultLauncher<Intent> resultLauncher;
     CollectionReference eventRef;
+    String eventID;  // Class-level variable to store the unique event ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,14 +94,16 @@ public class CreateEventActivity extends AppCompatActivity {
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
-            DocumentReference documentReference = eventRef.document();
-            String eventID = documentReference.getId();
-            Bitmap qrCode = generateQRCodeBitmap(eventID);
-            documentReference.update("qrRef", eventID).addOnSuccessListener(aVoid ->
-                    Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show()
-            ).addOnFailureListener(e ->
-                    Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
-            );
+            if (eventID != null) {  // Ensure eventID is set before generating QR code
+                Bitmap qrCode = generateQRCodeBitmap(eventID);
+                eventRef.document(eventID).update("qrRef", eventID).addOnSuccessListener(aVoid ->
+                        Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show()
+                ).addOnFailureListener(e ->
+                        Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
+                );
+            } else {
+                Toast.makeText(CreateEventActivity.this, "Event has not been created yet.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -128,7 +131,10 @@ public class CreateEventActivity extends AppCompatActivity {
     }
 
     private void createEvent(String title, String date, String price, String desc) {
-        StorageReference fileRef = storageReference.child(title + ".jpg");
+        DocumentReference documentReference = eventRef.document();
+        eventID = documentReference.getId();  // Generate and store eventID once
+
+        StorageReference fileRef = storageReference.child(eventID + ".jpg");  // Use eventID for image storage
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -141,11 +147,12 @@ public class CreateEventActivity extends AppCompatActivity {
                     eventDetails.put("price", price);
                     eventDetails.put("description", desc);
                     eventDetails.put("capacity", 1);
+                    eventDetails.put("eventID", eventID);  // Save eventID in Firestore
                     eventDetails.put("imageURL", uri.toString());
                     eventDetails.put("cancelledEntrants", new ArrayList<>());
                     eventDetails.put("selectedEntrants", new ArrayList<>());
 
-                    eventRef.document(title).set(eventDetails).addOnSuccessListener(aVoid ->
+                    documentReference.set(eventDetails).addOnSuccessListener(aVoid ->
                             Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show()
                     ).addOnFailureListener(e ->
                             Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show()
