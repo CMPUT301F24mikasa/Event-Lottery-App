@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/events_caps"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:background="#0D47A1" />
+
+    <!-- QR Scanner Button -->
+    <Button
+        android:id="@+id/qr_scanner_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qr_scanner"
+        android:textColor="#FFFFFF"
+        android:background="#0D47A1"
+        android:textAlignment="center"
+        android:layout_margin="20dp"
+        android:textSize="18sp" />
+
+    <!-- Events Signed Up For Button -->
+    <Button
+        android:id="@+id/events_signed_up_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/events_signed_up_for"
+        android:textColor="#FFFFFF"
+        android:background="#0D47A1"
+        android:textSize="18sp" />
+
+    <!-- Create Event Button -->
+    <Button
+        android:id="@+id/create_event_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/create_event_small_caps"
+        android:textColor="#FFFFFF"
+        android:background="#0D47A1"
+        android:textSize="18sp" />
+
+    <!-- Manage Events Button -->
+    <Button
+        android:id="@+id/manage_events_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/manage_events"
+        android:textColor="#FFFFFF"
+        android:background="#0D47A1"
+        android:textSize="18sp" />
+
+</LinearLayout>
