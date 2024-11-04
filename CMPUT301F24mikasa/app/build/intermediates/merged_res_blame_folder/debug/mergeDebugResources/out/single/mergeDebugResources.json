@@ -56,16 +56,16 @@
         "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\drawable\\add_facility_default.xml"
     },
     {
-        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_manage_images.xml.flat",
-        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_admin_manage_images.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_manage_events.xml.flat",
         "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_admin_manage_events.xml"
     },
     {
-        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_manage_images.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_admin_manage_images.xml"
     },
     {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_manage_facilities.xml.flat",
@@ -86,6 +86,10 @@
     {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_event_poster.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_event_poster.xml"
     },
     {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_dashboard.xml.flat",
@@ -168,12 +172,16 @@
         "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\layout_activity_admin_view_reports.xml.flat",
         "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\layout\\activity_admin_view_reports.xml"
     },
     {
-        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\drawable_placeholder_qr.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-main-38:\\drawable\\placeholder_qr.xml"
     },
     {
         "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.7\\com.example.cmput301f24mikasa.app-debug-36:\\mipmap-hdpi_ic_launcher_round.webp.flat",

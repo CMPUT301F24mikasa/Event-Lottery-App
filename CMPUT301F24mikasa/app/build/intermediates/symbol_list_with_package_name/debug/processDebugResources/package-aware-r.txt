@@ -3136,6 +3136,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable placeholder_qr
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3285,6 +3286,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id checkBoxLimitWaitingList
 id checkbox
 id checked
 id chronometer
@@ -3352,6 +3354,7 @@ id editFacilityLocation
 id editFacilityName
 id editTextDate
 id editTextDesc
+id editTextLimitWaitingList
 id editTextPrice
 id editTextTitle
 id edit_button
@@ -3415,7 +3418,9 @@ id image
 id imageView
 id imageviewPanel
 id imgEvent
+id imgEventImage
 id imgProfilePicture
+id imgQRCode
 id immediateStop
 id included
 id indeterminate
@@ -3682,6 +3687,10 @@ id transition_transform
 id triangle
 id tv_home
 id tv_organizer_dashboard
+id txtDate
+id txtDesc
+id txtPrice
+id txtTitle
 id unchecked
 id uniform
 id unlabeled
@@ -3831,6 +3840,7 @@ layout activity_admin_manage_images
 layout activity_admin_manage_profiles
 layout activity_admin_view_reports
 layout activity_event_list_item
+layout activity_event_poster
 layout activity_event_result_list
 layout activity_event_waiting_list
 layout activity_main

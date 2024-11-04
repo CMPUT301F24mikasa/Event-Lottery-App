@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,12 +37,13 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class CreateEventActivity extends AppCompatActivity {
 
     ImageView imgEvent;
     Button btnUpload, btnGenerateQRCode, btnCreateEvent;
-    EditText editTextTitle, editTextDate, editTextPrice, editTextDesc;
+    EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;
     Boolean eventCreated;
     Uri imageUri;
     FirebaseFirestore db;
@@ -47,6 +51,13 @@ public class CreateEventActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> resultLauncher;
     CollectionReference eventRef;
     String eventID;  // Class-level variable to store the unique event ID
+    CheckBox checkBoxLimitWaitingList;
+    Boolean hasWaitingListLimit;
+    Integer waitingListLimit; // Zero
+
+    // https://www.baeldung.com/java-date-regular-expressions by baeldung, Downloaded 2024-11-03
+    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4}$");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +79,21 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextPrice = findViewById(R.id.editTextPrice);
         editTextDesc = findViewById(R.id.editTextDesc);
 
+        checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
+        editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
+
+        checkBoxLimitWaitingList.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    editTextLimitWaitingList.setVisibility(View.VISIBLE);
+                } else{
+                    editTextLimitWaitingList.setVisibility(View.GONE);
+                    editTextLimitWaitingList.setText("");
+                }
+            }
+        });
+
         db = FirebaseFirestore.getInstance();
         eventRef = db.collection("event");
         storageReference = FirebaseStorage.getInstance().getReference("event_images");
@@ -85,6 +111,12 @@ public class CreateEventActivity extends AppCompatActivity {
                 Toast.makeText(CreateEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            if (!DATE_PATTERN.matcher(date).matches()) {
+                Toast.makeText(CreateEventActivity.this, "Please enter the date in MM/DD/YYYY format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
             if (imageUri != null) {
                 createEvent(title, date, price, desc);
@@ -138,6 +170,16 @@ public class CreateEventActivity extends AppCompatActivity {
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                waitingListLimit = 0;
+                hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
+                if(hasWaitingListLimit){
+                    String limitText = editTextLimitWaitingList.getText().toString();
+                    if(!limitText.isEmpty()){
+                        waitingListLimit = Integer.parseInt(limitText);
+                    }
+                }
+
                 fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     HashMap<String, Object> eventDetails = new HashMap<>();
                     String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -151,10 +193,24 @@ public class CreateEventActivity extends AppCompatActivity {
                     eventDetails.put("imageURL", uri.toString());
                     eventDetails.put("cancelledEntrants", new ArrayList<>());
                     eventDetails.put("selectedEntrants", new ArrayList<>());
+                    eventDetails.put("hasWaitingListLimit", hasWaitingListLimit);
+                    eventDetails.put("waitingListLimit", waitingListLimit);
 
-                    documentReference.set(eventDetails).addOnSuccessListener(aVoid ->
-                            Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show()
-                    ).addOnFailureListener(e ->
+                    documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
+                        Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show();
+
+                        // Generate poster
+                        Intent intent = new Intent(CreateEventActivity.this, EventPosterActivity.class);
+                        intent.putExtra("eventID", eventID);
+                        intent.putExtra("title", title);
+                        intent.putExtra("startDate", date);
+                        intent.putExtra("desc", desc);
+                        intent.putExtra("price", price);
+                        intent.putExtra("imageURL",imageUri.toString());
+                        startActivity(intent);
+
+
+                    } ).addOnFailureListener(e ->
                             Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show()
                     );
                 }).addOnFailureListener(e ->
