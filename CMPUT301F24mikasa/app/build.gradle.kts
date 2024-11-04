@@ -38,19 +38,27 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
-    implementation("com.google.firebase:firebase-firestore")
-    implementation ("com.google.zxing:core:3.4.1")
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
 
-    // Add the dependency for the Cloud Storage library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-storage")
+
+
+    // Other dependencies...
+    implementation(libs.javax.annotation.api)
+    implementation(libs.jsr305)
+
+
+    implementation(libs.picasso)
+
+    implementation(libs.zxing)
+    implementation(libs.multidex)
+
+    implementation(libs.mlkit.barcode.scanning)
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
