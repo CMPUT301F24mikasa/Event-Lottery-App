@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"> <!-- Main background -->
+
+    <!-- Header Text -->
+
+    <Button
+        android:id="@+id/back_button_for_waiting"
+        android:layout_width="81dp"
+        android:layout_height="69dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/back"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sample_button"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toEndOf="@+id/manage_waitlist_button"
+        app:layout_constraintTop_toBottomOf="@+id/waiting_list_view" />
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/waiting_list_for_insert_event_have_to_adj_lol"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- List of Users (Gray Boxes) -->
+    <ListView
+        android:id="@+id/waiting_list_view"
+        android:layout_width="411dp"
+        android:layout_height="503dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerTextView" />
+
+    <!-- Bottom Buttons (Manage Waitlist, Sample) -->
+
+    <Button
+        android:id="@+id/manage_waitlist_button"
+        android:layout_width="128dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/manage_waitlist"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waiting_list_view" />
+
+    <Button
+        android:id="@+id/sample_button"
+        android:layout_width="128dp"
+        android:layout_height="69dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/sample"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waiting_list_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

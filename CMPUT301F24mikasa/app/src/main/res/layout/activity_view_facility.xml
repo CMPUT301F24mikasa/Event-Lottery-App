@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_facility_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/facility_name"
+        android:textColor="#000080"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp" />
+
+    <!-- Add more TextViews as needed to display additional facility information -->
+    <TextView
+        android:id="@+id/tv_facility_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        android:layout_below="@id/tv_facility_name"
+        android:layout_marginTop="20dp"
+        android:textColor="#000080"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_facility_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:layout_below="@id/tv_facility_location"
+        android:layout_marginTop="20dp"
+        android:textColor="#000080"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/back"
+        android:background="#000080"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>
