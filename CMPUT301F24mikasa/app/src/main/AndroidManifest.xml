@@ -23,53 +23,41 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Admin Dashboard Activities -->
-        <activity
-            android:name=".AdminDashboardActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ManageEventsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ManageProfilesActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ManageImagesActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ManageFacilitiesActivity"
-            android:exported="true" /> <!-- Organizer Dashboard Activities -->
-        <activity
-            android:name=".OrganizerDashboardActivity"
-            android:exported="true" />
-        <activity
-            android:name=".CreateEventActivity"
-            android:exported="true" />
-        <activity
-            android:name=".OrganizerManageEventsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".FacilityProfileActivity"
-            android:exported="true" /> <!-- User Dashboard Activities -->
-        <activity
-            android:name=".UserDashboardActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UserNotificationsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UserProfileActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UserEventsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UserQRScannerActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UserLocationActivity"
-            android:exported="true" />
-        <activity android:name=".WaitingListActivity" />
+        </activity>         
+        
+        <!-- Profiles Activity -->
+        <activity android:name="ProfilesActivity" />
+
+        <!-- User Profile Activity -->
+        <activity android:name="UserProfileActivity" />
+
+        <!-- Facility Profile Activity -->
+        <activity android:name="FacilityProfileActivity" />
+
+        <!-- Events Activity -->
+        <activity android:name="EventsActivity" />
+
+        <!-- QR Scanner Activity -->
+        <activity android:name="QRScannerActivity" />
+
+        <!-- Events Joined Activity -->
+        <activity android:name="EventsJoinedActivity" />
+
+        <!-- Create Event Activity -->
+        <activity android:name="CreateEventActivity" />
+
+        <!-- Manage Events Activity -->
+        <activity android:name="ManageEventsActivity" />
+
+        <!-- Waiting List Activity -->
+        <activity android:name="WaitingListActivity" />
+
+        <!-- Notifications Activity -->
+        <activity android:name="NotificationsActivity" />
+
+        <!-- View Event Activity -->
+        <activity android:name="ViewEventActivity" />
+        
     </application>
 
 </manifest>
