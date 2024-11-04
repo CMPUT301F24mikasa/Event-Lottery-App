@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="24"
         android:targetSdkVersion="34" />
+
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
     <!-- <uses-sdk android:minSdkVersion="21" /> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -32,6 +33,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.CMPUT301F24mikasa" >
         <activity
+            android:name="com.example.cmput301f24mikasa.EventPosterActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.cmput301f24mikasa.MainActivity"
             android:exported="true" >
             <intent-filter>
@@ -39,9 +43,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Admin Dashboard Activities -->
+        </activity> <!-- Admin Dashboard Activities -->
         <activity
             android:name="com.example.cmput301f24mikasa.AdminDashboardActivity"
             android:exported="true" />
@@ -56,9 +58,7 @@
             android:exported="true" />
         <activity
             android:name="com.example.cmput301f24mikasa.ManageFacilitiesActivity"
-            android:exported="true" />
-
-        <!-- Organizer Dashboard Activities -->
+            android:exported="true" /> <!-- Organizer Dashboard Activities -->
         <activity
             android:name="com.example.cmput301f24mikasa.OrganizerDashboardActivity"
             android:exported="true" />
@@ -70,9 +70,7 @@
             android:exported="true" />
         <activity
             android:name="com.example.cmput301f24mikasa.FacilityProfileActivity"
-            android:exported="true" />
-
-        <!-- User Dashboard Activities -->
+            android:exported="true" /> <!-- User Dashboard Activities -->
         <activity
             android:name="com.example.cmput301f24mikasa.UserDashboardActivity"
             android:exported="true" />

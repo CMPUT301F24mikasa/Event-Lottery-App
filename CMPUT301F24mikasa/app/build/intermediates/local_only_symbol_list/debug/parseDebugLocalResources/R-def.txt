@@ -9,6 +9,7 @@ drawable baseline_wallpaper_24
 drawable default_pfp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable placeholder_qr
 id TextViewDate
 id TextViewDescription
 id TextViewPrice
@@ -42,12 +43,14 @@ id btn_user_profile
 id btn_user_qr_scanner
 id button
 id buttonLayout
+id checkBoxLimitWaitingList
 id delete_button
 id editFacilityDesc
 id editFacilityLocation
 id editFacilityName
 id editTextDate
 id editTextDesc
+id editTextLimitWaitingList
 id editTextPrice
 id editTextTitle
 id edit_button
@@ -59,7 +62,9 @@ id headerTextView
 id imageView
 id imageviewPanel
 id imgEvent
+id imgEventImage
 id imgProfilePicture
+id imgQRCode
 id leftPanel
 id list_view
 id main
@@ -72,6 +77,10 @@ id title
 id topPanel
 id tv_home
 id tv_organizer_dashboard
+id txtDate
+id txtDesc
+id txtPrice
+id txtTitle
 id user_name
 id view_button
 id waiting_list_view
@@ -82,6 +91,7 @@ layout activity_admin_manage_images
 layout activity_admin_manage_profiles
 layout activity_admin_view_reports
 layout activity_event_list_item
+layout activity_event_poster
 layout activity_event_result_list
 layout activity_event_waiting_list
 layout activity_main

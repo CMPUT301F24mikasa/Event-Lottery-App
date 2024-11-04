@@ -3135,6 +3135,7 @@ int drawable notification_template_icon_bg 0x7f0700f9
 int drawable notification_template_icon_low_bg 0x7f0700fa
 int drawable notification_tile_bg 0x7f0700fb
 int drawable notify_panel_notification_icon_bg 0x7f0700fc
+int drawable placeholder_qr 0x7f070101
 int drawable test_level_drawable 0x7f0700fd
 int drawable tooltip_frame_dark 0x7f0700fe
 int drawable tooltip_frame_light 0x7f0700ff
@@ -3284,6 +3285,7 @@ int id center_vertical 0x7f08008e
 int id chain 0x7f08008f
 int id chain2 0x7f080090
 int id chains 0x7f080091
+int id checkBoxLimitWaitingList 0x7f080240
 int id checkbox 0x7f080092
 int id checked 0x7f080093
 int id chronometer 0x7f080094
@@ -3351,6 +3353,7 @@ int id editFacilityLocation 0x7f0800d1
 int id editFacilityName 0x7f0800d2
 int id editTextDate 0x7f0800d3
 int id editTextDesc 0x7f0800d4
+int id editTextLimitWaitingList 0x7f080241
 int id editTextPrice 0x7f0800d5
 int id editTextTitle 0x7f0800d6
 int id edit_button 0x7f0800d7
@@ -3414,7 +3417,9 @@ int id image 0x7f08010f
 int id imageView 0x7f080110
 int id imageviewPanel 0x7f080111
 int id imgEvent 0x7f080112
+int id imgEventImage 0x7f08023a
 int id imgProfilePicture 0x7f080113
+int id imgQRCode 0x7f08023b
 int id immediateStop 0x7f080114
 int id included 0x7f080115
 int id indeterminate 0x7f080116
@@ -3681,6 +3686,10 @@ int id transition_transform 0x7f08021a
 int id triangle 0x7f08021b
 int id tv_home 0x7f08021c
 int id tv_organizer_dashboard 0x7f08021d
+int id txtDate 0x7f08023c
+int id txtDesc 0x7f08023d
+int id txtPrice 0x7f08023e
+int id txtTitle 0x7f08023f
 int id unchecked 0x7f08021e
 int id uniform 0x7f08021f
 int id unlabeled 0x7f080220
@@ -3830,6 +3839,7 @@ int layout activity_admin_manage_images 0x7f0b001f
 int layout activity_admin_manage_profiles 0x7f0b0020
 int layout activity_admin_view_reports 0x7f0b0021
 int layout activity_event_list_item 0x7f0b0022
+int layout activity_event_poster 0x7f0b0082
 int layout activity_event_result_list 0x7f0b0023
 int layout activity_event_waiting_list 0x7f0b0024
 int layout activity_main 0x7f0b0025

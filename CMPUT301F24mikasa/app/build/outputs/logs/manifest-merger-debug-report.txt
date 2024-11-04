@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-48:12
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-75:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\transforms-4\cce0ebcf87bed81347bea0323cfd1194\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\brand\.gradle\caches\transforms-4\a1c5ffbdfc1c6c74d3572ebecc3af90b\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\brand\.gradle\caches\transforms-4\d4043811b53f0ff8b2ec1ec482bde8e7\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -73,8 +73,8 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\bra
 	xmlns:android
 		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-47:19
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-47:19
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-73:19
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-73:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\transforms-4\cce0ebcf87bed81347bea0323cfd1194\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\transforms-4\cce0ebcf87bed81347bea0323cfd1194\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\brand\.gradle\caches\transforms-4\a1c5ffbdfc1c6c74d3572ebecc3af90b\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -133,116 +133,122 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\br
 		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:13:9-55
 	android:dataExtractionRules
 		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:7:9-65
+activity#com.example.cmput301f24mikasa.EventPosterActivity
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:15:9-17:40
+	android:exported
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:17:13-37
+	android:name
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:16:13-48
 activity#com.example.cmput301f24mikasa.MainActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:16:9-23:20
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:18:9-26:20
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:18:13-36
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:20:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:17:13-41
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:19:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:19:13-22:29
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:21:13-25:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:22:17-69
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:22:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:24:27-74
 activity#com.example.cmput301f24mikasa.AdminDashboardActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:26:9-84
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:27:9-29:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:26:58-81
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:29:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:26:19-57
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:28:13-51
 activity#com.example.cmput301f24mikasa.ManageEventsActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:27:9-82
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:30:9-32:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:27:56-79
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:32:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:27:19-55
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:31:13-49
 activity#com.example.cmput301f24mikasa.ManageProfilesActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:28:9-84
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:33:9-35:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:28:58-81
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:28:19-57
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:13-51
 activity#com.example.cmput301f24mikasa.ManageImagesActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:29:9-82
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:9-38:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:29:56-79
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:38:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:29:19-55
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:37:13-49
 activity#com.example.cmput301f24mikasa.ManageFacilitiesActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:30:9-86
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:39:9-41:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:30:60-83
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:41:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:30:19-59
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:40:13-53
 activity#com.example.cmput301f24mikasa.OrganizerDashboardActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:33:9-88
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:42:9-44:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:33:62-85
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:44:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:33:19-61
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:43:13-55
 activity#com.example.cmput301f24mikasa.CreateEventActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:9-81
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:45:9-47:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:55-78
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:47:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:19-54
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:46:13-48
 activity#com.example.cmput301f24mikasa.OrganizerManageEventsActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:9-91
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:48:9-50:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:65-88
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:50:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:19-64
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:49:13-58
 activity#com.example.cmput301f24mikasa.FacilityProfileActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:9-85
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:51:9-53:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:59-82
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:53:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:19-58
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:52:13-52
 activity#com.example.cmput301f24mikasa.UserDashboardActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:39:9-83
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:54:9-56:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:39:57-80
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:56:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:39:19-56
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:55:13-50
 activity#com.example.cmput301f24mikasa.UserNotificationsActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:40:9-87
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:57:9-59:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:40:61-84
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:59:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:40:19-60
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:58:13-54
 activity#com.example.cmput301f24mikasa.UserProfileActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:41:9-81
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:60:9-62:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:41:55-78
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:62:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:41:19-54
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:61:13-48
 activity#com.example.cmput301f24mikasa.UserEventsActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:42:9-80
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:63:9-65:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:42:54-77
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:65:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:42:19-53
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:64:13-47
 activity#com.example.cmput301f24mikasa.UserQRScannerActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:43:9-83
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:66:9-68:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:43:57-80
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:68:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:43:19-56
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:67:13-50
 activity#com.example.cmput301f24mikasa.UserLocationActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:44:9-82
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:69:9-71:39
 	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:44:56-79
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:71:13-36
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:44:19-55
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:70:13-49
 activity#com.example.cmput301f24mikasa.WaitingListActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:45:9-57
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:72:9-57
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:45:19-54
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:72:19-54
 uses-sdk
 INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml
