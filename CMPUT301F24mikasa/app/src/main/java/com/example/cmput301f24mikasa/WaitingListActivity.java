@@ -6,22 +6,12 @@ import android.widget.ListView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.Bundle;
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import com.google.firebase.firestore.FirebaseFirestore;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 import java.util.ArrayList;
+
 
 public class WaitingListActivity extends AppCompatActivity{
     private ArrayList<UserProfile> dataList;
@@ -50,23 +40,23 @@ public class WaitingListActivity extends AppCompatActivity{
         Button backButton = findViewById(R.id.back_button_for_waiting);
         backButton.setOnClickListener(view -> finish()); // This will close the current activity and return to the previous one
 
-        /**
-        String[] name = { "Edmonton", "Vancouver", "Toronto" };
-        //String[] authors = { "AB", "BC", "ON" };
-        //String[] genre = { "fc", "fc", "fc" };
-        //String[] year = { "2004", "2004", "2004" };
-        //String[] status = { "Read", "Read", "Read" };
+        /*
+         String[] name = { "Edmonton", "Vancouver", "Toronto" };
+         //String[] authors = { "AB", "BC", "ON" };
+         //String[] genre = { "fc", "fc", "fc" };
+         //String[] year = { "2004", "2004", "2004" };
+         //String[] status = { "Read", "Read", "Read" };
 
 
-        dataList = new ArrayList<UserProfile>();
-        for (int i = 0; i < name.length; i++) {
-            dataList.add(new UserProfile(name[i], "aaa","aa","aaaaa","",false));
-        }
+         dataList = new ArrayList<UserProfile>();
+         for (int i = 0; i < name.length; i++) {
+         dataList.add(new UserProfile(name[i], "aaa","aa","aaaaa","",false));
+         }
 
 
-        userList = findViewById(R.id.waiting_list_view);
-        userAdapter = new UserProfileArrayAdapter(this, dataList);
-        userList.setAdapter(userAdapter);
+         userList = findViewById(R.id.waiting_list_view);
+         userAdapter = new UserProfileArrayAdapter(this, dataList);
+         userList.setAdapter(userAdapter);
          */
 
     }

@@ -1,3 +1,53 @@
-# Default ignored files
-/shelf/
-/workspace.xml
+# Gradle files
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.properties
+.gradle/cache/
+.gradle/daemon/
+.gradle/notifications/
+.gradle/wrapper/
+
+# IntelliJ/Android Studio project files
+.idea/
+.idea/workspace.xml
+.idea/libraries/
+.idea/modules.xml
+.idea/.name
+.idea/caches/
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/compiler.xml
+.idea/codeStyles/
+
+# Local configuration files
+local.properties
+gradle.properties
+
+# Android-specific files
+*.iml
+.gradle/
+captures/
+.externalNativeBuild/
+
+# Distribution files
+*.jar
+*.war
+*.apk
+*.ap_
+
+# Built application files
+**/build/
+output.json
+
+# Keystore files (Do not include in version control)
+*.jks
+*.keystore
+
+# IDE log and OS files
+.idea/misc.xml
+*.log
+.DS_Store
+*.swp
+*.tmp
+*.temp
+*.orig

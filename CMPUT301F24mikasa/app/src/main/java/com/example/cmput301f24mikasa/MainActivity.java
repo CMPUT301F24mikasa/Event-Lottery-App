@@ -2,65 +2,55 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import com.google.firebase.firestore.FirebaseFirestore;
 import android.view.View;
-import android.widget.Button;
-
-import com.google.firebase.firestore.FirebaseFirestore;
+import android.widget.ImageButton;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    private FirebaseFirestore db;
-    private Button btnOrganizer, btnAdmin, btnUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Bind ImageButtons
+        ImageButton buttonProfiles = findViewById(R.id.button_profiles);
+        ImageButton buttonEvents = findViewById(R.id.button_events);
+        ImageButton buttonNotifications = findViewById(R.id.button_notifications);
+        ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
-        // Initialize Firestore
-        db = FirebaseFirestore.getInstance();
-
-        // Initialize buttons
-        btnOrganizer = findViewById(R.id.btn_organizer);
-        btnAdmin = findViewById(R.id.btn_admin);
-        btnUser = findViewById(R.id.btn_user);
-
-        // Set click listeners
-        btnOrganizer.setOnClickListener(new View.OnClickListener() {
+        // Set OnClickListeners for each button
+        buttonProfiles.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OrganizerDashboardActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfilesActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnAdmin.setOnClickListener(new View.OnClickListener() {
+        buttonEvents.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AdminDashboardActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EventsActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnUser.setOnClickListener(new View.OnClickListener() {
+        buttonNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserDashboardActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                 startActivity(intent);
             }
         });
     }
 }
+

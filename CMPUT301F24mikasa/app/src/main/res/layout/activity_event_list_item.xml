@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Event Title"
+        android:text="@string/event_title"
         android:textColor="#000000"
         android:textSize="16sp"
         android:padding="10dp" />
@@ -27,7 +27,7 @@
         app:backgroundTint="@null"
         android:background="#0D47A1"
         android:padding="5dp"
-        android:text="View"
+        android:text="@string/view"
         android:textColor="#FFFFFF"
         app:cornerRadius="60dp" /> <!-- Add margin here -->
 
@@ -39,7 +39,7 @@
         app:backgroundTint="@null"
         android:background="#0D47A1"
         android:padding="5dp"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textColor="#FFFFFF" /> <!-- Add margin here -->
 
     <!-- Edit Button -->
@@ -50,6 +50,6 @@
         app:backgroundTint="@null"
         android:background="#1E57AD"
         android:padding="5dp"
-        android:text="Edit"
+        android:text="@string/edit"
         android:textColor="#FFFFFF" />
 </LinearLayout>

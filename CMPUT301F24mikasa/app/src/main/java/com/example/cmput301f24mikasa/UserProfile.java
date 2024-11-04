@@ -1,46 +1,35 @@
 package com.example.cmput301f24mikasa;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.Serializable;
 
 public class UserProfile implements Serializable {
-    private String userId;
     private String name;
-    private String email;
-    private String phoneNumber;  // Optional
-    private String profilePictureUrl;  // Can be null if no profile picture
-    private boolean isOnWaitingList;
-    private boolean notificationsEnabled;
-    private String notificationPreference;  // "opt-in" or "opt-out"
-    private String deviceIdentifier;  // To be identified by device
-    private boolean hasGeolocationWarning;  // Warning for geolocation-based waitlist
+    private String profilePicture;
+    private String deviceId;
+    private String gmailAddress;
+    private String phoneNumber;
 
-    // Constructors
-    //public UserProfile() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    //}
 
-    public UserProfile(String userId, String name, String email, String phoneNumber, String profilePictureUrl, boolean notificationsEnabled) {
-        this.userId = userId;
+    // Firestore instance for retrieving profile pictures
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    // No-argument constructor required by Firestore
+    // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    public UserProfile() {
+    }
+
+    // Constructor with profile picture provided
+    public UserProfile(String name, String profilePicture, String deviceId, String gmailAddress, String phoneNumber) {
         this.name = name;
-        this.email = email;
+        this.deviceId = deviceId;
+        this.gmailAddress = gmailAddress;
         this.phoneNumber = phoneNumber;
-        this.profilePictureUrl = profilePictureUrl;
-        this.notificationsEnabled = notificationsEnabled;
-        this.isOnWaitingList = false; // Default: not on waiting list
-        this.notificationPreference = "opt-in";  // Default
-        this.deviceIdentifier = null;  // Default: not set
-        this.hasGeolocationWarning = false;
+        this.profilePicture = profilePicture;
     }
 
     // Getters and Setters
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getName() {
         return name;
     }
@@ -49,12 +38,28 @@ public class UserProfile implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getGmailAddress() {
+        return gmailAddress;
+    }
+
+    public void setGmailAddress(String gmailAddress) {
+        this.gmailAddress = gmailAddress;
     }
 
     public String getPhoneNumber() {
@@ -63,58 +68,5 @@ public class UserProfile implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
-    }
-
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
-    }
-
-    public boolean isOnWaitingList() {
-        return isOnWaitingList;
-    }
-
-    public void setOnWaitingList(boolean isOnWaitingList) {
-        this.isOnWaitingList = isOnWaitingList;
-    }
-
-    public boolean isNotificationsEnabled() {
-        return notificationsEnabled;
-    }
-
-    public void setNotificationsEnabled(boolean notificationsEnabled) {
-        this.notificationsEnabled = notificationsEnabled;
-    }
-
-    public String getNotificationPreference() {
-        return notificationPreference;
-    }
-
-    public void setNotificationPreference(String notificationPreference) {
-        this.notificationPreference = notificationPreference;
-    }
-
-    public String getDeviceIdentifier() {
-        return deviceIdentifier;
-    }
-
-    public void setDeviceIdentifier(String deviceIdentifier) {
-        this.deviceIdentifier = deviceIdentifier;
-    }
-
-    public boolean hasGeolocationWarning() {
-        return hasGeolocationWarning;
-    }
-
-    public void setHasGeolocationWarning(boolean hasGeolocationWarning) {
-        this.hasGeolocationWarning = hasGeolocationWarning;
-    }
-
-    // Method to remove profile picture
-    public void removeProfilePicture() {
-        this.profilePictureUrl = null;  // Removes the profile picture
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.cmput301f24mikasa;
 
 public class Notifications {
     private String notificationText;

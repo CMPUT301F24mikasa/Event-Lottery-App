@@ -1,7 +1,6 @@
 package com.example.cmput301f24mikasa;
 
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Event {
     private String eventID;
