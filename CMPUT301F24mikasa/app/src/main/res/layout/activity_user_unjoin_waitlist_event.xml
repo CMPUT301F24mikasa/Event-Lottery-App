@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/btn_back2user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="29dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="0dp" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="143dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Unjoin Waitlist"
+        app:cornerRadius="0dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="395dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="66dp"
+        android:text="You have successfully unjoined the waitlist!"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="184dp"
+        android:layout_height="197dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginEnd="130dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/TextViewTitle"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="200dp"
+        android:background="#D4D4D4"
+        android:ems="10"
+        android:hint="Title"
+        android:paddingVertical="15dp"
+        android:textColorHint="@color/white" />
+
+    <TextView
+        android:id="@+id/TextViewDate"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="270dp"
+        android:background="#D4D4D4"
+        android:ems="10"
+        android:hint="Date"
+        android:paddingVertical="15dp"
+        android:textColorHint="@color/white" />
+
+    <TextView
+        android:id="@+id/TextViewPrice"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="340dp"
+        android:background="#D4D4D4"
+        android:ems="10"
+        android:hint="Price"
+        android:paddingVertical="15dp"
+        android:textColorHint="@color/white" />
+
+    <TextView
+        android:id="@+id/TextViewDescription"
+        android:layout_width="236dp"
+        android:layout_height="125dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="410dp"
+        android:background="#D4D4D4"
+        android:ems="10"
+        android:hint="Description"
+        android:paddingVertical="15dp"
+        android:textColorHint="@color/white" />
+
+</RelativeLayout>
