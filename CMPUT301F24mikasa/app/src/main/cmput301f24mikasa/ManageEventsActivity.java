@@ -39,7 +39,7 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
         loadEvents(); // Load events from Firestore
 
         eventListView = findViewById(R.id.event_list_view);
-        adapter = new EventArrayAdapter(this, eventList, this, true); // Pass the activity as the listener
+        adapter = new EventArrayAdapter(this, eventList, this, false); // Pass the activity as the listener
         eventListView.setAdapter(adapter);
 
         // Back button to return to Organizer Dashboard

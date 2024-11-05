@@ -16,6 +16,8 @@ public class Notifications {
         this.eventDescription = eventDescription;
     }
 
+    public Notifications () {}
+
     // Getters and Setters
     public String getNotificationText() {
         return notificationText;

@@ -14,6 +14,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
     private final Context context;
     private final List<Event> eventList;
     private final OnEventClickListener listener; // Add listener
+    private boolean isAdmin;
 
     // Define the interface for button clicks
     public interface OnEventClickListener {
@@ -23,11 +24,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
     }
 
     // Update constructor to accept listener
-    public EventArrayAdapter(Context context, List<Event> eventList, OnEventClickListener listener, boolean b) {
+    public EventArrayAdapter(Context context, List<Event> eventList, OnEventClickListener listener, boolean isAdmin) {
         super(context, R.layout.activity_event_list_item, eventList);
         this.context = context;
         this.eventList = eventList;
         this.listener = listener; // Store listener reference
+        this.isAdmin = isAdmin;
     }
 
     @Override
@@ -60,12 +62,16 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
             }
         });
 
-        editButton.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onEditButtonClick(event);
-            }
-        });
-
+        if (isAdmin) {
+            editButton.setVisibility(View.GONE);
+        } else {
+            editButton.setVisibility(View.VISIBLE);
+            editButton.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onEditButtonClick(event);
+                }
+            });
+        }
         return rowView;
     }
 }

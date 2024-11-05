@@ -25,9 +25,7 @@ public class UserProfileArrayAdapter extends ArrayAdapter<UserProfile> {
         View rowView = inflater.inflate(R.layout.activity_user_profile_list_item, parent, false);
 
         TextView nameTextView = (TextView) rowView.findViewById(R.id.user_name);
-
         UserProfile user = userList.get(position);
-        //this sets what is displayed in the list
         nameTextView.setText(user.getName());
 
         return rowView;
