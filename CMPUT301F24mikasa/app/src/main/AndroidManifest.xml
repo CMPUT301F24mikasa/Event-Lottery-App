@@ -20,41 +20,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>         
-        
-        <!-- Profiles Activity -->
-        <activity android:name="ProfilesActivity" />
-
-        <!-- User Profile Activity -->
-        <activity android:name="UserProfileActivity" />
-
-        <!-- Facility Profile Activity -->
-        <activity android:name="FacilityProfileActivity" />
-
-        <!-- Events Activity -->
-        <activity android:name="EventsActivity" />
-
-        <!-- QR Scanner Activity -->
-        <activity android:name="QRScannerActivity" />
-
-        <!-- Events Joined Activity -->
-        <activity android:name="EventsJoinedActivity" />
-
-        <!-- Create Event Activity -->
-        <activity android:name="CreateEventActivity" />
-
-        <!-- Manage Events Activity -->
-        <activity android:name="ManageEventsActivity" />
-
-        <!-- Waiting List Activity -->
-        <activity android:name="WaitingListActivity" />
-
-        <!-- Notifications Activity -->
-        <activity android:name="NotificationsActivity" />
-
-        <!-- View Event Activity -->
-        <activity android:name="ViewEventActivity" />
-        
+        </activity> <!-- Profiles Activity -->
+        <activity android:name=".ProfilesActivity" /> <!-- User Profile Activity -->
+        <activity android:name=".UserProfileActivity" /> <!-- Facility Profile Activity -->
+        <activity android:name=".FacilityProfileActivity" /> <!-- Events Activity -->
+        <activity android:name=".EventsActivity" /> <!-- QR Scanner Activity -->
+        <activity android:name=".QRScannerActivity" /> <!-- Events Joined Activity -->
+        <activity android:name=".EventsJoinedActivity" /> <!-- Create Event Activity -->
+        <activity android:name=".CreateEventActivity" /> <!-- Manage Events Activity -->
+        <activity android:name=".ManageEventsActivity" /> <!-- Waiting List Activity -->
+        <activity android:name=".WaitingListActivity" /> <!-- Notifications Activity -->
+        <activity android:name=".NotificationsActivity" /> <!-- View Event Activity -->
+        <activity android:name=".ViewEventActivity" />
+        <activity android:name=".EventPosterActivity" android:exported="true"/>
     </application>
 
 </manifest>

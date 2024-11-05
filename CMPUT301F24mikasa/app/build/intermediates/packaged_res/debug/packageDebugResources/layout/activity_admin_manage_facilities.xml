@@ -3,14 +3,24 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_search_facility"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/manage_facilities"
-        android:textColor="#000080"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:hint="@string/search_facilities"
+        android:drawableEnd="@drawable/baseline_search_24"
+        android:padding="10dp"
+        android:background="@drawable/search_box_background" />
+
+    <ListView
+        android:id="@+id/lv_facilities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_search_facility"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:padding="10dp" />
 
     <Button
@@ -22,4 +32,9 @@
         android:text="@string/back"
         android:background="#000080"
         android:textColor="#FFFFFF" />
+
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-com.example.cmput301f24mikasa.test.app-core-1.6.1-0 C:\Users\brand\.gradle\caches\transforms-4\e60516bd2506a534934c8daab9479d4a\transformed\core-1.6.1\res
+com.example.cmput301f24mikasa.test.app-core-1.6.1-0 C:\Users\brand\.gradle\caches\transforms-4\2b37befe32275fed5f90adc46048a9bb\transformed\core-1.6.1\res
 com.example.cmput301f24mikasa.test.app-androidTest-1 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\resValues\androidTest\debug
 com.example.cmput301f24mikasa.test.app-mergeDebugAndroidTestResources-2 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
 com.example.cmput301f24mikasa.test.app-mergeDebugAndroidTestResources-3 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-34:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-35:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\291ee18769876d6327af8a96d6c8ed9e\\transformed\\core-1.13.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\brand\\.gradle\\caches\\8.9\\transforms\\2d2565e9d2a41e840c69b78ae18f0888\\transformed\\core-1.13.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\c1b2c139ef901f201b3254b1edcaf91a\\transformed\\appcompat-1.7.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\brand\\.gradle\\caches\\8.9\\transforms\\76ac0499d19be9949b39076fe3fc5067\\transformed\\appcompat-1.7.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-34:/values-v25/values-v25.xml",
+            "outputFile": "com.example.cmput301f24mikasa.app-mergeDebugResources-35:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\brand\\.gradle\\caches\\transforms-4\\c1b2c139ef901f201b3254b1edcaf91a\\transformed\\appcompat-1.7.0\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\brand\\.gradle\\caches\\8.9\\transforms\\76ac0499d19be9949b39076fe3fc5067\\transformed\\appcompat-1.7.0\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",
