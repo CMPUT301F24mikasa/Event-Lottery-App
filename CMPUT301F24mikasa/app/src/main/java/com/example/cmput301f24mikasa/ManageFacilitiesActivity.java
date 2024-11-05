@@ -32,6 +32,8 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_manage_facilities);
 
+        NavigatonActivity.setupBottomNavigation(this);
+        
         db = FirebaseFirestore.getInstance();
         facilitiesList = new ArrayList<>();
 

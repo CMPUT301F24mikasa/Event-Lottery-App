@@ -21,6 +21,8 @@ public class ViewFacilityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_facility);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         db = FirebaseFirestore.getInstance();
 
         tvFacilityName = findViewById(R.id.tv_facility_name);

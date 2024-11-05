@@ -31,6 +31,8 @@ public class QRScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         db = FirebaseFirestore.getInstance();
 
         Button scanButton = findViewById(R.id.btnScanQR);

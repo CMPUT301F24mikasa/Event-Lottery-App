@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         // Bind ImageButtons
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);

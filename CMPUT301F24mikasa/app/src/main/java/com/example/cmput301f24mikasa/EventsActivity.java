@@ -13,6 +13,8 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         Button qrScannerButton = findViewById(R.id.qr_scanner_button);
         Button eventsSignedUpButton = findViewById(R.id.events_signed_up_button);
         Button createEventButton = findViewById(R.id.create_event_button);

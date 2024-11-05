@@ -21,4 +21,9 @@
         android:textColor="@android:color/white"
         android:layout_below="@id/btnScanQR"
         android:layout_marginTop="16dp" />
+
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

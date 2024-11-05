@@ -32,4 +32,9 @@
         android:text="@string/back"
         android:background="#000080"
         android:textColor="#FFFFFF" />
+
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

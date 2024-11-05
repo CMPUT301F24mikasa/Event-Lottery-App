@@ -13,6 +13,10 @@ public class ProfilesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
+
+
         Button userProfileButton = findViewById(R.id.user_profile_button);
         Button facilityProfileButton = findViewById(R.id.facility_profile_button);
 

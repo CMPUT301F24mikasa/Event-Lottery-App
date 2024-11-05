@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cmput301f24mikasa.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +29,8 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_events);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         eventList = new ArrayList<>();
 
         // Initialize Firestore
@@ -38,7 +39,7 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
         loadEvents(); // Load events from Firestore
 
         eventListView = findViewById(R.id.event_list_view);
-        adapter = new EventArrayAdapter(this, eventList, this); // Pass the activity as the listener
+        adapter = new EventArrayAdapter(this, eventList, this, true); // Pass the activity as the listener
         eventListView.setAdapter(adapter);
 
         // Back button to return to Organizer Dashboard

@@ -34,4 +34,9 @@
         android:text="@string/facility_profile"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"/>
+
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

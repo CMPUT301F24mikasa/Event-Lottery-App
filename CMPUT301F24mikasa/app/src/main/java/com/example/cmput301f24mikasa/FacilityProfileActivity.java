@@ -39,6 +39,8 @@ public class FacilityProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facility_profile);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         // Initialize UI components
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());

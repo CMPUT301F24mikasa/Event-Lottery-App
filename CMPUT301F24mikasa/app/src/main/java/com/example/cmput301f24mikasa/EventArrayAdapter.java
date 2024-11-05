@@ -23,7 +23,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
     }
 
     // Update constructor to accept listener
-    public EventArrayAdapter(Context context, List<Event> eventList, OnEventClickListener listener) {
+    public EventArrayAdapter(Context context, List<Event> eventList, OnEventClickListener listener, boolean b) {
         super(context, R.layout.activity_event_list_item, eventList);
         this.context = context;
         this.eventList = eventList;

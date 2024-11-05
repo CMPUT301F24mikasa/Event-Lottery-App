@@ -27,6 +27,8 @@ public class ViewEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_event);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         db = FirebaseFirestore.getInstance();
         eventId = getIntent().getStringExtra("eventId");
 

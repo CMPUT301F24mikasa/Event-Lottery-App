@@ -53,4 +53,8 @@
     <string name="search_facilities">Search Facilities</string>
     <string name="facility_name">Facility Name</string>
     <string name="location">Location</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="manage_profiles">Manage Profiles</string>
+    <string name="manage_images">Manage Images</string>
+    <string name="manage_facilities">Manage Facilities</string>
 </resources>

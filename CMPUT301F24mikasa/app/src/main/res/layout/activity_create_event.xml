@@ -63,7 +63,6 @@
                 app:cornerRadius="0dp"/>
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,10 +82,7 @@
                 android:paddingVertical="15dp"
                 android:layout_marginTop="8dp"
                 android:padding="15dp"
-                android:textColor="@color/black"
-
-
-                />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextDate"
@@ -100,9 +96,7 @@
                 android:paddingVertical="15dp"
                 android:layout_marginTop="8dp"
                 android:padding="15dp"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextPrice"
@@ -116,9 +110,7 @@
                 android:paddingVertical="15dp"
                 android:layout_marginTop="8dp"
                 android:padding="15dp"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </LinearLayout>
@@ -142,8 +134,7 @@
             android:inputType="textMultiLine"
             android:textColorHint="@color/black"
             android:padding="15dp"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,8 +149,7 @@
                 android:text="@string/back"
                 android:backgroundTint="#0D47A1"
                 android:textColor="#FFFFFF"
-                app:cornerRadius="0dp"
-                />
+                app:cornerRadius="0dp" />
 
             <Button
                 android:id="@+id/btnCreateEvent"
@@ -169,12 +159,7 @@
                 android:text="@string/create_event_small_caps"
                 android:backgroundTint="#0D47A1"
                 android:textColor="#FFFFFF"
-                app:cornerRadius="0dp"
-                />
-
+                app:cornerRadius="0dp" />
         </LinearLayout>
     </LinearLayout>
-
-
-
 </RelativeLayout>

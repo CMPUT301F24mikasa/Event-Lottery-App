@@ -23,6 +23,8 @@ public class WaitingListActivity extends AppCompatActivity{
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_event_waiting_list);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         // Retrieve the event title and eventID passed from OrganizerManageEventsActivity
         Intent intent = getIntent();
         String eventID=intent.getStringExtra("eventID");

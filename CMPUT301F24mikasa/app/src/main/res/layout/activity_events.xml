@@ -60,4 +60,9 @@
         android:background="#0D47A1"
         android:textSize="18sp" />
 
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

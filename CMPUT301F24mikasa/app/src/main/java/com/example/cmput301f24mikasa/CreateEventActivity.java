@@ -51,6 +51,8 @@ public class CreateEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
+        NavigatonActivity.setupBottomNavigation(this);
+
         // Back button to return to Organizer Dashboard
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());

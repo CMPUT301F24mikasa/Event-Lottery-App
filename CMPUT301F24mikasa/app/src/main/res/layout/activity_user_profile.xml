@@ -90,4 +90,9 @@
         android:textColor="@android:color/black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"/>
+
+    <include
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
