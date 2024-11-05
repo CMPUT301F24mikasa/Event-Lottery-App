@@ -9,17 +9,12 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +30,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -42,58 +38,47 @@ import java.util.regex.Pattern;
 public class CreateEventActivity extends AppCompatActivity {
 
     ImageView imgEvent;
-    Button btnUpload, btnGenerateQRCode, btnCreateEvent;
+    Button btnUpload, btnGenerateQRCode, btnCreateEvent, btnCreatePoster;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;
-    Boolean eventCreated;
+    Boolean eventCreated = false;
+    Boolean qrCodeGenerated = false;
     Uri imageUri;
     FirebaseFirestore db;
     StorageReference storageReference;
     ActivityResultLauncher<Intent> resultLauncher;
     CollectionReference eventRef;
-    String eventID;  // Class-level variable to store the unique event ID
+    String eventID;
     CheckBox checkBoxLimitWaitingList;
     Boolean hasWaitingListLimit;
-    Integer waitingListLimit; // Zero
+    Integer waitingListLimit;
 
-    // https://www.baeldung.com/java-date-regular-expressions by baeldung, Downloaded 2024-11-03
     private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4}$");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-//        NavigatonActivity.setupBottomNavigation(this);
-
-        // Back button to return to Organizer Dashboard
+        // Initialize views
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
 
-        eventCreated = false;
         imgEvent = findViewById(R.id.imgEvent);
         btnUpload = findViewById(R.id.btnUpload);
         btnGenerateQRCode = findViewById(R.id.btnGenerateQRCode);
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
+        btnCreatePoster = findViewById(R.id.btnCreatePoster);
 
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDate = findViewById(R.id.editTextDate);
         editTextPrice = findViewById(R.id.editTextPrice);
         editTextDesc = findViewById(R.id.editTextDesc);
-
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
-        checkBoxLimitWaitingList.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    editTextLimitWaitingList.setVisibility(View.VISIBLE);
-                } else{
-                    editTextLimitWaitingList.setVisibility(View.GONE);
-                    editTextLimitWaitingList.setText("");
-                }
-            }
+        checkBoxLimitWaitingList.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editTextLimitWaitingList.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            if (!isChecked) editTextLimitWaitingList.setText("");
         });
 
         db = FirebaseFirestore.getInstance();
@@ -101,6 +86,7 @@ public class CreateEventActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("event_images");
 
         registerResult();
+
         btnUpload.setOnClickListener(view -> pickImage());
 
         btnCreateEvent.setOnClickListener(v -> {
@@ -119,7 +105,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 return;
             }
 
-
             if (imageUri != null) {
                 createEvent(title, date, price, desc);
             } else {
@@ -128,15 +113,33 @@ public class CreateEventActivity extends AppCompatActivity {
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
-            if (eventID != null) {  // Ensure eventID is set before generating QR code
-                Bitmap qrCode = generateQRCodeBitmap(eventID);
-                eventRef.document(eventID).update("qrRef", eventID).addOnSuccessListener(aVoid ->
-                        Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show()
-                ).addOnFailureListener(e ->
-                        Toast.makeText(CreateEventActivity.this, "Sorry, something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
-                );
+            if (eventCreated) {  // Ensure event is created before generating QR code
+                qrCodeGenerated = true;
+                Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(CreateEventActivity.this, "Event has not been created yet.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnCreatePoster.setOnClickListener(v -> {
+            if (eventCreated && qrCodeGenerated) {
+                Bitmap qrCodeBitmap = generateQRCodeBitmap(eventID);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] qrCodeBytes = stream.toByteArray();
+
+                Intent intent = new Intent(CreateEventActivity.this, EventPosterActivity.class);
+                intent.putExtra("eventID", eventID);
+                intent.putExtra("title", editTextTitle.getText().toString());
+                intent.putExtra("startDate", editTextDate.getText().toString());
+                intent.putExtra("desc", editTextDesc.getText().toString());
+                intent.putExtra("price", editTextPrice.getText().toString());
+                intent.putExtra("imageURL", imageUri.toString());
+                intent.putExtra("qrCodeBytes", qrCodeBytes);
+
+                startActivity(intent);
+            } else {
+                Toast.makeText(CreateEventActivity.this, "Please ensure event is created and QR code is generated.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,15 +153,12 @@ public class CreateEventActivity extends AppCompatActivity {
     private void registerResult() {
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                            imageUri = result.getData().getData();
-                            imgEvent.setImageURI(imageUri);
-                        } else {
-                            Toast.makeText(CreateEventActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
-                        }
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        imageUri = result.getData().getData();
+                        imgEvent.setImageURI(imageUri);
+                    } else {
+                        Toast.makeText(CreateEventActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -166,18 +166,17 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private void createEvent(String title, String date, String price, String desc) {
         DocumentReference documentReference = eventRef.document();
-        eventID = documentReference.getId();  // Generate and store eventID once
+        eventID = documentReference.getId();
 
-        StorageReference fileRef = storageReference.child(eventID + ".jpg");  // Use eventID for image storage
+        StorageReference fileRef = storageReference.child(eventID + ".jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                 waitingListLimit = 0;
                 hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
-                if(hasWaitingListLimit){
+                if (hasWaitingListLimit) {
                     String limitText = editTextLimitWaitingList.getText().toString();
-                    if(!limitText.isEmpty()){
+                    if (!limitText.isEmpty()) {
                         waitingListLimit = Integer.parseInt(limitText);
                     }
                 }
@@ -191,7 +190,7 @@ public class CreateEventActivity extends AppCompatActivity {
                     eventDetails.put("price", price);
                     eventDetails.put("description", desc);
                     eventDetails.put("capacity", 1);
-                    eventDetails.put("eventID", eventID);  // Save eventID in Firestore
+                    eventDetails.put("eventID", eventID);
                     eventDetails.put("imageURL", uri.toString());
                     eventDetails.put("cancelledEntrants", new ArrayList<>());
                     eventDetails.put("selectedEntrants", new ArrayList<>());
@@ -199,20 +198,9 @@ public class CreateEventActivity extends AppCompatActivity {
                     eventDetails.put("waitingListLimit", waitingListLimit);
 
                     documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
+                        eventCreated = true;
                         Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show();
-
-                        // Generate poster
-                        Intent intent = new Intent(CreateEventActivity.this, EventPosterActivity.class);
-                        intent.putExtra("eventID", eventID);
-                        intent.putExtra("title", title);
-                        intent.putExtra("startDate", date);
-                        intent.putExtra("desc", desc);
-                        intent.putExtra("price", price);
-                        intent.putExtra("imageURL",imageUri.toString());
-                        startActivity(intent);
-
-
-                    } ).addOnFailureListener(e ->
+                    }).addOnFailureListener(e ->
                             Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show()
                     );
                 }).addOnFailureListener(e ->

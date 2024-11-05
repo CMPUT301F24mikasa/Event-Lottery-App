@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-40:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-40:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-40:12
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:1-40:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\8.9\transforms\14df894db38fad87bad4dc1db1f5750b\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\brand\.gradle\caches\8.9\transforms\03d5011a5b4872f6ae9b18d2e1d64a76\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\brand\.gradle\caches\8.9\transforms\549e47b82ebf4fe879590d63bad2d087\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -87,8 +87,8 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\brand\.gradle\c
 	xmlns:android
 		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-36:19
-INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-36:19
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-38:19
+INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:5:5-38:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\8.9\transforms\14df894db38fad87bad4dc1db1f5750b\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\brand\.gradle\caches\8.9\transforms\14df894db38fad87bad4dc1db1f5750b\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\brand\.gradle\caches\8.9\transforms\03d5011a5b4872f6ae9b18d2e1d64a76\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -223,12 +223,20 @@ activity#com.example.cmput301f24mikasa.ViewEventActivity
 ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:9-55
 	android:name
 		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:34:19-52
-activity#com.example.cmput301f24mikasa.EventPosterActivity
-ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:9-80
-	android:exported
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:55-78
+activity#com.example.cmput301f24mikasa.AdminActivity
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:9-51
 	android:name
-		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:19-54
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:35:19-48
+activity#com.example.cmput301f24mikasa.AdminManageEvents
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:9-55
+	android:name
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:36:19-52
+activity#com.example.cmput301f24mikasa.EventPosterActivity
+ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:37:9-80
+	android:exported
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:37:55-78
+	android:name
+		ADDED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml:37:19-54
 uses-sdk
 INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\AndroidManifest.xml

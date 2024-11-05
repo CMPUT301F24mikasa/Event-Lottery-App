@@ -1,4 +1,4 @@
-#Mon Nov 04 19:11:42 MST 2024
+#Mon Nov 04 20:41:39 MST 2024
 base.0=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex

@@ -3285,6 +3285,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btnCreateEvent
+id btnCreatePoster
 id btnGenerateQRCode
 id btnRemovePicture
 id btnScanQR

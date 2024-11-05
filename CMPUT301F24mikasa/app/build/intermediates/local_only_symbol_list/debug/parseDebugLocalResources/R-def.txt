@@ -20,6 +20,7 @@ id bottomButtonPanel
 id bottomPanel
 id bottom_navigation
 id btnCreateEvent
+id btnCreatePoster
 id btnGenerateQRCode
 id btnRemovePicture
 id btnScanQR

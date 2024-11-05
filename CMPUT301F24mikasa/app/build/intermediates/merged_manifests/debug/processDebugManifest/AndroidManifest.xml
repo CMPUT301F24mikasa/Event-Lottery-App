@@ -72,6 +72,8 @@
         <activity android:name="com.example.cmput301f24mikasa.WaitingListActivity" /> <!-- Notifications Activity -->
         <activity android:name="com.example.cmput301f24mikasa.NotificationsActivity" /> <!-- View Event Activity -->
         <activity android:name="com.example.cmput301f24mikasa.ViewEventActivity" />
+        <activity android:name="com.example.cmput301f24mikasa.AdminActivity" />
+        <activity android:name="com.example.cmput301f24mikasa.AdminManageEvents" />
         <activity
             android:name="com.example.cmput301f24mikasa.EventPosterActivity"
             android:exported="true" />
