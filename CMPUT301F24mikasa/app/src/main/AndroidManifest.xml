@@ -32,6 +32,8 @@
         <activity android:name=".WaitingListActivity" /> <!-- Notifications Activity -->
         <activity android:name=".NotificationsActivity" /> <!-- View Event Activity -->
         <activity android:name=".ViewEventActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".AdminManageEvents" />
         <activity android:name=".EventPosterActivity" android:exported="true"/>
     </application>
 
