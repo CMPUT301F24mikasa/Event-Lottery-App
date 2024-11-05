@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/btn_user_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/notifications"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_user_notifications"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/profile"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_user_events"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_user_profile"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/events"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_user_qr_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_user_events"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/qr_scanner"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_user_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_user_qr_scanner"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/location"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_user_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/back"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>
