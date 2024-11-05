@@ -10,50 +10,117 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/Theme.CMPUT301F24mikasa"
         tools:targetApi="31">
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>         
+        </activity>
+
+        <!-- Event Poster Activity -->
+        <activity
+            android:name=".EventPosterActivity"
+            android:exported="false" />
         
         <!-- Profiles Activity -->
-        <activity android:name="ProfilesActivity" />
+        <activity
+            android:name=".ProfilesActivity"
+            android:exported="true" />
 
         <!-- User Profile Activity -->
-        <activity android:name="UserProfileActivity" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="true" />
 
         <!-- Facility Profile Activity -->
-        <activity android:name="FacilityProfileActivity" />
+        <activity
+            android:name=".FacilityProfileActivity"
+            android:exported="true" />
 
         <!-- Events Activity -->
-        <activity android:name="EventsActivity" />
+        <activity
+            android:name=".EventsActivity"
+            android:exported="true" />
 
         <!-- QR Scanner Activity -->
-        <activity android:name="QRScannerActivity" />
+        <activity
+            android:name=".QRScannerActivity"
+            android:exported="true" />
 
         <!-- Events Joined Activity -->
-        <activity android:name="EventsJoinedActivity" />
+        <activity
+            android:name=".EventsJoinedActivity"
+            android:exported="true" />
 
         <!-- Create Event Activity -->
-        <activity android:name="CreateEventActivity" />
+        <activity
+            android:name=".CreateEventActivity"
+            android:exported="true" />
 
         <!-- Manage Events Activity -->
-        <activity android:name="ManageEventsActivity" />
+        <activity
+            android:name=".ManageEventsActivity"
+            android:exported="true" />
 
         <!-- Waiting List Activity -->
-        <activity android:name="WaitingListActivity" />
+        <activity
+            android:name=".WaitingListActivity"
+            android:exported="true" />
 
         <!-- Notifications Activity -->
-        <activity android:name="NotificationsActivity" />
+        <activity
+            android:name=".NotificationsActivity"
+            android:exported="true" />
 
         <!-- View Event Activity -->
-        <activity android:name="ViewEventActivity" />
+        <activity
+            android:name=".ViewEventActivity"
+            android:exported="true" />
+
+        <!-- Admin Dashboard Activities -->
+        <activity
+            android:name=".AdminDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ManageProfilesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ManageImagesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ManageFacilitiesActivity"
+            android:exported="true" />
+
+        <!-- Organizer Dashboard Activities -->
+        <activity
+            android:name=".OrganizerDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".OrganizerManageEventsActivity"
+            android:exported="true" />
+        
+        <!-- User Dashboard Activities -->
+        <activity
+            android:name=".UserDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserNotificationsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserEventsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserQRScannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserLocationActivity"
+            android:exported="true" />
         
     </application>
 
