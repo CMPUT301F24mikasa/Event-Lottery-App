@@ -1,0 +1,4 @@
+git clone -c core.longpaths=true https://github.com/CMPUT301F24mikasa/Event-Lottery-App.git 
+
+
+MUST USE ABOVE IN ORDER TO BE ABLE TO DOWNLOAD IT IN windows cmd, I have not tested this for mac
