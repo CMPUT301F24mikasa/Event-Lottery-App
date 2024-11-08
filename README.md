@@ -2,7 +2,7 @@
 CMPUT 301 Project
 
 
-Contributors:
+**Contributors:**
 
 
 
