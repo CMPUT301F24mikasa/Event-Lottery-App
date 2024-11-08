@@ -12,10 +12,10 @@ Nikita Ishanov, nishanov, nishanov@ualberta.ca
 Adnan Sami, asami1, asami1@ualberta.ca
 
 
-Aditi Pradhan
+Aditi Pradhan, aapradha, aapradha@ualberta.ca
 
 
-Meesha Patel
+Meesha Patel, meesha, meesha@ualberta.ca
 
 
 Sankalpa Paudel
