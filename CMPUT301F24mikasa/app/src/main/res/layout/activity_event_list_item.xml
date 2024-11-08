@@ -1,0 +1,55 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="#D3D3D3"> <!-- Light gray background -->
+
+    <!-- Event Title -->
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/event_title"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:padding="10dp" />
+
+    <!-- View Button -->
+    <Button
+        android:id="@+id/view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:backgroundTint="@null"
+        android:background="#0D47A1"
+        android:padding="5dp"
+        android:text="@string/view"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="60dp" /> <!-- Add margin here -->
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:backgroundTint="@null"
+        android:background="#0D47A1"
+        android:padding="5dp"
+        android:text="@string/delete"
+        android:textColor="#FFFFFF" /> <!-- Add margin here -->
+
+    <!-- Edit Button -->
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@null"
+        android:background="#1E57AD"
+        android:padding="5dp"
+        android:text="@string/edit"
+        android:textColor="#FFFFFF" />
+</LinearLayout>

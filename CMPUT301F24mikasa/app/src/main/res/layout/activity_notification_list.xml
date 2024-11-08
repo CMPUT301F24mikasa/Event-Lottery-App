@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Header TextView for Notifications -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:text="@string/notifications"
+        android:textAlignment="center"
+        android:textColor="#F6F4F4"
+        android:textSize="34sp" />
+
+    <!-- Notification Settings Button -->
+    <ImageButton android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_settings"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/settings" />
+
+    <!-- ListView for Notifications -->
+    <ListView
+        android:id="@+id/notification_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/textView"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Reload Button above the Bottom Navigation -->
+    <ImageButton
+        android:id="@+id/reloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_refresh"
+        android:layout_above="@+id/bottom_navigation"
+        android:backgroundTint="#0D47A1"/>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button_profiles"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/profiles"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_events"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/events"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_notifications"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notifications"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/notifications"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_admin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_admin_panel_settings"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/admin"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

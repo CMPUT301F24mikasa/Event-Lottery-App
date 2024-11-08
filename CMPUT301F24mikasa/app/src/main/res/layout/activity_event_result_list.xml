@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"> <!-- Main background -->
+
+    <!-- Header Text -->
+
+
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/waiting_list_for_insert_event_have_to_adj_lol"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- List of Users (Gray Boxes) -->
+
+    <!-- Bottom Buttons (Manage Waitlist, Sample) -->
+
+    <ListView
+        android:id="@+id/selected_entrants_list_view"
+        android:layout_width="411dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerTextView" />
+
+    <ListView
+        android:id="@+id/canceled_entrants_list_view"
+        android:layout_width="411dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="20dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_entrants_list_view" />
+
+    <Button
+        android:id="@+id/go_back"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Back"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/canceled_entrants_list_view" />
+
+    <Button
+        android:id="@+id/make_final_list"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Make Final List"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/canceled_entrants_list_view"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/notify_the_selected"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Notify"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picker_button"
+        app:layout_constraintStart_toEndOf="@+id/go_back"
+        app:layout_constraintTop_toBottomOf="@+id/canceled_entrants_list_view" />
+
+    <Button
+        android:id="@+id/picker_button"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="#0D47A1"
+        android:text="Pick New User"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/canceled_entrants_list_view" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Entrants"
+        app:layout_constraintBottom_toTopOf="@+id/selected_entrants_list_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerTextView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelled Entrants"
+        app:layout_constraintBottom_toTopOf="@+id/canceled_entrants_list_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_entrants_list_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
