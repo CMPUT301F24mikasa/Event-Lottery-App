@@ -18,7 +18,7 @@ Aditi Pradhan, aapradha, aapradha@ualberta.ca
 Meesha Patel, meesha, meesha@ualberta.ca
 
 
-Sankalpa Paudel, sankalpa ,sankalpa@ualberta.ca
+Sankalpa Paudel, sankalpa, sankalpa@ualberta.ca
 
 
-Brandon <last_name>
+Brandon Dong, bdong5, bdong5@ualberta.ca
