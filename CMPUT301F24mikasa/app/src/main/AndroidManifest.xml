@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>         
+        
+        <!-- Profiles Activity -->
+        <activity android:name="ProfilesActivity" />
+
+        <activity android:name=".ProfileDetailActivity" />
+
+        <activity android:name=".ManageProfileActivity" />
+
+        <!-- User Profile Activity -->
+        <activity android:name="UserProfileActivity" />
+
+        <!-- Facility Profile Activity -->
+        <activity android:name="FacilityProfileActivity" />
+
+        <activity android:name=".ManageFacilitiesActivity"/>
+
+        <activity android:name=".ViewFacilityActivity"/>
+
+        <!-- Events Activity -->
+        <activity android:name="EventsActivity" />
+
+        <!-- QR Scanner Activity -->
+        <activity android:name="QRScannerActivity" />
+
+        <!-- Events Joined Activity -->
+        <activity android:name="EventsJoinedActivity" />
+
+        <!-- Create Event Activity -->
+        <activity android:name="CreateEventActivity" />
+
+        <!-- Manage Events Activity -->
+        <activity android:name="ManageEventsActivity" />
+
+        <!-- Waiting List Activity -->
+        <activity android:name="WaitingListActivity" />
+
+        <!-- View Event Activity -->
+        <activity android:name="ViewEventActivity" />
+
+        <activity android:name=".AdminActivity" />
+
+        <activity android:name=".EventPosterActivity"/>
+
+        <activity android:name=".ManageNotificationsActivity"/>
+
+        <activity android:name=".NotificationArrayAdapter"/>
+
+        <activity android:name=".NotificationSettingsActivity"/>
+
+        <activity android:name=".ViewEventsJoined"/>
+
+        <activity android:name=".UnjoinEventActivity" />
+
+
+        <activity android:name=".ListSamplingActivity" />
+
+
+        <activity android:name=".EventResultList"/>
+
+        <activity android:name=".OrganizerSendsNotification"/>
+
+
+        <activity android:name=".EventFinalListActivity"/>
+
+        <activity android:name=".ManagingWaitListActivity"/>
+
+    </application>
+
+</manifest>
