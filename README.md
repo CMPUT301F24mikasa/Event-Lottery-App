@@ -6,7 +6,7 @@ CMPUT 301 Project
 
 
 
-Nikita Ishanov
+Nikita Ishanov, nishanov, nishanov@ualberta.ca
 
 
 Adnan Sami, asami1, asami1@ualberta.ca
