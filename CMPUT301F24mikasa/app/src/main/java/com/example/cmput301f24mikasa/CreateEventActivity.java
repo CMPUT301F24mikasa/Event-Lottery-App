@@ -209,7 +209,7 @@ public class CreateEventActivity extends AppCompatActivity {
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                waitingListLimit = 0;
+                waitingListLimit = 10000;
                 hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
                 if (hasWaitingListLimit) {
                     String limitText = editTextLimitWaitingList.getText().toString();
