@@ -60,6 +60,19 @@ public class ManageProfileActivity extends AppCompatActivity {
     }
 
     /**
+     * {@inheritDoc}
+     * <p>
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserProfiles();
+    }
+
+    /**
      * Loads user profiles from the Firestore database.
      * Updates the list view with the fetched user profiles.
      */

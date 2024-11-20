@@ -28,8 +28,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>         
-        
+        </activity>
+
         <!-- Profiles Activity -->
         <activity android:name="ProfilesActivity" />
 
@@ -69,30 +69,16 @@
         <activity android:name="ViewEventActivity" />
 
         <activity android:name=".AdminActivity" />
-
         <activity android:name=".EventPosterActivity"/>
-
         <activity android:name=".ManageNotificationsActivity"/>
-
         <activity android:name=".NotificationArrayAdapter"/>
-
         <activity android:name=".NotificationSettingsActivity"/>
-
         <activity android:name=".ViewEventsJoined"/>
-
         <activity android:name=".UnjoinEventActivity" />
-
-
         <activity android:name=".ListSamplingActivity" />
-
-
         <activity android:name=".EventResultList"/>
-
         <activity android:name=".OrganizerSendsNotification"/>
-
-
         <activity android:name=".EventFinalListActivity"/>
-
         <activity android:name=".ManagingWaitListActivity"/>
 
     </application>

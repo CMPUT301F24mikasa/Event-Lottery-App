@@ -27,10 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 
 public class AdminActivity extends AppCompatActivity {
-
     private Button manageFacilitiesButton;
     private Button manageProfilesButton;
-    private Button manageImagesButton;
     private Button manageEventsButton;
 
     /**
@@ -49,7 +47,6 @@ public class AdminActivity extends AppCompatActivity {
         // Initialize buttons
         manageFacilitiesButton = findViewById(R.id.button_manage_facilities);
         manageProfilesButton = findViewById(R.id.button_manage_profiles);
-        manageImagesButton = findViewById(R.id.button_manage_images);
         manageEventsButton = findViewById(R.id.button_manage_events);
 
         // Set click listener to open ManageFacilitiesActivity
@@ -64,15 +61,9 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        manageImagesButton.setOnClickListener(view -> {
-            // Add intent logic here for managing images
-        });
-
         manageEventsButton.setOnClickListener(view -> {
             // Add intent logic here for managing events
         });
-
-
 
 
         // Setup bottom navigation buttons
@@ -86,7 +77,5 @@ public class AdminActivity extends AppCompatActivity {
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, EventsActivity.class)));
         buttonNotifications.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, ManageNotificationsActivity.class)));
         buttonAdmin.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, AdminActivity.class)));
-
-
     }
 }

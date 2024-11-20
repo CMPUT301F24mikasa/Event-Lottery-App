@@ -41,16 +41,6 @@
         android:backgroundTint="#0D47A1"/>
 
     <!-- Manage Images Button -->
-    <Button
-        android:id="@+id/button_manage_images"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/manage_images"
-        android:layout_below="@id/button_manage_profiles"
-        android:layout_marginTop="16dp"
-        android:layout_margin="20dp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#0D47A1"/>
 
     <!-- Manage Events Button -->
     <Button
@@ -58,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_all_events"
-        android:layout_below="@id/button_manage_images"
+        android:layout_below="@id/button_manage_profiles"
         android:layout_marginTop="16dp"
         android:layout_margin="20dp"
         android:textColor="#FFFFFF"
@@ -119,3 +109,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+
