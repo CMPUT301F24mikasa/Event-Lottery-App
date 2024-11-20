@@ -74,4 +74,6 @@
     <string name="user_name">User Name</string>
     <string name="profile_image">Profile Image</string>
     <string name="remove_image">Remove Image</string>
+    <string name="image_preview">image preview</string>
+    <string name="delete_image">Delete Image</string>
 </resources>
