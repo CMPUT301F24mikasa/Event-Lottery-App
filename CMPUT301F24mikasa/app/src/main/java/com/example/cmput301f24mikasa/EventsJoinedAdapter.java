@@ -1,5 +1,6 @@
 package com.example.cmput301f24mikasa;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -9,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,6 +37,7 @@ import java.util.List;
 public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
     private final Context context;
     private final List<QueryDocumentSnapshot> events;
+    private Intent intent;
 
 
     /**
@@ -60,16 +64,19 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
      */
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_events_signed_up_item, parent, false);
-        }
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("ViewHolder") View rowView = inflater.inflate(R.layout.activity_events_signed_up_item, parent, false);
 
-        TextView eventTitleText = convertView.findViewById(R.id.event_title);
-        Button viewButton = convertView.findViewById(R.id.view_button);
+
+        ImageView eventImageView = rowView.findViewById(R.id.event_image);
+        TextView eventTitleText = rowView.findViewById(R.id.event_title);
+        Button viewButton = rowView.findViewById(R.id.view_button);
 
         QueryDocumentSnapshot event = events.get(position);
         eventTitleText.setText(event.getString("title")); // Display the event title
+        String imageURL = event.getString("imageURL");
+        Glide.with(this.getContext()).load(imageURL).into(eventImageView);
 
         // Set an OnClickListener for the "View" button
         viewButton.setOnClickListener(v -> {
@@ -86,6 +93,6 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
             context.startActivity(intent);
         });
 
-        return convertView;
+        return rowView;
     }
 }
