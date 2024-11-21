@@ -62,7 +62,8 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         manageEventsButton.setOnClickListener(view -> {
-            // Add intent logic here for managing events
+            Intent intent = new Intent(AdminActivity.this, AdminManageEventsActivity.class);
+            startActivity(intent);
         });
 
 
@@ -79,3 +80,4 @@ public class AdminActivity extends AppCompatActivity {
         buttonAdmin.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, AdminActivity.class)));
     }
 }
+
