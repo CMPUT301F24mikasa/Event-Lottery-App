@@ -96,6 +96,8 @@ public class EventsActivity extends AppCompatActivity {
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
+        AdminVerification.checkIfAdmin(this, buttonAdmin);
+
         // Bottom Navigation onClick Listeners
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(EventsActivity.this, ProfilesActivity.class)));
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(EventsActivity.this, EventsActivity.class)));

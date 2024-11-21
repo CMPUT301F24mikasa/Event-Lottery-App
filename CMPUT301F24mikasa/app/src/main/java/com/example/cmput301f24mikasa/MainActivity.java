@@ -2,6 +2,7 @@ package com.example.cmput301f24mikasa;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.load.ImageHeaderParser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -47,13 +49,15 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
-        checkUserProfile();  // Check if user profile exists on launch
-
         // Set up the ImageButtons
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
+
+
+        checkUserProfile();  // Check if user profile exists on launch
+        AdminVerification.checkIfAdmin(this, buttonAdmin);
 
         // Set onClick listeners for navigation
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ProfilesActivity.class)));
@@ -106,3 +110,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
