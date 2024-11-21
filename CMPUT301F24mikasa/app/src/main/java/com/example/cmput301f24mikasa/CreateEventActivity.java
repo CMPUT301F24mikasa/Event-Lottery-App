@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
 public class CreateEventActivity extends AppCompatActivity {
 
     ImageView imgEvent;
+    
     Button btnUpload, btnGenerateQRCode, btnCreateEvent, btnCreatePoster;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;
     Boolean eventCreated = false;
