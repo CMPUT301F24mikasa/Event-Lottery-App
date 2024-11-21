@@ -23,6 +23,9 @@ public class AdminVerification {
         String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        buttonAdmin.setVisibility(ImageButton.GONE);
+
+
         db.collection("admin").document(deviceId).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
