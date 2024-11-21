@@ -15,8 +15,6 @@ public class AdminVerification {
      * Checks if the user is an admin by verifying their device ID in the Firestore database.
      *
      * @param context     The Activity context to update UI elements.
-     * @param db          Firestore instance.
-     * @param deviceId    The device ID of the user.
      * @param buttonAdmin The ImageButton to show or hide based on admin status.
      */
     public static void checkIfAdmin(Context context, ImageButton buttonAdmin) {
