@@ -32,6 +32,14 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
     private List<Event> eventList;
 
     /**
+     * Default constructor for ManageEventsActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ManageEventsActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Initializes the activity, loads events from Firestore, and sets up the event list view.
      *
      * @param savedInstanceState A bundle containing the activity's previously saved state, if any.

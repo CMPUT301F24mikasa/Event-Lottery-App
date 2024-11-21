@@ -34,6 +34,14 @@ public class ManageNotificationsActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "notification_prefs";
     private static final String KEY_NOTIFICATIONS_ENABLED = "notifications_enabled";
 
+    /**
+     * Default constructor for ManageNotificationsActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ManageNotificationsActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Initializes the activity, sets up the ListView to display notifications,

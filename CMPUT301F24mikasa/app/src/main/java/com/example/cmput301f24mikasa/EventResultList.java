@@ -49,6 +49,16 @@ public class EventResultList extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference eventsRef = db.collection("event");
     private CollectionReference notificationRef = db.collection("notification");
+
+
+    /**
+     * Default constructor for EventResultList.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public EventResultList() {
+        // Constructor is provided by default
+    }
+
     @Override
 
     /**

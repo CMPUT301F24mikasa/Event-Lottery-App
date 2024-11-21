@@ -27,6 +27,15 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class EventsActivity extends AppCompatActivity {
 
+
+    /**
+     * Default constructor for EventsActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public EventsActivity() {
+        // Constructor is provided by default
+    }
+
     /**
      * Initializes the activity and sets up the button click listeners for the event actions and
      * bottom navigation. This method is called when the activity is first created.

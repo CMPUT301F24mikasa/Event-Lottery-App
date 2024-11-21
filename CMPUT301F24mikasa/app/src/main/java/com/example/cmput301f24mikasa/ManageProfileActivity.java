@@ -38,6 +38,14 @@ public class ManageProfileActivity extends AppCompatActivity {
     private List<UserProfile> userProfileList;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     * Default constructor for ManageProfileActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ManageProfileActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Called when the activity is created.

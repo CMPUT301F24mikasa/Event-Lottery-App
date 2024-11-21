@@ -28,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_CREATE_PROFILE = 1;
 
     /**
+     * Default constructor for MainActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public MainActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Initializes the main activity, checks if a user profile exists, and sets up navigation buttons.
      *
      * @param savedInstanceState A bundle containing the activity's previously saved state, if any.

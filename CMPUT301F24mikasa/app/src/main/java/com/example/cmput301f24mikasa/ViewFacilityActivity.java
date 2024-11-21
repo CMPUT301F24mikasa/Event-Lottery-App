@@ -24,6 +24,14 @@ public class ViewFacilityActivity extends AppCompatActivity {
     Button btnBack;
 
     /**
+     * Default constructor for ViewFacilityActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ViewFacilityActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created.
      * Initializes the views, retrieves the facility name from the intent,
      * and loads the facility details from Firebase Firestore.

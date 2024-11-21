@@ -12,6 +12,11 @@ import java.util.ArrayList;
  * and a list of event IDs that the user has joined.
  */
 public class UserProfile implements Serializable {
+
+    /**
+     * Default constructor for WaitingListActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
     private String name;
     private String profilePicture;
     private String deviceId;

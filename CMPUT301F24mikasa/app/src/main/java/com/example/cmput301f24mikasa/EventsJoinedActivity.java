@@ -32,6 +32,14 @@ public class EventsJoinedActivity extends AppCompatActivity {
     private List<QueryDocumentSnapshot> eventsJoined; // List to store matched event snapshots
     private EventsJoinedAdapter adapter; // Custom adapter to display detailed events
 
+    /**
+     * Default constructor for EventsJoinedActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public EventsJoinedActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Called when the activity is first created. Initializes Firestore, retrieves the device ID,

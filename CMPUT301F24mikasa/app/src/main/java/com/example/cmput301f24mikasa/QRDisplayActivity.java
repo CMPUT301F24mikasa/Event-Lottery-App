@@ -12,6 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class QRDisplayActivity extends AppCompatActivity {
 
     /**
+     * Default constructor for QRDisplayActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public QRDisplayActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created.
      * Retrieves the scanned QR code data from the Intent and displays it in a TextView.
      *

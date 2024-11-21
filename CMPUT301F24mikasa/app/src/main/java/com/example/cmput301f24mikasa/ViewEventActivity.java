@@ -31,6 +31,14 @@ public class ViewEventActivity extends AppCompatActivity {
     private Button btnSignUp;
 
     /**
+     * Default constructor for ViewEventActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ViewEventActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created. Initializes UI components, loads event details,
      * and sets up the sign-up button functionality.
      *

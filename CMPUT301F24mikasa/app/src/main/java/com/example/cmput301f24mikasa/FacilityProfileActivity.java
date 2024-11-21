@@ -43,6 +43,15 @@ import java.util.Map;
 public class FacilityProfileActivity extends AppCompatActivity {
 
     /**
+     * Default constructor for FacilityProfileActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public FacilityProfileActivity() {
+        // Constructor is provided by default
+    }
+
+
+    /**
      * ImageView for displaying the facility profile picture.
      */
     ImageView imgProfilePicture;
