@@ -2,6 +2,7 @@ package com.example.cmput301f24mikasa;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String deviceId;
     private static final int REQUEST_CODE_CREATE_PROFILE = 1;
-    private ImageButton buttonAdmin;
 
     /**
      * Initializes the main activity, checks if a user profile exists, and sets up navigation buttons.
@@ -45,12 +45,11 @@ public class MainActivity extends AppCompatActivity {
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
-        buttonAdmin = findViewById(R.id.button_admin);
+        ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
-        buttonAdmin.setVisibility(ImageButton.GONE);
 
         checkUserProfile();  // Check if user profile exists on launch
-        checkIfAdmin();
+        AdminVerification.checkIfAdmin(this, buttonAdmin);
 
         // Set onClick listeners for navigation
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ProfilesActivity.class)));
@@ -102,24 +101,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Profile created successfully!", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void checkIfAdmin() {
-        db.collection("admin").document(deviceId).get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document != null && document.exists()) {
-                            // Device ID matches an admin entry
-                            Log.d("MainActivity", "User is an admin: " + deviceId);
-                            Toast.makeText(this, "Welcome, Admin!", Toast.LENGTH_SHORT).show();
-                            buttonAdmin.setVisibility(ImageButton.VISIBLE);
-                        } else {
-                            Log.d("MainActivity", "User is not an admin: " + deviceId);
-                        }
-                    } else {
-                        Log.e("MainActivity", "Error checking admin status", task.getException());
-                        Toast.makeText(this, "Error checking admin status. Please try again later.", Toast.LENGTH_SHORT).show();
-                    }
-            });
-    }
 }
+
