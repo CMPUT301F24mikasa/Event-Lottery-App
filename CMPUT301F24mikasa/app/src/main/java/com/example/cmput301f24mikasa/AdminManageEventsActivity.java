@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdminManageEventsActivity extends AppCompatActivity implements AdminEventAdapter.OnEventClickListener {
+public class AdminManageEventsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdminEventAdapter adapter;
     private List<Event> eventList;
@@ -32,7 +32,7 @@ public class AdminManageEventsActivity extends AppCompatActivity implements Admi
         recyclerView = findViewById(R.id.events_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new AdminEventAdapter(this, eventList, this);
+        adapter = new AdminEventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
 
         loadEvents(db);
@@ -58,27 +58,21 @@ public class AdminManageEventsActivity extends AppCompatActivity implements Admi
     }
 
     @Override
-    public void onViewButtonClick(Event event) {
-        Intent intent = new Intent(this, AdminEventDetailsActivity.class);
-        intent.putExtra("EVENT_ID", event.getEventID());
-        startActivity(intent);
-    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    @Override
-    public void onDeleteButtonClick(Event event) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("event").document(event.getEventID())
-                .delete()
-                .addOnSuccessListener(aVoid -> {
-                    eventList.remove(event);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(AdminManageEventsActivity.this, "Event deleted successfully!", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("OrganizerManageEvents", "Error deleting event", e);
-                    Toast.makeText(AdminManageEventsActivity.this, "Failed to delete event.", Toast.LENGTH_SHORT).show();
-                });
-        Toast.makeText(AdminManageEventsActivity.this, "Event deleted successfully!", Toast.LENGTH_SHORT).show();
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String eventId = data.getStringExtra("eventId");
+            if (eventId != null) {
+                for (Event event : eventList) {
+                    if (event.getEventID().equals(eventId)) {
+                        event.setImageURL(null);
+                        adapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
 

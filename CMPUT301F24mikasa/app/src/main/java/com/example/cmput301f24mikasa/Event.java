@@ -23,6 +23,7 @@ public class Event {
     private String price;
     private DocumentReference posterRef; // Keep as String to match Firestore format
     private String deviceID;
+    private String imageURL;
 
     /**
      * Empty constructor required for Firestore serialization.
@@ -45,7 +46,7 @@ public class Event {
      */
 
     // Constructor
-    public Event(String eventID, String title, String description, String startDate, int capacity, String price, DocumentReference posterRef, String deviceID) {
+    public Event(String eventID, String title, String description, String startDate, int capacity, String price, DocumentReference posterRef, String deviceID, String imageURL) {
         this.eventID = eventID;
         this.title = title;
         this.description = description;
@@ -54,6 +55,7 @@ public class Event {
         this.price = price;
         this.posterRef = posterRef;
         this.deviceID = deviceID;
+        this.imageURL = imageURL;
     }
 
     /**
@@ -208,5 +210,13 @@ public class Event {
      */
     public void setDeviceID(String deviceID) {
         this.deviceID = deviceID;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

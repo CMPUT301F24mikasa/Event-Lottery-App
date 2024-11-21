@@ -34,5 +34,4 @@
         android:backgroundTint="#0D47A1"
         android:text="@string/delete" />
 
-
 </LinearLayout>
