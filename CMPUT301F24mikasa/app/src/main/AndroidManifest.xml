@@ -80,6 +80,9 @@
         <activity android:name=".OrganizerSendsNotification"/>
         <activity android:name=".EventFinalListActivity"/>
         <activity android:name=".ManagingWaitListActivity"/>
+        <activity android:name=".AdminManageEventsActivity" />
+
+
 
     </application>
 
