@@ -47,6 +47,14 @@ public class UserProfileActivity extends AppCompatActivity {
     private Uri imageUri; // URI of the selected image
 
     /**
+     * Default constructor for UserProfileActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public UserProfileActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Initializes the activity, setting up UI elements and button click listeners.
      * Loads the user's profile data from Firestore if available.
      *

@@ -25,11 +25,18 @@ import androidx.appcompat.app.AppCompatActivity;
  * @version 1.0
  * @since 2024-11-08
  */
-
 public class AdminActivity extends AppCompatActivity {
     private Button manageFacilitiesButton;
     private Button manageProfilesButton;
     private Button manageEventsButton;
+
+    /**
+     * Default constructor for AdminActivity.
+     * Required for Android activity lifecycle and initialization.
+     */
+    public AdminActivity() {
+        // Constructor is provided by default
+    }
 
     /**
      * Called when the activity is first created. This method sets up the layout, initializes
@@ -38,7 +45,6 @@ public class AdminActivity extends AppCompatActivity {
      * @param savedInstanceState If the activity is being reinitialized after previously being shut down,
      *                           this Bundle contains the most recent saved data. Otherwise, it is null.
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

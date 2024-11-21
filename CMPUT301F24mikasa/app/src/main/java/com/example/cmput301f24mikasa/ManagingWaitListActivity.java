@@ -31,6 +31,14 @@ public class ManagingWaitListActivity extends AppCompatActivity {
     private String selectedUserToDelete = null;
 
     /**
+     * Default constructor for ManagingWaitListActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ManagingWaitListActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created.
      * Initializes the waiting list view and sets up the functionality for managing the waiting list.
      *

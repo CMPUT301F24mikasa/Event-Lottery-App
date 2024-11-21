@@ -29,6 +29,14 @@ public class UnjoinEventActivity extends AppCompatActivity {
     private String deviceId;
     Button unjoinButton = findViewById(R.id.unjoin_button);
 
+    /**
+     * Default constructor for UnjoinEventActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public UnjoinEventActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Initializes the activity and retrieves event ID and device ID.

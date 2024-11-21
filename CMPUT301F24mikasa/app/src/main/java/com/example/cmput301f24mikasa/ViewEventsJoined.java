@@ -19,6 +19,14 @@ import com.bumptech.glide.Glide;
 public class ViewEventsJoined extends AppCompatActivity {
 
     /**
+     * Default constructor for ViewEventsJoined.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ViewEventsJoined() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created. Initializes the UI components and populates them
      * with the event details passed from the previous activity through Intent extras.
      *

@@ -60,6 +60,14 @@ public class CreateEventActivity extends AppCompatActivity {
     Boolean hasWaitingListLimit;
     Integer waitingListLimit;
 
+    /**
+     * Default constructor for CreateEventActivity.
+     * Required for Android activity lifecycle and initialization.
+     */
+    public CreateEventActivity() {
+        // Constructor is provided by default
+    }
+
     private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4}$");
 
     /**

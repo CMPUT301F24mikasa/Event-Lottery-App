@@ -46,6 +46,14 @@ public class QRScannerActivity extends AppCompatActivity {
     private long lastScanTime = 0; // Timestamp for the last scan
     private boolean hasScanned = false; // Flag to indicate if a scan has been processed
 
+    /**
+     * Default constructor for QRScannerActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public QRScannerActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Called when the activity is created. Initializes the UI components and sets click listeners.

@@ -35,6 +35,14 @@ public class NotificationSettingsActivity extends AppCompatActivity {
     private static final String KEY_NOTIFICATIONS_ENABLED = "notifications_enabled";
 
     /**
+     * Default constructor for NotificationSettingsActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public NotificationSettingsActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created. Initializes the UI components, loads the saved notification settings,
      * and sets up the listeners for the notification toggle switch and the back button.
      *
