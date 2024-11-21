@@ -30,7 +30,6 @@ public class AdminVerification {
                         if (document != null && document.exists()) {
                             // Device ID matches an admin entry
                             Log.d("AdminVerification", "User is an admin: " + deviceId);
-                            Toast.makeText(context, "Welcome, Admin!", Toast.LENGTH_SHORT).show();
                             buttonAdmin.setVisibility(ImageButton.VISIBLE);
                         } else {
                             Log.d("AdminVerification", "User is not an admin: " + deviceId);
