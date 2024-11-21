@@ -1,11 +1,18 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp"
-    android:background="#D3D3D3"> <!-- Light gray background -->
+    android:padding="15dp"
+    android:gravity="center_vertical">
+
+    <!-- Event Image -->
+    <ImageView
+        android:id="@+id/event_image"
+        android:layout_width="84dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/placeholder_image" />
 
     <!-- Event Title -->
     <TextView
@@ -14,22 +21,22 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/event_title"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:padding="10dp" />
+        android:textSize="24sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <!-- View Button -->
     <Button
         android:id="@+id/view_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:backgroundTint="@null"
-        android:background="#0D47A1"
-        android:padding="5dp"
+        android:backgroundTint="#0D47A1"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:text="@string/view"
-        android:textColor="#FFFFFF"
-        app:cornerRadius="60dp" />
-
-    <!-- Add margin here -->
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 </LinearLayout>
+
