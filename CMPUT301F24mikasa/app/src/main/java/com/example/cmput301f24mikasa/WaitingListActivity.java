@@ -35,6 +35,14 @@ public class WaitingListActivity extends AppCompatActivity {
     private CollectionReference eventsRef = db.collection("event");
 
     /**
+     * Default constructor for WaitingListActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public WaitingListActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is created.
      * Sets up the UI, retrieves the event details passed from the previous activity,
      * and loads the waiting list from Firestore.

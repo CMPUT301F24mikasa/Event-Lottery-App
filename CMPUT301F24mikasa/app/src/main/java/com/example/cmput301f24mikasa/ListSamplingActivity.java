@@ -34,6 +34,14 @@ public class ListSamplingActivity extends AppCompatActivity {
     private ArrayList<String> selectedEntrants;
 
     /**
+     * Default constructor for ListSamplingActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ListSamplingActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Initializes the activity by setting up the UI components, retrieving event data from the Intent,
      * and fetching the waiting list of participants from Firestore.
      * Also sets up the event listeners for the buttons.

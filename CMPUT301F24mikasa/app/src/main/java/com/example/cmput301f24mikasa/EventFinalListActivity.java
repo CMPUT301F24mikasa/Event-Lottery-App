@@ -31,6 +31,14 @@ public class EventFinalListActivity extends AppCompatActivity {
     private String eventID;  // Pass the eventID from the previous activity
 
     /**
+     * Default constructor for EventFinalListActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public EventFinalListActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Initializes the activity, sets up the ListView and back button, retrieves
      * the eventID and title passed from the previous activity, and fetches the final
      * entrants list from Firestore.

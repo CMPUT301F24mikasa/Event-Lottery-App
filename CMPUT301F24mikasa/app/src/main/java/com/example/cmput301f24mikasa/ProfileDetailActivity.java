@@ -36,6 +36,14 @@ public class ProfileDetailActivity extends AppCompatActivity {
     private String deviceId;
 
     /**
+     * Default constructor for ProfileDetailActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ProfileDetailActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is first created.
      * Initializes the views and populates them with data from the UserProfile.
      * The user profile is retrieved from the UserProfileManager.

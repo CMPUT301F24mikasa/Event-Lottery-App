@@ -26,6 +26,14 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
     private ArrayList<String> facilitiesList;
     private FacilityAdapter adapter;
 
+    /**
+     * Default constructor for ManageFacilitiesActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ManageFacilitiesActivity() {
+        // Constructor is provided by default
+    }
+
 
     /**
      * Initializes the activity, sets up the ListView to display the list of facilities,

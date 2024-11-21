@@ -25,6 +25,16 @@ import com.bumptech.glide.Glide;
 public class EventPosterActivity extends AppCompatActivity {
 
     /**
+     * Default constructor for EventPosterActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public EventPosterActivity() {
+        // Constructor is provided by default
+    }
+
+
+
+    /**
      * onCreate creates the EventPosterActivity, it retrieves data
      * from the intent passed by CreateEventActivity, including the the title, data,
      * description, price, event image, and QR code.

@@ -17,6 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilesActivity extends AppCompatActivity {
 
     /**
+     * Default constructor for ProfilesActivity.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public ProfilesActivity() {
+        // Constructor is provided by default
+    }
+
+    /**
      * Called when the activity is first created.
      * Initializes the profile buttons and sets up the bottom navigation buttons.
      * Navigates to UserProfileActivity or FacilityProfileActivity based on the user's selection.

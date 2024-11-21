@@ -23,6 +23,15 @@ import java.util.List;
  */
 //remember to adjust all the profiles, so that getName becomes an actual name
 public class OrganizerSendsNotification extends AppCompatActivity{
+
+    /**
+     * Default constructor for OrganizerSendsNotification.
+     * This constructor is required for the Android activity lifecycle.
+     */
+    public OrganizerSendsNotification() {
+        // Constructor is provided by default
+    }
+
     /**
      * List of selected entrants for the event.
      */
