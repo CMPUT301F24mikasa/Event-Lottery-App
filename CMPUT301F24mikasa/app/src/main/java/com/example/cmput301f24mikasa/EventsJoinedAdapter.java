@@ -3,6 +3,7 @@ package com.example.cmput301f24mikasa;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,11 +73,43 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
         ImageView eventImageView = rowView.findViewById(R.id.event_image);
         TextView eventTitleText = rowView.findViewById(R.id.event_title);
         Button viewButton = rowView.findViewById(R.id.view_button);
+        Button unjoinButton = rowView.findViewById(R.id.unjoin_button);
 
         QueryDocumentSnapshot event = events.get(position);
+        String eventId = event.getId();
+
         eventTitleText.setText(event.getString("title")); // Display the event title
         String imageURL = event.getString("imageURL");
         Glide.with(this.getContext()).load(imageURL).into(eventImageView);
+
+
+        // Handle unjoin button click
+        unjoinButton.setOnClickListener(v -> {
+            // Get the unique device ID (using ANDROID_ID)
+            String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+            if (deviceId != null && !deviceId.isEmpty()) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference eventRef = db.collection("event").document(eventId);
+
+                // Remove the device ID from the waiting list in Firestore
+                eventRef.update("waitingList", FieldValue.arrayRemove(deviceId))
+                        .addOnSuccessListener(aVoid -> {
+                            // Show success message and refresh the event list
+                            Toast.makeText(context, "Unjoined successfully!", Toast.LENGTH_SHORT).show();
+                            events.remove(position);
+                            notifyDataSetChanged();
+                        })
+                        .addOnFailureListener(e -> {
+                            // Log and show failure message
+                            Log.e("FirestoreError", "Error unjoining event: ", e);
+                            Toast.makeText(context, "Failed to unjoin", Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                // If device ID is null or empty, show an error message
+                Toast.makeText(context, "Failed to get device ID", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Set an OnClickListener for the "View" button
         viewButton.setOnClickListener(v -> {
