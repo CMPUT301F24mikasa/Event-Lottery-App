@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,29 +27,29 @@
     <ListView
         android:id="@+id/event_list_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="575dp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerTextView"
-        app:layout_constraintBottom_toTopOf="@+id/back_button" />
+        app:layout_constraintTop_toBottomOf="@id/headerTextView" />
 
     <!-- Back Button -->
+
     <Button
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/back"
+        android:layout_marginTop="150dp"
         android:backgroundTint="#0D47A1"
+        android:text="@string/back"
         android:textColor="#FFFFFF"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_list_view" />
 
-    <include
-        layout="@layout/nav_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

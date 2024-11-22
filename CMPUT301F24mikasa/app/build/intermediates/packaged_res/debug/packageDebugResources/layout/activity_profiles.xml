@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Header -->
     <TextView
@@ -11,32 +12,88 @@
         android:text="@string/profiles_caps"
         android:textSize="24sp"
         android:textColor="@android:color/white"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp" />
 
     <!-- User Profile Button -->
     <Button
         android:id="@+id/user_profile_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header_text"
         android:text="@string/user_profile"
         android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="@android:color/white"
+        android:backgroundTint="#0D47A1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
 
     <!-- Facility Profile Button -->
     <Button
         android:id="@+id/facility_profile_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/user_profile_button"
         android:text="@string/facility_profile"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="@android:color/white"
+        android:backgroundTint="#0D47A1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
 
-    <include
-        layout="@layout/nav_bar"
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/button_profiles"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/profiles"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_events"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/events"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_notifications"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notifications"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/notifications"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_admin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_admin_panel_settings"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/admin"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
 </RelativeLayout>

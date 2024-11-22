@@ -1,7 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:padding="16dp">
 
     <TextView
@@ -9,12 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/facility_name"
-        android:textColor="#000080"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp" />
 
-    <!-- Add more TextViews as needed to display additional facility information -->
+    <!-- Location TextView -->
     <TextView
         android:id="@+id/tv_facility_location"
         android:layout_width="wrap_content"
@@ -22,9 +20,9 @@
         android:text="@string/location"
         android:layout_below="@id/tv_facility_name"
         android:layout_marginTop="20dp"
-        android:textColor="#000080"
         android:textSize="18sp" />
 
+    <!-- Description TextView -->
     <TextView
         android:id="@+id/tv_facility_description"
         android:layout_width="wrap_content"
@@ -32,23 +30,16 @@
         android:text="@string/description"
         android:layout_below="@id/tv_facility_location"
         android:layout_marginTop="20dp"
-        android:textColor="#000080"
         android:textSize="18sp" />
 
+    <!-- Back Button -->
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="75dp"
-        android:background="#000080"
         android:text="@string/back"
-        android:textColor="#FFFFFF" />
-
-    <include
-        layout="@layout/nav_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#0D47A1"/>
 </RelativeLayout>

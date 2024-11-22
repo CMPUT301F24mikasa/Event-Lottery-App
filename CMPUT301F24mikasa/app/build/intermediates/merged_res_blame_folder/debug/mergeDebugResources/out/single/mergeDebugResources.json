@@ -1,174 +1,250 @@
 [
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_admin_panel_settings.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_admin_panel_settings.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.cmput301f24mikasa.app-debug-50:/layout_activity_event_poster.xml.flat",
+        "source": "com.example.cmput301f24mikasa.app-main-52:/layout/activity_event_poster.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_search_box_background.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/search_box_background.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_events_signed_up_for.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_events_signed_up_for.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_main.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_main.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_settings.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_qr_scanner.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_qr_scanner.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_placeholder_image.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\placeholder_image.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_user_profile_list_item.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_user_profile_list_item.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_event_result_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_event_result_list.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_admin_dashboard.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_admin_dashboard.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin_event_list_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin_event_list_item.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_nav_bar.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/nav_bar.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_notification_settings.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_notification_settings.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_placeholder_qr.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/placeholder_qr.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_profile_detail.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_profile_detail.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_admin_manage_facilities.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_admin_manage_facilities.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_person.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_person.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_event_list_item.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_event_list_item.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_profiles.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_profiles.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_user_profile.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_user_profile.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_notifications.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_notifications.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_view_event.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_view_event.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_qr_scanner.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_qr_scanner.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_add_facility_default.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\add_facility_default.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_view_facility.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_view_facility.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_person.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_person.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_user_profile.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_user_profile.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_events.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_events.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin_manage_facilities.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin_manage_facilities.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_create_event.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_create_event.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_manage_events.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_manage_events.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_admin_panel_settings.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_admin_panel_settings.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_create_event.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_create_event.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/xml_backup_rules.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_manage_events.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_manage_events.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_profiles.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_profiles.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_facility_profile.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_facility_profile.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_event_list_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_event_list_item.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_event_poster.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_event_poster.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_notification_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_notification_list.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_notifications.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_notifications.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_event_final_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_event_final_list.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_qr_code_placeholder.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/qr_code_placeholder.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_add_facility_default.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/add_facility_default.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_manage_waitlist.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_manage_waitlist.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_view_facility.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_view_facility.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_event_waiting_list.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_event_waiting_list.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_event.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_event.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_placeholder_image.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/placeholder_image.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_view_event.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_view_event.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin_events_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin_events_list.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_ic_event.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/ic_event.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_event_poster.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_event_poster.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/drawable_baseline_search_24.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/drawable/baseline_search_24.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_event_waiting_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_event_waiting_list.xml"
     },
     {
-        "merged": "com.example.cmput301f24mikasa.app-debug-37:/layout_activity_facility_profile.xml.flat",
-        "source": "com.example.cmput301f24mikasa.app-main-39:/layout/activity_facility_profile.xml"
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_qr_code_placeholder.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\qr_code_placeholder.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_manage_profile_list_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_manage_profile_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin_profiles.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin_profiles.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_qr_display.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_qr_display.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_refresh.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_refresh.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_facility_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\facility_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_search_box_background.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\search_box_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_notification_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_notification_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_user_profile_list_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_user_profile_list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_admin_event_details.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_admin_event_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_events.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_events.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\drawable_baseline_search_24.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\drawable\\baseline_search_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_view_joined_event.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_view_joined_event.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_sample_waiting_list.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_sample_waiting_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-debug-50:\\layout_activity_events_signed_up_item.xml.flat",
+        "source": "C:\\Users\\brand\\.gradle\\daemon\\8.9\\com.example.cmput301f24mikasa.app-main-52:\\layout\\activity_events_signed_up_item.xml"
     }
 ]

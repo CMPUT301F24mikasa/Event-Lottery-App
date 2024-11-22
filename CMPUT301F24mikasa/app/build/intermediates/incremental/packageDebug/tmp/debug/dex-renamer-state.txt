@@ -1,16 +1,19 @@
-#Mon Nov 04 19:11:42 MST 2024
-base.0=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.3=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.4=C\:\\Users\\brand\\OneDrive\\Desktop\\CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+#Fri Nov 22 15:46:30 MST 2024
+base.0=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
+base.3=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.4=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+base.5=C\:\\Users\\brand\\OneDrive\\Desktop\\Updated CMPUT 301 Project\\Event-Lottery-App\\CMPUT301F24mikasa\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes4.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=4/classes.dex
 path.3=classes2.dex
 path.4=classes3.dex
+path.5=classes4.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.2=classes3.dex
 renamed.3=classes4.dex
 renamed.4=classes5.dex
+renamed.5=classes6.dex

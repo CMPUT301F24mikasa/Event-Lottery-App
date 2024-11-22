@@ -1,40 +1,53 @@
-com.example.cmput301f24mikasa.app-transition-1.5.0-0 C:\Users\brand\.gradle\caches\8.9\transforms\0284ee4d59beb1557aaae96294ec60d2\transformed\transition-1.5.0\res
-com.example.cmput301f24mikasa.app-constraintlayout-2.2.0-1 C:\Users\brand\.gradle\caches\8.9\transforms\03d5011a5b4872f6ae9b18d2e1d64a76\transformed\constraintlayout-2.2.0\res
-com.example.cmput301f24mikasa.app-lifecycle-viewmodel-2.6.2-2 C:\Users\brand\.gradle\caches\8.9\transforms\07646b70ea3c34b36e61f4c2a3049a18\transformed\lifecycle-viewmodel-2.6.2\res
-com.example.cmput301f24mikasa.app-material-1.12.0-3 C:\Users\brand\.gradle\caches\8.9\transforms\14df894db38fad87bad4dc1db1f5750b\transformed\material-1.12.0\res
-com.example.cmput301f24mikasa.app-lifecycle-viewmodel-savedstate-2.6.2-4 C:\Users\brand\.gradle\caches\8.9\transforms\1778eddfb3d6cb005d1ce63370899b8a\transformed\lifecycle-viewmodel-savedstate-2.6.2\res
-com.example.cmput301f24mikasa.app-recyclerview-1.1.0-5 C:\Users\brand\.gradle\caches\8.9\transforms\2b6ce22720e51e2db37799a9e6a66758\transformed\recyclerview-1.1.0\res
-com.example.cmput301f24mikasa.app-core-1.13.0-6 C:\Users\brand\.gradle\caches\8.9\transforms\2d2565e9d2a41e840c69b78ae18f0888\transformed\core-1.13.0\res
-com.example.cmput301f24mikasa.app-cardview-1.0.0-7 C:\Users\brand\.gradle\caches\8.9\transforms\421b9ea4a5a56cb9936205483b2c913e\transformed\cardview-1.0.0\res
-com.example.cmput301f24mikasa.app-zxing-android-embedded-4.3.0-8 C:\Users\brand\.gradle\caches\8.9\transforms\424e2915bcfcb1db14a85e31b288a143\transformed\zxing-android-embedded-4.3.0\res
-com.example.cmput301f24mikasa.app-core-runtime-2.2.0-9 C:\Users\brand\.gradle\caches\8.9\transforms\4a1ebdab9947c488457f798da54f1176\transformed\core-runtime-2.2.0\res
-com.example.cmput301f24mikasa.app-startup-runtime-1.1.1-10 C:\Users\brand\.gradle\caches\8.9\transforms\4c76c6030024f833ef11c10a5462bd49\transformed\startup-runtime-1.1.1\res
-com.example.cmput301f24mikasa.app-lifecycle-runtime-2.6.2-11 C:\Users\brand\.gradle\caches\8.9\transforms\4e7fe4eb8174ed427dc10e1a43051569\transformed\lifecycle-runtime-2.6.2\res
-com.example.cmput301f24mikasa.app-lifecycle-process-2.6.2-12 C:\Users\brand\.gradle\caches\8.9\transforms\4eb3874d5e07dc243b2d8f2358411d42\transformed\lifecycle-process-2.6.2\res
-com.example.cmput301f24mikasa.app-appcompat-resources-1.7.0-13 C:\Users\brand\.gradle\caches\8.9\transforms\549e47b82ebf4fe879590d63bad2d087\transformed\appcompat-resources-1.7.0\res
-com.example.cmput301f24mikasa.app-coordinatorlayout-1.1.0-14 C:\Users\brand\.gradle\caches\8.9\transforms\58a425988570a72f739077d853797806\transformed\coordinatorlayout-1.1.0\res
-com.example.cmput301f24mikasa.app-glide-4.16.0-15 C:\Users\brand\.gradle\caches\8.9\transforms\6e1879c713b75800a2bc71dccc3565c0\transformed\glide-4.16.0\res
-com.example.cmput301f24mikasa.app-appcompat-1.7.0-16 C:\Users\brand\.gradle\caches\8.9\transforms\76ac0499d19be9949b39076fe3fc5067\transformed\appcompat-1.7.0\res
-com.example.cmput301f24mikasa.app-viewpager2-1.0.0-17 C:\Users\brand\.gradle\caches\8.9\transforms\785d28dd9c406f116f3a2e05b847749d\transformed\viewpager2-1.0.0\res
-com.example.cmput301f24mikasa.app-profileinstaller-1.4.0-18 C:\Users\brand\.gradle\caches\8.9\transforms\7f9e5354072e60cb952260679cd2a8ba\transformed\profileinstaller-1.4.0\res
-com.example.cmput301f24mikasa.app-lifecycle-livedata-core-2.6.2-19 C:\Users\brand\.gradle\caches\8.9\transforms\8b788fca0b34b9f2638b08c98255e06a\transformed\lifecycle-livedata-core-2.6.2\res
-com.example.cmput301f24mikasa.app-play-services-basement-18.4.0-20 C:\Users\brand\.gradle\caches\8.9\transforms\9665f40b36af889b1d743f6f982d92b5\transformed\play-services-basement-18.4.0\res
-com.example.cmput301f24mikasa.app-play-services-base-18.5.0-21 C:\Users\brand\.gradle\caches\8.9\transforms\991834f419887205201b6a496cbda4ba\transformed\play-services-base-18.5.0\res
-com.example.cmput301f24mikasa.app-emoji2-1.3.0-22 C:\Users\brand\.gradle\caches\8.9\transforms\9b5bf579fa1c1e395c46b1b0e1b50938\transformed\emoji2-1.3.0\res
-com.example.cmput301f24mikasa.app-firebase-common-21.0.0-23 C:\Users\brand\.gradle\caches\8.9\transforms\a1075b8a3f682a00009bdaa6f8ae706a\transformed\firebase-common-21.0.0\res
-com.example.cmput301f24mikasa.app-core-ktx-1.13.0-24 C:\Users\brand\.gradle\caches\8.9\transforms\a545908b12155edf19f4a15c32320d52\transformed\core-ktx-1.13.0\res
-com.example.cmput301f24mikasa.app-drawerlayout-1.1.1-25 C:\Users\brand\.gradle\caches\8.9\transforms\b3ab10ec449fb7bbb946ce7a8f8bdcad\transformed\drawerlayout-1.1.1\res
-com.example.cmput301f24mikasa.app-activity-1.9.3-26 C:\Users\brand\.gradle\caches\8.9\transforms\d1d13984f45b0c336aa27f37e6716ce9\transformed\activity-1.9.3\res
-com.example.cmput301f24mikasa.app-annotation-experimental-1.4.0-27 C:\Users\brand\.gradle\caches\8.9\transforms\e5b0d0924188378e5044b3b51894e372\transformed\annotation-experimental-1.4.0\res
-com.example.cmput301f24mikasa.app-lifecycle-livedata-2.6.2-28 C:\Users\brand\.gradle\caches\8.9\transforms\ea5c0912beb76634423e866118d720f1\transformed\lifecycle-livedata-2.6.2\res
-com.example.cmput301f24mikasa.app-savedstate-1.2.1-29 C:\Users\brand\.gradle\caches\8.9\transforms\f40bd6085656dcc257c3d9c7abbcc4fa\transformed\savedstate-1.2.1\res
-com.example.cmput301f24mikasa.app-fragment-1.5.4-30 C:\Users\brand\.gradle\caches\8.9\transforms\fbe1d3474ecf10f1953e772d47de4923\transformed\fragment-1.5.4\res
-com.example.cmput301f24mikasa.app-emoji2-views-helper-1.3.0-31 C:\Users\brand\.gradle\caches\8.9\transforms\fca8a2d83a025c4697583b83b97fb4cd\transformed\emoji2-views-helper-1.3.0\res
-com.example.cmput301f24mikasa.app-pngs-32 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\pngs\debug
-com.example.cmput301f24mikasa.app-res-33 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\processDebugGoogleServices
-com.example.cmput301f24mikasa.app-resValues-34 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\resValues\debug
-com.example.cmput301f24mikasa.app-packageDebugResources-35 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.cmput301f24mikasa.app-packageDebugResources-36 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.cmput301f24mikasa.app-debug-37 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.cmput301f24mikasa.app-debug-38 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\debug\res
-com.example.cmput301f24mikasa.app-main-39 C:\Users\brand\OneDrive\Desktop\CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\res
+com.example.cmput301f24mikasa.app-firebase-common-21.0.0-0 C:\Users\brand\.gradle\caches\8.9\transforms\041617d5bd004e49ec86a60c9705fbf3\transformed\firebase-common-21.0.0\res
+com.example.cmput301f24mikasa.app-emoji2-1.3.0-1 C:\Users\brand\.gradle\caches\8.9\transforms\1a2d7147ee925f3f4ae25ad9d38aeee3\transformed\emoji2-1.3.0\res
+com.example.cmput301f24mikasa.app-zxing-android-embedded-4.3.0-2 C:\Users\brand\.gradle\caches\8.9\transforms\1baabac0e0805a83a8d08b8c58e2ab10\transformed\zxing-android-embedded-4.3.0\res
+com.example.cmput301f24mikasa.app-core-1.13.0-3 C:\Users\brand\.gradle\caches\8.9\transforms\271badf7057b80626ecec2876bbd3145\transformed\core-1.13.0\res
+com.example.cmput301f24mikasa.app-activity-1.9.3-4 C:\Users\brand\.gradle\caches\8.9\transforms\2a4da706147a8dc7dc61ee90385bf94a\transformed\activity-1.9.3\res
+com.example.cmput301f24mikasa.app-play-services-auth-20.7.0-5 C:\Users\brand\.gradle\caches\8.9\transforms\30ecb54e99f5be66c26bc81d7868c70e\transformed\play-services-auth-20.7.0\res
+com.example.cmput301f24mikasa.app-core-runtime-2.2.0-6 C:\Users\brand\.gradle\caches\8.9\transforms\335c92acec592ca7352b83b5f584c376\transformed\core-runtime-2.2.0\res
+com.example.cmput301f24mikasa.app-coordinatorlayout-1.1.0-7 C:\Users\brand\.gradle\caches\8.9\transforms\3a7dfe8a942242f19b3a73f66b5e1154\transformed\coordinatorlayout-1.1.0\res
+com.example.cmput301f24mikasa.app-camera-video-1.4.0-8 C:\Users\brand\.gradle\caches\8.9\transforms\3ad71160bd8fab42515267a8272953f1\transformed\camera-video-1.4.0\res
+com.example.cmput301f24mikasa.app-material-1.12.0-9 C:\Users\brand\.gradle\caches\8.9\transforms\3b14a1ff9a21a276a36cdf39f431dec2\transformed\material-1.12.0\res
+com.example.cmput301f24mikasa.app-browser-1.4.0-10 C:\Users\brand\.gradle\caches\8.9\transforms\5481fb88b902c17373eb23ac1ced2e10\transformed\browser-1.4.0\res
+com.example.cmput301f24mikasa.app-drawerlayout-1.1.1-11 C:\Users\brand\.gradle\caches\8.9\transforms\61f10fa3a03c80fbfeb2742a281a0d16\transformed\drawerlayout-1.1.1\res
+com.example.cmput301f24mikasa.app-tracing-ktx-1.2.0-12 C:\Users\brand\.gradle\caches\8.9\transforms\62cf87c45f66c694504627c4ffe93752\transformed\tracing-ktx-1.2.0\res
+com.example.cmput301f24mikasa.app-camera-camera2-1.4.0-13 C:\Users\brand\.gradle\caches\8.9\transforms\6336df633e08cf19616ca7e90f782091\transformed\camera-camera2-1.4.0\res
+com.example.cmput301f24mikasa.app-glide-4.16.0-14 C:\Users\brand\.gradle\caches\8.9\transforms\671bcdc15784a634ad568089da2a00cf\transformed\glide-4.16.0\res
+com.example.cmput301f24mikasa.app-recyclerview-1.1.0-15 C:\Users\brand\.gradle\caches\8.9\transforms\69259ba1f95ea3141e5402812b2751d5\transformed\recyclerview-1.1.0\res
+com.example.cmput301f24mikasa.app-lifecycle-viewmodel-savedstate-2.6.2-16 C:\Users\brand\.gradle\caches\8.9\transforms\75ad623e90d5ba234317b143c483e7bb\transformed\lifecycle-viewmodel-savedstate-2.6.2\res
+com.example.cmput301f24mikasa.app-transition-1.5.0-17 C:\Users\brand\.gradle\caches\8.9\transforms\7e615cd3f429233b5f40f069187105a6\transformed\transition-1.5.0\res
+com.example.cmput301f24mikasa.app-lifecycle-process-2.6.2-18 C:\Users\brand\.gradle\caches\8.9\transforms\7fe6b2d731f54f39dd9cbb7041fef606\transformed\lifecycle-process-2.6.2\res
+com.example.cmput301f24mikasa.app-core-common-2.0.3-19 C:\Users\brand\.gradle\caches\8.9\transforms\814ef47dc8414b93417ae5e9c374d442\transformed\core-common-2.0.3\res
+com.example.cmput301f24mikasa.app-credentials-1.2.0-rc01-20 C:\Users\brand\.gradle\caches\8.9\transforms\867c77bd20292cb8bff0512a236e0614\transformed\credentials-1.2.0-rc01\res
+com.example.cmput301f24mikasa.app-appcompat-1.7.0-21 C:\Users\brand\.gradle\caches\8.9\transforms\8b583defbe685f6da310c63ec316ab2b\transformed\appcompat-1.7.0\res
+com.example.cmput301f24mikasa.app-lifecycle-runtime-2.6.2-22 C:\Users\brand\.gradle\caches\8.9\transforms\96d32931966093273fbce2cf4617c5f8\transformed\lifecycle-runtime-2.6.2\res
+com.example.cmput301f24mikasa.app-camera-lifecycle-1.4.0-23 C:\Users\brand\.gradle\caches\8.9\transforms\9957bc74fd3538c161d114a958a3e6c0\transformed\camera-lifecycle-1.4.0\res
+com.example.cmput301f24mikasa.app-lifecycle-viewmodel-2.6.2-24 C:\Users\brand\.gradle\caches\8.9\transforms\9a11f922928d2a0c27dbbe22d6ad8609\transformed\lifecycle-viewmodel-2.6.2\res
+com.example.cmput301f24mikasa.app-startup-runtime-1.1.1-25 C:\Users\brand\.gradle\caches\8.9\transforms\9a2a3aaf0f82336fc567884b90a9e392\transformed\startup-runtime-1.1.1\res
+com.example.cmput301f24mikasa.app-savedstate-1.2.1-26 C:\Users\brand\.gradle\caches\8.9\transforms\9c32759f53de3195982b103bc64efdc7\transformed\savedstate-1.2.1\res
+com.example.cmput301f24mikasa.app-play-services-base-18.5.0-27 C:\Users\brand\.gradle\caches\8.9\transforms\a13cab265b69e5ee1512828c428d965f\transformed\play-services-base-18.5.0\res
+com.example.cmput301f24mikasa.app-profileinstaller-1.4.0-28 C:\Users\brand\.gradle\caches\8.9\transforms\a1f438a9c9901a1ef97e39daf873bf6c\transformed\profileinstaller-1.4.0\res
+com.example.cmput301f24mikasa.app-core-ktx-1.13.0-29 C:\Users\brand\.gradle\caches\8.9\transforms\a4ed2316193687811d06f08c7cb510bb\transformed\core-ktx-1.13.0\res
+com.example.cmput301f24mikasa.app-lifecycle-livedata-2.6.2-30 C:\Users\brand\.gradle\caches\8.9\transforms\aa5d931c3da38403957da9bd09e4095f\transformed\lifecycle-livedata-2.6.2\res
+com.example.cmput301f24mikasa.app-core-1.6.1-31 C:\Users\brand\.gradle\caches\8.9\transforms\acc3894ab761798d8dd24f87b69f032a\transformed\core-1.6.1\res
+com.example.cmput301f24mikasa.app-appcompat-resources-1.7.0-32 C:\Users\brand\.gradle\caches\8.9\transforms\b3bbe650b1e86b33caccef94c4d72179\transformed\appcompat-resources-1.7.0\res
+com.example.cmput301f24mikasa.app-fragment-1.5.4-33 C:\Users\brand\.gradle\caches\8.9\transforms\b9a791bfe89ef793b742e35212f2ca4d\transformed\fragment-1.5.4\res
+com.example.cmput301f24mikasa.app-cardview-1.0.0-34 C:\Users\brand\.gradle\caches\8.9\transforms\c040c2664485e80d9dd2c8eb1b384f65\transformed\cardview-1.0.0\res
+com.example.cmput301f24mikasa.app-emoji2-views-helper-1.3.0-35 C:\Users\brand\.gradle\caches\8.9\transforms\c9f53068f66c4c2e7fe56ab00f7bf2f3\transformed\emoji2-views-helper-1.3.0\res
+com.example.cmput301f24mikasa.app-annotation-experimental-1.4.1-36 C:\Users\brand\.gradle\caches\8.9\transforms\d3f24858b99ecd63da22ea178be42604\transformed\annotation-experimental-1.4.1\res
+com.example.cmput301f24mikasa.app-tracing-1.2.0-37 C:\Users\brand\.gradle\caches\8.9\transforms\d8a026b73b1f3f7dc6cec2d388f47649\transformed\tracing-1.2.0\res
+com.example.cmput301f24mikasa.app-camera-view-1.4.0-38 C:\Users\brand\.gradle\caches\8.9\transforms\df731218dad2a9cd637102ea794e00ac\transformed\camera-view-1.4.0\res
+com.example.cmput301f24mikasa.app-viewpager2-1.0.0-39 C:\Users\brand\.gradle\caches\8.9\transforms\e154b13f35a2e0a542a18009fe2b39f8\transformed\viewpager2-1.0.0\res
+com.example.cmput301f24mikasa.app-play-services-basement-18.4.0-40 C:\Users\brand\.gradle\caches\8.9\transforms\e30be549129bfcf70117d323c4b6fe3d\transformed\play-services-basement-18.4.0\res
+com.example.cmput301f24mikasa.app-constraintlayout-2.2.0-41 C:\Users\brand\.gradle\caches\8.9\transforms\e4fc91760017c29d242fdfbd650b19c3\transformed\constraintlayout-2.2.0\res
+com.example.cmput301f24mikasa.app-camera-core-1.4.0-42 C:\Users\brand\.gradle\caches\8.9\transforms\ea1fddbab892730e899b060aeed45589\transformed\camera-core-1.4.0\res
+com.example.cmput301f24mikasa.app-lifecycle-livedata-core-2.6.2-43 C:\Users\brand\.gradle\caches\8.9\transforms\f96cfe062b7ce2c3135d47a7554e8308\transformed\lifecycle-livedata-core-2.6.2\res
+com.example.cmput301f24mikasa.app-credentials-play-services-auth-1.2.0-rc01-44 C:\Users\brand\.gradle\caches\8.9\transforms\fa2fa3f24b96ef1c4ea13c4e6ee50472\transformed\credentials-play-services-auth-1.2.0-rc01\res
+com.example.cmput301f24mikasa.app-pngs-45 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\pngs\debug
+com.example.cmput301f24mikasa.app-res-46 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\processDebugGoogleServices
+com.example.cmput301f24mikasa.app-resValues-47 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\generated\res\resValues\debug
+com.example.cmput301f24mikasa.app-packageDebugResources-48 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.cmput301f24mikasa.app-packageDebugResources-49 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.cmput301f24mikasa.app-debug-50 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.cmput301f24mikasa.app-debug-51 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\debug\res
+com.example.cmput301f24mikasa.app-main-52 C:\Users\brand\OneDrive\Desktop\Updated CMPUT 301 Project\Event-Lottery-App\CMPUT301F24mikasa\app\src\main\res

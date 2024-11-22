@@ -1,22 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/headerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp"
         android:text="CREATE EVENT"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
     <LinearLayout
         android:id="@+id/parentPanel"
@@ -61,6 +57,17 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="8dp"
                 app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/btnCreatePoster"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:text="Create Poster"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp"
+                android:layout_marginTop="8dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,23 +83,22 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Title"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:background="#D4D4D4"
                 android:padding="12dp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
                 android:hint="Date (MM/DD/YYYY)"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:background="#D4D4D4"
                 android:padding="12dp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/editTextPrice"
@@ -100,11 +106,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:hint="Price"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/black"
                 android:background="#D4D4D4"
                 android:padding="12dp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,14 +123,14 @@
                     android:id="@+id/checkBoxLimitWaitingList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Limit waiting list"
-                    android:textColor="@android:color/black" />
+                    android:text="Limit waiting list" />
 
                 <EditText
                     android:id="@+id/editTextLimitWaitingList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Max entrants"
+                    android:textColorHint="@color/black"
                     android:inputType="number"
                     android:visibility="gone"
                     android:layout_marginStart="8dp"
@@ -139,16 +145,16 @@
     <EditText
         android:id="@+id/editTextDesc"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/parentPanel"
         android:layout_marginTop="16dp"
         android:background="#D4D4D4"
         android:gravity="start|top"
-        android:hint="Description"
+        android:hint="@string/event_description"
         android:inputType="textMultiLine"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/black"
         android:padding="12dp"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:id="@+id/bottomPanel"
@@ -180,3 +186,186 @@
     </LinearLayout>
 
 </RelativeLayout>
+
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/create_event"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/parentPanel"
+        android:layout_below="@+id/headerTextView">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/leftPanel"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgEvent"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:background="@drawable/placeholder_image"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/an_image_of_your_event"/>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:id="@+id/btnUpload"
+                android:text="@string/upload_poster"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/btnGenerateQRCode"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="12sp"
+                android:text="@string/generate_qr_code"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+
+                android:layout_marginTop="8dp"
+                app:cornerRadius="0dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/topPanel"
+            android:paddingVertical="16dp">
+
+            <EditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="@string/title"
+                android:textColorHint="@color/black"
+                android:background="#D4D4D4"
+                android:paddingVertical="15dp"
+                android:layout_marginTop="8dp"
+                android:padding="15dp"
+                android:textColor="@color/black"
+
+
+                />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="@string/date_example"
+                android:textColorHint="@color/black"
+                android:background="#D4D4D4"
+                android:paddingVertical="15dp"
+                android:layout_marginTop="8dp"
+                android:padding="15dp"
+                android:textColor="@color/black"
+
+                />
+
+            <EditText
+                android:id="@+id/editTextPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/price"
+                android:textColorHint="@color/black"
+                android:background="#D4D4D4"
+                android:paddingVertical="15dp"
+                android:layout_marginTop="8dp"
+                android:padding="15dp"
+                android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/parentPanel"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#D4D4D4"
+            android:gravity="start|top"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/black"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/bottomPanel">
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:text="@string/back"
+                android:backgroundTint="#0D47A1"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="0dp"
+                />
+
+            <Button
+                android:id="@+id/btnCreateEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:text="@string/create_event_small_caps"
+                android:backgroundTint="#0D47A1"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="0dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+-->

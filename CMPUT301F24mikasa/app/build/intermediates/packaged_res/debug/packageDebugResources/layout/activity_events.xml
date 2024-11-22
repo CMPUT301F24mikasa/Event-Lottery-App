@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Header -->
     <TextView
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/events_caps"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        android:padding="16dp"
         android:textAlignment="center"
         android:background="#0D47A1" />
 
@@ -22,10 +23,11 @@
         android:layout_height="wrap_content"
         android:text="@string/qr_scanner"
         android:textColor="#FFFFFF"
-        android:background="#0D47A1"
+        android:backgroundTint="#0D47A1"
         android:textAlignment="center"
         android:layout_margin="20dp"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_below="@id/header" />
 
     <!-- Events Signed Up For Button -->
     <Button
@@ -35,8 +37,9 @@
         android:layout_margin="20dp"
         android:text="@string/events_signed_up_for"
         android:textColor="#FFFFFF"
-        android:background="#0D47A1"
-        android:textSize="18sp" />
+        android:backgroundTint="#0D47A1"
+        android:textSize="18sp"
+        android:layout_below="@id/qr_scanner_button" />
 
     <!-- Create Event Button -->
     <Button
@@ -46,8 +49,9 @@
         android:layout_margin="20dp"
         android:text="@string/create_event_small_caps"
         android:textColor="#FFFFFF"
-        android:background="#0D47A1"
-        android:textSize="18sp" />
+        android:backgroundTint="#0D47A1"
+        android:textSize="18sp"
+        android:layout_below="@id/events_signed_up_button" />
 
     <!-- Manage Events Button -->
     <Button
@@ -57,12 +61,62 @@
         android:layout_margin="20dp"
         android:text="@string/manage_events"
         android:textColor="#FFFFFF"
-        android:background="#0D47A1"
-        android:textSize="18sp" />
+        android:backgroundTint="#0D47A1"
+        android:textSize="18sp"
+        android:layout_below="@id/create_event_button" />
 
-    <include
-        layout="@layout/nav_bar"
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/button_profiles"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/profiles"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_events"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_event"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/events"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_notifications"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notifications"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/notifications"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/button_admin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_admin_panel_settings"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/admin"
+            android:padding="8dp"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -4,26 +4,34 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Camera Preview View -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:id="@+id/btnScanQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/scan_qr_code"
         android:backgroundTint="#0D47A1"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnUploadQR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/upload_qr_code"
-        android:backgroundTint="#0D47A1"
         android:textColor="@android:color/white"
-        android:layout_below="@id/btnScanQR"
+        android:layout_below="@id/previewView"
         android:layout_marginTop="16dp" />
 
-    <include
-        layout="@layout/nav_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/back"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

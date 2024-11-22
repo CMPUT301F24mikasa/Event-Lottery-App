@@ -1,3 +1,0 @@
-com.example.cmput301f24mikasa.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

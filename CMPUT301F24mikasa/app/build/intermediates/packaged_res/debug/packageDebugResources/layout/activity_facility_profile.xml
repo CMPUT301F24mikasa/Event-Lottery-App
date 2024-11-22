@@ -2,8 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
 
 
     <TextView
@@ -15,8 +14,7 @@
         android:padding="16dp"
         android:text="@string/facility_profile_caps"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,6 +53,7 @@
                 android:id="@+id/btnUploadPicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:backgroundTint="#0D47A1"
                 android:text="@string/upload_picture"
                 app:cornerRadius="0dp"
@@ -67,6 +66,7 @@
                 android:id="@+id/btnRemovePicture"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:backgroundTint="#0D47A1"
                 android:text="@string/remove_picture"
                 app:cornerRadius="0dp"
@@ -95,14 +95,14 @@
                 android:id="@+id/editFacilityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/enter_facility_name"
-                android:padding="16dp"
-                android:textColorHint="@color/black"
-                android:background="#D4D4D4"
                 android:layout_margin="20dp"
-                />
+                android:background="#D4D4D4"
+                android:ems="10"
+                android:hint="@string/enter_facility_name"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
 
 
             <EditText
@@ -115,6 +115,7 @@
                 android:hint="@string/enter_facility_location"
                 android:inputType="text"
                 android:padding="16dp"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <EditText
@@ -128,6 +129,7 @@
                 android:hint="@string/enter_facility_description"
                 android:inputType="textMultiLine"
                 android:padding="16dp"
+                android:textColor="@color/black"
                 android:textColorHint="@color/black" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,6 +142,7 @@
                     android:id="@+id/btn_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:backgroundTint="#0D47A1"
                     android:text="@string/back"
                     app:cornerRadius="0dp"
@@ -151,6 +154,7 @@
                     android:id="@+id/btnUpdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:backgroundTint="#0D47A1"
                     android:text="@string/update"
                     app:cornerRadius="0dp"
@@ -166,11 +170,11 @@
                     app:layout_constraintGuide_begin="205dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </LinearLayout>
-        <include
-            layout="@layout/nav_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -11,10 +11,11 @@
         android:text="@string/user_profile_caps"
         android:textSize="24sp"
         android:textColor="@android:color/white"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp" />
 
+    <!-- Profile Image -->
     <ImageView
         android:id="@+id/profile_image_view"
         android:layout_width="100dp"
@@ -25,6 +26,7 @@
         android:contentDescription="@string/profile_image_desc"
         android:scaleType="centerCrop" />
 
+    <!-- Upload Image Button -->
     <Button
         android:id="@+id/upload_image_button"
         android:layout_width="wrap_content"
@@ -32,6 +34,20 @@
         android:layout_below="@id/profile_image_view"
         android:layout_centerHorizontal="true"
         android:text="@string/upload_image"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#0D47A1"
+        android:layout_marginTop="8dp" />
+
+    <!-- Remove Picture Button -->
+    <Button
+        android:id="@+id/remove_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upload_image_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/remove_image"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#0D47A1"
         android:layout_marginTop="8dp" />
 
     <!-- Name Input -->
@@ -39,7 +55,7 @@
         android:id="@+id/name_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/upload_image_button"
+        android:layout_below="@id/remove_image_button"
         android:background="@android:color/darker_gray"
         android:hint="@string/name"
         android:inputType="textPersonName"
@@ -47,7 +63,8 @@
         android:layout_margin="16dp"
         android:padding="10dp"
         android:autofillHints="name"
-        android:textColorHint="@android:color/black"/>
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black" />
 
     <!-- Email Input -->
     <EditText
@@ -62,7 +79,8 @@
         android:layout_margin="16dp"
         android:padding="10dp"
         android:autofillHints="emailAddress"
-        android:textColorHint="@android:color/black"/>
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black" />
 
     <!-- Phone Input -->
     <EditText
@@ -77,7 +95,8 @@
         android:layout_margin="16dp"
         android:padding="10dp"
         android:autofillHints="phone"
-        android:textColorHint="@android:color/black"/>
+        android:textColorHint="@android:color/black"
+        android:textColor="@android:color/black" />
 
     <!-- Save Profile Button -->
     <Button
@@ -86,13 +105,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/phone_edit_text"
         android:text="@string/save_profile"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@android:color/black"
+        android:backgroundTint="#0D47A1"
+        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp" />
 
-    <include
-        layout="@layout/nav_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/back"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#0D47A1"
+        android:textColor="@android:color/white" />
+
 </RelativeLayout>
