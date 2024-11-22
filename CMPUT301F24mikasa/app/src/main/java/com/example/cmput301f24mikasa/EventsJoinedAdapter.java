@@ -87,7 +87,7 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
             intent.putExtra("startDate", event.getString("startDate"));
             intent.putExtra("desc", event.getString("description"));
             intent.putExtra("price", event.getString("price"));
-            intent.putExtra("imageURL", event.getString("imageURL")); // Assuming the imageURL is stored as a string
+            intent.putExtra("imageURL", event.getString("imageURL"));
 
             // Start the activity
             context.startActivity(intent);

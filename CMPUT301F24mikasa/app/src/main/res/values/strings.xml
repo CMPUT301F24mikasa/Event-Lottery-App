@@ -76,4 +76,6 @@
     <string name="remove_image">Remove Image</string>
     <string name="image_preview">image preview</string>
     <string name="delete_image">Delete Image</string>
+    <string name="delete_poster">Delete Poster</string>
+    <string name="remove_poster">Remove Poster</string>
 </resources>

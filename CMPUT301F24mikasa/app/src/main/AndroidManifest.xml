@@ -81,6 +81,7 @@
         <activity android:name=".EventFinalListActivity"/>
         <activity android:name=".ManagingWaitListActivity"/>
         <activity android:name=".AdminManageEventsActivity" />
+        <activity android:name=".AdminEventDetailsActivity" />
 
 
 
