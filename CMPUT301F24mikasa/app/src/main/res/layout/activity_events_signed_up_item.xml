@@ -4,39 +4,62 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="15dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:weightSum="1">
 
     <!-- Event Image -->
+
+    <!-- Event Title -->
     <ImageView
         android:id="@+id/event_image"
-        android:layout_width="84dp"
-        android:layout_height="76dp"
+        android:layout_width="91dp"
+        android:layout_height="96dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/placeholder_image" />
 
-    <!-- Event Title -->
+    <!-- Vertical layout for buttons -->
+
     <TextView
         android:id="@+id/event_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="173dp"
+        android:layout_height="67dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:text="@string/event_title"
-        android:textSize="24sp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:textAlignment="textStart"
+        android:textSize="24sp" />
 
-    <!-- View Button -->
-    <Button
-        android:id="@+id/view_button"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#0D47A1"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:text="@string/view"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
-</LinearLayout>
+        android:layout_marginStart="8dp">
 
+        <!-- View Button -->
+        <Button
+            android:id="@+id/view_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#0D47A1"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="@string/view" />
+
+        <!-- Unjoin Button -->
+        <Button
+            android:id="@+id/unjoin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#0D47A1"
+            android:text="@string/Unjoin" />
+
+    </LinearLayout>
+
+</LinearLayout>
