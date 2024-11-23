@@ -3,6 +3,7 @@ package com.example.cmput301f24mikasa;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,12 @@ public class AdminManageEventsActivity extends AppCompatActivity {
 
         adapter = new AdminEventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
+
+        Button backButton = findViewById(R.id.btn_back);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminManageEventsActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         loadEvents(db);
     }

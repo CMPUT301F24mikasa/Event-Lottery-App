@@ -112,7 +112,6 @@
         android:backgroundTint="#0D47A1"
         android:text="@string/remove_poster"
         android:textColor="#FFFFFF"
-        tools:text="Unjoin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
