@@ -108,6 +108,20 @@
         app:cornerRadius="8dp"
         app:layout_constraintTop_toBottomOf="@id/imgQRCode"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSaveImage" />
+
+    <Button
+        android:id="@+id/btnSaveImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Save Image"
+        android:backgroundTint="#0D47A1"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imgQRCode"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
