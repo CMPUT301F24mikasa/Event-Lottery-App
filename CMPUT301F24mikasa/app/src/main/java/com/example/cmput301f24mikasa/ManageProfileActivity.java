@@ -64,6 +64,13 @@ public class ManageProfileActivity extends AppCompatActivity {
         adapter = new UserProfileArrayAdapter(this, userProfileList);
         userProfilesListView.setAdapter(adapter);
 
+        Button backButton = findViewById(R.id.btn_back);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ManageProfileActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
+
+
         loadUserProfiles();
     }
 
