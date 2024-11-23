@@ -82,5 +82,6 @@
 
     <string name="UnjoinWaitlist">unjoin\n</string>
     <string name="Unjoin">Unjoin</string>
+    <string name="facility_image">facility image</string>
 
 </resources>
