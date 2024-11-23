@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * EventPosterActivity is responsible for generating an event poster based
@@ -56,6 +64,7 @@ public class EventPosterActivity extends AppCompatActivity {
         });
 
         Button btnBack = findViewById(R.id.btn_back);
+        Button btnSaveImage = findViewById(R.id.btnSaveImage);
         btnBack.setOnClickListener(v -> finish());
 
         TextView txtTitle = findViewById(R.id.txtTitle);
@@ -83,5 +92,56 @@ public class EventPosterActivity extends AppCompatActivity {
             Bitmap qrCodeBitmap = BitmapFactory.decodeByteArray(qrCodeBytes, 0, qrCodeBytes.length);
             imgQRCode.setImageBitmap(qrCodeBitmap);
         }
+
+        btnSaveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnBack.setVisibility(View.INVISIBLE);
+                btnSaveImage.setVisibility(View.INVISIBLE);
+
+                Bitmap bitmap = savePosterActivityView(findViewById(R.id.main));
+
+                btnBack.setVisibility(View.VISIBLE);
+                btnSaveImage.setVisibility(View.VISIBLE);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] imageData = byteArrayOutputStream.toByteArray();
+
+                String eventId = intent.getStringExtra("eventID");
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                StorageReference posterRef = storageRef.child("event_posters/" + eventId + ".png");
+
+                posterRef.putBytes(imageData)
+                        .addOnSuccessListener(taskSnapshot -> {
+                            posterRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                String downloadUrl = uri.toString();
+
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference eventRef = db.collection("event").document(eventId);
+                                eventRef.update("posterURL", downloadUrl)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast.makeText(EventPosterActivity.this, "Poster saved successfully!", Toast.LENGTH_SHORT).show();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(EventPosterActivity.this, "Failed to save poster URL to Firestore.", Toast.LENGTH_SHORT).show();
+                                        });
+                            });
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(EventPosterActivity.this, "Failed to upload poster image.", Toast.LENGTH_SHORT).show();
+                        });
+            }
+        });
+
+    }
+
+    public Bitmap savePosterActivityView(View view){
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        return bitmap;
     }
 }
