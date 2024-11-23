@@ -94,6 +94,11 @@ public class CreateEventActivity extends AppCompatActivity {
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
         btnCreatePoster = findViewById(R.id.btnCreatePoster);
 
+        btnGenerateQRCode.setEnabled(false);
+        btnCreatePoster.setEnabled(false);
+        btnGenerateQRCode.setBackgroundColor(Color.parseColor("#808080"));
+        btnCreatePoster.setBackgroundColor(Color.parseColor("#808080"));
+
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDate = findViewById(R.id.editTextDate);
         editTextPrice = findViewById(R.id.editTextPrice);
@@ -140,15 +145,20 @@ public class CreateEventActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(CreateEventActivity.this, "Please upload an image", Toast.LENGTH_SHORT).show();
             }
+
+            btnGenerateQRCode.setEnabled(true);
+            btnGenerateQRCode.setBackgroundColor(Color.parseColor("#0D47A1"));
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
-            if (eventCreated) {  // Ensure event is created before generating QR code
+            if (eventCreated) {
                 qrCodeGenerated = true;
                 Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
             }
+            btnCreatePoster.setEnabled(true);
+            btnCreatePoster.setBackgroundColor(Color.parseColor("#0D47A1"));
+
+
         });
 
         btnCreatePoster.setOnClickListener(v -> {
