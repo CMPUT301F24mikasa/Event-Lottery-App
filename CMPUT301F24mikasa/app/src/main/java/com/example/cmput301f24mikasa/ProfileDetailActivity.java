@@ -75,8 +75,6 @@ public class ProfileDetailActivity extends AppCompatActivity {
             // Load the profile image if available
             if (userProfile.getProfilePicture() != null) {
                 Picasso.get().load(userProfile.getProfilePicture()).into(profileImageView);
-            } else {
-                profileImageView.setImageResource(R.drawable.placeholder_image);
             }
         }
 

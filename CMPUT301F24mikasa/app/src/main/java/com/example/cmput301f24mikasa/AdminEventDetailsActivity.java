@@ -112,10 +112,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         });
 
         // Handle "Back" button click
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminEventDetailsActivity.this, AdminManageEventsActivity.class);
-            startActivity(intent);
-        });
+        backButton.setOnClickListener(v -> finish());
     }
 }
 
