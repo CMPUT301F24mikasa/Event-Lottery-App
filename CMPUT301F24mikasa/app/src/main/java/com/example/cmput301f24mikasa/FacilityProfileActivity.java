@@ -123,6 +123,10 @@ public class FacilityProfileActivity extends AppCompatActivity {
         btnUploadPicture = findViewById(R.id.btnUploadPicture);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
 
+        Button btnRemovePicture = findViewById(R.id.btnRemovePicture);
+        btnRemovePicture.setOnClickListener(v -> removeProfileImage());
+
+
         pictureUploaded = false;
 
         db = FirebaseFirestore.getInstance();
@@ -271,6 +275,69 @@ public class FacilityProfileActivity extends AppCompatActivity {
                 }
         );
     }
+
+    /**
+     * Removes the current profile image from the ImageView and, if applicable, from Firebase Storage and Firestore.
+     */
+    private void removeProfileImage() {
+        // Check if there's an image currently selected but not uploaded
+        if (imageUri != null) {
+            // Clear the selected image URI and reset the ImageView
+            imageUri = null;
+            imgProfilePicture.setImageResource(R.drawable.placeholder_image); // Set to a placeholder image
+            Toast.makeText(FacilityProfileActivity.this, "Selected image removed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // If no imageUri, check if there's an existing profile image in Firebase
+        db.collection("facility").whereEqualTo("ownerDeviceID", deviceID).get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
+
+                        // Check if the document contains an image URL
+                        if (documentSnapshot.contains("imageURL")) {
+                            String imageUrl = documentSnapshot.getString("imageURL");
+
+                            // Delete the image from Firebase Storage
+                            StorageReference fileReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
+                            fileReference.delete()
+                                    .addOnSuccessListener(aVoid -> {
+                                        // Successfully deleted image from storage
+                                        Toast.makeText(FacilityProfileActivity.this, "Profile image removed", Toast.LENGTH_SHORT).show();
+                                        imgProfilePicture.setImageResource(R.drawable.placeholder_image);
+
+                                        // Remove image URL from Firestore
+                                        documentSnapshot.getReference()
+                                                .update("imageURL", null)
+                                                .addOnSuccessListener(aVoid1 -> {
+                                                    Toast.makeText(FacilityProfileActivity.this, "Image reference removed from database", Toast.LENGTH_SHORT).show();
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(FacilityProfileActivity.this, "Failed to update database", Toast.LENGTH_SHORT).show();
+                                                    e.printStackTrace();
+                                                });
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(FacilityProfileActivity.this, "Failed to remove image from storage", Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                    });
+                        } else {
+                            // No image URL exists in Firestore
+                            Toast.makeText(FacilityProfileActivity.this, "No profile image to remove", Toast.LENGTH_SHORT).show();
+                            imgProfilePicture.setImageResource(R.drawable.placeholder_image);
+                        }
+                    } else {
+                        Toast.makeText(FacilityProfileActivity.this, "Facility not found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(FacilityProfileActivity.this, "Failed to check profile image", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                });
+    }
+
+
 
 
 }
