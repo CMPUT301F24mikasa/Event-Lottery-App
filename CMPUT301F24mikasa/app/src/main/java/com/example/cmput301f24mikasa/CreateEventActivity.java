@@ -20,14 +20,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -56,27 +53,18 @@ public class CreateEventActivity extends AppCompatActivity {
     Integer waitingListLimit;
     TextView txtStepIndex;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        Button btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> finish());
-
+        // Initialize UI elements
         imgEvent = findViewById(R.id.imgEvent);
         btnUpload = findViewById(R.id.btnUpload);
         btnGenerateQRCode = findViewById(R.id.btnGenerateQRCode);
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
         btnCreatePoster = findViewById(R.id.btnCreatePoster);
         txtStepIndex = findViewById(R.id.txtStepIndex);
-
-        // Initially disable all buttons except Upload
-        disableButton(btnCreateEvent);
-        disableButton(btnGenerateQRCode);
-        disableButton(btnCreatePoster);
-
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDate = findViewById(R.id.editTextDate);
         editTextPrice = findViewById(R.id.editTextPrice);
@@ -84,24 +72,31 @@ public class CreateEventActivity extends AppCompatActivity {
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
-        // Disable keyboard input and set up the DatePickerDialog
+        // Disable non-applicable buttons initially
+        disableButton(btnCreateEvent);
+        disableButton(btnGenerateQRCode);
+        disableButton(btnCreatePoster);
+
+        // Setup Firebase
+        db = FirebaseFirestore.getInstance();
+        eventRef = db.collection("event");
+        storageReference = FirebaseStorage.getInstance().getReference("event_images");
+
+        // Disable keyboard input for date and setup DatePickerDialog
         editTextDate.setFocusable(false);
         editTextDate.setOnClickListener(v -> showDatePickerDialog());
 
+        // Checkbox listener for waiting list limit
         checkBoxLimitWaitingList.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editTextLimitWaitingList.setVisibility(isChecked ? View.VISIBLE : View.GONE);
             if (!isChecked) editTextLimitWaitingList.setText("");
         });
 
-        db = FirebaseFirestore.getInstance();
-        eventRef = db.collection("event");
-        storageReference = FirebaseStorage.getInstance().getReference("event_images");
-
+        // Register image picker result
         registerResult();
 
-        btnUpload.setOnClickListener(view -> {
-            pickImage();
-        });
+        // Set button click listeners
+        btnUpload.setOnClickListener(view -> pickImage());
 
         btnCreateEvent.setOnClickListener(v -> {
             if (eventCreated) {
@@ -121,21 +116,27 @@ public class CreateEventActivity extends AppCompatActivity {
 
             createEvent(title, date, price, desc);
             txtStepIndex.setText("Step 3 of 4: Generate QR Code");
-
             enableButton(btnGenerateQRCode);
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
-//            if (!eventCreated) {
-//                Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
+            if (!eventCreated) {
+                Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            qrCodeGenerated = true;
-            Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
-            enableButton(btnCreatePoster);
-            txtStepIndex.setText("Step 4 of 4: Create Poster");
+            if (eventID == null || eventID.isEmpty()) {
+                Toast.makeText(this, "Event ID is missing. Unable to generate QR Code.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
+            Bitmap qrCodeBitmap = generateQRCodeBitmap(eventID);
+            if (qrCodeBitmap == null) {
+                Toast.makeText(this, "Failed to generate QR Code. Please try again.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            uploadQRCodeToStorage(qrCodeBitmap, eventID);
         });
 
         btnCreatePoster.setOnClickListener(v -> {
@@ -162,26 +163,16 @@ public class CreateEventActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Disable a button by setting its state and style
-     * @param button The button to disable
-     */
     private void disableButton(Button button) {
         button.setEnabled(false);
-        button.setBackgroundColor(Color.parseColor("#808080")); // Gray color for disabled state
+        button.setBackgroundColor(Color.parseColor("#808080"));
     }
 
-    /**
-     * Enable a button by setting its state and style
-     * @param button The button to enable
-     */
     private void enableButton(Button button) {
         button.setEnabled(true);
-        button.setBackgroundColor(Color.parseColor("#0D47A1")); // Active color
+        button.setBackgroundColor(Color.parseColor("#0D47A1"));
     }
 
-
-    // https://developer.android.com/reference/android/app/DatePickerDialog, Downloaded 11-23-2024
     private void showDatePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -218,78 +209,64 @@ public class CreateEventActivity extends AppCompatActivity {
         );
     }
 
-    /**
-     * Creates a new unique event by uploading details to Firebase Firestore and Storage.
-     * @param title Title of the event.
-     * @param date Start date of the event.
-     * @param price Price of the event.
-     * @param desc Description of the event.
-     */
     private void createEvent(String title, String date, String price, String desc) {
         DocumentReference documentReference = eventRef.document();
         eventID = documentReference.getId();
 
         StorageReference fileRef = storageReference.child(eventID + ".jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                waitingListLimit = 10000;
-                hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
-                if (hasWaitingListLimit) {
-                    String limitText = editTextLimitWaitingList.getText().toString();
-                    if (!limitText.isEmpty()) {
-                        waitingListLimit = Integer.parseInt(limitText);
-                    }
+        fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
+            waitingListLimit = 10000;
+            hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
+            if (hasWaitingListLimit) {
+                String limitText = editTextLimitWaitingList.getText().toString();
+                if (!limitText.isEmpty()) {
+                    waitingListLimit = Integer.parseInt(limitText);
                 }
-
-                fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    HashMap<String, Object> eventDetails = new HashMap<>();
-                    String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                    eventDetails.put("deviceID", deviceId);
-                    eventDetails.put("title", title);
-                    eventDetails.put("startDate", date);
-                    eventDetails.put("price", price);
-                    eventDetails.put("description", desc);
-                    eventDetails.put("capacity", 1);
-                    eventDetails.put("eventID", eventID);
-                    eventDetails.put("imageURL", uri.toString());
-                    eventDetails.put("cancelledEntrants", new ArrayList<>());
-                    eventDetails.put("selectedEntrants", new ArrayList<>());
-                    eventDetails.put("hasWaitingListLimit", hasWaitingListLimit);
-                    eventDetails.put("waitingListLimit", waitingListLimit);
-                    eventDetails.put("waitingList", new ArrayList<>()); // Add empty WaitingList array
-
-
-                    // Nikita's code:
-                    eventDetails.put("finalEntrants", new ArrayList<>());
-                    eventDetails.put("alreadySampled", "0");
-                    eventDetails.put("finalListCreated", "0");
-                    //--------
-
-
-                    documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
-                        eventCreated = true;
-                        Toast.makeText(CreateEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show();
-                    }).addOnFailureListener(e ->
-                            Toast.makeText(CreateEventActivity.this, "Sorry, unable to create event.", Toast.LENGTH_SHORT).show()
-                    );
-                }).addOnFailureListener(e ->
-                        Toast.makeText(CreateEventActivity.this, "Sorry, image upload failed. Please try again.", Toast.LENGTH_SHORT).show()
-                );
             }
-        }).addOnFailureListener(e ->
-                Toast.makeText(CreateEventActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show()
-        );
+
+            fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                HashMap<String, Object> eventDetails = new HashMap<>();
+                String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                eventDetails.put("deviceID", deviceId);
+                eventDetails.put("title", title);
+                eventDetails.put("startDate", date);
+                eventDetails.put("price", price);
+                eventDetails.put("description", desc);
+                eventDetails.put("capacity", 1);
+                eventDetails.put("eventID", eventID);
+                eventDetails.put("imageURL", uri.toString());
+                eventDetails.put("hasWaitingListLimit", hasWaitingListLimit);
+                eventDetails.put("waitingListLimit", waitingListLimit);
+                eventDetails.put("waitingList", new ArrayList<>());
+
+                documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
+                    eventCreated = true;
+                    Toast.makeText(CreateEventActivity.this, "Event created successfully.", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show());
+            }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show());
     }
 
-    // https://github.com/zxing/zxing, Downloaded 2024-11-01, by zxing
-    /**
-     * Generates a QR code bitmap from provided content using ZXing library.
-     * The generated QR code is then displayed in the relevant EventPosterActivity
-     * @param content Content encoded as a string for easy handling
-     * @return QR Code Bitmap of the generated QR code on successful generation
-     * Otherwise it returns null if generation fails.
-     */
+    private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventID) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] qrCodeBytes = stream.toByteArray();
+
+        StorageReference qrCodeRef = storageReference.child("qr_codes/" + eventID + "_qr_code.png");
+        qrCodeRef.putBytes(qrCodeBytes).addOnSuccessListener(taskSnapshot -> {
+            qrCodeRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                eventRef.document(eventID).update("qrCodeURL", uri.toString())
+                        .addOnSuccessListener(aVoid -> {
+                            qrCodeGenerated = true;
+                            Toast.makeText(CreateEventActivity.this, "QR Code uploaded and URL saved successfully.", Toast.LENGTH_SHORT).show();
+                            enableButton(btnCreatePoster);
+                            txtStepIndex.setText("Step 4 of 4: Create Poster");
+                        })
+                        .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code URL.", Toast.LENGTH_SHORT).show());
+            }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to get QR Code URL.", Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to upload QR Code.", Toast.LENGTH_SHORT).show());
+    }
+
     public Bitmap generateQRCodeBitmap(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
