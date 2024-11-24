@@ -1,20 +1,24 @@
-<!-- activity_admin.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <!-- Header -->
     <TextView
         android:id="@+id/admin_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
         android:text="@string/admin_panel"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:background="#0D47A1"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:layout_alignParentTop="true" />
+
 
     <!-- Manage Facilities Button -->
     <Button
@@ -40,7 +44,6 @@
         android:textColor="#FFFFFF"
         android:backgroundTint="#0D47A1"/>
 
-    <!-- Manage Images Button -->
 
     <!-- Manage Events Button -->
     <Button
@@ -107,6 +110,5 @@
             android:padding="8dp"
             app:tint="@android:color/white" />
     </LinearLayout>
-
 </RelativeLayout>
 
