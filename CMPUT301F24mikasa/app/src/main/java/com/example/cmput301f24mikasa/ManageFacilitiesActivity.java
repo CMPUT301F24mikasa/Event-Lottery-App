@@ -59,7 +59,10 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
         loadFacilities();
 
         // Back button to return to Admin Dashboard
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(ManageFacilitiesActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         // Set up item click listener for the ListView
         lvFacilities.setOnItemClickListener((parent, view, position, id) -> {
