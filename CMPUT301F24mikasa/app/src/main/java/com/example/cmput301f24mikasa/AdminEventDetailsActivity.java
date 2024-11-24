@@ -27,9 +27,11 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
     private TextView eventDescription;
     private Button removeImageButton;
     private Button backButton;
+    private Button removeQRButton;
 
     private FirebaseFirestore db;
     private String imageUrl;
+    private String qrCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         eventDescription = findViewById(R.id.evtDesc);
         removeImageButton = findViewById(R.id.remove_button);
         backButton = findViewById(R.id.button_back);
+        removeQRButton = findViewById(R.id.remove_QR_button);
 
         // Retrieve event ID passed via intent
         String eventId = getIntent().getStringExtra("eventId");
@@ -67,6 +70,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                         String price = documentSnapshot.getString("price");
                         String description = documentSnapshot.getString("description");
                         imageUrl = documentSnapshot.getString("imageURL");
+                        qrCode = documentSnapshot.getString("qrCodeHash");
 
                         // Populate the views with the retrieved data
                         eventTitle.setText(title);
@@ -84,6 +88,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
             });
         }
 
+        // Handle removing event poster click
         removeImageButton.setOnClickListener(v -> {
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -110,6 +115,24 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                 Toast.makeText(AdminEventDetailsActivity.this, "No image to remove", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Handle remove QR code button click
+        removeQRButton.setOnClickListener(v -> {
+            if (qrCode != null && !qrCode.isEmpty()) {
+                db.collection("event").document(eventId)
+                        .update("qrCodeHash", null, "qrCodeURL", null)
+                        .addOnSuccessListener(aVoid -> {
+                            qrCode = null;
+                            Toast.makeText(AdminEventDetailsActivity.this, "QR Code removed successfully", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(AdminEventDetailsActivity.this, "Failed to update Firestore", Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                Toast.makeText(AdminEventDetailsActivity.this, "No QR code to remove", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         // Handle "Back" button click
         backButton.setOnClickListener(v -> {
