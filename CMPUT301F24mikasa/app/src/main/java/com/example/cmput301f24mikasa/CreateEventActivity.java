@@ -1,5 +1,6 @@
 package com.example.cmput301f24mikasa;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,21 +34,12 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
-/**
- * The CreateEventActivity class is responsible for creating an event,
- * uploading a poster, generating a QR Code that links to the unique eventID,
- * then uploading the information to Firebase Firestore and Storage.
- *
- * CreateEventActivity allows the user to input event details, upload an event image,
- * generate a QR code, and optionally set a waiting list limit.
- */
 public class CreateEventActivity extends AppCompatActivity {
 
     ImageView imgEvent;
-    
     Button btnUpload, btnGenerateQRCode, btnCreateEvent, btnCreatePoster;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;
     Boolean eventCreated = false;
@@ -61,24 +54,6 @@ public class CreateEventActivity extends AppCompatActivity {
     Boolean hasWaitingListLimit;
     Integer waitingListLimit;
 
-    /**
-     * Default constructor for CreateEventActivity.
-     * Required for Android activity lifecycle and initialization.
-     */
-    public CreateEventActivity() {
-        // Constructor is provided by default
-    }
-
-    private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{2}/\\d{2}/\\d{4}$");
-
-    /**
-     * onCreate creates the CreateEventActivity.
-     * It sets up the UI elements, event listeners, and connects to Firebase Firestore and Storage.
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +61,6 @@ public class CreateEventActivity extends AppCompatActivity {
 
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
-
 
         imgEvent = findViewById(R.id.imgEvent);
         btnUpload = findViewById(R.id.btnUpload);
@@ -105,6 +79,10 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextDesc = findViewById(R.id.editTextDesc);
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
+
+        // Disable keyboard input and set up the DatePickerDialog
+        editTextDate.setFocusable(false);
+        editTextDate.setOnClickListener(v -> showDatePickerDialog());
 
         checkBoxLimitWaitingList.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editTextLimitWaitingList.setVisibility(isChecked ? View.VISIBLE : View.GONE);
@@ -135,11 +113,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!DATE_PATTERN.matcher(date).matches()) {
-                Toast.makeText(CreateEventActivity.this, "Please enter the date in MM/DD/YYYY format", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             if (imageUri != null) {
                 createEvent(title, date, price, desc);
             } else {
@@ -157,8 +130,6 @@ public class CreateEventActivity extends AppCompatActivity {
             }
             btnCreatePoster.setEnabled(true);
             btnCreatePoster.setBackgroundColor(Color.parseColor("#0D47A1"));
-
-
         });
 
         btnCreatePoster.setOnClickListener(v -> {
@@ -184,21 +155,27 @@ public class CreateEventActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Initializes an intent that allows the user to select an image from their camera roll.
-     * After an image is chosen, its Firebase URL is stored for later reference.
-     */
+    // https://developer.android.com/reference/android/app/DatePickerDialog, Downloaded 11-23-2024
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (DatePicker view, int selectedYear, int selectedMonth, int selectedDay) -> {
+            String formattedDate = String.format("%02d/%02d/%04d", selectedMonth + 1, selectedDay, selectedYear);
+            editTextDate.setText(formattedDate);
+        }, year, month, day);
+
+        datePickerDialog.show();
+    }
+
     private void pickImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         resultLauncher.launch(intent);
     }
 
-    /**
-     * Registers result of pickImage intent.
-     * registerResult allows CreateEventActivity to handle the image
-     * provided by the user, such as displaying it in the relevant ImageView.
-     */
     private void registerResult() {
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
