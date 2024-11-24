@@ -258,6 +258,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventRef.document(eventID).update("qrCodeURL", uri.toString())
                         .addOnSuccessListener(aVoid -> {
                             qrCodeGenerated = true;
+                            saveQRCodeHash(eventID);
                             Toast.makeText(CreateEventActivity.this, "QR Code uploaded and URL saved successfully.", Toast.LENGTH_SHORT).show();
                             enableButton(btnCreatePoster);
                             txtStepIndex.setText("Step 4 of 4: Create Poster");
@@ -265,6 +266,16 @@ public class CreateEventActivity extends AppCompatActivity {
                         .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code URL.", Toast.LENGTH_SHORT).show());
             }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to get QR Code URL.", Toast.LENGTH_SHORT).show());
         }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to upload QR Code.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void saveQRCodeHash(String eventID) {
+        HashMap<String, Object> qrCodeData = new HashMap<>();
+        qrCodeData.put("qrCodeHash", eventID);
+
+        eventRef.document(eventID)
+                .update(qrCodeData)
+                .addOnSuccessListener(aVoid -> Toast.makeText(CreateEventActivity.this, "QR Code hash saved successfully.", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code hash. Please try again.", Toast.LENGTH_SHORT).show());
     }
 
     public Bitmap generateQRCodeBitmap(String content) {
