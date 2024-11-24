@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -53,6 +54,8 @@ public class CreateEventActivity extends AppCompatActivity {
     CheckBox checkBoxLimitWaitingList;
     Boolean hasWaitingListLimit;
     Integer waitingListLimit;
+    TextView txtStepIndex;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +70,12 @@ public class CreateEventActivity extends AppCompatActivity {
         btnGenerateQRCode = findViewById(R.id.btnGenerateQRCode);
         btnCreateEvent = findViewById(R.id.btnCreateEvent);
         btnCreatePoster = findViewById(R.id.btnCreatePoster);
+        txtStepIndex = findViewById(R.id.txtStepIndex);
 
-        btnGenerateQRCode.setEnabled(false);
-        btnCreatePoster.setEnabled(false);
-        btnGenerateQRCode.setBackgroundColor(Color.parseColor("#808080"));
-        btnCreatePoster.setBackgroundColor(Color.parseColor("#808080"));
+        // Initially disable all buttons except Upload
+        disableButton(btnCreateEvent);
+        disableButton(btnGenerateQRCode);
+        disableButton(btnCreatePoster);
 
         editTextTitle = findViewById(R.id.editTextTitle);
         editTextDate = findViewById(R.id.editTextDate);
@@ -95,7 +99,9 @@ public class CreateEventActivity extends AppCompatActivity {
 
         registerResult();
 
-        btnUpload.setOnClickListener(view -> pickImage());
+        btnUpload.setOnClickListener(view -> {
+            pickImage();
+        });
 
         btnCreateEvent.setOnClickListener(v -> {
             if (eventCreated) {
@@ -113,47 +119,67 @@ public class CreateEventActivity extends AppCompatActivity {
                 return;
             }
 
-            if (imageUri != null) {
-                createEvent(title, date, price, desc);
-            } else {
-                Toast.makeText(CreateEventActivity.this, "Please upload an image", Toast.LENGTH_SHORT).show();
-            }
+            createEvent(title, date, price, desc);
+            txtStepIndex.setText("Step 3 of 4: Generate QR Code");
 
-            btnGenerateQRCode.setEnabled(true);
-            btnGenerateQRCode.setBackgroundColor(Color.parseColor("#0D47A1"));
+            enableButton(btnGenerateQRCode);
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
-            if (eventCreated) {
-                qrCodeGenerated = true;
-                Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
-            }
-            btnCreatePoster.setEnabled(true);
-            btnCreatePoster.setBackgroundColor(Color.parseColor("#0D47A1"));
+//            if (!eventCreated) {
+//                Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+
+            qrCodeGenerated = true;
+            Toast.makeText(CreateEventActivity.this, "QR Code successfully generated", Toast.LENGTH_SHORT).show();
+            enableButton(btnCreatePoster);
+            txtStepIndex.setText("Step 4 of 4: Create Poster");
+
         });
 
         btnCreatePoster.setOnClickListener(v -> {
-            if (eventCreated && qrCodeGenerated) {
-                Bitmap qrCodeBitmap = generateQRCodeBitmap(eventID);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] qrCodeBytes = stream.toByteArray();
-
-                Intent intent = new Intent(CreateEventActivity.this, EventPosterActivity.class);
-                intent.putExtra("eventID", eventID);
-                intent.putExtra("title", editTextTitle.getText().toString());
-                intent.putExtra("startDate", editTextDate.getText().toString());
-                intent.putExtra("desc", editTextDesc.getText().toString());
-                intent.putExtra("price", editTextPrice.getText().toString());
-                intent.putExtra("imageURL", imageUri.toString());
-                intent.putExtra("qrCodeBytes", qrCodeBytes);
-
-                startActivity(intent);
-            } else {
-                Toast.makeText(CreateEventActivity.this, "Please ensure event is created and QR code is generated.", Toast.LENGTH_SHORT).show();
+            if (!qrCodeGenerated) {
+                Toast.makeText(CreateEventActivity.this, "Please generate the QR Code first.", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            Bitmap qrCodeBitmap = generateQRCodeBitmap(eventID);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] qrCodeBytes = stream.toByteArray();
+
+            Intent intent = new Intent(CreateEventActivity.this, EventPosterActivity.class);
+            intent.putExtra("eventID", eventID);
+            intent.putExtra("title", editTextTitle.getText().toString());
+            intent.putExtra("startDate", editTextDate.getText().toString());
+            intent.putExtra("desc", editTextDesc.getText().toString());
+            intent.putExtra("price", editTextPrice.getText().toString());
+            intent.putExtra("imageURL", imageUri.toString());
+            intent.putExtra("qrCodeBytes", qrCodeBytes);
+
+            startActivity(intent);
         });
     }
+
+    /**
+     * Disable a button by setting its state and style
+     * @param button The button to disable
+     */
+    private void disableButton(Button button) {
+        button.setEnabled(false);
+        button.setBackgroundColor(Color.parseColor("#808080")); // Gray color for disabled state
+    }
+
+    /**
+     * Enable a button by setting its state and style
+     * @param button The button to enable
+     */
+    private void enableButton(Button button) {
+        button.setEnabled(true);
+        button.setBackgroundColor(Color.parseColor("#0D47A1")); // Active color
+    }
+
 
     // https://developer.android.com/reference/android/app/DatePickerDialog, Downloaded 11-23-2024
     private void showDatePickerDialog() {
@@ -183,6 +209,8 @@ public class CreateEventActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         imageUri = result.getData().getData();
                         imgEvent.setImageURI(imageUri);
+                        enableButton(btnCreateEvent);
+                        txtStepIndex.setText("Step 2 of 4: Create Event");
                     } else {
                         Toast.makeText(CreateEventActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
                     }
