@@ -91,6 +91,6 @@
     <string name="facility_details">Facility Details</string>
     <string name="profile_details">Profile Details</string>
 
-    <string name="location">Location (eg. Edmonton, Alberta)</string>
+    <string name="location">Location eg. Edmonton, Alberta (optional)</string>
 
 </resources>
