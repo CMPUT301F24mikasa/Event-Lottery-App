@@ -1,6 +1,7 @@
 package com.example.cmput301f24mikasa;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         // Set up the ImageButtons
+        ImageButton buttonHome = findViewById(R.id.button_home);
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         AdminVerification.checkIfAdmin(this, buttonAdmin);
 
         // Set onClick listeners for navigation
+        buttonHome.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ProfilesActivity.class)));
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, EventsActivity.class)));
         buttonNotifications.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ManageNotificationsActivity.class)));

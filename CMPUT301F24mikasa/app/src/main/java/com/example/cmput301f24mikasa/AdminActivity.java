@@ -1,6 +1,7 @@
 package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -74,12 +75,14 @@ public class AdminActivity extends AppCompatActivity {
 
 
         // Setup bottom navigation buttons
+        ImageButton buttonHome = findViewById(R.id.button_home);
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
         // Bottom Navigation onClick Listeners
+        buttonHome.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, MainActivity.class)));
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, ProfilesActivity.class)));
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, EventsActivity.class)));
         buttonNotifications.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this, ManageNotificationsActivity.class)));
