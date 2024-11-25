@@ -93,4 +93,7 @@
 
     <string name="location">Location eg. Edmonton, Alberta (optional)</string>
 
+    <string name="enter_city">Enter City</string>
+    <string name="enter_full_province_eg_alberta">Enter full Province (eg. Alberta)</string>
+
 </resources>
