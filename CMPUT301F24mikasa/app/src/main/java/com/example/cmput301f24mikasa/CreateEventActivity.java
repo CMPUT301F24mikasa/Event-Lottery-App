@@ -48,7 +48,7 @@ public class CreateEventActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> resultLauncher;
     CollectionReference eventRef;
     String eventID;
-    CheckBox checkBoxLimitWaitingList, checkBoxGeoLocation;
+    CheckBox checkBoxLimitWaitingList;
     Boolean hasWaitingListLimit;
     Integer waitingListLimit;
     TextView txtStepIndex;
@@ -71,9 +71,8 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextDesc = findViewById(R.id.editTextDesc);
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
-        checkBoxGeoLocation = findViewById(R.id.checkBoxGeoLocation); 
 
-        Button btnBack = findViewById(R.id.btn_back);
+               Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             // Create an intent to navigate to EventsActivity
             Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
@@ -249,13 +248,8 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("chosenAmount", 0);
                 eventDetails.put("finalListCreated", "0");
                 eventDetails.put("waitingList", new ArrayList<>());
-
-                // Add geo-location requirement
-                if (checkBoxGeoLocation.isChecked()) {
-                    eventDetails.put("geo-location required", "yes");
-                } else {
-                    eventDetails.put("geo-location required", "no");
-                }
+                eventDetails.put("selectedEntrants", new ArrayList<>());
+                eventDetails.put("cancelledEntrants", new ArrayList<>());
 
                 documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
                     eventCreated = true;
