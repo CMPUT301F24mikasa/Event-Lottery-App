@@ -47,7 +47,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private Uri imageUri; // URI of the selected image
 
     private EditText locationEditText;
-    private boolean isLocationValid = true;
 
     /**
      * Default constructor for UserProfileActivity.
