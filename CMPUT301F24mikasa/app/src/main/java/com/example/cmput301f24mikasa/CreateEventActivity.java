@@ -73,7 +73,11 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
         Button btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            // Create an intent to navigate to EventsActivity
+            Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
+            startActivity(intent);
+        });
 
         // Disable non-applicable buttons initially
         disableButton(btnCreateEvent);
