@@ -22,7 +22,8 @@ public class UserProfile implements Serializable {
     private String deviceId;
     private String gmailAddress;
     private String phoneNumber;
-    private ArrayList<String> eventsJoined;  // New field for event IDs
+    private ArrayList<String> eventsJoined; 
+    private String location; 
 
     // Firestore instance for retrieving profile pictures
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,6 +55,7 @@ public class UserProfile implements Serializable {
         this.gmailAddress = gmailAddress;
         this.phoneNumber = phoneNumber;
         this.profilePicture = profilePicture;
+        this.location = null;
         //this.eventsJoined = new ArrayList<>();
     }
 
@@ -63,6 +65,15 @@ public class UserProfile implements Serializable {
      *
      * @return The name of the user.
      */
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getName() {
         return name;
     }
