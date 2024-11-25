@@ -1,6 +1,7 @@
 package com.example.cmput301f24mikasa;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -81,7 +82,7 @@ public class QRScannerActivity extends AppCompatActivity {
         });
 
         // Back button click listener
-        backButton.setOnClickListener(v -> finish());
+        backButton.setOnClickListener(view -> startActivity(new Intent(QRScannerActivity.this, EventsActivity.class)));
     }
 
     /**

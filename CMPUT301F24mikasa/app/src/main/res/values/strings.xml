@@ -95,5 +95,6 @@
 
     <string name="enter_city">Enter City</string>
     <string name="enter_full_province_eg_alberta">Enter full Province (eg. Alberta)</string>
+    <string name="require_geo_location">Require Geo-Location</string>
 
 </resources>
