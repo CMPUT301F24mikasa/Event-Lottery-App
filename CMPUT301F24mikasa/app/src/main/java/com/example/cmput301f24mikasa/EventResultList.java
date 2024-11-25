@@ -2,6 +2,7 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -125,7 +126,7 @@ public class EventResultList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Clear the input field and show a toast message
-                Intent intent = new Intent(EventResultList.this, OrganizerSendsNotification.class);
+                Intent intent = new Intent(EventResultList.this, CustomToSelectedList.class);
                 intent.putExtra("eventID", eventID);
                 intent.putExtra("eventTitle", eventTitle);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -251,15 +252,28 @@ public class EventResultList extends AppCompatActivity {
                                                 Toast.makeText(view.getContext(), "Failed to update final entrants.", Toast.LENGTH_SHORT).show();
                                                 e.printStackTrace();
                                             });
-                                    eventRef.update("selectedEntrants", new ArrayList<>());
-                                    eventRef.update("waitingList", new ArrayList<>());
+                                    //add handler for waiting list and for those not responded
+                                    Intent intent = new Intent(EventResultList.this, AutoNotChosenForFinalList.class);
+                                    intent.putExtra("eventID", eventID);
+                                    intent.putExtra("eventTitle", eventTitle);
+                                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+
+
+
                                 } else {
                                     Toast.makeText(view.getContext(), "No responsive users to add.", Toast.LENGTH_SHORT).show();
                                 }
-                                Intent intent = new Intent(EventResultList.this, EventFinalListActivity.class);
-                                intent.putExtra("eventID", eventID);  // Pass the event ID to the new activity
-                                intent.putExtra("eventTitle", eventTitle);
-                                startActivity(intent);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(EventResultList.this, EventFinalListActivity.class);
+                                        intent.putExtra("eventID", eventID);  // Pass the event ID to the new activity
+                                        intent.putExtra("eventTitle", eventTitle);
+                                        startActivity(intent);
+                                    }
+                                }, 200); // 200 milliseconds delay
+
                             } else {
                                 Toast.makeText(view.getContext(), "No matching notifications found.", Toast.LENGTH_SHORT).show();
                             }
