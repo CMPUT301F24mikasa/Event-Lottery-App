@@ -1,8 +1,12 @@
 package com.example.cmput301f24mikasa;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +32,7 @@ public class ViewEventActivity extends AppCompatActivity {
     private String eventId;
 
     private TextView txtEventTitle, txtEventDescription, txtEventDate, txtEventPrice;
-    private Button btnSignUp;
+    private Button btnSignUp, backButton;
 
     private EditText editTextCity, editTextProvince;
 
@@ -59,6 +63,7 @@ public class ViewEventActivity extends AppCompatActivity {
         txtEventDate = findViewById(R.id.txtEventDate);
         txtEventPrice = findViewById(R.id.txtEventPrice);
         btnSignUp = findViewById(R.id.btnSignUp);
+        backButton = findViewById(R.id.btn_back);
 
         editTextCity = findViewById(R.id.editTextCity);  
         editTextProvince = findViewById(R.id.editTextProvince);  
@@ -67,6 +72,9 @@ public class ViewEventActivity extends AppCompatActivity {
         loadEventDetails();
 
         btnSignUp.setOnClickListener(v -> addDeviceToWaitingList());
+
+        backButton.setOnClickListener(view -> startActivity(new Intent(ViewEventActivity.this, QRScannerActivity.class)));
+
     }
 
     /**
