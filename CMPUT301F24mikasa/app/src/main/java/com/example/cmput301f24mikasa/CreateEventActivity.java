@@ -72,13 +72,6 @@ public class CreateEventActivity extends AppCompatActivity {
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
-        Button btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
-            // Create an intent to navigate to EventsActivity
-            Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
-            startActivity(intent);
-        });
-
         // Disable non-applicable buttons initially
         disableButton(btnCreateEvent);
         disableButton(btnGenerateQRCode);
@@ -244,6 +237,9 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("imageURL", uri.toString());
                 eventDetails.put("hasWaitingListLimit", hasWaitingListLimit);
                 eventDetails.put("waitingListLimit", waitingListLimit);
+                eventDetails.put("alreadySampled", "0");
+                eventDetails.put("chosenAmount", 0);
+                eventDetails.put("finalListCreated", "0");
                 eventDetails.put("waitingList", new ArrayList<>());
 
                 documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
