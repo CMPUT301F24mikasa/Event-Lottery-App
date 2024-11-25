@@ -104,9 +104,9 @@ public class WaitingListActivity extends AppCompatActivity {
             resultsIntent.putExtra("size", dataList.size());
             startActivity(resultsIntent);
         });
-        Button manageWaitListButton=findViewById(R.id.manage_waitlist_button);
-        manageWaitListButton.setOnClickListener(view -> {
-            Intent resultsIntent = new Intent(WaitingListActivity.this, ManagingWaitListActivity.class);
+        Button CustomNotify=findViewById(R.id.custom_notify_waiting_list);
+        CustomNotify.setOnClickListener(view -> {
+            Intent resultsIntent = new Intent(WaitingListActivity.this, CustomToWaitingList.class);
             resultsIntent.putExtra("eventID", eventID);
             resultsIntent.putExtra("eventTitle", eventTitle);
             startActivity(resultsIntent);
