@@ -72,6 +72,9 @@ public class CreateEventActivity extends AppCompatActivity {
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
+        Button btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> finish());
+
         // Disable non-applicable buttons initially
         disableButton(btnCreateEvent);
         disableButton(btnGenerateQRCode);
