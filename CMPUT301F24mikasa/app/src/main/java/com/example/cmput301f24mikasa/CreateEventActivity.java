@@ -249,6 +249,8 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("chosenAmount", 0);
                 eventDetails.put("finalListCreated", "0");
                 eventDetails.put("waitingList", new ArrayList<>());
+                eventDetails.put("selectedEntrants", new ArrayList<>());
+                eventDetails.put("cancelledEntrants", new ArrayList<>());
 
                 // Add geo-location requirement
                 if (checkBoxGeoLocation.isChecked()) {
