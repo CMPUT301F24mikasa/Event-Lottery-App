@@ -2,6 +2,7 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -121,10 +122,24 @@ public class ListSamplingActivity extends AppCompatActivity {
                                     .addOnFailureListener(e -> {
                                         Toast.makeText(ListSamplingActivity.this, "Failed to update event", Toast.LENGTH_SHORT).show();
                                     });
-                            Intent intent = new Intent(ListSamplingActivity.this, EventResultList.class);
+
+                            //finish();
+                            Intent intent = new Intent(ListSamplingActivity.this, OrganizerSendsNotification.class);
                             intent.putExtra("eventID", eventID);
                             intent.putExtra("eventTitle", eventTitle);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent2 = new Intent(ListSamplingActivity.this, EventResultList.class);
+                                    intent2.putExtra("eventID", eventID);
+                                    intent2.putExtra("eventTitle", eventTitle);
+                                    startActivity(intent2);
+                                }
+                            }, 200); // 200 milliseconds delay
                             //finish(); // Finish the current activity (EventResultList)
                         }
                     } catch (NumberFormatException e) {
