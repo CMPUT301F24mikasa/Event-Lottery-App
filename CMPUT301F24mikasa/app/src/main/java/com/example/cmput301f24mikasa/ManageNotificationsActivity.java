@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -66,7 +67,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         if (notificationsEnabled) {
             loadNotifications();
             setupNotificationClickListener();
-
         } else {
             Toast.makeText(this, "Notifications are disabled.", Toast.LENGTH_SHORT).show();
         }
@@ -80,11 +80,28 @@ public class ManageNotificationsActivity extends AppCompatActivity {
 
         // Initialize Reload Button
         ImageButton reloadButton = findViewById(R.id.reloadButton);
-        reloadButton.setOnClickListener(view -> {
-            loadNotifications(); // Reload notifications
 
-            Toast.makeText(ManageNotificationsActivity.this, "Notifications reloaded", Toast.LENGTH_SHORT).show(); // Show toast
+        // Check notifications enabled status and toggle visibility of the reload button
+        updateReloadButtonVisibility(reloadButton);
+
+        // OnClickListener for the reload button
+        reloadButton.setOnClickListener(view -> {
+            // Load notifications only if enabled
+            if (notificationsEnabled) {
+                loadNotifications(); // Reload notifications
+                Toast.makeText(ManageNotificationsActivity.this, "Notifications reloaded", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ManageNotificationsActivity.this, "Notifications Disabled", Toast.LENGTH_SHORT).show();
+            }
         });
+
+        // Add a listener to the SharedPreferences to update the visibility dynamically
+        sharedPreferences.registerOnSharedPreferenceChangeListener((sharedPrefs, key) -> {
+            if (KEY_NOTIFICATIONS_ENABLED.equals(key)) {
+                updateReloadButtonVisibility(reloadButton);
+            }
+        });
+
 
         // Setup bottom navigation buttons
         ImageButton buttonHome = findViewById(R.id.button_home);
@@ -94,7 +111,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
         AdminVerification.checkIfAdmin(this, buttonAdmin);
-        
+
         // Bottom Navigation onClick Listeners
         buttonHome.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, MainActivity.class)));
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, ProfilesActivity.class)));
@@ -103,7 +120,20 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         buttonAdmin.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, AdminActivity.class)));
     }
 
-
+    /**
+     * Updates the visibility of the reload button based on the notification settings.
+     * If notifications are enabled, the reload button is made visible; otherwise, it is hidden.
+     *
+     * @param reloadButton The ImageButton representing the reload button whose visibility is updated if notifications are enabled or disabled.
+     */
+    private void updateReloadButtonVisibility(ImageButton reloadButton) {
+        boolean notificationsEnabled = sharedPreferences.getBoolean(KEY_NOTIFICATIONS_ENABLED, true);
+        if (notificationsEnabled) {
+            reloadButton.setVisibility(View.VISIBLE);
+        } else {
+            reloadButton.setVisibility(View.GONE);
+        }
+    }
 
 
     /**
