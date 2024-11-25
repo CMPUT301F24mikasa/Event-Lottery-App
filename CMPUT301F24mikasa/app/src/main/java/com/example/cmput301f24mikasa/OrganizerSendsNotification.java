@@ -78,9 +78,12 @@ public class OrganizerSendsNotification extends AppCompatActivity{
         fetchSelectedList(eventID, eventTitle);
         fetchWaitingList(eventID,eventTitle);
 
-
-
-        finish();
+        Intent intent2 = new Intent(OrganizerSendsNotification.this, ListSamplingActivity.class);
+        intent2.putExtra("eventID", eventID);
+        intent2.putExtra("eventTitle", eventTitle);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
+        //finish();
     }
 
     /**
@@ -126,7 +129,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
      * @param eventTitle the title of the event
      */
     private void sendNotificationNotAccepted(String eventID, String eventTitle) {
-        String eventText = "You were not chosen for " + eventTitle;
+        String eventText = "You were not chosen for " + eventTitle + ". You may be chosen if someone else cancels!";
         for (UserProfile userProfile : dataList) {
             String deviceID = userProfile.getName();  // Assuming deviceID is stored in the name field of UserProfile
 
