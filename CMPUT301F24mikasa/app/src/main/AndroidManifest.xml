@@ -84,6 +84,7 @@
         <activity android:name=".CustomToWaitingList" />
         <activity android:name=".CustomToSelectedList" />
         <activity android:name=".AutoNotChosenForFinalList" />
+        <activity android:name=".CustomToFinalList" />
 
 
 
