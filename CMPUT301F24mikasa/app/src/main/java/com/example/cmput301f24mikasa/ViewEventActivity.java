@@ -30,6 +30,8 @@ public class ViewEventActivity extends AppCompatActivity {
     private TextView txtEventTitle, txtEventDescription, txtEventDate, txtEventPrice;
     private Button btnSignUp;
 
+    private EditText editTextCity, editTextProvince;
+
     /**
      * Default constructor for ViewEventActivity.
      * This constructor is required for the Android activity lifecycle.
@@ -58,6 +60,9 @@ public class ViewEventActivity extends AppCompatActivity {
         txtEventPrice = findViewById(R.id.txtEventPrice);
         btnSignUp = findViewById(R.id.btnSignUp);
 
+        editTextCity = findViewById(R.id.editTextCity);  
+        editTextProvince = findViewById(R.id.editTextProvince);  
+
         // Load event details
         loadEventDetails();
 
@@ -76,6 +81,18 @@ public class ViewEventActivity extends AppCompatActivity {
                         txtEventDescription.setText(documentSnapshot.getString("description"));
                         txtEventDate.setText(documentSnapshot.getString("startDate"));
                         txtEventPrice.setText(documentSnapshot.getString("price"));
+
+                        // Check if geo-location is required for the event
+                        String geoLocationRequired = documentSnapshot.getString("geo-location required");
+                        if ("yes".equals(geoLocationRequired)) {
+                            // Show the city and province input fields
+                            editTextCity.setVisibility(View.VISIBLE);
+                            editTextProvince.setVisibility(View.VISIBLE);
+                        } else {
+                            // Hide the city and province input fields
+                            editTextCity.setVisibility(View.GONE);
+                            editTextProvince.setVisibility(View.GONE);
+                        }
                     } else {
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
                         finish();
@@ -107,10 +124,31 @@ public class ViewEventActivity extends AppCompatActivity {
                     // Only add if the device is not already in the waiting list
                     if (!waitingList.contains(deviceId)) {
                         waitingList.add(deviceId);
+
+                        // Get the user input location if geo-location is required
+                        String geoLocation = documentSnapshot.getString("geo-location required");
+                        if ("yes".equals(geoLocation)) {
+                            String city = editTextCity.getText().toString();
+                            String province = editTextProvince.getText().toString();
+                            String userLocation = city + ", " + province;
+
+                            if (city.isEmpty() || province.isEmpty()) {
+                                Toast.makeText(this, "Please enter all location fields", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else {
+                                // Save the entered location to the event's "LocationList" field
+                                eventRef.update("LocationList." + deviceId, userLocation)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast.makeText(this, "location saved!", Toast.LENGTH_SHORT).show();
+                                        })
+                                        .addOnFailureListener(e -> Toast.makeText(this, "Failed to save location", Toast.LENGTH_SHORT).show());
+                            }
+                        }
+
+                        // Update the event's waiting list
                         eventRef.update("waitingList", waitingList)
                                 .addOnSuccessListener(aVoid -> {
                                     Toast.makeText(this, "Signed up successfully!", Toast.LENGTH_SHORT).show();
-                                    // updateUserProfileWithEvent();
                                 })
                                 .addOnFailureListener(e -> Toast.makeText(this, "Failed to sign up", Toast.LENGTH_SHORT).show());
                     } else {
