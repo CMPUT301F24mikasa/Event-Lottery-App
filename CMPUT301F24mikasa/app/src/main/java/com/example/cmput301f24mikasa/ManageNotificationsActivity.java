@@ -87,6 +87,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         });
 
         // Setup bottom navigation buttons
+        ImageButton buttonHome = findViewById(R.id.button_home);
         ImageButton buttonProfiles = findViewById(R.id.button_profiles);
         ImageButton buttonEvents = findViewById(R.id.button_events);
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
@@ -95,6 +96,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         AdminVerification.checkIfAdmin(this, buttonAdmin);
         
         // Bottom Navigation onClick Listeners
+        buttonHome.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, MainActivity.class)));
         buttonProfiles.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, ProfilesActivity.class)));
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, EventsActivity.class)));
         buttonNotifications.setOnClickListener(view -> startActivity(new Intent(ManageNotificationsActivity.this, ManageNotificationsActivity.class)));

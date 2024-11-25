@@ -72,7 +72,7 @@ public class CreateEventActivity extends AppCompatActivity {
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
 
-               Button btnBack = findViewById(R.id.btn_back);
+        Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             // Create an intent to navigate to EventsActivity
             Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
