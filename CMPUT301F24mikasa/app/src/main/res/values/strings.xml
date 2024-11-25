@@ -52,7 +52,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="search_facilities">Search Facilities</string>
     <string name="facility_name">Facility Name</string>
-
     <string name="admin_panel">ADMIN PANEL</string>
     <string name="manage_facilities">Manage Facilities</string>
     <string name="manage_profiles">Manage Profiles</string>
@@ -76,10 +75,8 @@
     <string name="remove_image">Remove Image</string>
     <string name="image_preview">image preview</string>
     <string name="delete_image">Delete Image</string>
-
     <string name="delete_poster">Delete Poster</string>
     <string name="remove_poster">Remove Poster</string>
-
     <string name="UnjoinWaitlist">unjoin\n</string>
     <string name="Unjoin">Unjoin</string>
     <string name="facility_image">facility image</string>
@@ -90,12 +87,10 @@
     <string name="list_of_facilities">List of Facilities</string>
     <string name="facility_details">Facility Details</string>
     <string name="profile_details">Profile Details</string>
-
     <string name="location">Location eg. Edmonton, Alberta (optional)</string>
-
     <string name="enter_city">Enter City</string>
     <string name="enter_full_province_eg_alberta">Enter full Province (eg. Alberta)</string>
     <string name="require_geo_location">Require Geo-Location</string>
-
+    <string name="notify_waitlist">Notify Waitlist</string>
 
 </resources>
