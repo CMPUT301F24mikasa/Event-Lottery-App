@@ -2,6 +2,8 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +25,7 @@ import java.util.List;
  * @since 2024-11-08
  */
 public class EventFinalListActivity extends AppCompatActivity {
-
+    Button notifyButton;
     private ListView finalListView;
     private UserProfileArrayAdapter finalEntrantsAdapter;
     private ArrayList<UserProfile> finalEntrantsList = new ArrayList<>();
@@ -75,6 +77,18 @@ public class EventFinalListActivity extends AppCompatActivity {
             Intent intent = new Intent(EventFinalListActivity.this, ManageEventsActivity.class);
             startActivity(intent);  // Start the activity
             finish();  // Optionally finish the current activity to remove it from the stack
+        });
+        notifyButton = findViewById(R.id.custom_notify_final_list);
+        notifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear the input field and show a toast message
+                Intent intent = new Intent(EventFinalListActivity.this, CustomToFinalList.class);
+                intent.putExtra("eventID", eventID);
+                intent.putExtra("eventTitle", eventTitle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
         });
     }
 
