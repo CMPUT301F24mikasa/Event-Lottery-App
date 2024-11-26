@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -71,15 +73,14 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextDesc = findViewById(R.id.editTextDesc);
         checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
-        checkBoxGeoLocation = findViewById(R.id.checkBoxGeoLocation); 
+        checkBoxGeoLocation = findViewById(R.id.checkBoxGeoLocation);
 
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
-            // Create an intent to navigate to EventsActivity
             Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
             startActivity(intent);
         });
-        
+
         // Disable non-applicable buttons initially
         disableButton(btnCreateEvent);
         disableButton(btnGenerateQRCode);
@@ -103,6 +104,9 @@ public class CreateEventActivity extends AppCompatActivity {
         // Register image picker result
         registerResult();
 
+        // Setup text watchers for field validation
+        setupTextWatchers();
+
         // Set button click listeners
         btnUpload.setOnClickListener(view -> pickImage());
 
@@ -117,14 +121,9 @@ public class CreateEventActivity extends AppCompatActivity {
             String price = editTextPrice.getText().toString();
             String desc = editTextDesc.getText().toString();
 
-            if (title.isEmpty() || date.isEmpty() || price.isEmpty() || desc.isEmpty()) {
-                Toast.makeText(CreateEventActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            disableButton(btnCreateEvent);
 
             createEvent(title, date, price, desc);
-            txtStepIndex.setText("Step 3 of 4: Generate QR Code");
-            enableButton(btnGenerateQRCode);
         });
 
         btnGenerateQRCode.setOnClickListener(v -> {
@@ -146,6 +145,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
             uploadQRCodeToStorage(qrCodeBitmap, eventID);
         });
+
 
         btnCreatePoster.setOnClickListener(v -> {
             if (!qrCodeGenerated) {
@@ -208,13 +208,45 @@ public class CreateEventActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         imageUri = result.getData().getData();
                         imgEvent.setImageURI(imageUri);
-                        enableButton(btnCreateEvent);
-                        txtStepIndex.setText("Step 2 of 4: Create Event");
-                    } else {
-                        Toast.makeText(CreateEventActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
+                        checkAllConditions(); // Re-check conditions after image upload
                     }
                 }
         );
+    }
+
+    private void setupTextWatchers() {
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkAllConditions();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+
+        editTextTitle.addTextChangedListener(textWatcher);
+        editTextDate.addTextChangedListener(textWatcher);
+        editTextPrice.addTextChangedListener(textWatcher);
+        editTextDesc.addTextChangedListener(textWatcher);
+    }
+
+    private void checkAllConditions() {
+        String title = editTextTitle.getText().toString().trim();
+        String date = editTextDate.getText().toString().trim();
+        String price = editTextPrice.getText().toString().trim();
+        String desc = editTextDesc.getText().toString().trim();
+
+        if (!title.isEmpty() && !date.isEmpty() && !price.isEmpty() && !desc.isEmpty() && imageUri != null) {
+            enableButton(btnCreateEvent);
+            txtStepIndex.setText("Step 2 of 4: Create Event"); // Update step
+        } else {
+            disableButton(btnCreateEvent);
+            txtStepIndex.setText("Step 1 of 4: Upload Image & Fill in Fields"); // Reset to step 1
+        }
     }
 
     private void createEvent(String title, String date, String price, String desc) {
@@ -252,7 +284,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventDetails.put("selectedEntrants", new ArrayList<>());
                 eventDetails.put("cancelledEntrants", new ArrayList<>());
 
-                // Add geo-location requirement
                 if (checkBoxGeoLocation.isChecked()) {
                     eventDetails.put("geo-location required", "yes");
                 } else {
@@ -261,11 +292,24 @@ public class CreateEventActivity extends AppCompatActivity {
 
                 documentReference.set(eventDetails).addOnSuccessListener(aVoid -> {
                     eventCreated = true;
+                    txtStepIndex.setText("Step 3 of 4: Generate QR Code");
+                    enableButton(btnGenerateQRCode);
                     Toast.makeText(CreateEventActivity.this, "Event created successfully.", Toast.LENGTH_SHORT).show();
-                }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show());
-            }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show());
-        }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show());
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(CreateEventActivity.this, "Unable to create event. Please try again.", Toast.LENGTH_SHORT).show();
+                    enableButton(btnCreateEvent);
+                });
+            }).addOnFailureListener(e -> {
+                Toast.makeText(CreateEventActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                enableButton(btnCreateEvent);
+            });
+        }).addOnFailureListener(e -> {
+            Toast.makeText(CreateEventActivity.this, "Failed to upload image.", Toast.LENGTH_SHORT).show();
+            enableButton(btnCreateEvent);
+        });
     }
+
+
 
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventID) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -278,10 +322,9 @@ public class CreateEventActivity extends AppCompatActivity {
                 eventRef.document(eventID).update("qrCodeURL", uri.toString())
                         .addOnSuccessListener(aVoid -> {
                             qrCodeGenerated = true;
-                            saveQRCodeHash(eventID);
-                            Toast.makeText(CreateEventActivity.this, "QR Code uploaded and URL saved successfully.", Toast.LENGTH_SHORT).show();
-                            enableButton(btnCreatePoster);
                             txtStepIndex.setText("Step 4 of 4: Create Poster");
+                            enableButton(btnCreatePoster);
+                            Toast.makeText(CreateEventActivity.this, "QR Code uploaded and URL saved successfully.", Toast.LENGTH_SHORT).show();
                         })
                         .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code URL.", Toast.LENGTH_SHORT).show());
             }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to get QR Code URL.", Toast.LENGTH_SHORT).show());

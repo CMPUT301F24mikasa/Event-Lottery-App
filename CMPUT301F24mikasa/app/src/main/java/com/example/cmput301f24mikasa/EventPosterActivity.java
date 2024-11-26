@@ -63,9 +63,12 @@ public class EventPosterActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnBack = findViewById(R.id.btn_back);
         Button btnSaveImage = findViewById(R.id.btnSaveImage);
-        btnBack.setOnClickListener(v -> finish());
+        Button btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(EventPosterActivity.this, EventsActivity.class);
+            startActivity(intent);
+        });
 
         TextView txtTitle = findViewById(R.id.txtTitle);
         TextView txtDate = findViewById(R.id.txtDate);
