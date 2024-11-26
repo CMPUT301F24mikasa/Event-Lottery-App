@@ -16,6 +16,18 @@
         android:gravity="center"
         android:padding="16dp" />
 
+        <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/header_text"
+        android:layout_marginTop="16dp"
+        android:text="Welcome!"
+        android:textSize="35sp"
+        android:textColor="#0D47A1"
+        android:visibility="gone" />
+
     <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottom_navigation"
