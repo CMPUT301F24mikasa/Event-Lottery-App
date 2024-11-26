@@ -3,6 +3,13 @@ package com.example.cmput301f24mikasa;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+
+import java.io.ByteArrayOutputStream;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -187,17 +194,82 @@ public class UserProfileActivity extends AppCompatActivity {
         if (imageUri != null) {
             uploadImageAndSaveProfile(user);
         } else {
-            // Set default image URL if no image is uploaded
-            String defaultImageUrl = getRandomImageUrl();
-            user.setProfilePicture(defaultImageUrl);
-
-            // Store User object in Firestore with the default image
-            saveUserToFirestore(user);
+            // No image provided: Generate and upload a default image
+            generateAndUploadDefaultImage(name, user);
         }
 
         // After saving successfully, set result and finish
         setResult(RESULT_OK);
         finish();
+    }
+
+    // Generates a default image from user's name and uploads it
+    private void generateAndUploadDefaultImage(String name, UserProfile user) {
+        // Extract initials (up to 3 letters)
+        String initials = getInitials(name);
+
+        // Generate an image in memory
+        Bitmap bitmap = createImageWithInitials(initials);
+
+        // Convert to byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        // Upload to Firebase Storage
+        String fileName = user.getDeviceId() + "_profile.png";
+        StorageReference fileReference = storageReference.child(fileName);
+        UploadTask uploadTask = fileReference.putBytes(data);
+
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                // Save the image URL to Firestore
+                user.setProfilePicture(uri.toString());
+                saveUserToFirestore(user);
+            });
+        }).addOnFailureListener(e -> {
+            Toast.makeText(UserProfileActivity.this, "Failed to upload default image", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    // Helper to extract initials
+    private String getInitials(String name) {
+        String[] words = name.split(" ");
+        StringBuilder initials = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty() && initials.length() < 3) {
+                initials.append(word.charAt(0));
+            }
+        }
+
+        return initials.toString().toUpperCase();
+    }
+
+    // Helper to create an image with initials
+    private Bitmap createImageWithInitials(String initials) {
+        int width = 200;
+        int height = 200;
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE); // Background color
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(0, 0, width, height, paint);
+
+        // Set up text style
+        paint.setColor(Color.WHITE); // Text color
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(60);
+
+        // Draw initials
+        float x = width / 2f;
+        float y = (height / 2f) - ((paint.descent() + paint.ascent()) / 2);
+        canvas.drawText(initials, x, y, paint);
+
+        return bitmap;
     }
 
     /**
