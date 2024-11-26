@@ -10,6 +10,9 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import android.widget.TextView;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -79,8 +82,13 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document != null && document.exists()) {
-                            // User profile exists, proceed with MainActivity
-                            Log.d("MainActivity", "User profile exists for device ID: " + deviceId);
+                            // User profile exists, retrieve and display the name
+                            String userName = document.getString("name");
+                            if (userName != null && !userName.isEmpty()) {
+                                TextView welcomeMessage = findViewById(R.id.welcome_message);
+                                welcomeMessage.setText("Welcome, " + userName + "!");
+                                welcomeMessage.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             // User profile does not exist, redirect to UserProfileActivity
                             Log.d("MainActivity", "No user profile found for device ID: " + deviceId);
