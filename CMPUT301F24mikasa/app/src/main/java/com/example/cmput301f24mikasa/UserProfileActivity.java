@@ -360,45 +360,55 @@ public class UserProfileActivity extends AppCompatActivity {
      * Removes the user's current profile image and updates the Firestore profile.
      */
     // Remove Profile Image Feature
-    private void removeProfileImage() {
-        // Check if there's an image currently loaded but not uploaded
+   private void removeProfileImage() {
+        String deviceId = getDeviceId(this);
+
+        // Check if there's a selected image URI
         if (imageUri != null) {
-            // Clear the selected image URI and reset the ImageView
             imageUri = null;
-            profileImageView.setImageResource(R.drawable.placeholder_image); // Set to default or placeholder image
-            Toast.makeText(UserProfileActivity.this, "Selected image removed", Toast.LENGTH_SHORT).show();
+            profileImageView.setImageResource(R.drawable.placeholder_image); // Reset to placeholder
+            Toast.makeText(this, "Selected image removed", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // If no imageUri, check if there's an existing profile image in Firebase
-        String deviceId = getDeviceId(this);
+        // Query Firestore for the existing profile picture URL
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists() && documentSnapshot.contains("profilePicture") && documentSnapshot.getString("profilePicture") != null) {
-                        // Only proceed to delete if a profile picture URL is set
-                        StorageReference fileReference = storageReference.child(deviceId + ".jpg");
-                        fileReference.delete()
-                                .addOnSuccessListener(aVoid -> {
-                                    // Successfully deleted image from storage
-                                    Toast.makeText(UserProfileActivity.this, "Profile image removed", Toast.LENGTH_SHORT).show();
-                                    profileImageView.setImageResource(R.drawable.placeholder_image);
+                    if (documentSnapshot.exists() && documentSnapshot.contains("profilePicture")) {
+                        String profilePictureUrl = documentSnapshot.getString("profilePicture");
 
-                                    // Remove profile picture URL from Firestore
-                                    db.collection("users").document(deviceId)
-                                            .update("profilePicture", null)
-                                            .addOnSuccessListener(aVoid1 -> Log.d("UserProfileActivity", "Profile picture URL removed from Firestore"))
-                                            .addOnFailureListener(e -> Log.e("UserProfileActivity", "Failed to remove profile picture URL from Firestore", e));
-                                })
-                                .addOnFailureListener(e -> {
-                                    Log.e("UserProfileActivity", "Failed to remove profile image", e);
-                                    Toast.makeText(UserProfileActivity.this, "Failed to remove profile image", Toast.LENGTH_SHORT).show();
-                                });
+                        if (!TextUtils.isEmpty(profilePictureUrl)) {
+                            // Delete the file from Firebase Storage
+                            StorageReference fileReference = FirebaseStorage.getInstance().getReferenceFromUrl(profilePictureUrl);
+                            fileReference.delete()
+                                    .addOnSuccessListener(aVoid -> {
+                                        // Successfully deleted image
+                                        profileImageView.setImageResource(R.drawable.placeholder_image);
+                                        Toast.makeText(this, "Profile image removed", Toast.LENGTH_SHORT).show();
+
+                                        // Remove the URL from Firestore
+                                        db.collection("users").document(deviceId)
+                                                .update("profilePicture", null)
+                                                .addOnSuccessListener(aVoid1 -> Log.d("UserProfileActivity", "Profile picture URL removed from Firestore"))
+                                                .addOnFailureListener(e -> Log.e("UserProfileActivity", "Failed to update Firestore", e));
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("UserProfileActivity", "Failed to remove image from storage", e);
+                                        Toast.makeText(this, "Failed to remove profile image", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            // No profile picture URL to remove
+                            profileImageView.setImageResource(R.drawable.placeholder_image);
+                            Toast.makeText(this, "No profile image to remove", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        // No profile picture exists in Firestore to delete
-                        Toast.makeText(UserProfileActivity.this, "No profile image to remove", Toast.LENGTH_SHORT).show();
-                        profileImageView.setImageResource(R.drawable.placeholder_image); // Set a default image if desired
+                        // Document doesn't exist or no profile picture field
+                        Toast.makeText(this, "No profile image to remove", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .addOnFailureListener(e -> Toast.makeText(UserProfileActivity.this, "Failed to check profile image", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> {
+                    Log.e("UserProfileActivity", "Failed to retrieve profile data", e);
+                    Toast.makeText(this, "Failed to check profile image", Toast.LENGTH_SHORT).show();
+                });
     }
 }
