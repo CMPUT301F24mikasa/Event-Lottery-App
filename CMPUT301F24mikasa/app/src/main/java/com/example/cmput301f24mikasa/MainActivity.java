@@ -2,23 +2,35 @@ package com.example.cmput301f24mikasa;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.Manifest;
 
 import android.widget.TextView;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
 
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * MainActivity serves as the entry point of the app. It manages navigation to other sections of the app,
@@ -70,8 +82,38 @@ public class MainActivity extends AppCompatActivity {
         buttonEvents.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, EventsActivity.class)));
         buttonNotifications.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ManageNotificationsActivity.class)));
         buttonAdmin.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, AdminActivity.class)));
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+        }
+        /**
+        createNotificationChannel();
+        scheduleNotificationWorker();
+        saveDeviceID();
+         */
+        // Start the foreground service
+        Intent serviceIntent = new Intent(this, NotificationForegroundService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
     }
+    /**
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted
+                Toast.makeText(this, "Notification permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                // Permission denied
+                Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    */
     /**
      * Checks if the user profile exists in Firestore by searching for the device ID.
      * If no profile is found, redirects the user to the UserProfileActivity to create a new profile.
@@ -120,5 +162,34 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Profile created successfully!", Toast.LENGTH_SHORT).show();
         }
     }
+    /**
+    private void createNotificationChannel() {
+        CharSequence name = "Event Notifications";
+        String description = "Channel for event notifications";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel("event_notifications_channel", name, importance);
+        channel.setDescription(description);
+
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        if (notificationManager != null) {
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+    private void scheduleNotificationWorker() {
+        PeriodicWorkRequest notificationWorkRequest =
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 5, TimeUnit.SECONDS)
+                        .build();
+
+        WorkManager.getInstance(this).enqueue(notificationWorkRequest);
+    }
+    private void saveDeviceID() {
+        String deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                .edit()
+                .putString("deviceID", deviceID)
+                .apply();
+    }
+     */
 }
 

@@ -110,6 +110,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             notificationData.put("text", eventText);
             notificationData.put("responsive", "1");
             notificationData.put("notificationID", notificationID);
+            notificationData.put("appeared", "no");
 
             // Add data to Firestore and show success/failure toasts
             documentReference.set(notificationData)
@@ -142,6 +143,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             notificationData.put("eventID", eventID);
             notificationData.put("text", eventText);
             notificationData.put("notificationID", notificationID);
+            notificationData.put("appeared", "no");
 
             // Add data to Firestore and show success/failure toasts
             documentReference.set(notificationData)
