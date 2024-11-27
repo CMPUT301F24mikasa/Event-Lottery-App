@@ -109,6 +109,7 @@ public class WaitingListActivity extends AppCompatActivity {
             Intent resultsIntent = new Intent(WaitingListActivity.this, CustomToWaitingList.class);
             resultsIntent.putExtra("eventID", eventID);
             resultsIntent.putExtra("eventTitle", eventTitle);
+            resultsIntent.putExtra("listType", 1);
             startActivity(resultsIntent);
         });
     }
