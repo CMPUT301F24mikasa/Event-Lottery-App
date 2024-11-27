@@ -162,7 +162,6 @@ public class CustomToSelectedList extends AppCompatActivity {
             notificationData.put("deviceID", user.getName()); // Using deviceID as placeholder
             notificationData.put("eventID", eventID);
             notificationData.put("text", customMessage);
-            notificationData.put("responsive", "1");
             notificationData.put("notificationID", notificationID);
 
             // Save the notification to Firestore
