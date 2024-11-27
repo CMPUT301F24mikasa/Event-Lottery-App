@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.cmput301f24mikasa"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.cmput301f24mikasa"
-        minSdk = 24
+        minSdk = 33
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -139,5 +139,6 @@ dependencies {
     androidTestImplementation(libs.mockito.android.v400)
     androidTestImplementation(libs.core.v150)
     androidTestImplementation(libs.rules)
+    implementation(libs.work.runtime)
 
 }
