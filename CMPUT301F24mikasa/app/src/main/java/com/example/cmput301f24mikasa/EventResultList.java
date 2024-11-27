@@ -129,6 +129,7 @@ public class EventResultList extends AppCompatActivity {
                 Intent intent = new Intent(EventResultList.this, CustomToSelectedList.class);
                 intent.putExtra("eventID", eventID);
                 intent.putExtra("eventTitle", eventTitle);
+                intent.putExtra("listType", 2);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

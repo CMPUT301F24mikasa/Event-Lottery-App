@@ -22,90 +22,105 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Combines functionality for managing the selected list and sending notifications
- * in a single popup-like activity without using an XML layout.
+ * Combines functionality for managing notification sending and dynamic list fetching
+ * based on the intent type (1 = Waiting List, 2 = Selected Entrants, 3 = Final Entrants).
  */
-public class CustomToSelectedList extends AppCompatActivity {
+public class CustomToAllActivity extends AppCompatActivity {
 
     private String eventID;
     private String eventTitle;
+    private int listType;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notificationRef = db.collection("notification");
     private CollectionReference eventsRef = db.collection("event");
 
-    private List<UserProfile> selectedEntrants = new ArrayList<>();
+    private List<UserProfile> entrantsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Retrieve event details from the Intent
+        // Retrieve event details and list type from the Intent
         Intent intent = getIntent();
         eventID = intent.getStringExtra("eventID");
         eventTitle = intent.getStringExtra("eventTitle");
+        listType = intent.getIntExtra("listType", 1); // Default to 1 (Waiting List)
 
-        // Fetch the selected entrants list and show the popup
-        fetchSelectedList(eventID, eventTitle);
+        // Fetch the appropriate list and show the popup
+        fetchEntrantsList(eventID, eventTitle, listType);
     }
 
     /**
-     * Fetches the selected entrants for the event from Firestore.
+     * Fetches the appropriate list (waiting list, selected entrants, or final entrants) for the event from Firestore.
      * Once the list is fetched, it displays the popup dialog.
      */
-    private void fetchSelectedList(String eventID, String eventTitle) {
+    private void fetchEntrantsList(String eventID, String eventTitle, int listType) {
+        String listKey; // Firestore document key for the list to fetch
+        switch (listType) {
+            case 1:
+                listKey = "waitingList";
+                break;
+            case 2:
+                listKey = "selectedEntrants";
+                break;
+            case 3:
+                listKey = "finalEntrants";
+                break;
+            default:
+                Toast.makeText(this, "Invalid list type", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+        }
+
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        // Retrieve the selectedEntrants array from the document
-                        List<String> selectedIDs = (List<String>) documentSnapshot.get("selectedEntrants");
-                        if (selectedIDs != null && !selectedIDs.isEmpty()) {
-                            // For each deviceID, create a placeholder UserProfile object
-                            for (String deviceID : selectedIDs) {
+                        // Retrieve the list from the document
+                        List<String> entrantIDs = (List<String>) documentSnapshot.get(listKey);
+                        if (entrantIDs != null && !entrantIDs.isEmpty()) {
+                            for (String deviceID : entrantIDs) {
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(deviceID); // Using deviceID as a placeholder for the name
-                                selectedEntrants.add(userProfile);
+                                entrantsList.add(userProfile);
                             }
-                            sendNotificationDialog(eventID, eventTitle);
+                            sendNotificationDialog(eventID, eventTitle, listType);
                         } else {
-                            Toast.makeText(this, "Selected list is empty for this event.", Toast.LENGTH_SHORT).show();
-                            navigateBackToEventResultList();
+                            Toast.makeText(this, "The list is empty for this event.", Toast.LENGTH_SHORT).show();
+                            navigateBack(listType);
                         }
                     } else {
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
-                        navigateBackToEventResultList();
+                        navigateBack(listType);
                     }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error fetching event details", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
-                    navigateBackToEventResultList();
+                    navigateBack(listType);
                 });
     }
 
     /**
      * Displays a popup dialog allowing the organizer to edit the notification message
-     * and confirm sending notifications to all users in the selected entrants list.
+     * and confirm sending notifications to all users in the list.
      */
-    private void sendNotificationDialog(String eventID, String eventTitle) {
-        // Create the dialog layout programmatically
+    private void sendNotificationDialog(String eventID, String eventTitle, int listType) {
         LinearLayout dialogLayout = new LinearLayout(this);
         dialogLayout.setOrientation(LinearLayout.VERTICAL);
         dialogLayout.setPadding(50, 40, 50, 40);
 
-        // Add title text
         TextView titleTextView = new TextView(this);
         titleTextView.setText("Send Notifications");
         titleTextView.setGravity(Gravity.CENTER);
         titleTextView.setTextSize(20);
         dialogLayout.addView(titleTextView);
 
-        // Add event description
         TextView eventDescription = new TextView(this);
-        eventDescription.setText("You are about to send notifications to all selected entrants for \"" + eventTitle + "\".");
+        eventDescription.setText("You are about to send notifications to all users in the list for \"" + eventTitle + "\".");
         eventDescription.setPadding(0, 20, 0, 20);
         dialogLayout.addView(eventDescription);
 
-        // Add EditText for custom message
         EditText messageInput = new EditText(this);
         messageInput.setHint("Enter notification message here...");
         messageInput.setText("You have been selected for the event \"" + eventTitle + "\". Stay tuned for updates!");
@@ -113,11 +128,9 @@ public class CustomToSelectedList extends AppCompatActivity {
         messageInput.setPadding(0, 20, 0, 20);
         dialogLayout.addView(messageInput);
 
-        // Create a ScrollView for dynamic height handling if needed
         ScrollView scrollView = new ScrollView(this);
         scrollView.addView(dialogLayout);
 
-        // Build the AlertDialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setView(scrollView);
         dialogBuilder.setPositiveButton("Send", (dialog, which) -> {
@@ -125,46 +138,38 @@ public class CustomToSelectedList extends AppCompatActivity {
             if (customMessage.isEmpty()) {
                 Toast.makeText(this, "Message cannot be empty.", Toast.LENGTH_SHORT).show();
             } else {
-                sendNotifications(eventID, customMessage);
+                sendNotifications(eventID, customMessage, listType);
             }
         });
         dialogBuilder.setNegativeButton("Cancel", (dialog, which) -> {
             Toast.makeText(this, "Action cancelled.", Toast.LENGTH_SHORT).show();
-            navigateBackToEventResultList();
+            navigateBack(listType);
         });
 
-        // Show the dialog
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
     }
 
     /**
-     * Sends notifications to all users in the selected entrants list.
-     * Each notification contains the custom message provided by the organizer.
-     *
-     * @param eventID       The event ID to associate with the notification.
-     * @param customMessage The custom notification message to send.
+     * Sends notifications to all users in the list.
      */
-    private void sendNotifications(String eventID, String customMessage) {
-        if (selectedEntrants.isEmpty()) {
-            Toast.makeText(this, "No selected entrants to notify.", Toast.LENGTH_SHORT).show();
-            navigateBackToEventResultList();
+    private void sendNotifications(String eventID, String customMessage, int listType) {
+        if (entrantsList.isEmpty()) {
+            Toast.makeText(this, "No users to notify.", Toast.LENGTH_SHORT).show();
+            navigateBack(listType);
             return;
         }
 
-        for (UserProfile user : selectedEntrants) {
-            // Create a new notification document
+        for (UserProfile user : entrantsList) {
             DocumentReference notificationDoc = notificationRef.document();
             String notificationID = notificationDoc.getId();
 
-            // Prepare the notification data
             HashMap<String, Object> notificationData = new HashMap<>();
-            notificationData.put("deviceID", user.getName()); // Using deviceID as placeholder
+            notificationData.put("deviceID", user.getName());
             notificationData.put("eventID", eventID);
             notificationData.put("text", customMessage);
             notificationData.put("notificationID", notificationID);
 
-            // Save the notification to Firestore
             notificationDoc.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Notification sent to: " + user.getName(), Toast.LENGTH_SHORT).show();
@@ -174,19 +179,33 @@ public class CustomToSelectedList extends AppCompatActivity {
                     });
         }
 
-        // Navigate back to EventResultList after notifications are sent
         Toast.makeText(this, "All notifications have been sent!", Toast.LENGTH_SHORT).show();
-        navigateBackToEventResultList();
+        navigateBack(listType);
     }
 
     /**
-     * Navigates back to the EventResultList activity.
+     * Navigates back to the appropriate activity based on the list type.
      */
-    private void navigateBackToEventResultList() {
-        Intent intent = new Intent(this, EventResultList.class);
-        intent.putExtra("eventID", eventID); // Pass eventID if needed
-        intent.putExtra("eventTitle", eventTitle); // Pass eventTitle if needed
+    private void navigateBack(int listType) {
+        Intent intent;
+        switch (listType) {
+            case 1:
+                intent = new Intent(this, WaitingListActivity.class);
+                break;
+            case 2:
+                intent = new Intent(this, EventResultList.class);
+                break;
+            case 3:
+                intent = new Intent(this, EventFinalListActivity.class);
+                break;
+            default:
+                Toast.makeText(this, "Invalid list type", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+        }
+        intent.putExtra("eventID", eventID);
+        intent.putExtra("eventTitle", eventTitle);
         startActivity(intent);
-        finish(); // Close the current activity
+        finish();
     }
 }
