@@ -83,7 +83,7 @@ public class EventFinalListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Clear the input field and show a toast message
-                Intent intent = new Intent(EventFinalListActivity.this, CustomToFinalList.class);
+                Intent intent = new Intent(EventFinalListActivity.this, CustomToAllActivity.class);
                 intent.putExtra("eventID", eventID);
                 intent.putExtra("eventTitle", eventTitle);
                 intent.putExtra("listType", 3);

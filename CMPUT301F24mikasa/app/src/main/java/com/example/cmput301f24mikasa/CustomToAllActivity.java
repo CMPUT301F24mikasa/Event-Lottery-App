@@ -169,6 +169,7 @@ public class CustomToAllActivity extends AppCompatActivity {
             notificationData.put("eventID", eventID);
             notificationData.put("text", customMessage);
             notificationData.put("notificationID", notificationID);
+            notificationData.put("appeared", "no");
 
             notificationDoc.set(notificationData)
                     .addOnSuccessListener(aVoid -> {

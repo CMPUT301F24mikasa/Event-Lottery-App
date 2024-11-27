@@ -108,6 +108,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
             notificationData.put("eventID", eventID);
             notificationData.put("text", eventText);
             notificationData.put("notificationID", notificationID);
+            notificationData.put("appeared", "no");
 
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
@@ -181,6 +182,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
             notificationData.put("eventID", eventID);
             notificationData.put("text", eventText);
             notificationData.put("notificationID", notificationID);
+            notificationData.put("appeared", "no");
 
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {

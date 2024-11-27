@@ -121,12 +121,12 @@ public class EventResultList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //I can infinetly notify, that NEEDS TO BE FIXED!!!!!!!!!!!!!
+        //I can infinetly notify, that NEEDS TO BE FIXED!!!!!!!!!!!!! hha lol i fixed it
         notifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Clear the input field and show a toast message
-                Intent intent = new Intent(EventResultList.this, CustomToSelectedList.class);
+                Intent intent = new Intent(EventResultList.this, CustomToAllActivity.class);
                 intent.putExtra("eventID", eventID);
                 intent.putExtra("eventTitle", eventTitle);
                 intent.putExtra("listType", 2);

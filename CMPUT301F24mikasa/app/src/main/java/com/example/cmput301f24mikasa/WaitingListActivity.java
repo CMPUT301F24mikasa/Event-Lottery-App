@@ -106,7 +106,7 @@ public class WaitingListActivity extends AppCompatActivity {
         });
         Button CustomNotify=findViewById(R.id.custom_notify_waiting_list);
         CustomNotify.setOnClickListener(view -> {
-            Intent resultsIntent = new Intent(WaitingListActivity.this, CustomToWaitingList.class);
+            Intent resultsIntent = new Intent(WaitingListActivity.this, CustomToAllActivity.class);
             resultsIntent.putExtra("eventID", eventID);
             resultsIntent.putExtra("eventTitle", eventTitle);
             resultsIntent.putExtra("listType", 1);
