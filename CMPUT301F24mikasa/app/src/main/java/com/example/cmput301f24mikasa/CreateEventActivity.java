@@ -325,11 +325,15 @@ public class CreateEventActivity extends AppCompatActivity {
                             txtStepIndex.setText("Step 4 of 4: Create Poster");
                             enableButton(btnCreatePoster);
                             Toast.makeText(CreateEventActivity.this, "QR Code uploaded and URL saved successfully.", Toast.LENGTH_SHORT).show();
+
+                            saveQRCodeHash(eventID);
+
                         })
                         .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code URL.", Toast.LENGTH_SHORT).show());
             }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to get QR Code URL.", Toast.LENGTH_SHORT).show());
         }).addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to upload QR Code.", Toast.LENGTH_SHORT).show());
     }
+
 
     private void saveQRCodeHash(String eventID) {
         HashMap<String, Object> qrCodeData = new HashMap<>();
