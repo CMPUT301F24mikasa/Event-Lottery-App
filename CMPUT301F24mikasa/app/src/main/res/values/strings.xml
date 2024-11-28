@@ -93,4 +93,10 @@
     <string name="require_geo_location">Require Geo-Location</string>
     <string name="notify_waitlist">Notify Waitlist</string>
 
+    // Open Cage API Key
+    <string name="open_cage_api_key">355ec37ef230433bb0ec1f98a0b4c221</string>
+    <string name="managing_list_for_event">Managing List for Event</string>
+    <string name="view_map">View Map</string>
+    <string name="view_result_list">View Result List</string>
+
 </resources>

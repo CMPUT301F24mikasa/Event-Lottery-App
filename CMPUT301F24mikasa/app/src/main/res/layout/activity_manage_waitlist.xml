@@ -14,7 +14,7 @@
         android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Managing List for Event"
+        android:text="@string/managing_list_for_event"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -46,5 +46,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerTextView"
         app:layout_constraintVertical_bias="1.0" />
+
+    <!-- View Map Button -->
+    <Button
+        android:id="@+id/view_map_button"
+        android:layout_width="81dp"
+        android:layout_height="69dp"
+        app:cornerRadius="0dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/view_map"
+        android:textColor="#FFFFFF"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -141,4 +141,8 @@ dependencies {
     androidTestImplementation(libs.rules)
     implementation(libs.work.runtime)
 
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.play.services.maps.v1810)
+
 }
