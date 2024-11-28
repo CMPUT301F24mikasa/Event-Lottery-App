@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/back_button_for_waiting"
         android:layout_width="81dp"
-        android:layout_height="69dp"
+        android:layout_height="60dp"
         android:backgroundTint="#0D47A1"
         android:text="@string/back"
         app:cornerRadius="0dp"
@@ -45,12 +45,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerTextView" />
 
-    <!-- Bottom Buttons (Manage Waitlist, Sample) -->
+    <!-- Bottom Buttons (Notify Waitlist, Sample) -->
+    <!-- View Map Button -->
+    <Button
+        android:id="@+id/view_map_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:backgroundTint="#0D47A1"
+        android:text="@string/view_map"
+        app:cornerRadius="0dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
     <Button
         android:id="@+id/custom_notify_waiting_list"
         android:layout_width="128dp"
-        android:layout_height="69dp"
+        android:layout_height="60dp"
         android:layout_marginStart="15dp"
         android:backgroundTint="#0D47A1"
         android:text="@string/notify_waitlist"
@@ -62,7 +77,7 @@
     <Button
         android:id="@+id/sample_button"
         android:layout_width="128dp"
-        android:layout_height="69dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="#0D47A1"
         android:text="@string/sample"
@@ -73,10 +88,10 @@
     <Button
         android:id="@+id/view_results"
         android:layout_width="128dp"
-        android:layout_height="69dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="#0D47A1"
-        android:text="View Result List"
+        android:text="@string/view_result_list"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
