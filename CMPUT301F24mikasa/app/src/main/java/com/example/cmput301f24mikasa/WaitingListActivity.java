@@ -74,6 +74,14 @@ public class WaitingListActivity extends AppCompatActivity {
         userAdapter = new UserProfileArrayAdapter(this, dataList);
         userList.setAdapter(userAdapter);
 
+        Button viewMapButton = findViewById(R.id.view_map_button);
+        viewMapButton.setOnClickListener(v -> {
+            // Navigate to MapActivity and pass the eventID
+            Intent mapIntent = new Intent(WaitingListActivity.this, MapActivity.class);
+            mapIntent.putExtra("eventID", eventID); // Pass eventID to MapActivity
+            startActivity(mapIntent);
+        });
+
         // Initialize buttons
         Button sampleButton = findViewById(R.id.sample_button);
         Button viewResults = findViewById(R.id.view_results);
