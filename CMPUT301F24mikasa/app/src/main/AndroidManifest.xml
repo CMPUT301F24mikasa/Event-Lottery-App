@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
 
+    
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,6 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         >
+
+        <!-- Google Maps API -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDOwNv5ok7f-LqLlLS0Uq7XEBX2bH9Tf6Y"/>
 
         <service
             android:name=".NotificationForegroundService"
@@ -90,6 +96,8 @@
         <activity android:name=".AdminEventDetailsActivity" />
         <activity android:name=".AutoNotChosenForFinalList" />
         <activity android:name=".CustomToAllActivity" />
+
+        <activity android:name=".MapActivity" />
 
 
 
