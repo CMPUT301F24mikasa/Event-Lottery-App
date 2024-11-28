@@ -330,28 +330,48 @@ public class EventResultList extends AppCompatActivity {
      * @param eventID The ID of the event
      */
     void fetchSelectedList(String eventID) {
-        selectedEntrants.clear();
-        // Query the event document by eventID to get the waitingList array
+        selectedEntrants.clear(); // Clear the list to avoid duplicates
+
+        // Query the event document by eventID to get the selectedEntrants array
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        // Retrieve the waitingList array from the document
+                        // Retrieve the selectedEntrants array from the document
                         List<String> selectedIDs = (List<String>) documentSnapshot.get("selectedEntrants");
-                        if (selectedIDs != null && !selectedIDs.isEmpty()) {
-                            // For each deviceID in the waiting list, add it as a placeholder user name
-                            for (String deviceID : selectedIDs) {
-                                // Create a UserProfile with deviceID as the name
-                                UserProfile userProfile = new UserProfile();
-                                userProfile.setName(deviceID); // Set deviceID as a placeholder for name
-                                //later on, instead of displaying deviceID will want to display later
-                                //name associated with deviceID
-                                selectedEntrants.add(userProfile);
-                            }
 
-                            // Notify the adapter to update the ListView
-                            selectedEntrantsAdapter.notifyDataSetChanged();
+                        if (selectedIDs != null && !selectedIDs.isEmpty()) {
+                            for (String deviceID : selectedIDs) {
+                                // Create a UserProfile object with the deviceID
+                                UserProfile userProfile = new UserProfile();
+                                userProfile.setDeviceId(deviceID); // Set the deviceID
+
+                                // Query the users collection to get the name associated with this deviceID
+                                db.collection("users")
+                                        .whereEqualTo("deviceId", deviceID)
+                                        .get()
+                                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                                            if (!queryDocumentSnapshots.isEmpty()) {
+                                                // Assuming only one document per deviceID
+                                                DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
+                                                String userName = userDoc.getString("name");
+                                                userProfile.setName(userName); // Set the user's name
+                                            } else {
+                                                userProfile.setName("Unknown User"); // Fallback if no user is found
+                                            }
+
+                                            // Add the userProfile to selectedEntrants
+                                            selectedEntrants.add(userProfile);
+
+                                            // Notify the adapter to update the ListView
+                                            selectedEntrantsAdapter.notifyDataSetChanged();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(this, "Error fetching user details", Toast.LENGTH_SHORT).show();
+                                            e.printStackTrace();
+                                        });
+                            }
                         } else {
-                            Toast.makeText(this, "Waiting list is empty for this event.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Selected entrants list is empty for this event.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
@@ -372,27 +392,47 @@ public class EventResultList extends AppCompatActivity {
      */
     //refactor to pull from CANCELLED LIST AND ALSO UPDATE NOTIFICATIONS
     private void fetchCancelledList(String eventID) {
+        canceledEntrants.clear(); // Clear the list to avoid duplicates
+
         // Get the specific event document reference using the eventID
         eventsRef.document(eventID)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        // Retrieve the canceledEntrants list from the event document
+                        // Retrieve the cancelledEntrants list from the event document
                         List<String> canceledDeviceIDs = (List<String>) documentSnapshot.get("cancelledEntrants");
 
                         if (canceledDeviceIDs != null && !canceledDeviceIDs.isEmpty()) {
-                            // For each canceled deviceID, create a UserProfile and add it to the canceledEntrants list
                             for (String deviceID : canceledDeviceIDs) {
-                                // Create a UserProfile for the canceled entrant
+                                // Create a UserProfile object for the canceled entrant
                                 UserProfile userProfile = new UserProfile();
-                                userProfile.setName(deviceID); // Set the deviceID as a placeholder for the name
+                                userProfile.setDeviceId(deviceID); // Set the deviceID as a placeholder for now
 
-                                // Add the user profile to the canceledEntrants list
-                                canceledEntrants.add(userProfile);
+                                // Query the users collection to fetch the name associated with the deviceID
+                                db.collection("users")
+                                        .whereEqualTo("deviceId", deviceID)
+                                        .get()
+                                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                                            if (!queryDocumentSnapshots.isEmpty()) {
+                                                // Assuming only one document per deviceID
+                                                DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
+                                                String userName = userDoc.getString("name");
+                                                userProfile.setName(userName); // Set the user's name
+                                            } else {
+                                                userProfile.setName("Unknown User"); // Fallback if no user found
+                                            }
+
+                                            // Add the userProfile to the canceledEntrants list
+                                            canceledEntrants.add(userProfile);
+
+                                            // Notify the adapter to update the ListView
+                                            canceledEntrantsAdapter.notifyDataSetChanged();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(this, "Error fetching user details.", Toast.LENGTH_SHORT).show();
+                                            e.printStackTrace();
+                                        });
                             }
-
-                            // Notify the adapter to update the canceled entrants ListView
-                            canceledEntrantsAdapter.notifyDataSetChanged();
                         } else {
                             Toast.makeText(this, "No canceled entrants for this event.", Toast.LENGTH_SHORT).show();
                         }
@@ -405,6 +445,7 @@ public class EventResultList extends AppCompatActivity {
                     e.printStackTrace();
                 });
     }
+
 
 
 }
