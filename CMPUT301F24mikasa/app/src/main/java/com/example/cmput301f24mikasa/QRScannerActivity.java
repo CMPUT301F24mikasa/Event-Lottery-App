@@ -147,7 +147,7 @@ public class QRScannerActivity extends AppCompatActivity {
             if (qrText != null && !hasScanned) {
                 scannedQRContent = qrText; // Store the scanned QR code content in a variable
                 hasScanned = true;
-                Toast.makeText(this, "QR Code Scanned: " + scannedQRContent, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "QR Code Scanned! ", Toast.LENGTH_SHORT).show();
                 fetchEventDetailsAndNavigate();
                 break; // Stop processing after finding a QR code
             }
