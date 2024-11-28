@@ -7,6 +7,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -16,11 +18,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class NotificationForegroundService extends Service {
     private static final String CHANNEL_ID = "event_notifications_channel";
+    private static final String TAG = "NotificationService"; // Tag for logging
     private FirebaseFirestore db;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG, "Service onCreate started");
         db = FirebaseFirestore.getInstance();
         createNotificationChannel();
         fetchNotifications();
@@ -28,6 +33,9 @@ public class NotificationForegroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        Log.d(TAG, "Service onStartCommand started");
+
         // Create the persistent notification
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -35,25 +43,27 @@ public class NotificationForegroundService extends Service {
         );
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.notification_icon) // Use a subtle icon
-                .setContentTitle("")                        // No title
-                .setContentText("")                         // No text
-                .setPriority(NotificationCompat.PRIORITY_LOW) // Low priority
-                .setSilent(true)                            // No sound or vibration
+                .setContentTitle("Event Notifications")
+                .setContentText("Fetching event notifications...")
+                .setSmallIcon(R.drawable.notification_icon) // Replace with your app's icon
                 .setContentIntent(pendingIntent);
 
         startForeground(1, builder.build());
+        Log.d(TAG, "Foreground service started");
 
         // Return START_STICKY to keep the service alive
         return START_STICKY;
     }
 
     private void fetchNotifications() {
+        Log.d(TAG, "fetchNotifications called");
+
         // Fetch deviceID from shared preferences
-        String deviceID = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-                .getString("deviceID", "");
+        String deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
 
         if (deviceID.isEmpty()) {
+            Log.e(TAG, "No device ID found, stopping service");
             stopSelf(); // Stop service if no device ID is found
             return;
         }
@@ -64,11 +74,12 @@ public class NotificationForegroundService extends Service {
                 .whereEqualTo("appeared", "no")
                 .addSnapshotListener((querySnapshot, error) -> {
                     if (error != null) {
-                        error.printStackTrace();
+                        Log.e(TAG, "Error fetching notifications: " + error.getMessage());
                         return;
                     }
 
                     if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                        Log.d(TAG, "Found " + querySnapshot.size() + " new notifications");
                         for (com.google.firebase.firestore.DocumentSnapshot document : querySnapshot.getDocuments()) {
                             String notificationText = document.getString("text");
 
@@ -78,13 +89,19 @@ public class NotificationForegroundService extends Service {
                             // Mark notification as "appeared"
                             db.collection("notification")
                                     .document(document.getId())
-                                    .update("appeared", "yes");
+                                    .update("appeared", "yes")
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Notification marked as appeared"))
+                                    .addOnFailureListener(e -> Log.e(TAG, "Failed to update notification: " + e.getMessage()));
                         }
+                    } else {
+                        Log.d(TAG, "No new notifications found");
                     }
                 });
     }
 
     private void showNotification(String text) {
+        Log.d(TAG, "showNotification called with text: " + text);
+
         Intent intent = new Intent(this, ManageNotificationsActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, intent, PendingIntent.FLAG_IMMUTABLE
@@ -103,10 +120,14 @@ public class NotificationForegroundService extends Service {
 
         if (notificationManager != null) {
             notificationManager.notify((int) System.currentTimeMillis(), builder.build());
+            Log.d(TAG, "Notification shown");
+        } else {
+            Log.e(TAG, "Notification manager is null");
         }
     }
 
     private void createNotificationChannel() {
+        Log.d(TAG, "Creating notification channel");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
@@ -117,6 +138,9 @@ public class NotificationForegroundService extends Service {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
+                Log.d(TAG, "Notification channel created");
+            } else {
+                Log.e(TAG, "Notification manager is null while creating channel");
             }
         }
     }
@@ -124,6 +148,7 @@ public class NotificationForegroundService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind called");
         return null; // No binding required for this service
     }
 }
