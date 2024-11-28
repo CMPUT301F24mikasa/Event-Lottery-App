@@ -43,7 +43,7 @@
     <string name="view">View</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="waiting_list_for_insert_event_have_to_adj_lol">WAITING LIST FOR \'INSERT\' EVENT have to adj lol</string>
+    <string name="waiting_list_for_insert_event">WAITING LIST FOR \'INSERT\' EVENT</string>
     <string name="manage_waitlist">Manage Waitlist</string>
     <string name="sample">Sample</string>
     <string name="username_and_info_if_any">USERNAME AND INFO IF ANY</string>
@@ -89,7 +89,7 @@
     <string name="profile_details">Profile Details</string>
     <string name="location">Location eg. Edmonton, Alberta (optional)</string>
     <string name="enter_city">Enter City</string>
-    <string name="enter_full_province_eg_alberta">Enter full Province (eg. Alberta)</string>
+    <string name="enter_full_province_eg_alberta">Enter full Country (eg. Canada)</string>
     <string name="require_geo_location">Require Geo-Location</string>
     <string name="notify_waitlist">Notify Waitlist</string>
 
