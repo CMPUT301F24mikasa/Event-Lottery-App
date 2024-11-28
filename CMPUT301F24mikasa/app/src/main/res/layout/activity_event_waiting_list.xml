@@ -26,7 +26,7 @@
         android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp"
-        android:text="@string/waiting_list_for_insert_event_have_to_adj_lol"
+        android:text="@string/waiting_list_for_insert_event"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
