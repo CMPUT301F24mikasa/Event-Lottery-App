@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -109,16 +110,35 @@ public class EventFinalListActivity extends AppCompatActivity {
 
                 if (finalEntrants != null && !finalEntrants.isEmpty()) {
                     for (String deviceID : finalEntrants) {
-                        // Create a UserProfile with deviceID as the name
+                        // Create a UserProfile with deviceID as a placeholder
                         UserProfile userProfile = new UserProfile();
-                        userProfile.setName(deviceID); // Set deviceID as a placeholder for name
-                        // Later on, instead of displaying deviceID, will want to display
-                        // the name associated with deviceID
-                        finalEntrantsList.add(userProfile);
-                    }
+                        userProfile.setDeviceId(deviceID); // Set the deviceID
 
-                    // Notify the adapter to update the ListView
-                    finalEntrantsAdapter.notifyDataSetChanged();
+                        // Query the users collection to get the name associated with this deviceID
+                        db.collection("users")
+                                .whereEqualTo("deviceId", deviceID)
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    if (!queryDocumentSnapshots.isEmpty()) {
+                                        // Assuming only one document per deviceID
+                                        DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
+                                        String userName = userDoc.getString("name");
+                                        userProfile.setName(userName); // Set the user's name
+                                    } else {
+                                        userProfile.setName("Unknown User"); // Fallback if no user is found
+                                    }
+
+                                    // Add the userProfile to finalEntrantsList
+                                    finalEntrantsList.add(userProfile);
+
+                                    // Notify the adapter to update the ListView
+                                    finalEntrantsAdapter.notifyDataSetChanged();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(EventFinalListActivity.this, "Error fetching user details", Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                });
+                    }
                 } else {
                     Toast.makeText(EventFinalListActivity.this, "No final entrants found.", Toast.LENGTH_SHORT).show();
                 }
