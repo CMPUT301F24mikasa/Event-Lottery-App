@@ -197,8 +197,17 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
      */
     @Override
     public void onEditButtonClick(Event event) {
-        // Handle the edit button action for the specific event
-        Log.d("OrganizerManageEvents", "Edit button clicked for event: " + event.getTitle());
-        // Implement your edit logic here, e.g., open a new activity for editing
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("event").document(event.getEventID());
+        // Check if the eventID is not null
+        if (event.getEventID() != null) {
+            Intent intent = new Intent(ManageEventsActivity.this, EditEventActivity.class);
+            intent.putExtra("eventID", event.getEventID());
+
+            startActivity(intent);
+        } else {
+            // Show a Toast message if eventID is null
+            Toast.makeText(this, "Event ID is null, unable to edit event.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
