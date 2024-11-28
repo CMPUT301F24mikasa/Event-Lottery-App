@@ -92,19 +92,42 @@ public class ManageProfileActivity extends AppCompatActivity {
      * Updates the list view with the fetched user profiles.
      */
     void loadUserProfiles() {
-        db.collection("users")
+        db.collection("admin")
                 .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        userProfileList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            UserProfile userProfile = document.toObject(UserProfile.class);
-                            userProfileList.add(userProfile);
+                .addOnCompleteListener(adminTask -> {
+                    if (adminTask.isSuccessful()) {
+                        List<String> adminDeviceIds = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : adminTask.getResult()) {
+                            // Assuming deviceId is the field name in admin collection
+                            String adminDeviceId = document.getString("deviceID");
+                            if (adminDeviceId != null) {
+                                adminDeviceIds.add(adminDeviceId);
+                            }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        // Now, load user profiles and filter out those belonging to admins
+                        db.collection("users")
+                                .get()
+                                .addOnCompleteListener(userTask -> {
+                                    if (userTask.isSuccessful()) {
+                                        userProfileList.clear();
+                                        for (QueryDocumentSnapshot document : userTask.getResult()) {
+                                            UserProfile userProfile = document.toObject(UserProfile.class);
+
+                                            // Only add users whose deviceId is not in the admin list
+                                            if (!adminDeviceIds.contains(userProfile.getDeviceId())) {
+                                                userProfileList.add(userProfile);
+                                            }
+                                        }
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Log.w("ManageProfileActivity", "Error getting user profiles.", userTask.getException());
+                                        Toast.makeText(ManageProfileActivity.this, "Failed to load profiles", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                     } else {
-                        Log.w("ManageProfileActivity", "Error getting documents.", task.getException());
-                        Toast.makeText(ManageProfileActivity.this, "Failed to load profiles", Toast.LENGTH_SHORT).show();
+                        Log.w("ManageProfileActivity", "Error getting admin profiles.", adminTask.getException());
+                        Toast.makeText(ManageProfileActivity.this, "Failed to load admin profiles", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
