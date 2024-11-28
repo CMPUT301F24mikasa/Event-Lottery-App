@@ -92,19 +92,42 @@ public class ManageProfileActivity extends AppCompatActivity {
      * Updates the list view with the fetched user profiles.
      */
     void loadUserProfiles() {
-        db.collection("users")
+        db.collection("admin")
                 .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        userProfileList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            UserProfile userProfile = document.toObject(UserProfile.class);
-                            userProfileList.add(userProfile);
+                .addOnCompleteListener(adminTask -> {
+                    if (adminTask.isSuccessful()) {
+                        List<String> adminDeviceIds = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : adminTask.getResult()) {
+                            // Assuming deviceId is the field name in admin collection
+                            String adminDeviceId = document.getString("deviceID");
+                            if (adminDeviceId != null) {
+                                adminDeviceIds.add(adminDeviceId);
+                            }
                         }
-                        adapter.notifyDataSetChanged();
+
+                        // Now, load user profiles and filter out those belonging to admins
+                        db.collection("users")
+                                .get()
+                                .addOnCompleteListener(userTask -> {
+                                    if (userTask.isSuccessful()) {
+                                        userProfileList.clear();
+                                        for (QueryDocumentSnapshot document : userTask.getResult()) {
+                                            UserProfile userProfile = document.toObject(UserProfile.class);
+
+                                            // Only add users whose deviceId is not in the admin list
+                                            if (!adminDeviceIds.contains(userProfile.getDeviceId())) {
+                                                userProfileList.add(userProfile);
+                                            }
+                                        }
+                                        adapter.notifyDataSetChanged();
+                                    } else {
+                                        Log.w("ManageProfileActivity", "Error getting user profiles.", userTask.getException());
+                                        Toast.makeText(ManageProfileActivity.this, "Failed to load profiles", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                     } else {
-                        Log.w("ManageProfileActivity", "Error getting documents.", task.getException());
-                        Toast.makeText(ManageProfileActivity.this, "Failed to load profiles", Toast.LENGTH_SHORT).show();
+                        Log.w("ManageProfileActivity", "Error getting admin profiles.", adminTask.getException());
+                        Toast.makeText(ManageProfileActivity.this, "Failed to load admin profiles", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -174,55 +197,93 @@ public class ManageProfileActivity extends AppCompatActivity {
             return rowView;
         }
     }
-
     /**
      * Deletes a user profile from Firestore.
      * Also removes the user from any waiting lists in event documents.
      *
-     * @param deviceId the device ID of the user to delete
+     * @param deviceID the device ID of the user to delete
      */
-    void deleteUserProfile(String deviceId) {
-        // Log the deviceId to ensure it's correct
-        Log.d("ManageProfileActivity", "Attempting to delete profile with deviceId: " + deviceId);
-
-        db.collection("users").document(deviceId).delete()
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Profile deleted successfully", Toast.LENGTH_SHORT).show();
-                    removeFromWaitingLists(deviceId);
-                    loadUserProfiles(); // Reload the list after deletion
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("ManageProfileActivity", "Error deleting document: ", e);
-                    Toast.makeText(this, "Failed to delete profile", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    /**
-     * Removes a user from all event waiting lists in Firestore.
-     *
-     * @param deviceId the device ID of the user to remove from waiting lists
-     */
-    void removeFromWaitingLists(String deviceId) {
+    void deleteUserProfile(String deviceID) {
         db.collection("event")
-                .whereArrayContains("waitingList", deviceId)
+                .whereEqualTo("deviceID", deviceID)
                 .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String eventId = document.getId();
-                            db.collection("event").document(eventId)
-                                    .update("waitingList", FieldValue.arrayRemove(deviceId))
-                                    .addOnSuccessListener(aVoid -> {
-                                        Log.d("ManageProfileActivity", "Removed user from waiting list of event: " + eventId);
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Log.e("ManageProfileActivity", "Error removing user from waiting list of event: " + eventId, e);
-                                    });
-                        }
-                    } else {
-                        Log.w("ManageProfileActivity", "Error getting events with the user's waiting list", task.getException());
+                .addOnSuccessListener(querySnapshot -> {
+                    for (DocumentSnapshot document : querySnapshot) {
+                        String eventId = document.getId();
+
+                        db.collection("event").document(eventId).delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Event deleted: " + eventId);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Error deleting event: " + eventId, e);
+                                });
                     }
-                });
+                })
+                .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
+
+
+        db.collection("event")
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    for (DocumentSnapshot document : querySnapshot) {
+                        String eventId = document.getId();
+
+                        db.collection("event").document(eventId)
+                                .update(
+                                        "waitingList", FieldValue.arrayRemove(deviceID),
+                                        "selectedEntrants", FieldValue.arrayRemove(deviceID),
+                                        "finalEntrants", FieldValue.arrayRemove(deviceID)
+                                )
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Removed user from lists in event: " + eventId);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Error updating lists for event: " + eventId, e);
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
+
+
+        db.collection("facility")
+                .whereEqualTo("ownerDeviceID", deviceID)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    for (DocumentSnapshot document : querySnapshot) {
+                        String facilityId = document.getId();
+
+                        db.collection("facility").document(facilityId).delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Facility deleted: " + facilityId);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Error deleting facility: " + facilityId, e);
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("Firebase", "Error querying facilities", e));
+
+
+        db.collection("users")
+                .whereEqualTo("deviceId", deviceID)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    for (DocumentSnapshot document : querySnapshot) {
+                        String facilityId = document.getId();
+
+                        db.collection("users").document(facilityId).delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Profile deleted: " + deviceID);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Error deleting Profile: " + deviceID, e);
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("Firebase", "Error querying Profiles", e));
+
+        loadUserProfiles();
     }
 }
 
