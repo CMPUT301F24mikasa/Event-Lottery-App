@@ -13,10 +13,6 @@ import java.util.ArrayList;
  */
 public class UserProfile implements Serializable {
 
-    /**
-     * Default constructor for WaitingListActivity.
-     * This constructor is required for the Android activity lifecycle.
-     */
     private String name;
     private String profilePicture;
     private String deviceId;
@@ -28,10 +24,8 @@ public class UserProfile implements Serializable {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
-     * No-argument constructor required by Firestore for deserialization.
-     * Initializes the eventsJoined field to an empty ArrayList.
+     * Default constructor required by Firestore for deserialization.
      */
-    // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public UserProfile() {
     }
 
@@ -46,7 +40,6 @@ public class UserProfile implements Serializable {
      * @param gmailAddress The Gmail address associated with the user.
      * @param phoneNumber The phone number of the user.
      */
-    // Constructor with profile picture provided
     public UserProfile(String name, String profilePicture, String deviceId, String gmailAddress, String phoneNumber) {
         this.name = name;
         this.deviceId = deviceId;
@@ -56,7 +49,6 @@ public class UserProfile implements Serializable {
         this.location = null;
     }
 
-    // Getters and Setters
 
     /**
      * Gets the user's location.
