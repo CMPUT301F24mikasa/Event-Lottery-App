@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-//change sp tjat you use a proper getter for device id not name lol
+
 
 /**
  * Activity that displays the waiting list for a specific event.
