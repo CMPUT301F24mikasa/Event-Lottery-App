@@ -11,11 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +23,6 @@ import java.util.List;
  * @version 1.0
  */
 public class FacilityAdapter extends ArrayAdapter<String> {
-
     private final Context context;
     private final List<String> facilityNames;
     private final FirebaseFirestore db;
@@ -36,7 +33,6 @@ public class FacilityAdapter extends ArrayAdapter<String> {
      * @param context       the current context
      * @param facilityNames the list of facility names to be displayed in the adapter
      */
-
     public FacilityAdapter(Context context, List<String> facilityNames) {
         super(context, 0, facilityNames);
         this.context = context;
@@ -54,7 +50,6 @@ public class FacilityAdapter extends ArrayAdapter<String> {
      * @param parent      the parent that this view will eventually be attached to
      * @return the View for the specified position
      */
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
