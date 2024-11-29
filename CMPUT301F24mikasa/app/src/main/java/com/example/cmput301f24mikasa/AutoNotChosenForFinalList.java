@@ -22,7 +22,6 @@ import java.util.List;
  * for a specific event. Notifications are sent using Firestore to inform users
  * whether they have been chosen for the event or not.
  */
-//remember to adjust all the profiles, so that getName becomes an actual name
 public class AutoNotChosenForFinalList extends AppCompatActivity{
 
     /**
@@ -102,6 +101,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
                     });
         }
     }
+
     private void fetchNonRespondedList(String eventID, String eventTitle) {
         // Query the notification collection for notifications with responsive = "1"
         notificationRef.whereEqualTo("eventID", eventID)
