@@ -291,10 +291,29 @@ public class UserProfileActivity extends AppCompatActivity {
         paint.setStyle(Paint.Style.FILL);
         canvas.drawRect(0, 0, width, height, paint);
 
+        // List of possible background colors
+        int[] colors = {
+                Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN,
+                Color.MAGENTA, Color.DKGRAY, Color.LTGRAY, Color.BLACK, Color.WHITE
+        };
+
+        // Randomly select a color from the list
+        int randomColor = colors[(int) (Math.random() * colors.length)];
+
+        Paint paint = new Paint();
+        paint.setColor(randomColor); // Set randomly chosen background color
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(0, 0, width, height, paint);
+
         // Set up text style
         paint.setColor(Color.WHITE); // Text color
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(60);
+
+        // Adjust text color for better contrast if background is light
+        if (randomColor == Color.WHITE || randomColor == Color.LTGRAY || randomColor == Color.YELLOW) {
+            paint.setColor(Color.BLACK); // Dark text for light backgrounds
+        }
 
         // Draw initials
         float x = width / 2f;
