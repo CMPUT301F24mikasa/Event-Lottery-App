@@ -134,8 +134,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void addMarker(LatLng latLng, String deviceId) {
         if (googleMap != null) {
             googleMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .title("Device ID: " + deviceId));
+                    .position(latLng));
         }
     }
 
