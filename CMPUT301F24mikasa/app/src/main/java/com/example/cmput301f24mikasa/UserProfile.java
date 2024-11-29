@@ -57,10 +57,21 @@ public class UserProfile implements Serializable {
     }
 
     // Getters and Setters
+
+    /**
+     * Gets the user's location.
+     *
+     * @return The user's location.
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * Sets the user's location.
+     *
+     * @param location The user's location.
+     */
     public void setLocation(String location) {
         this.location = location;
     }
@@ -70,7 +81,6 @@ public class UserProfile implements Serializable {
      *
      * @return The name of the user.
      */
-
     public String getName() {
         return name;
     }
