@@ -18,17 +18,14 @@ public class ProfilesActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ProfilesActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ProfilesActivity() {
-        // Constructor is provided by default
     }
 
     /**
-     * Called when the activity is first created.
      * Initializes the profile buttons and sets up the bottom navigation buttons.
      * Navigates to UserProfileActivity or FacilityProfileActivity based on the user's selection.
-     * Also sets up listeners for bottom navigation buttons that allow users to navigate
+     * Sets up listeners for bottom navigation buttons that allow users to navigate
      * to the Events, Notifications, or Admin sections of the app.
      *
      * @param savedInstanceState a bundle containing the activity's previous saved state
