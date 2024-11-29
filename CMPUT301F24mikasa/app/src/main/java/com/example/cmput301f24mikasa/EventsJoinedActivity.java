@@ -34,10 +34,8 @@ public class EventsJoinedActivity extends AppCompatActivity {
 
     /**
      * Default constructor for EventsJoinedActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public EventsJoinedActivity() {
-        // Constructor is provided by default
     }
 
 
