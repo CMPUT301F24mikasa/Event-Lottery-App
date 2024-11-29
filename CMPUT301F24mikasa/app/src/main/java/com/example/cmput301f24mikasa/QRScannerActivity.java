@@ -43,16 +43,14 @@ public class QRScannerActivity extends AppCompatActivity {
     private PreviewView previewView;
     private final BarcodeScanner barcodeScanner = BarcodeScanning.getClient();
     private String scannedQRContent; // Variable to hold QR code content
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); // Firebase instance
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private long lastScanTime = 0; // Timestamp for the last scan
-    private boolean hasScanned = false; // Flag to indicate if a scan has been processed
+    private boolean hasScanned = false; // Boolean to indicate if a scan has been processed
 
     /**
      * Default constructor for QRScannerActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public QRScannerActivity() {
-        // Constructor is provided by default
     }
 
 
@@ -90,7 +88,6 @@ public class QRScannerActivity extends AppCompatActivity {
     }
 
     /**
-     * Starts the camera and binds it to the lifecycle of the activity.
      * Initializes the camera preview and image analysis to scan QR codes.
      */
     void startCamera() {
