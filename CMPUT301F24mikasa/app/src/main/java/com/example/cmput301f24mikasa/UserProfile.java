@@ -22,7 +22,6 @@ public class UserProfile implements Serializable {
     private String deviceId;
     private String gmailAddress;
     private String phoneNumber;
-    private ArrayList<String> eventsJoined; 
     private String location; 
 
     // Firestore instance for retrieving profile pictures
@@ -34,7 +33,6 @@ public class UserProfile implements Serializable {
      */
     // Default constructor required for calls to DataSnapshot.getValue(User.class)
     public UserProfile() {
-        this.eventsJoined = new ArrayList<>();
     }
 
 
@@ -56,16 +54,9 @@ public class UserProfile implements Serializable {
         this.phoneNumber = phoneNumber;
         this.profilePicture = profilePicture;
         this.location = null;
-        //this.eventsJoined = new ArrayList<>();
     }
 
     // Getters and Setters
-    /**
-     * Gets the user's name.
-     *
-     * @return The name of the user.
-     */
-
     public String getLocation() {
         return location;
     }
@@ -73,6 +64,12 @@ public class UserProfile implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    /**
+     * Gets the user's name.
+     *
+     * @return The name of the user.
+     */
 
     public String getName() {
         return name;
@@ -157,23 +154,5 @@ public class UserProfile implements Serializable {
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * Gets the list of event IDs that the user has joined.
-     *
-     * @return The list of event IDs.
-     */
-    public ArrayList<String> getEventsJoined() {
-        return eventsJoined;
-    }
-
-    /**
-     * Sets the list of event IDs that the user has joined.
-     *
-     * @param eventsJoined The list of event IDs to set.
-     */
-    public void setEventsJoined(ArrayList<String> eventsJoined) {
-        this.eventsJoined = eventsJoined;
     }
 }
