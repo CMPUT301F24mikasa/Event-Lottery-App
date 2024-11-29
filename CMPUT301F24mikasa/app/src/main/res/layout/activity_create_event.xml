@@ -112,7 +112,7 @@
                 android:id="@+id/editTextPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Price *"
+                android:hint="Price ($) *"
                 android:inputType="numberDecimal"
                 android:background="#D4D4D4"
                 android:padding="12dp"
