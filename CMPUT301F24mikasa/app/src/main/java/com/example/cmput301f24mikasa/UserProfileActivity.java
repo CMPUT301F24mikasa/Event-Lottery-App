@@ -53,8 +53,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference("profile_images");
     private Uri imageUri; // URI of the selected image
 
-    private EditText locationEditText;
-
     /**
      * Default constructor for UserProfileActivity.
      * This constructor is required for the Android activity lifecycle.
@@ -82,8 +80,6 @@ public class UserProfileActivity extends AppCompatActivity {
         Button uploadImageButton = findViewById(R.id.upload_image_button);
 
         Button removeImageButton = findViewById(R.id.remove_image_button);
-
-        locationEditText = findViewById(R.id.location_edit_text);
 
         // Load user data if already exists
         loadUserProfile();
@@ -132,7 +128,6 @@ public class UserProfileActivity extends AppCompatActivity {
                             nameEditText.setText(user.getName() != null ? user.getName() : "");
                             emailEditText.setText(user.getGmailAddress() != null ? user.getGmailAddress() : "");
                             phoneEditText.setText(user.getPhoneNumber() != null ? user.getPhoneNumber() : "");
-                            locationEditText.setText(user.getLocation() != null ? user.getLocation() : "");
                             
                             // Load the profile image if exists
                             if (user.getProfilePicture() != null && !user.getProfilePicture().isEmpty()) {
@@ -175,17 +170,8 @@ public class UserProfileActivity extends AppCompatActivity {
         // Get unique device ID
         String deviceId = getDeviceId(this);
 
-        
-        String location = locationEditText.getText().toString().trim();
-        if (location.isEmpty()) {
-            location = null; 
-        }
-
         // Create a User object with phone being either the entered value or null
         UserProfile user = new UserProfile(name, null, deviceId, email, phone);
-
-        // Set the location, either the validated location or null
-        user.setLocation(location);
 
         // Initialize eventsJoined array (it's already done in the constructor, but ensure it's there)
         user.setEventsJoined(new ArrayList<>());  // Create an empty list for events the user will join
