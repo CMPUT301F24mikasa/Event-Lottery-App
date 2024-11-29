@@ -2,12 +2,17 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Context;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+/**
+ * AdminVerification handles the validation of admin privileges by checking the device ID
+ * against stored records in Firebase Firestore. It updates the visibility of admin icon
+ * based on the admin status, enabling secure access to admin-only features.
+ */
 
 public class AdminVerification {
 
@@ -29,15 +34,11 @@ public class AdminVerification {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document != null && document.exists()) {
-                            // Device ID matches an admin entry
-                            Log.d("AdminVerification", "User is an admin: " + deviceId);
                             buttonAdmin.setVisibility(ImageButton.VISIBLE);
                         } else {
-                            Log.d("AdminVerification", "User is not an admin: " + deviceId);
                             buttonAdmin.setVisibility(ImageButton.GONE);
                         }
                     } else {
-                        Log.e("AdminVerification", "Error checking admin status", task.getException());
                         Toast.makeText(context, "Error checking admin status. Please try again later.", Toast.LENGTH_SHORT).show();
                     }
                 });

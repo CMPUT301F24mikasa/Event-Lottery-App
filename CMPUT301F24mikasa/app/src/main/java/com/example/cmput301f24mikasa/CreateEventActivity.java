@@ -37,6 +37,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/**
+ * CreateEventActivity handles event creation by collecting details like title, date, price, and an image.
+ * Integrates with Firebase Firestore and Storage for saving event data and supports QR code
+ * generation and upload.
+ */
 public class CreateEventActivity extends AppCompatActivity {
 
     ImageView imgEvent;
@@ -345,6 +350,12 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code hash. Please try again.", Toast.LENGTH_SHORT).show());
     }
 
+    /**
+     * Generates a QR code
+     *
+     * @param content The content to be encoded in the QR code.
+     * @return A Bitmap containing the generated QR code, or null if there was an error during generation.
+     */
     public Bitmap generateQRCodeBitmap(String content) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
