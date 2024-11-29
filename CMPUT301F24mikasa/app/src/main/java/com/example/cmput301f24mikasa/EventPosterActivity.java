@@ -1,14 +1,9 @@
 package com.example.cmput301f24mikasa;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,9 +23,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 /**
  * EventPosterActivity is responsible for generating an event poster based
@@ -130,14 +122,11 @@ public class EventPosterActivity extends AppCompatActivity {
                             posterRef.getDownloadUrl().addOnSuccessListener(uri -> {
                                 String downloadUrl = uri.toString();
 
-                                saveImageToGallery(bitmap, eventId);
-
-
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 DocumentReference eventRef = db.collection("event").document(eventId);
                                 eventRef.update("posterURL", downloadUrl)
                                         .addOnSuccessListener(aVoid -> {
-                                            Toast.makeText(EventPosterActivity.this, "Poster saved successfully to Firestore.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(EventPosterActivity.this, "Poster saved successfully!", Toast.LENGTH_SHORT).show();
                                         })
                                         .addOnFailureListener(e -> {
                                             Toast.makeText(EventPosterActivity.this, "Failed to save poster URL to Firestore.", Toast.LENGTH_SHORT).show();
@@ -150,32 +139,6 @@ public class EventPosterActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    // Referenced https://developer.android.com/training/data-storage/shared/media, 2024-11-28
-    // Referenced https://github.com/LHM777/Scoped-Storage-Android-11-java-example-Save-bitmap-in-Android-using-MediaStore by LHM777, 2024-11-28
-    // Referenced https://www.youtube.com/watch?v=tYQ8AO58Aj0&ab_channel=GenericApps by Generic Apps, 2024-11-28
-    private void saveImageToGallery(Bitmap bitmap, String eventID) {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "event_poster_" + eventID + ".png");
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-        values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/EventPosters");
-
-        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        if (uri != null) {
-            try (OutputStream outputStream = getContentResolver().openOutputStream(uri)) {
-                if (outputStream != null) {
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                    Toast.makeText(this, "Event poster has been saved to gallery!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Failed to write image file", Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Failed to save poster: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Failed to create MediaStore entry for poster.", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public Bitmap savePosterActivityView(View view){
