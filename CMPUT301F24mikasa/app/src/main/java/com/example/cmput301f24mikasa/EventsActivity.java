@@ -30,10 +30,8 @@ public class EventsActivity extends AppCompatActivity {
 
     /**
      * Default constructor for EventsActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public EventsActivity() {
-        // Constructor is provided by default
     }
 
     /**

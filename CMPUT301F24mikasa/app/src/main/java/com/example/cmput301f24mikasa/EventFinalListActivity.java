@@ -35,11 +35,8 @@ public class EventFinalListActivity extends AppCompatActivity {
 
     /**
      * Default constructor for EventFinalListActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
-    public EventFinalListActivity() {
-        // Constructor is provided by default
-    }
+    public EventFinalListActivity() {}
 
     /**
      * Initializes the activity, sets up the ListView and back button, retrieves
@@ -81,9 +78,15 @@ public class EventFinalListActivity extends AppCompatActivity {
         });
         notifyButton = findViewById(R.id.custom_notify_final_list);
         notifyButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Handles the click event for the "Notify" button. Starts the CustomToAllActivity,
+             * passing the eventID, eventTitle, and a listType of 3, while clearing the activity stack.
+             *
+             * @param v The clicked view (Notify button).
+             */
             @Override
             public void onClick(View v) {
-                // Clear the input field and show a toast message
                 Intent intent = new Intent(EventFinalListActivity.this, CustomToAllActivity.class);
                 intent.putExtra("eventID", eventID);
                 intent.putExtra("eventTitle", eventTitle);

@@ -42,10 +42,9 @@ public class EventPosterActivity extends AppCompatActivity {
 
     /**
      * Default constructor for EventPosterActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public EventPosterActivity() {
-        // Constructor is provided by default
+
     }
 
 
@@ -178,6 +177,12 @@ public class EventPosterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Captures the current state of the provided view as a bitmap.
+     *
+     * @param view The view to capture as an image.
+     * @return A bitmap representing the captured view.
+     */
     public Bitmap savePosterActivityView(View view){
         view.setDrawingCacheEnabled(true);
         Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
