@@ -75,6 +75,10 @@ public class QRScannerActivity extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
                 startCamera();
+
+                // Disable the button and grey it out
+                startScanningButton.setEnabled(false);
+                startScanningButton.setAlpha(0.5f); // Make it look greyed out
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA}, 1001);
@@ -147,7 +151,7 @@ public class QRScannerActivity extends AppCompatActivity {
             if (qrText != null && !hasScanned) {
                 scannedQRContent = qrText; // Store the scanned QR code content in a variable
                 hasScanned = true;
-                Toast.makeText(this, "QR Code Scanned! ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "QR Code Scanned!", Toast.LENGTH_SHORT).show();
                 fetchEventDetailsAndNavigate();
                 break; // Stop processing after finding a QR code
             }
