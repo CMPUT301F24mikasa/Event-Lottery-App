@@ -29,8 +29,12 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/**
+ * EditEventActivity allows for editing an existing event.
+ * It allows updating event details (title, date, price, description, waiting list, geo-location)
+ * and uploading a new image. Data is fetched from and updated to Firebase Firestore and Storage.
+ */
 public class EditEventActivity extends AppCompatActivity {
-
     private ImageView imgEvent;
     private Button btnUpload, btnUpdateEvent;
     private EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;

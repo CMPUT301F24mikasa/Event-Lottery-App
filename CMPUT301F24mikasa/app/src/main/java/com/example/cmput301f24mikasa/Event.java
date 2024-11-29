@@ -21,15 +21,13 @@ public class Event {
     private String startDate;
     private int capacity;
     private String price;
-    private DocumentReference posterRef; // Keep as String to match Firestore format
+    private DocumentReference posterRef;
     private String deviceID;
     private String imageURL;
 
     /**
      * Empty constructor required for Firestore serialization.
      */
-
-    // Empty constructor required for Firestore serialization
     public Event() {}
 
     /**
@@ -44,8 +42,6 @@ public class Event {
      * @param posterRef    Reference to the event's poster document in Firestore.
      * @param deviceID     Device ID of the event creator.
      */
-
-    // Constructor
     public Event(String eventID, String title, String description, String startDate, int capacity, String price, DocumentReference posterRef, String deviceID, String imageURL) {
         this.eventID = eventID;
         this.title = title;
@@ -63,8 +59,6 @@ public class Event {
      *
      * @return the unique event ID.
      */
-
-    // Getters and setters
     public String getEventID() {
         return eventID;
     }
