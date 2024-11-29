@@ -27,18 +27,36 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.Ev
     private Context context;
     private List<Event> eventList;
 
-
+    /**
+     * Constructs a new AdminEventAdapter
+     *
+     * @param context   the context in which the adapter is used
+     * @param eventList the list of events to display
+     */
     public AdminEventAdapter(Context context, List<Event> eventList) {
         this.context = context;
         this.eventList = eventList;
     }
 
+    /**
+     * Creates a new ViewHolder for displaying event items.
+     *
+     * @param parent   the parent ViewGroup
+     * @param viewType the type of the view
+     * @return a new EventViewHolder instance
+     */
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_admin_event_list_item, parent, false);
         return new EventViewHolder(view);
     }
 
+    /**
+     * Binds data to the ViewHolder for a specific position in the list.
+     *
+     * @param holder   the ViewHolder to bind data to
+     * @param position the position of the item in the list
+     */
     @Override
     public void onBindViewHolder(EventViewHolder holder, int position) {
         Event event = eventList.get(position);
@@ -74,16 +92,29 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.Ev
         });
     }
 
+    /**
+     * Returns the total number of items in the list.
+     *
+     * @return the size of the event list
+     */
     @Override
     public int getItemCount() {
         return eventList.size();
     }
 
+    /**
+     * ViewHolder class for representing an individual event item.
+     */
     public class EventViewHolder extends RecyclerView.ViewHolder {
         TextView eventNameTextView;
         ImageView eventImageView;
         Button viewButton, deleteButton;
 
+        /**
+         * Constructs a new EventViewHolder
+         *
+         * @param itemView the view of the event item
+         */
         public EventViewHolder(View itemView) {
             super(itemView);
             eventNameTextView = itemView.findViewById(R.id.event_name);

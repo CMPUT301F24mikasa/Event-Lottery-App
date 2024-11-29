@@ -18,8 +18,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * AdminEventDetailsActivity displays event details for administrators and provides options
+ * to manage the event, such as removing the poster or QR code. It queries from Firebase
+ * for data retrieval and handles updates accordingly.
+ */
 public class AdminEventDetailsActivity extends AppCompatActivity {
-
     private ImageView eventImagePoster;
     private TextView eventTitle;
     private TextView eventDate;
@@ -28,7 +32,6 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
     private Button removeImageButton;
     private Button backButton;
     private Button removeQRButton;
-
     private FirebaseFirestore db;
     private String imageUrl;
     private String qrCode;

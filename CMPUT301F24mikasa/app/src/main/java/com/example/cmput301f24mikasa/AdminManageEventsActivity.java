@@ -16,7 +16,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * AdminManageEventsActivity displays a list of all events and allows administrators to manage them.
+ * Administrators can view event details, delete events, and navigate back to the admin dashboard.
+ * This activity fetches event data from Firebase Firestore and updates the UI dynamically.
+ */
 public class AdminManageEventsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdminEventAdapter adapter;
