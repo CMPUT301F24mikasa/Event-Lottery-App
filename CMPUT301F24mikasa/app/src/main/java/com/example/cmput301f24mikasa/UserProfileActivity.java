@@ -25,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.cmput301f24mikasa.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -53,6 +55,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference("profile_images");
     private Uri imageUri; // URI of the selected image
 
+    private boolean userExists = false; // Flag to track if the user exists in Firestore
+    
     /**
      * Default constructor for UserProfileActivity.
      * This constructor is required for the Android activity lifecycle.
@@ -103,14 +107,56 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        // Check if the user exists in Firestore
+        checkUserExists();
+
+        // Back button click listener
         Button backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate back to home screen or previous activity
-                finish(); // Closes the current activity and returns to the previous one
+        backButton.setOnClickListener(v -> {
+            if (userExists) {
+                finish(); // Allow exiting only if the user exists
+            } else {
+                showUserNotExistAlert();
             }
         });
+    }
+
+    /**
+     * Checks if the user exists in the Firestore database and updates the userExists flag.
+     */
+    private void checkUserExists() {
+        String deviceId = getDeviceId(this);
+        db.collection("users").document(deviceId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    userExists = documentSnapshot.exists();
+                    if (!userExists) {
+                        Toast.makeText(this, "Please complete your profile before exiting.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("UserProfileActivity", "Failed to check user existence", e);
+                    Toast.makeText(this, "Error checking profile status.", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    /**
+     * Shows an alert dialog to notify the user they must complete their profile before exiting.
+     */
+    private void showUserNotExistAlert() {
+        new AlertDialog.Builder(this)
+                .setTitle("Profile Incomplete")
+                .setMessage("You must complete your profile before exiting this screen.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (userExists) {
+            super.onBackPressed(); // Allow default back button behavior if user exists
+        } else {
+            showUserNotExistAlert();
+        }
     }
 
     /**
