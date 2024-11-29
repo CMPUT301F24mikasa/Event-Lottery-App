@@ -36,10 +36,8 @@ public class ListSamplingActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ListSamplingActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ListSamplingActivity() {
-        // Constructor is provided by default
     }
 
     /**

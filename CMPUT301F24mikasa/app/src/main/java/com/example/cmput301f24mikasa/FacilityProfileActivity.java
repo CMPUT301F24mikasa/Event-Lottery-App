@@ -44,62 +44,20 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
     /**
      * Default constructor for FacilityProfileActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public FacilityProfileActivity() {
-        // Constructor is provided by default
     }
 
 
-    /**
-     * ImageView for displaying the facility profile picture.
-     */
     ImageView imgProfilePicture;
-
-    /**
-     * Flag to track whether a picture has been uploaded.
-     */
     Boolean pictureUploaded;
-
-    /**
-     * Button for uploading a facility profile picture.
-     */
     Button btnUploadPicture, btnUpdate;
-
-    /**
-     * EditText fields for entering facility name, location, and description.
-     */
     EditText editFacilityName, editFacilityLocation, editFacilityDesc;
-
-    /**
-     * URI of the selected image for the facility profile.
-     */
     Uri imageUri;
-
-    /**
-     * Firebase Firestore instance for database access.
-     */
     FirebaseFirestore db;
-
-    /**
-     * Launcher for handling activity result for image selection.
-     */
     ActivityResultLauncher<Intent> resultLauncher;
-
-    /**
-     * Firebase Storage reference for storing facility images.
-     */
     StorageReference storageReference;
-
-    /**
-     * Unique device ID used to associate a facility with a specific device.
-     */
     String deviceID;
-
-
-    /**
-     * Flag for Remove Picture button
-     */
     private boolean isRemovingImage = false;
 
 
