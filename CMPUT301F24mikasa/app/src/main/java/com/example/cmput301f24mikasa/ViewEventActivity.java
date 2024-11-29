@@ -38,7 +38,6 @@ public class ViewEventActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ViewEventActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ViewEventActivity() {
         // Constructor is provided by default

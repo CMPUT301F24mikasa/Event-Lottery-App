@@ -20,7 +20,6 @@ public class ViewEventsJoined extends AppCompatActivity {
 
     /**
      * Default constructor for ViewEventsJoined.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ViewEventsJoined() {
         // Constructor is provided by default
