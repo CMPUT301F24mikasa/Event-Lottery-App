@@ -219,9 +219,6 @@ public class UserProfileActivity extends AppCompatActivity {
         // Create a User object with phone being either the entered value or null
         UserProfile user = new UserProfile(name, null, deviceId, email, phone);
 
-        // Initialize eventsJoined array (it's already done in the constructor, but ensure it's there)
-        user.setEventsJoined(new ArrayList<>());  // Create an empty list for events the user will join
-
         // Check if an image is uploaded
         if (imageUri != null) {
             uploadImageAndSaveProfile(user);
@@ -285,11 +282,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-
-        Paint paint = new Paint();
-        paint.setColor(Color.BLUE); // Background color
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(0, 0, width, height, paint);
 
         // List of possible background colors
         int[] colors = {
