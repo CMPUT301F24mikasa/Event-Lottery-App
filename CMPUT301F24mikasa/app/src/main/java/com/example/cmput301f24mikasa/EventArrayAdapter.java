@@ -32,7 +32,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
      * This interface must be implemented by the activity or fragment that uses
      * this adapter to handle button click events.
      */
-    // Define the interface for button clicks
     public interface OnEventClickListener {
         /**
          * Called when the "View" button is clicked for a specific event.
@@ -63,12 +62,11 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
      * @param eventList The list of Event objects to be displayed.
      * @param listener The listener for handling button click events.
      */
-    // Update constructor to accept listener
     public EventArrayAdapter(Context context, List<Event> eventList, OnEventClickListener listener) {
         super(context, R.layout.activity_event_list_item, eventList);
         this.context = context;
         this.eventList = eventList;
-        this.listener = listener; // Store listener reference
+        this.listener = listener;
     }
 
     /**
