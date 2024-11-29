@@ -37,10 +37,8 @@ public class ProfileDetailActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ProfileDetailActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ProfileDetailActivity() {
-        // Constructor is provided by default
     }
 
     /**
