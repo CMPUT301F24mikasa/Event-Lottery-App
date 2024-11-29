@@ -20,7 +20,7 @@ public class UserProfileArrayAdapter extends ArrayAdapter<UserProfile> {
     /**
      * Constructor for UserProfileArrayAdapter.
      *
-     * @param context The context where the adapter is used (e.g., Activity).
+     * @param context The activity context to update UI elements.
      * @param userList The list of UserProfile objects to display.
      */
     public UserProfileArrayAdapter(Context context, List<UserProfile> userList) {
@@ -36,7 +36,7 @@ public class UserProfileArrayAdapter extends ArrayAdapter<UserProfile> {
      * the UserProfile object to the views.
      *
      * @param position The position of the current item in the list.
-     * @param convertView A recycled view (if available) to be reused.
+     * @param convertView The old view to reuse, if possible.
      * @param parent The parent view group that the list item will be attached to.
      * @return The view to be displayed in the ListView for the current position.
      */
