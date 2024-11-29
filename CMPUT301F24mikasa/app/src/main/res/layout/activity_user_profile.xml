@@ -98,22 +98,6 @@
         android:textColorHint="@android:color/black"
         android:textColor="@android:color/black" />
 
-    <!-- Location Input -->
-    <EditText
-        android:id="@+id/location_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phone_edit_text"
-        android:background="@android:color/darker_gray"
-        android:hint="@string/location"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:layout_margin="16dp"
-        android:padding="10dp"
-        android:autofillHints="postalAddress"
-        android:textColorHint="@android:color/black"
-        android:textColor="@android:color/black" />
-
     <!-- Save Profile Button -->
     <Button
         android:id="@+id/save_profile_button"
