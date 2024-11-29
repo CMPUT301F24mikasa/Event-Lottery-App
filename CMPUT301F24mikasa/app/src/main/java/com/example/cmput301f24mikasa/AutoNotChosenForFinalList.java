@@ -33,30 +33,11 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         // Constructor is provided by default
     }
 
-    /**
-     * List of selected entrants for the event.
-     */
     ArrayList<UserProfile> nonRespondedEntrants;
-
-    /**
-     * List of non-selected entrants for the event (waiting list).
-     */
     ArrayList<UserProfile> dataList;
-
     private int totalNotifications=0;
-    /**
-     * Firestore database instance.
-     */
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    /**
-     * Firestore reference to the "notification" collection.
-     */
     private CollectionReference notificationRef = db.collection("notification");
-
-    /**
-     * Firestore reference to the "event" collection.
-     */
     private CollectionReference eventsRef = db.collection("event");
 
     /**
