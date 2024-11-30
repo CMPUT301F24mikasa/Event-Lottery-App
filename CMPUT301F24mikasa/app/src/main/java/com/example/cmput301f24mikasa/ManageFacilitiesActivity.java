@@ -27,11 +27,9 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
     private FacilityAdapter adapter;
 
     /**
-     * Default constructor for ManageFacilitiesActivity.
-     * This constructor is required for the Android activity lifecycle.
+     * Default constructor for ManageFacilitiesActivity..
      */
     public ManageFacilitiesActivity() {
-        // Constructor is provided by default
     }
 
 
