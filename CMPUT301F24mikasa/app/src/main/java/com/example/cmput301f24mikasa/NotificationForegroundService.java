@@ -58,10 +58,11 @@ public class NotificationForegroundService extends Service {
                 this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
         );
 
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Event Notifications")
                 .setContentText("Fetching event notifications...")
-                .setSmallIcon(R.drawable.notification_icon) // Replace with your app's icon
+                .setSmallIcon(R.drawable.notification_icon)
                 .setContentIntent(pendingIntent);
 
         startForeground(1, builder.build());

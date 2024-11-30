@@ -35,8 +35,8 @@ public class NotificationSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_settings);
-
         switchNotifications = findViewById(R.id.switch_notifications);
+
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
@@ -51,13 +51,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             editor.apply();
         });
 
-        Button backButton = findViewById(R.id.back_button);
         // Set listener for the back button
+        Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(NotificationSettingsActivity.this, ManageNotificationsActivity.class);
             startActivity(intent); finish();
         });
-
-
     }
 }

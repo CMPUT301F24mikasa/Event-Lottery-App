@@ -121,11 +121,9 @@ public class ListSamplingActivity extends AppCompatActivity {
                                         Toast.makeText(ListSamplingActivity.this, "Failed to update event", Toast.LENGTH_SHORT).show();
                                     });
 
-                            //finish();
                             Intent intent = new Intent(ListSamplingActivity.this, OrganizerSendsNotification.class);
                             intent.putExtra("eventID", eventID);
                             intent.putExtra("eventTitle", eventTitle);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
 
 
@@ -138,7 +136,6 @@ public class ListSamplingActivity extends AppCompatActivity {
                                     startActivity(intent2);
                                 }
                             }, 200); // 200 milliseconds delay
-                            //finish(); // Finish the current activity (EventResultList)
                         }
                     } catch (NumberFormatException e) {
                         Toast.makeText(ListSamplingActivity.this, "Invalid number", Toast.LENGTH_SHORT).show();
@@ -181,10 +178,6 @@ public class ListSamplingActivity extends AppCompatActivity {
                                 // Create a UserProfile with deviceID as the name
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(deviceID); // Set deviceID as a placeholder for name
-                                //later on, instead of displaying deviceID will want to display later
-                                //name associated with deviceID
-                                //could do it this way however we will address this later
-                                //dataList.add(userProfile);
                                 dataList.add(userProfile.getName());
                             }
                         } else {
@@ -200,10 +193,3 @@ public class ListSamplingActivity extends AppCompatActivity {
                 });
     }
 }
-
-//NOTTTTTTTTTEEEEEEEEEEE TO ADJUST WHEN YOU GRAB A USER OBJECT SO THAT YOU ALSO GET A
-//USER NAME, MAKE SURE IT IS CONSISTENT AND WORDS ACROOS WAITINGLISTACITVITY
-//LISTINGSAMPLINGACTIVITY
-//AND EVENTRESULTLIST
-//change sp tjat you use a proper getter for device id not name lol
-//also notify the user that have not been chosen, and also the chosen too, and the cancelled user notifies themselves in a way

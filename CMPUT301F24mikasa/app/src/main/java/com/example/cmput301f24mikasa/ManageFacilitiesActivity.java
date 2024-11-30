@@ -91,12 +91,14 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
 
             facilitiesList.clear();
             assert value != null;
+
+            // Add each facility item from the facilitu location into the facilites list
             for (QueryDocumentSnapshot doc : value) {
                 String name = doc.getString("facilityName");
-                String description = doc.getString("facilityDesc");
-                String location = doc.getString("facilityLocation");
+                doc.getString("facilityDesc");
+                doc.getString("facilityLocation");
 
-                // Simple display with name, description, and location
+
                 String displayText = name;
                 facilitiesList.add(displayText);
             }

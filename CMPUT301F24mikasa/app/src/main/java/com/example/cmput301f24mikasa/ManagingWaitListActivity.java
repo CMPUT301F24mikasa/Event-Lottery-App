@@ -28,7 +28,6 @@ public class ManagingWaitListActivity extends AppCompatActivity {
     private List<String> waitingList = new ArrayList<>();
     private ArrayAdapter<String> adapter;
     private ListView waitingListView;
-    private String selectedUserToDelete = null;
 
     /**
      * Default constructor for ManagingWaitListActivity.
@@ -71,7 +70,6 @@ public class ManagingWaitListActivity extends AppCompatActivity {
         // Handle item clicks (to delete or cancel)
         waitingListView.setOnItemClickListener((parent, view, position, id) -> {
             String selectedUser = waitingList.get(position);
-            selectedUserToDelete = selectedUser;
 
             // Confirm deletion or cancel it
             new android.app.AlertDialog.Builder(ManagingWaitListActivity.this)
