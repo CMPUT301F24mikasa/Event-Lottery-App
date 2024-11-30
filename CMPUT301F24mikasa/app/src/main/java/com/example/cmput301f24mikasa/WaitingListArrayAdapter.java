@@ -58,16 +58,16 @@ public class WaitingListArrayAdapter extends android.widget.ArrayAdapter<UserPro
         // Get the current user profile
         UserProfile userProfile = userProfiles.get(position);
 
-        // Bind the views
+        // Find the view in the layout
         TextView userNameTextView = convertView.findViewById(R.id.user_name_text_view);
         TextView locationTextView = convertView.findViewById(R.id.location_text_view);
         Button deleteButton = convertView.findViewById(R.id.delete_button);
 
-        // Set data to views
+        // Set the user name and location
         userNameTextView.setText(userProfile.getName());
         locationTextView.setText(userProfile.getLocation());
 
-        // Handle delete button click
+        // Handle click listener for the delete button
         deleteButton.setOnClickListener(v -> {
             String deviceID = userProfile.getDeviceId();
             removeUserFromWaitingList(deviceID, position);
@@ -87,8 +87,8 @@ public class WaitingListArrayAdapter extends android.widget.ArrayAdapter<UserPro
         db.collection("event").document(eventID)
                 .update(
                         "waitingList", FieldValue.arrayRemove(deviceID), // Remove from waitingList
-                        "cancelledEntrants", FieldValue.arrayUnion(deviceID), // Add to cancelledEntrants
-                        "LocationList." + deviceID, FieldValue.delete() // Remove from LocationList
+                        "cancelledEntrants", FieldValue.arrayUnion(deviceID), // Add to cancelled entrants list
+                        "LocationList." + deviceID, FieldValue.delete() // Remove the user's location data
                 )
                 .addOnSuccessListener(aVoid -> {
                     // Remove user from the local list and update the UI

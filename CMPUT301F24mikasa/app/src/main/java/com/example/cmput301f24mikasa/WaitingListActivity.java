@@ -1,7 +1,6 @@
 package com.example.cmput301f24mikasa;
 
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.ListView;
 import android.content.Intent;
@@ -55,12 +54,13 @@ public class WaitingListActivity extends AppCompatActivity {
         // Initialize the back button
         Button backButton = findViewById(R.id.back_button_for_waiting);
 
-        // Initialize the list and adapter for waiting list users
+        // Initialize the list and adapter for users in waiting list
         dataList = new ArrayList<>();
         userList = findViewById(R.id.waiting_list_view);
         userAdapter = new WaitingListArrayAdapter(this, dataList, eventID); // Pass eventID to the adapter
         userList.setAdapter(userAdapter);
 
+        // Set up the "View Map" button to navigate to MapActivity
         Button viewMapButton = findViewById(R.id.view_map_button);
         viewMapButton.setOnClickListener(v -> {
             Intent mapIntent = new Intent(WaitingListActivity.this, MapActivity.class);
@@ -68,13 +68,13 @@ public class WaitingListActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
-        // Initialize buttons
         Button sampleButton = findViewById(R.id.sample_button);
         Button viewResults = findViewById(R.id.view_results);
 
         // Fetch the waiting list from Firestore for the given event ID
         fetchWaitingList(eventID, sampleButton, viewResults);
 
+        // Set up the "Sample" button to navigate to ListSamplingActivity
         sampleButton.setOnClickListener(v -> {
             Toast.makeText(WaitingListActivity.this, "Sampling!", Toast.LENGTH_SHORT).show();
             Intent samplingIntent = new Intent(WaitingListActivity.this, ListSamplingActivity.class);
@@ -125,6 +125,7 @@ public class WaitingListActivity extends AppCompatActivity {
                         String geoLocationRequired = documentSnapshot.getString("geo-location required");
                         Map<String, String> locationList = (Map<String, String>) documentSnapshot.get("LocationList");
 
+                        // Adjust button visibility based on if users are already sampled
                         if (alreadySampled != null) {
                             setting_buttons = Integer.parseInt(alreadySampled);
                             if (setting_buttons == 0) {
@@ -143,6 +144,7 @@ public class WaitingListActivity extends AppCompatActivity {
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setDeviceId(deviceID);
 
+                                // Set location details if geolocation is required
                                 if ("yes".equalsIgnoreCase(geoLocationRequired) && locationList != null) {
                                     String location = locationList.get(deviceID);
                                     userProfile.setLocation(location != null ? location : "Unknown Location");
@@ -150,6 +152,7 @@ public class WaitingListActivity extends AppCompatActivity {
                                     userProfile.setLocation("N/A");
                                 }
 
+                                // Fetch user details from Firestore
                                 usersRef.document(deviceID).get()
                                         .addOnSuccessListener(userSnapshot -> {
                                             if (userSnapshot.exists()) {
