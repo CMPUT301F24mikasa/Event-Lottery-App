@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp"
-    android:background="#D3D3D3"> <!-- Light gray background -->
+    android:padding="10dp">
 
     <!-- Event Title -->
     <TextView
@@ -24,23 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:backgroundTint="@null"
         android:background="#0D47A1"
         android:padding="5dp"
         android:text="@string/view"
         android:textColor="#FFFFFF"
-        app:cornerRadius="60dp" /> <!-- Add margin here -->
+        app:backgroundTint="@null" />
 
+    <!-- Delete Button -->
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:backgroundTint="@null"
         android:background="#0D47A1"
         android:padding="5dp"
         android:text="@string/delete"
-        android:textColor="#FFFFFF" /> <!-- Add margin here -->
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@null" />
 
     <!-- Edit Button -->
     <Button

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventFinalListActivity"> <!-- Adjust this context to your activity name -->
+    tools:context=".EventFinalListActivity">
 
     <!-- Header Text -->
     <TextView
@@ -14,7 +14,7 @@
         android:background="#0D47A1"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Final List for Event"
+        android:text="@string/final_list_for_event"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -31,15 +31,14 @@
         android:dividerHeight="1dp"
         app:layout_constraintBottom_toTopOf="@id/back_button_for_final_list"
         app:layout_constraintTop_toBottomOf="@id/headerTextView" />
-    <!-- Back Button -->
 
+    <!-- Back Button -->
     <Button
         android:id="@+id/back_button_for_final_list"
-        android:layout_width="81dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#0D47A1"
         android:text="@string/back"
-        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
@@ -49,11 +48,10 @@
 
     <Button
         android:id="@+id/custom_notify_final_list"
-        android:layout_width="128dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#0D47A1"
-        android:text="Notify"
-        app:cornerRadius="0dp"
+        android:text="@string/notify"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.83"

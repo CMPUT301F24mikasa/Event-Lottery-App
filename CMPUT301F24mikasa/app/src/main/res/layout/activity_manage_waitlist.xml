@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventFinalListActivity"> <!-- Adjust this context to your activity name -->
+    tools:context=".EventFinalListActivity">
 
     <!-- Header Text -->
     <TextView
@@ -31,15 +31,15 @@
         android:dividerHeight="1dp"
         app:layout_constraintBottom_toTopOf="@id/back_button_for_final_list"
         app:layout_constraintTop_toBottomOf="@id/headerTextView" />
+
     <!-- Back Button -->
     <Button
         android:id="@+id/back_button_for_final_list"
-        android:layout_width="81dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:backgroundTint="#0D47A1"
         android:text="@string/back"
-        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
@@ -50,9 +50,8 @@
     <!-- View Map Button -->
     <Button
         android:id="@+id/view_map_button"
-        android:layout_width="81dp"
-        android:layout_height="69dp"
-        app:cornerRadius="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:backgroundTint="#0D47A1"
         android:text="@string/view_map"
