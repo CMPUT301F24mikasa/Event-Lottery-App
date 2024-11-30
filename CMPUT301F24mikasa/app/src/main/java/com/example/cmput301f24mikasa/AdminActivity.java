@@ -32,10 +32,8 @@ public class AdminActivity extends AppCompatActivity {
 
     /**
      * Default constructor for AdminActivity.
-     * Required for Android activity lifecycle and initialization.
      */
     public AdminActivity() {
-        // Constructor is provided by default
     }
 
     /**
