@@ -49,14 +49,15 @@ public class NotificationArrayAdapter extends ArrayAdapter<Notifications> {
             rowView = inflater.inflate(R.layout.activity_notification_item, parent, false);
         }
 
-        // Bind the notification text
+        // Display the notification text in the TextView
         TextView notificationTextView = rowView.findViewById(R.id.notification_text);
         Notifications notification = notificationList.get(position);
         notificationTextView.setText(notification.getNotificationText());
 
-        // Bind the delete button
+        // Handle delete button click
         Button deleteButton = rowView.findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(v -> {
+
             // Remove from Firestore
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("notification").document(notification.getNotificationID())

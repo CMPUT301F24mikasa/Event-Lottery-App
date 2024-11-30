@@ -138,7 +138,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
      * Loads notifications for the current device from Firebase Firestore.
      * Notifications are retrieved based on the device's unique ID and displayed in the ListView.
      */
-    // Nikita's code:
     private void loadNotifications() {
         @SuppressLint("HardwareIds") String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -163,7 +162,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("FirestoreError", "Error fetching notifications: ", e);
                     Toast.makeText(this, "Failed to load notifications.", Toast.LENGTH_SHORT).show();
                 });
     }
@@ -172,7 +170,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
      * Sets up a click listener for the notification ListView items.
      * When a notification is clicked, the user is prompted to accept or decline it if the notification is marked as responsive.
      */
-    //NEED IMPLEMENT REMOVING NOTIFICATION, OH AND ORDER OF NOTIFICATIONS
     private void setupNotificationClickListener() {
         notificationListView.setOnItemClickListener((parent, view, position, id) -> {
             Notifications selectedNotification = notificationList.get(position);
@@ -270,7 +267,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Response updated successfully", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("ManageNotificationsActivity", "Error updating response", e);
                     Toast.makeText(this, "Failed to update response", Toast.LENGTH_SHORT).show();
                 });
     }

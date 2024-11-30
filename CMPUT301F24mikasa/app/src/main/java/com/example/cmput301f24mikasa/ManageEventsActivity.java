@@ -179,7 +179,6 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
                     Toast.makeText(ManageEventsActivity.this, "Event deleted successfully!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("OrganizerManageEvents", "Error deleting event", e);
                     Toast.makeText(ManageEventsActivity.this, "Failed to delete event.", Toast.LENGTH_SHORT).show();
                 });
         Toast.makeText(ManageEventsActivity.this, "Event deleted successfully!", Toast.LENGTH_SHORT).show();
