@@ -26,15 +26,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AlertDialog;
-
-import com.example.cmput301f24mikasa.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -47,22 +43,18 @@ import java.util.Random;
 public class UserProfileActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1; // Request code for image picker
-
     private EditText nameEditText, emailEditText, phoneEditText;
     private ImageView profileImageView;
+    private Uri imageUri; // URI of the selected image
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference("profile_images");
-    private Uri imageUri; // URI of the selected image
-
-    private boolean userExists = false; // Flag to track if the user exists in Firestore
+    private boolean userExists = false; // Tracks if the user's profile exists in Firestore
     
     /**
      * Default constructor for UserProfileActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public UserProfileActivity() {
-        // Constructor is provided by default
     }
 
     /**
@@ -76,13 +68,13 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        // Initialize UI components
         nameEditText = findViewById(R.id.name_edit_text);
         emailEditText = findViewById(R.id.email_edit_text);
         phoneEditText = findViewById(R.id.phone_edit_text);
         profileImageView = findViewById(R.id.profile_image_view);
         Button saveProfileButton = findViewById(R.id.save_profile_button);
         Button uploadImageButton = findViewById(R.id.upload_image_button);
-
         Button removeImageButton = findViewById(R.id.remove_image_button);
 
         // Load user data if already exists
@@ -150,6 +142,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * This method overrides the default back button behavior. If the user's profile exists in Firestore,
+     * the activity get executed. An alert prompts the user to complete their profile.
+     */
     @Override
     public void onBackPressed() {
         if (userExists) {
@@ -232,7 +228,7 @@ public class UserProfileActivity extends AppCompatActivity {
         finish();
     }
 
-    // Generates a default image from user's name and uploads it
+    // Generates a default profile image with initials and uploads it
     private void generateAndUploadDefaultImage(String name, UserProfile user) {
         // Extract initials (up to 3 letters)
         String initials = getInitials(name);
@@ -402,7 +398,6 @@ public class UserProfileActivity extends AppCompatActivity {
     /**
      * Removes the user's current profile image and updates the Firestore profile.
      */
-    // Remove Profile Image Feature
    private void removeProfileImage() {
         String deviceId = getDeviceId(this);
 
