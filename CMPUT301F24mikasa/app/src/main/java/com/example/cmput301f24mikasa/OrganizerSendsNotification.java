@@ -17,49 +17,27 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Activity that handles sending notifications to selected and non-selected entrants
- * for a specific event. Notifications are sent using Firestore to inform users
- * whether they have been chosen for the event or not.
+ * Activity that handles sending notifications to selected
+ * and non-selected entrants for a specific event.
+ * Notifications are sent using Firestore to inform users whether they have
+ * been chosen for the event or not.
  */
-//remember to adjust all the profiles, so that getName becomes an actual name
 public class OrganizerSendsNotification extends AppCompatActivity{
 
     /**
      * Default constructor for OrganizerSendsNotification.
-     * This constructor is required for the Android activity lifecycle.
      */
     public OrganizerSendsNotification() {
-        // Constructor is provided by default
     }
 
-    /**
-     * List of selected entrants for the event.
-     */
     ArrayList<UserProfile> selectedEntrants;
-
-    /**
-     * List of non-selected entrants for the event (waiting list).
-     */
     ArrayList<UserProfile> dataList;
-
-
-    /**
-     * Firestore database instance.
-     */
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    /**
-     * Firestore reference to the "notification" collection.
-     */
     private CollectionReference notificationRef = db.collection("notification");
-
-    /**
-     * Firestore reference to the "event" collection.
-     */
     private CollectionReference eventsRef = db.collection("event");
 
     /**
-     * Called when the activity is created. It retrieves event details such as
+     * This method retrieves event details such as
      * the event ID and title, then fetches both the selected entrants and
      * the waiting list for the event.
      *
@@ -177,8 +155,6 @@ public class OrganizerSendsNotification extends AppCompatActivity{
                                 // Create a UserProfile with deviceID as the name
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(deviceID); // Set deviceID as a placeholder for name
-                                //later on, instead of displaying deviceID will want to display later
-                                //name associated with deviceID
                                 selectedEntrants.add(userProfile);
                             }
                             sendNotificationSelectedList(eventID, eventTitle);
