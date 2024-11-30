@@ -65,6 +65,7 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Set click listener to open AdminManageEventsActivity
         manageEventsButton.setOnClickListener(view -> {
             Intent intent = new Intent(AdminActivity.this, AdminManageEventsActivity.class);
             startActivity(intent);
