@@ -49,7 +49,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
         EdgeToEdge.enable(this);
 
         Intent intent = getIntent();
-        String eventID=intent.getStringExtra("eventID");
+        String eventID = intent.getStringExtra("eventID");
         String eventTitle = intent.getStringExtra("eventTitle");
         selectedEntrants = new ArrayList<>();
         dataList = new ArrayList<>();
@@ -61,7 +61,6 @@ public class OrganizerSendsNotification extends AppCompatActivity{
         intent2.putExtra("eventTitle", eventTitle);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
-        //finish();
     }
 
     /**
@@ -75,12 +74,13 @@ public class OrganizerSendsNotification extends AppCompatActivity{
         String eventText = "Congratulations! You were selected for the " + eventTitle;
         for (UserProfile userProfile : selectedEntrants) {
 
-            String deviceID = userProfile.getName();  // Assuming deviceID is stored in the name field of UserProfile
+            String deviceID = userProfile.getName();
 
             // Create a new document reference in the notification collection
             DocumentReference documentReference = notificationRef.document();
 
             String notificationID = documentReference.getId();
+
             // Prepare data for Firestore
             HashMap<String, Object> notificationData = new HashMap<>();
             notificationData.put("deviceID", deviceID);
@@ -90,7 +90,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             notificationData.put("notificationID", notificationID);
             notificationData.put("appeared", "no");
 
-            // Add data to Firestore and show success/failure toasts
+            // Add data to Firestore and show success/failure message
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(OrganizerSendsNotification.this, "Notification sent successfully to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
@@ -115,6 +115,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             // Create a new document reference in the notification collection
             DocumentReference documentReference = notificationRef.document();
             String notificationID = documentReference.getId();
+
             // Prepare data for Firestore
             HashMap<String, Object> notificationData = new HashMap<>();
             notificationData.put("deviceID", deviceID);
@@ -123,7 +124,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             notificationData.put("notificationID", notificationID);
             notificationData.put("appeared", "no");
 
-            // Add data to Firestore and show success/failure toasts
+            // Add data to Firestore and show success/failure messages
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(OrganizerSendsNotification.this, "Notification sent to non-selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
@@ -143,6 +144,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
      * @param eventTitle the title of the event
      */
     private void fetchSelectedList(String eventID, String eventTitle) {
+
         // Query the event document by eventID to get the waitingList array
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -180,6 +182,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
      * @param eventTitle the title of the event
      */
     private void fetchWaitingList(String eventID, String eventTitle) {
+
         // Query the event document by eventID to get the waitingList array
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {

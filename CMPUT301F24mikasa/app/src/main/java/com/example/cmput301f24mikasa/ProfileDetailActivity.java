@@ -78,11 +78,13 @@ public class ProfileDetailActivity extends AppCompatActivity {
             }
         }
 
+        // Handle "Back" button click
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileDetailActivity.this, ManageProfileActivity.class);
             startActivity(intent);
         });
 
+        // Handle "Delete" button click
         deleteButton.setOnClickListener(v -> removeProfileImage());
     }
 
@@ -98,12 +100,18 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void removeProfileImage() {
+
+        // Retrieve the user profile from Firestore
         db.collection("users").document(deviceId).get()
                 .addOnSuccessListener(documentSnapshot -> {
+
+                    // Check if the document exists and contains a valid profilePicture URL
                     if (documentSnapshot.exists() && documentSnapshot.contains("profilePicture") && documentSnapshot.getString("profilePicture") != null) {
                         StorageReference fileReference = storageReference.child(deviceId + ".jpg");
                         fileReference.delete()
                                 .addOnSuccessListener(aVoid -> {
+
+                                    // Replace profile image with placeholder image if deletion is successful
                                     profileImageView.setImageResource(R.drawable.placeholder_image);
                                     db.collection("users").document(deviceId)
                                             .update("profilePicture", null)
@@ -116,6 +124,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
                                     Toast.makeText(ProfileDetailActivity.this, "Failed to remove profile image", Toast.LENGTH_SHORT).show();
                                 });
                     } else {
+                        // If no profile image is found, set it to the placeholder image
                         Toast.makeText(ProfileDetailActivity.this, "No profile image to remove", Toast.LENGTH_SHORT).show();
                         profileImageView.setImageResource(R.drawable.placeholder_image);
                     }

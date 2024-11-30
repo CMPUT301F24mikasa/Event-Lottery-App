@@ -221,7 +221,6 @@ public class QRScannerActivity extends AppCompatActivity {
      *
      * @param message the message to be displayed
      */
-    // In QRScannerActivity.java
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
