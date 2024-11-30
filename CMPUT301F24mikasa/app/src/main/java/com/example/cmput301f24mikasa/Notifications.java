@@ -179,7 +179,6 @@ public class Notifications {
      *
      * @return a string representation of the notification, including sender, event, and message
      */
-    // Additional Method: Display Notification Details
     public String displayNotification() {
         return "Notification from: " + senderName + "\nFor event: " + eventName + "\nMessage: " + notificationText;
     }

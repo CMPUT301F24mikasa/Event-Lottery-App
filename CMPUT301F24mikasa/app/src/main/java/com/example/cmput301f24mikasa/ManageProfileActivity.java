@@ -63,6 +63,7 @@ public class ManageProfileActivity extends AppCompatActivity {
         adapter = new UserProfileArrayAdapter(this, userProfileList);
         userProfilesListView.setAdapter(adapter);
 
+        // Handle "Back" button click
         Button backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(ManageProfileActivity.this, AdminActivity.class);
@@ -120,12 +121,10 @@ public class ManageProfileActivity extends AppCompatActivity {
                                         }
                                         adapter.notifyDataSetChanged();
                                     } else {
-                                        Log.w("ManageProfileActivity", "Error getting user profiles.", userTask.getException());
                                         Toast.makeText(ManageProfileActivity.this, "Failed to load profiles", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     } else {
-                        Log.w("ManageProfileActivity", "Error getting admin profiles.", adminTask.getException());
                         Toast.makeText(ManageProfileActivity.this, "Failed to load admin profiles", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -199,10 +198,13 @@ public class ManageProfileActivity extends AppCompatActivity {
     /**
      * Deletes a user profile from Firestore.
      * Also removes the user from any waiting lists in event documents.
+     * It also removes any events and facilites created by that Organizer
      *
      * @param deviceID the device ID of the user to delete
      */
     void deleteUserProfile(String deviceID) {
+
+        // Retrieves and deletes all events created by the user
         db.collection("event")
                 .whereEqualTo("deviceID", deviceID)
                 .get()
@@ -221,7 +223,7 @@ public class ManageProfileActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
 
-
+        // Remove the user from all event participant lists
         db.collection("event")
                 .get()
                 .addOnSuccessListener(querySnapshot -> {
@@ -244,7 +246,7 @@ public class ManageProfileActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
 
-
+        // Retrieves and deletes all facilities created by the user
         db.collection("facility")
                 .whereEqualTo("ownerDeviceID", deviceID)
                 .get()
@@ -263,7 +265,7 @@ public class ManageProfileActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Log.e("Firebase", "Error querying facilities", e));
 
-
+        // Retrieves and deletes the user profile from the users collection
         db.collection("users")
                 .whereEqualTo("deviceId", deviceID)
                 .get()
