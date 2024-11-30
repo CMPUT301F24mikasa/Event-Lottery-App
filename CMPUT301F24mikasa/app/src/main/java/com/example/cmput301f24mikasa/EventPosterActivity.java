@@ -151,7 +151,7 @@ public class EventPosterActivity extends AppCompatActivity {
 
     }
 
-    // Referenced https://developer.android.com/training/data-storage/shared/media, 2024-11-28
+    // Referenced https://stackoverflow.com/questions/36624756/how-to-save-bitmap-to-android-gallery by Bao Lei, 2024-11-28
     // Referenced https://github.com/LHM777/Scoped-Storage-Android-11-java-example-Save-bitmap-in-Android-using-MediaStore by LHM777, 2024-11-28
     // Referenced https://www.youtube.com/watch?v=tYQ8AO58Aj0&ab_channel=GenericApps by Generic Apps, 2024-11-28
     private void saveImageToGallery(Bitmap bitmap, String eventID) {
@@ -177,6 +177,7 @@ public class EventPosterActivity extends AppCompatActivity {
         }
     }
 
+    // Referenced https://dev.to/pranavpandey/android-create-bitmap-from-a-view-3lck by Pranav Pandey, 2024-11-30
     /**
      * Captures the current state of the provided view as a bitmap.
      *

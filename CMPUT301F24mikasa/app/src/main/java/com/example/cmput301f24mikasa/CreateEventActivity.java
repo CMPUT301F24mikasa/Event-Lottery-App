@@ -189,6 +189,7 @@ public class CreateEventActivity extends AppCompatActivity {
         button.setBackgroundColor(Color.parseColor("#0D47A1"));
     }
 
+    // Referenced https://www.geeksforgeeks.org/datepickerdialog-in-android/ by gupta_shrinath, 2024-11-30
     private void showDatePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -224,6 +225,7 @@ public class CreateEventActivity extends AppCompatActivity {
         );
     }
 
+    // Referenced https://www.geeksforgeeks.org/how-to-implement-textwatcher-in-android/ by adityamshidlyali, 2024-11-30
     private void setupTextWatchers() {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -319,8 +321,8 @@ public class CreateEventActivity extends AppCompatActivity {
         });
     }
 
-
-
+    // Referenced https://stackoverflow.com/questions/40885860/how-to-save-bitmap-to-firebase by Haythem BEN AICHA, 2024-11-30
+    // Referenced https://stackoverflow.com/questions/56699632/how-to-upload-file-bitmap-to-cloud-firestore by Deˣ, 2024-11-30
     private void uploadQRCodeToStorage(Bitmap qrCodeBitmap, String eventID) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         qrCodeBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -355,6 +357,8 @@ public class CreateEventActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(CreateEventActivity.this, "Failed to save QR Code hash. Please try again.", Toast.LENGTH_SHORT).show());
     }
 
+
+    // Referenced https://stackoverflow.com/questions/8800919/how-to-generate-a-qr-code-for-an-android-application by Stefano, 2024-10-31
     /**
      * Generates a QR code
      *
