@@ -32,10 +32,8 @@ public class ManagingWaitListActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ManagingWaitListActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ManagingWaitListActivity() {
-        // Constructor is provided by default
     }
 
     /**
