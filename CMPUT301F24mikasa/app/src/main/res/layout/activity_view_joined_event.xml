@@ -98,7 +98,6 @@
         android:backgroundTint="#0D47A1"
         android:text="Back"
         android:textColor="#FFFFFF"
-        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />

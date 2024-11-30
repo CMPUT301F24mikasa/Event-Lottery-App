@@ -98,5 +98,9 @@
     <string name="managing_list_for_event">Managing List for Event</string>
     <string name="view_map">View Map</string>
     <string name="view_result_list">View Result List</string>
+    <string name="notify">Notify</string>
+    <string name="create_poster">Create Poster</string>
+    <string name="create_event_lowercase">Create Event</string>
+    <string name="final_list_for_event">Final List for Event</string>
 
 </resources>

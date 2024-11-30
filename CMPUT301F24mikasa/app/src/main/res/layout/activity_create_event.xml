@@ -44,11 +44,10 @@
                 android:id="@+id/btnUpload"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
-                android:text="Upload Picture"
+                android:text="@string/upload_picture"
                 android:textSize="12dp"
                 android:backgroundTint="#0D47A1"
                 android:textColor="@color/white"
-                app:cornerRadius="0dp"
                 android:layout_marginTop="8dp" />
 
             <Button
@@ -56,21 +55,18 @@
                 android:layout_width="150dp"
                 android:layout_height="48dp"
                 android:textSize="11dp"
-                android:text="Generate QR Code"
-
+                android:text="@string/generate_qr_code"
                 android:backgroundTint="#0D47A1"
                 android:textColor="@color/white"
-                android:layout_marginTop="8dp"
-                app:cornerRadius="0dp" />
+                android:layout_marginTop="8dp" />
 
             <Button
                 android:id="@+id/btnCreatePoster"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
-                android:text="Create Poster"
+                android:text="@string/create_poster"
                 android:backgroundTint="#0D47A1"
                 android:textColor="@color/white"
-                app:cornerRadius="0dp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
@@ -204,19 +200,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Back"
+            android:text="@string/back"
             android:backgroundTint="#0D47A1"
-            android:textColor="#FFFFFF"
-            app:cornerRadius="0dp" />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnCreateEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Create Event"
+            android:text="@string/create_event_lowercase"
             android:backgroundTint="#0D47A1"
-            android:textColor="#FFFFFF"
-            app:cornerRadius="0dp" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </RelativeLayout>
