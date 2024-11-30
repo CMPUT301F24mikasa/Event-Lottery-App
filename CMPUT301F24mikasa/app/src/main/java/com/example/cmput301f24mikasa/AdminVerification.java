@@ -28,7 +28,7 @@ public class AdminVerification {
 
         buttonAdmin.setVisibility(ImageButton.GONE);
 
-
+        // Checks to see if deviceId is in the admin collection so admin icon will be visible
         db.collection("admin").document(deviceId).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

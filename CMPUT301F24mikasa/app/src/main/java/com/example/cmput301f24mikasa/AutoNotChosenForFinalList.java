@@ -26,10 +26,8 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
 
     /**
      * Default constructor for OrganizerSendsNotification.
-     * This constructor is required for the Android activity lifecycle.
      */
     public AutoNotChosenForFinalList() {
-        // Constructor is provided by default
     }
 
     ArrayList<UserProfile> nonRespondedEntrants;
@@ -52,7 +50,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         EdgeToEdge.enable(this);
 
         Intent intent = getIntent();
-        String eventID=intent.getStringExtra("eventID");
+        String eventID = intent.getStringExtra("eventID");
         String eventTitle = intent.getStringExtra("eventTitle");
         nonRespondedEntrants = new ArrayList<>();
         dataList = new ArrayList<>();
@@ -64,7 +62,6 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         intent2.putExtra("eventTitle", eventTitle);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
-        //finish();
     }
 
     /**
