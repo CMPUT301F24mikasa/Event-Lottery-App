@@ -41,10 +41,8 @@ public class ManageProfileActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ManageProfileActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ManageProfileActivity() {
-        // Constructor is provided by default
     }
 
 

@@ -20,6 +20,12 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * MapActivity is responsible for displaying a Google Map with markers for locations
+ * retrieved from a Firestore document associated with a specific event ID.
+ * It uses the Geocoding API to convert location addresses into latitude and longitude coordinates.
+ *
+ */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MapView mapView;
@@ -57,6 +63,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         geocodingApi = retrofit.create(GeocodingApi.class);
     }
 
+    /**
+     * Called when the map is ready. Sets the initial camera position to the center of the world
+     * and zooms out. Fetches and marks locations based on the provided eventID.
+     *
+     * @param map The GoogleMap instance.
+     */
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
         googleMap = map;
@@ -162,6 +174,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView.onSaveInstanceState(outState);
     }
 
+    /**
+     * Listener interface for handling the result of a location validation process.
+     * Used for notifying when a location has been successfully validated or if an error occurs.
+     */
     public interface OnLocationValidatedListener {
         void onSuccess(LatLng latLng);
         void onFailure(String errorMessage);
