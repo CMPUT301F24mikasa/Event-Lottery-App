@@ -72,11 +72,12 @@ public class QRScannerActivity extends AppCompatActivity {
         startScanningButton.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
-                startCamera();
-
-                // Disable the button and grey it out
+                // Disable the button and grey it out immediately
                 startScanningButton.setEnabled(false);
                 startScanningButton.setAlpha(0.5f); // Make it look greyed out
+
+                // Start the camera
+                startCamera();
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA}, 1001);
