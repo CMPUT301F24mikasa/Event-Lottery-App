@@ -30,17 +30,14 @@ public class ViewEventActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private String eventId;
-
     private TextView txtEventTitle, txtEventDescription, txtEventDate, txtEventPrice;
     private Button btnSignUp, backButton;
-
     private EditText editTextCity, editTextProvince;
 
     /**
      * Default constructor for ViewEventActivity.
      */
     public ViewEventActivity() {
-        // Constructor is provided by default
     }
 
     /**
@@ -57,13 +54,13 @@ public class ViewEventActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         eventId = getIntent().getStringExtra("eventId");
 
+        // Initialize UI components
         txtEventTitle = findViewById(R.id.txtEventTitle);
         txtEventDescription = findViewById(R.id.txtEventDescription);
         txtEventDate = findViewById(R.id.txtEventDate);
         txtEventPrice = findViewById(R.id.txtEventPrice);
         btnSignUp = findViewById(R.id.btnSignUp);
         backButton = findViewById(R.id.btn_back);
-
         editTextCity = findViewById(R.id.editTextCity);  
         editTextProvince = findViewById(R.id.editTextProvince);  
 
@@ -71,9 +68,7 @@ public class ViewEventActivity extends AppCompatActivity {
         loadEventDetails();
 
         btnSignUp.setOnClickListener(v -> addDeviceToWaitingList());
-
         backButton.setOnClickListener(view -> startActivity(new Intent(ViewEventActivity.this, QRScannerActivity.class)));
-
     }
 
     /**
@@ -128,7 +123,7 @@ public class ViewEventActivity extends AppCompatActivity {
                 if (waitingListLimit != null && waitingList.size() >= waitingListLimit) {
                     Toast.makeText(this, "The waiting list is full. You cannot sign up for this event.", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Only add if the device is not already in the waiting list
+                    // Add the device if it is not already in the waiting list
                     if (!waitingList.contains(deviceId)) {
                         waitingList.add(deviceId);
 
