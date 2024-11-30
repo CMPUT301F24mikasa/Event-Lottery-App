@@ -22,11 +22,10 @@ public class ViewEventsJoined extends AppCompatActivity {
      * Default constructor for ViewEventsJoined.
      */
     public ViewEventsJoined() {
-        // Constructor is provided by default
     }
 
     /**
-     * Called when the activity is created. Initializes the UI components and populates them
+     * This method initializes the UI components and populates them
      * with the event details passed from the previous activity through Intent extras.
      *
      * @param savedInstanceState The saved instance state bundle from previous activity.
@@ -40,14 +39,14 @@ public class ViewEventsJoined extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button buttonBack = findViewById(R.id.button_back);
         buttonBack.setOnClickListener(v -> finish());
 
-        // Initialize views
+        // Initialize UI Elements
         TextView evtTitle = findViewById(R.id.evtTitle);
         TextView evtDate = findViewById(R.id.evtDate);
         TextView evtPrice = findViewById(R.id.evtPrice);
         TextView evtDesc = findViewById(R.id.evtDesc);
         ImageView evtImage = findViewById(R.id.imgEvent);
 
-        // Retrieve intent extras
+        // Retrieve event details
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String startDate = intent.getStringExtra("startDate");
@@ -60,6 +59,6 @@ public class ViewEventsJoined extends AppCompatActivity {
         evtDate.setText(startDate);
         evtDesc.setText(desc);
         evtPrice.setText("$" + price);
-        Glide.with(this).load(imageURL).into(evtImage);
+        Glide.with(this).load(imageURL).into(evtImage);  // Load event image
     }
 }
