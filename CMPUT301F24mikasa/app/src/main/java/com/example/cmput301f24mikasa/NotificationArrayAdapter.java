@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
+import android.widget.Button;
+import com.google.firebase.firestore.FirebaseFirestore;
+import android.widget.Toast;
 import java.util.List;
 
 /**
@@ -47,9 +49,26 @@ public class NotificationArrayAdapter extends ArrayAdapter<Notifications> {
             rowView = inflater.inflate(R.layout.activity_notification_item, parent, false);
         }
 
+        // Bind the notification text
         TextView notificationTextView = rowView.findViewById(R.id.notification_text);
         Notifications notification = notificationList.get(position);
         notificationTextView.setText(notification.getNotificationText());
+
+        // Bind the delete button
+        Button deleteButton = rowView.findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(v -> {
+            // Remove from Firestore
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("notification").document(notification.getNotificationID())
+                    .delete()
+                    .addOnSuccessListener(aVoid -> {
+                        // Remove from local list and update the UI
+                        notificationList.remove(position);
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Notification deleted", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(context, "Failed to delete notification", Toast.LENGTH_SHORT).show());
+        });
 
         return rowView;
     }
