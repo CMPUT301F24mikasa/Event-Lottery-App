@@ -33,10 +33,8 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
 
     /**
      * Default constructor for ManageEventsActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ManageEventsActivity() {
-        // Constructor is provided by default
     }
 
     /**
@@ -62,13 +60,10 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
 
         // Back button to return to Organizer Dashboard
         Button btnBack = findViewById(R.id.back_button);
-
-        //Nikita's code:
         btnBack.setOnClickListener(view -> {
             Intent resultsIntent = new Intent(ManageEventsActivity.this, EventsActivity.class);
             startActivity(resultsIntent);
         });
-        //--------
     }
 
     /**

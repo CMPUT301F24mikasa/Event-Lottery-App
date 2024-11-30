@@ -37,10 +37,8 @@ public class ManageNotificationsActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ManageNotificationsActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ManageNotificationsActivity() {
-        // Constructor is provided by default
     }
 
 
