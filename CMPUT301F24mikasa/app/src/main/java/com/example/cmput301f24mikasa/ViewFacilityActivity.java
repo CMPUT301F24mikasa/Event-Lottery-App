@@ -2,7 +2,6 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,15 +33,12 @@ public class ViewFacilityActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ViewFacilityActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ViewFacilityActivity() {
-        // Constructor is provided by default
     }
 
     /**
-     * Called when the activity is created.
-     * Initializes the views, retrieves the facility name from the intent,
+     * This method initializes the views, retrieves the facility name from the intent,
      * and loads the facility details from Firebase Firestore.
      *
      * @param savedInstanceState The saved instance state bundle from the previous activity.
@@ -52,7 +48,7 @@ public class ViewFacilityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_facility);
 
-        // Initialize views
+        // Initialize UI elements
         tvFacilityName = findViewById(R.id.tv_facility_name);
         tvFacilityDescription = findViewById(R.id.tv_facility_description);
         tvFacilityLocation = findViewById(R.id.tv_facility_location);
@@ -62,6 +58,7 @@ public class ViewFacilityActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        // Retrieve the facility name from the intent
         String facilityName = getIntent().getStringExtra("FACILITY_NAME");
 
         if (facilityName != null) {
@@ -74,6 +71,7 @@ public class ViewFacilityActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Set up the remove image button to remove the facility image
         removeImageButton.setOnClickListener(v -> {
             db.collection("facility").whereEqualTo("facilityName", facilityName).get().addOnSuccessListener(queryDocumentSnapshots -> {
                 if (!queryDocumentSnapshots.isEmpty()) {
@@ -107,9 +105,8 @@ public class ViewFacilityActivity extends AppCompatActivity {
     }
 
     /**
-     * Loads the facility details from Firebase Firestore.
      * This method queries the "facility" collection and retrieves the details
-     * of the facility matching the given facility name.
+     * of the facility matching the given facility name from Firebase Firestore.
      *
      * @param facilityName The name of the facility to load details for.
      */
@@ -130,7 +127,7 @@ public class ViewFacilityActivity extends AppCompatActivity {
                 }
             }
         }).addOnFailureListener(e -> {
-            e.printStackTrace();
+            e.printStackTrace();  // Handle exceptions and errors
         });
     }
 }
