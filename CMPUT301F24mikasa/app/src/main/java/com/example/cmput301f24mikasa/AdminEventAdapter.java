@@ -62,6 +62,7 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.Ev
         Event event = eventList.get(position);
         holder.eventNameTextView.setText(event.getTitle());
 
+        // Load the Event image if the URL is not null. Otherwise, set it to the placeholder image
         if (event.getImageURL() != null) {
             Glide.with(context)
                     .load(event.getImageURL())
@@ -70,12 +71,14 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.Ev
             holder.eventImageView.setImageResource(R.drawable.placeholder_image);
         }
 
+        // Set click listener to view event details in AdminEventDetailsActivity
         holder.viewButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, AdminEventDetailsActivity.class);
             intent.putExtra("eventId", event.getEventID());
             ((AdminManageEventsActivity) context).startActivityForResult(intent, 1);
         });
 
+        // Set click listener to delete an event from firebase
         holder.deleteButton.setOnClickListener(v -> {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("event").document(event.getEventID())

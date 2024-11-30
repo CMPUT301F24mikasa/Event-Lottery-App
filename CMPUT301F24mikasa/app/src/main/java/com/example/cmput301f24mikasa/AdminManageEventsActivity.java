@@ -2,7 +2,6 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -40,6 +39,7 @@ public class AdminManageEventsActivity extends AppCompatActivity {
         adapter = new AdminEventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
 
+        // Handle "Back" button click
         Button backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(AdminManageEventsActivity.this, AdminActivity.class);
@@ -62,20 +62,23 @@ public class AdminManageEventsActivity extends AppCompatActivity {
                         }
                         adapter.notifyDataSetChanged();
                     } else {
-                        Log.e("AdminManageEvents", "Error fetching events: ", task.getException());
                         Toast.makeText(this, "Failed to fetch events.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    // The following function from OpenAI, ChatGPT, 2024-11-29
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // If the result from AdminEventDetailsActivity was successful
         if (requestCode == 1 && resultCode == RESULT_OK) {
             String eventId = data.getStringExtra("eventId");
             if (eventId != null) {
                 for (Event event : eventList) {
+
+                    // Find the event and clear its image URL and update the adapter
                     if (event.getEventID().equals(eventId)) {
                         event.setImageURL(null);
                         adapter.notifyDataSetChanged();

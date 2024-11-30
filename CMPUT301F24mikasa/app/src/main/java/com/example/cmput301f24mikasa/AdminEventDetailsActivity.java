@@ -43,7 +43,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        // Initialize the views
+        // Initialize the UI elements
         eventImagePoster = findViewById(R.id.imgEvent);
         eventTitle = findViewById(R.id.evtTitle);
         eventDate = findViewById(R.id.evtDate);
@@ -75,12 +75,13 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                         imageUrl = documentSnapshot.getString("imageURL");
                         qrCode = documentSnapshot.getString("qrCodeHash");
 
-                        // Populate the views with the retrieved data
+                        // Populate the UI items with the retrieved data
                         eventTitle.setText(title);
                         eventDate.setText(startDate);
                         eventPrice.setText(price);
                         eventDescription.setText(description);
 
+                        //  Load the Event image if the URL is not null. Otherwise, set it to the placeholder image
                         if (imageUrl != null && !imageUrl.isEmpty()) {
                             Glide.with(AdminEventDetailsActivity.this).load(imageUrl).into(eventImagePoster);
                         } else {
@@ -91,7 +92,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
             });
         }
 
-        // Handle removing event poster click
+        // Set click listener to delete an event poster from firebase
         removeImageButton.setOnClickListener(v -> {
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -119,7 +120,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
             }
         });
 
-        // Handle remove QR code button click
+        // Set click listener to remove hashed QR code data
         removeQRButton.setOnClickListener(v -> {
             if (qrCode != null && !qrCode.isEmpty()) {
                 db.collection("event").document(eventId)

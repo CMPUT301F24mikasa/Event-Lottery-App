@@ -96,8 +96,6 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
                             notifyDataSetChanged();
                         })
                         .addOnFailureListener(e -> {
-                            // Log and show failure message
-                            Log.e("FirestoreError", "Error unjoining event: ", e);
                             Toast.makeText(context, "Failed to unjoin", Toast.LENGTH_SHORT).show();
                         });
             } else {

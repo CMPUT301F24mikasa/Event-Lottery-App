@@ -54,6 +54,7 @@ public class EditEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
+        // Handle "Back" button click
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(EditEventActivity.this, ManageEventsActivity.class);
@@ -265,12 +266,14 @@ public class EditEventActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(this, "Error updating event. Please try again.", Toast.LENGTH_SHORT).show());
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     private void pickImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         resultLauncher.launch(intent);
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     private void registerImagePicker() {
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
