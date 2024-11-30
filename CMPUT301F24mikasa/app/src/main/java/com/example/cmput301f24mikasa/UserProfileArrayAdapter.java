@@ -29,7 +29,6 @@ public class UserProfileArrayAdapter extends ArrayAdapter<UserProfile> {
         this.userList = userList;
     }
 
-
     /**
      * Returns a view for a list item in the ListView.
      * This method is responsible for inflating the custom layout and binding data from
@@ -48,7 +47,8 @@ public class UserProfileArrayAdapter extends ArrayAdapter<UserProfile> {
         TextView nameTextView = (TextView) rowView.findViewById(R.id.user_name);
 
         UserProfile user = userList.get(position);
-        //this sets what is displayed in the list
+
+        // Set the user's name in TextView to display in the list
         nameTextView.setText(user.getName());
 
         return rowView;
