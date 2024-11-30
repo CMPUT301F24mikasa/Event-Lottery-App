@@ -89,6 +89,7 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
                     if (queryDocumentSnapshots.isEmpty()) {
                         // Handle case where no events are found for the device
                         // e.g., display a message to the user
+                        Toast.makeText(ManageEventsActivity.this, "Event does not exist.", Toast.LENGTH_SHORT).show();
                     } else {
                         // Loop through the results and add them to the event list
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
