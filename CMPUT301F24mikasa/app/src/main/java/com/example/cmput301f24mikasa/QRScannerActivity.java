@@ -157,7 +157,8 @@ public class QRScannerActivity extends AppCompatActivity {
 
     /**
      * Fetches the event details from Firebase Firestore based on the scanned QR code content.
-     * If the event is found, it navigates to the event details screen.
+     * If the event is found and the 'qrCodeHash' field is not null, it navigates to the event details screen.
+     * If the 'qrCodeHash' field is null, it shows an alert to the user.
      */
     private void fetchEventDetailsAndNavigate() {
         db.collection("event").document(scannedQRContent).get()
@@ -169,15 +170,25 @@ public class QRScannerActivity extends AppCompatActivity {
                         String description = documentSnapshot.getString("description");
                         String date = documentSnapshot.getString("date");
                         String price = documentSnapshot.getString("price");
+                        String qrCodeHash = documentSnapshot.getString("qrCodeHash");
 
-                        // Pass the event details to the ViewEventActivity
-                        Intent intent = new Intent(this, ViewEventActivity.class);
-                        intent.putExtra("eventId", eventId);
-                        intent.putExtra("title", title);
-                        intent.putExtra("description", description);
-                        intent.putExtra("date", date);
-                        intent.putExtra("price", price);
-                        startActivity(intent);
+                        if (qrCodeHash == null) {
+                            // qrCodeHash is null, show alert
+                            new android.app.AlertDialog.Builder(QRScannerActivity.this)
+                                    .setTitle("Event Error")
+                                    .setMessage("This event cannot be signed up for because the QR Data has been removed.")
+                                    .setPositiveButton("OK", null)
+                                    .show();
+                        } else {
+                            // qrCodeHash is not null, proceed to event details screen
+                            Intent intent = new Intent(this, ViewEventActivity.class);
+                            intent.putExtra("eventId", eventId);
+                            intent.putExtra("title", title);
+                            intent.putExtra("description", description);
+                            intent.putExtra("date", date);
+                            intent.putExtra("price", price);
+                            startActivity(intent);
+                        }
                     } else {
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
                     }
