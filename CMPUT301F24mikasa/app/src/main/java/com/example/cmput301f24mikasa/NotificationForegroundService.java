@@ -9,19 +9,26 @@ import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
+/**
+ * NotificationForegroundService is a foreground service that fetches event notifications
+ * from a Firestore database and displays them as Android system notifications.
+ * This service runs in the background, ensuring notifications are fetched and displayed
+ * even when the app is not actively in use.
+ */
 public class NotificationForegroundService extends Service {
     private static final String CHANNEL_ID = "event_notifications_channel";
     private static final String TAG = "NotificationService"; // Tag for logging
     private FirebaseFirestore db;
 
 
+    /**
+     * This method initializes the Firestore instance, creates the notification channel,
+     * and begins fetching notifications.
+     */
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +38,15 @@ public class NotificationForegroundService extends Service {
         fetchNotifications();
     }
 
+    /**
+     * Called when the service is started.
+     * Sets up the persistent notification for the foreground service.
+     *
+     * @param intent  The Intent used to start the service.
+     * @param flags   Additional data about the start request.
+     * @param startId A unique identifier for this specific start request.
+     * @return Returns START_STICKY to indicate that the service should continue running until explicitly stopped.
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -145,6 +161,13 @@ public class NotificationForegroundService extends Service {
         }
     }
 
+    /**
+     * Called when a client binds to the service.
+     * This implementation returns null because binding is not used for this service.
+     *
+     * @param intent The Intent that was used to bind to this service.
+     * @return Always returns null as this service does not support binding.
+     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
