@@ -215,7 +215,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
                             }
                             sendNotificationNotAccepted(eventID, eventTitle);
                         } else {
-                            Toast.makeText(this, "Waiting list iISSSSSS empty for this event.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Waiting list IS empty for this event.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();

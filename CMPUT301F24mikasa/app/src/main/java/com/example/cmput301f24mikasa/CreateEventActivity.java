@@ -80,6 +80,7 @@ public class CreateEventActivity extends AppCompatActivity {
         editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
         checkBoxGeoLocation = findViewById(R.id.checkBoxGeoLocation);
 
+        // Handle "Back" button click
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(CreateEventActivity.this, EventsActivity.class);
@@ -115,6 +116,7 @@ public class CreateEventActivity extends AppCompatActivity {
         // Set button click listeners
         btnUpload.setOnClickListener(view -> pickImage());
 
+        // Click listener for create event button
         btnCreateEvent.setOnClickListener(v -> {
             if (eventCreated) {
                 Toast.makeText(CreateEventActivity.this, "Event has already been created.", Toast.LENGTH_SHORT).show();
@@ -131,6 +133,7 @@ public class CreateEventActivity extends AppCompatActivity {
             createEvent(title, date, price, desc);
         });
 
+        // Click listener for generate QR code button
         btnGenerateQRCode.setOnClickListener(v -> {
             if (!eventCreated) {
                 Toast.makeText(CreateEventActivity.this, "Please create the event first.", Toast.LENGTH_SHORT).show();
@@ -151,7 +154,7 @@ public class CreateEventActivity extends AppCompatActivity {
             uploadQRCodeToStorage(qrCodeBitmap, eventID);
         });
 
-
+        // Click listener for Create poster button
         btnCreatePoster.setOnClickListener(v -> {
             if (!qrCodeGenerated) {
                 Toast.makeText(CreateEventActivity.this, "Please generate the QR Code first.", Toast.LENGTH_SHORT).show();
@@ -200,12 +203,14 @@ public class CreateEventActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     private void pickImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         resultLauncher.launch(intent);
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     private void registerResult() {
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

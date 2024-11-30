@@ -73,8 +73,7 @@ public class EventFinalListActivity extends AppCompatActivity {
         findViewById(R.id.back_button_for_final_list).setOnClickListener(view -> {
             // Create an intent to navigate to ManageEventsActivity
             Intent intent = new Intent(EventFinalListActivity.this, ManageEventsActivity.class);
-            startActivity(intent);  // Start the activity
-            finish();  // Optionally finish the current activity to remove it from the stack
+            startActivity(intent);
         });
         notifyButton = findViewById(R.id.custom_notify_final_list);
         notifyButton.setOnClickListener(new View.OnClickListener() {

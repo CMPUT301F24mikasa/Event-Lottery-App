@@ -125,6 +125,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     /**
      * Opens the image picker to select a profile picture.
      */
@@ -218,6 +219,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
         });
     }
 
+    // Referenced from https://youtu.be/nOtlFl1aUCw?si=bUEVHRjnQpoJzAe7 by CodingZest, 2024-11-29
     /**
      * Registers an activity result for image selection to update the profile picture.
      */

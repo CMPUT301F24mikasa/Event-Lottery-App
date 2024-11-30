@@ -47,8 +47,6 @@ public class EventPosterActivity extends AppCompatActivity {
 
     }
 
-
-
     /**
      * onCreate creates the EventPosterActivity, it retrieves data
      * from the intent passed by CreateEventActivity, including the the title, data,
@@ -71,6 +69,8 @@ public class EventPosterActivity extends AppCompatActivity {
         });
 
         Button btnSaveImage = findViewById(R.id.btnSaveImage);
+
+        // Handle "Back" button click
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(EventPosterActivity.this, EventsActivity.class);
