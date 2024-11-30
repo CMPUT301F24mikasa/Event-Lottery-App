@@ -14,36 +14,19 @@ import androidx.appcompat.widget.SwitchCompat;
  */
 public class NotificationSettingsActivity extends AppCompatActivity {
 
-    /**
-     * Switch to toggle notifications on or off.
-     */
     private SwitchCompat switchNotifications;
-
-    /**
-     * SharedPreferences object to store the user's notification settings.
-     */
     private SharedPreferences sharedPreferences;
-
-    /**
-     * The name of the SharedPreferences file used to store settings.
-     */
     private static final String PREFS_NAME = "notification_prefs";
-
-    /**
-     * The key used to store and retrieve the notification setting from SharedPreferences.
-     */
     private static final String KEY_NOTIFICATIONS_ENABLED = "notifications_enabled";
 
     /**
      * Default constructor for NotificationSettingsActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public NotificationSettingsActivity() {
-        // Constructor is provided by default
     }
 
     /**
-     * Called when the activity is created. Initializes the UI components, loads the saved notification settings,
+     * This method initializes the UI components, loads the saved notification settings,
      * and sets up the listeners for the notification toggle switch and the back button.
      *
      * @param savedInstanceState the previous instance's state (if any)
@@ -54,7 +37,6 @@ public class NotificationSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification_settings);
 
         switchNotifications = findViewById(R.id.switch_notifications);
-
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 

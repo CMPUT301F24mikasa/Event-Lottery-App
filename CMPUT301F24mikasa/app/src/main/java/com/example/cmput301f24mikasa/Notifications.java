@@ -13,7 +13,6 @@ public class Notifications {
     private String eventDescription;
     private String eventID;
 
-
     /**
      * Constructor to create a notification with all relevant event details.
      *
@@ -23,7 +22,6 @@ public class Notifications {
      * @param eventName the name of the event associated with the notification
      * @param eventDescription the description of the event
      */
-    // Constructor
     public Notifications(String notificationText, String recipientDeviceId, String senderName, String eventName, String eventDescription) {
         this.notificationText = notificationText;
         this.recipientDeviceId = recipientDeviceId;
@@ -95,7 +93,6 @@ public class Notifications {
         return notificationText;
     }
 
-
     /**
      * Sets the text content of the notification.
      *
@@ -104,7 +101,6 @@ public class Notifications {
     public void setNotificationText(String notificationText) {
         this.notificationText = notificationText;
     }
-
 
     /**
      * Gets the recipient's device ID for the notification.
