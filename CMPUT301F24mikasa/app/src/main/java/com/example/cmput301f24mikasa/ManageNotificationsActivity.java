@@ -37,8 +37,10 @@ public class ManageNotificationsActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ManageNotificationsActivity.
+     * This constructor is required for the Android activity lifecycle.
      */
     public ManageNotificationsActivity() {
+        // Constructor is provided by default
     }
 
 
@@ -138,6 +140,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
      * Loads notifications for the current device from Firebase Firestore.
      * Notifications are retrieved based on the device's unique ID and displayed in the ListView.
      */
+    // Nikita's code:
     private void loadNotifications() {
         @SuppressLint("HardwareIds") String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -162,6 +165,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
+                    Log.e("FirestoreError", "Error fetching notifications: ", e);
                     Toast.makeText(this, "Failed to load notifications.", Toast.LENGTH_SHORT).show();
                 });
     }
@@ -174,7 +178,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         notificationListView.setOnItemClickListener((parent, view, position, id) -> {
             Notifications selectedNotification = notificationList.get(position);
 
-            // Check if "responsive" is set to "1"
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference notificationRef = db.collection("notification").document(selectedNotification.getNotificationID());
 
@@ -183,25 +186,11 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     String responsive = documentSnapshot.getString("responsive");
 
                     if ("1".equals(responsive)) {
-                        // Show dialog for Accept/Decline
-                        new AlertDialog.Builder(this)
-                                .setTitle("Respond to Notification")
-                                .setMessage("Would you like to accept or decline?")
-                                .setPositiveButton("Accept", (dialog, which) -> {
-                                    // Update Firestore with "yes"
-                                    updateNotificationResponse(notificationRef, "yes");
-                                })
-                                .setNegativeButton("Decline", (dialog, which) -> {
-                                    // Update Firestore with "no"
-                                    updateNotificationResponse(notificationRef, "no");
-                                    String deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                                    String eventID = selectedNotification.getEventID();
-                                    updateSelectedList(eventID, deviceID);
-                                    Toast.makeText(this, "You have been removed from the selected list.", Toast.LENGTH_SHORT).show();
-                                })
-                                .show();
+                        // Show Accept/Decline dialog for responsive notifications
+                        showAcceptDeclineDialog(notificationRef, selectedNotification);
                     } else {
-                        Toast.makeText(this, "Notification is not responsive.", Toast.LENGTH_SHORT).show();
+                        // Show Delete/Cancel dialog for non-responsive notifications
+                        showDeleteDialog(selectedNotification);
                     }
                 }
             }).addOnFailureListener(e -> {
@@ -209,6 +198,58 @@ public class ManageNotificationsActivity extends AppCompatActivity {
             });
         });
     }
+    private void showAcceptDeclineDialog(DocumentReference notificationRef, Notifications selectedNotification) {
+        new AlertDialog.Builder(this)
+                .setTitle("Respond to Notification")
+                .setMessage("Would you like to accept or decline this invitation?")
+                .setPositiveButton("Accept", (dialog, which) -> {
+                    // Update Firestore with "yes"
+                    updateNotificationResponse(notificationRef, "yes");
+                })
+                .setNegativeButton("Decline", (dialog, which) -> {
+                    // Update Firestore with "no"
+                    updateNotificationResponse(notificationRef, "no");
+
+                    // Handle removing from selected list if it's an invitation
+                    String deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                    String eventID = selectedNotification.getEventID();
+                    updateSelectedList(eventID, deviceID);
+
+                    Toast.makeText(this, "You have been removed from the selected list.", Toast.LENGTH_SHORT).show();
+                })
+                .show();
+    }
+    private void showDeleteDialog(Notifications selectedNotification) {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete Notification")
+                .setMessage("This notification has already been responded to. Do you want to delete it?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    // Delete the notification from Firestore
+                    deleteNotification(selectedNotification.getNotificationID());
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+    private void deleteNotification(String notificationID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("notification").document(notificationID)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Notification deleted successfully.", Toast.LENGTH_SHORT).show();
+                    // Reload notifications after deletion
+                    loadNotifications();
+                    adapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("ManageNotificationsActivity", "Error deleting notification", e);
+                    Toast.makeText(this, "Failed to delete notification.", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
+
+
 
     /**
      * Updates the list of selected entrants for a specific event when a user declines a notification.
@@ -267,6 +308,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Response updated successfully", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
+                    Log.e("ManageNotificationsActivity", "Error updating response", e);
                     Toast.makeText(this, "Failed to update response", Toast.LENGTH_SHORT).show();
                 });
     }

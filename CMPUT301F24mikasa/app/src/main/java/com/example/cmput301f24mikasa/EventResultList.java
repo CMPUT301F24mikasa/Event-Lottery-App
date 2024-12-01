@@ -1,5 +1,6 @@
 package com.example.cmput301f24mikasa;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,15 +9,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,8 +48,6 @@ public class EventResultList extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference eventsRef = db.collection("event");
     private CollectionReference notificationRef = db.collection("notification");
-
-
     /**
      * Default constructor for EventResultList.
      * This constructor is required for the Android activity lifecycle.
@@ -59,9 +55,7 @@ public class EventResultList extends AppCompatActivity {
     public EventResultList() {
         // Constructor is provided by default
     }
-
     @Override
-
     /**
      * Initializes the EventResultList activity, setting up the layout, retrieving event details, and
      * populating the lists of selected and canceled entrants.
@@ -77,31 +71,20 @@ public class EventResultList extends AppCompatActivity {
         // Fetch the event ID from the intent
         String eventID = intent.getStringExtra("eventID");
         String eventTitle = intent.getStringExtra("eventTitle");
-
         TextView changeText = findViewById(R.id.headerTextView);
         changeText.setText("Result List For "+ eventTitle);
-
-
-
         if (eventID == null) {
             Toast.makeText(this, "Event ID not found!", Toast.LENGTH_SHORT).show();
         }
-
         fetchSelectedList(eventID);
         fetchCancelledList(eventID);
-
-
         //set the name of the result list
         selectedEntrantsListView = findViewById(R.id.selected_entrants_list_view);
         canceledEntrantsListView = findViewById(R.id.canceled_entrants_list_view);
-
         selectedEntrantsAdapter = new UserProfileArrayAdapter(this, selectedEntrants);
         canceledEntrantsAdapter = new UserProfileArrayAdapter(this, canceledEntrants);
-
         selectedEntrantsListView.setAdapter(selectedEntrantsAdapter);
         canceledEntrantsListView.setAdapter(canceledEntrantsAdapter);
-
-
         pickNewUserButton = findViewById(R.id.picker_button);
         //have to notify those waitinglist that they have not been chosen
         notifyButton = findViewById(R.id.notify_the_selected);
@@ -109,6 +92,21 @@ public class EventResultList extends AppCompatActivity {
         //a you canceled notification when they say no
         backButton = findViewById(R.id.go_back);
         createFinalButton=findViewById(R.id.make_final_list);
+
+        selectedEntrantsListView.setOnItemClickListener((parent, view, position, id) -> {
+            UserProfile selectedUser = selectedEntrants.get(position);
+
+            // Show a dialog with Cancel and Delete buttons
+            new AlertDialog.Builder(EventResultList.this)
+                    .setTitle("Action Required")
+                    .setMessage("Do you want to cancel or delete this entrant?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        // Delete action
+                        deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,43 +140,34 @@ public class EventResultList extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         List<String> waitingList = (List<String>) documentSnapshot.get("waitingList");
                         Long chosenAmount = documentSnapshot.getLong("chosenAmount");
-
                         if (waitingList == null || waitingList.isEmpty()) {
                             Toast.makeText(EventResultList.this, "No users in the waiting list.", Toast.LENGTH_SHORT).show();
                             return;
                         }
-
                         if (chosenAmount == null) {
                             Toast.makeText(EventResultList.this, "Chosen amount not set for this event.", Toast.LENGTH_SHORT).show();
                             return;
                         }
-
                         int selectedEntrantsSize = selectedEntrants.size();
                         Toast.makeText(EventResultList.this, "current size " + selectedEntrantsSize, Toast.LENGTH_SHORT).show();
                         Toast.makeText(EventResultList.this, "selected size  " + chosenAmount.intValue(), Toast.LENGTH_SHORT).show();
-
                         int remainingSelections = chosenAmount.intValue() - selectedEntrantsSize;
                         Toast.makeText(EventResultList.this, "choice left " + remainingSelections, Toast.LENGTH_SHORT).show();
-
                         if (remainingSelections <= 0) {
                             Toast.makeText(EventResultList.this, "No more selections allowed.", Toast.LENGTH_SHORT).show();
                             return;
                         }
-
                         // Filter out already selected device IDs from waiting list
                         List<String> selectableUsers = new ArrayList<>(waitingList);
                         for (UserProfile profile : selectedEntrants) {
                             selectableUsers.remove(profile.getName());
                         }
-
                         if (selectableUsers.isEmpty()) {
                             Toast.makeText(EventResultList.this, "No more users available to pick.", Toast.LENGTH_SHORT).show();
                             return;
                         }
-
                         // Randomly select a new device ID
                         String randomDeviceID = selectableUsers.get(new java.util.Random().nextInt(selectableUsers.size()));
-
                         // Push the selected device ID as a new element in Firestore's selectedEntrants list
                         eventsRef.document(eventID).update("selectedEntrants", FieldValue.arrayUnion(randomDeviceID))
                                 .addOnSuccessListener(aVoid -> {
@@ -215,10 +204,8 @@ public class EventResultList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-
                 // Reference to the event document by eventID
                 DocumentReference eventRef = db.collection("event").document(eventID);
-
                 // Query the notification collection for documents related to the specific event and responsive = "yes"
                 db.collection("notification")
                         .whereEqualTo("eventID", eventID)  // Match the event ID
@@ -227,7 +214,6 @@ public class EventResultList extends AppCompatActivity {
                         .addOnSuccessListener(queryDocumentSnapshots -> {
                             if (!queryDocumentSnapshots.isEmpty()) {
                                 List<String> deviceIDsToAdd = new ArrayList<>();
-
                                 // Collect all deviceIDs from matching documents
                                 for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                     String deviceID = documentSnapshot.getString("deviceID");
@@ -235,7 +221,6 @@ public class EventResultList extends AppCompatActivity {
                                         deviceIDsToAdd.add(deviceID);
                                     }
                                 }
-
                                 if (!deviceIDsToAdd.isEmpty()) {
                                     // Add all deviceIDs to the finalEntrants array in the event document
                                     eventRef.update("finalEntrants", FieldValue.arrayUnion(deviceIDsToAdd.toArray()))
@@ -259,9 +244,6 @@ public class EventResultList extends AppCompatActivity {
                                     intent.putExtra("eventTitle", eventTitle);
                                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
-
-
-
                                 } else {
                                     Toast.makeText(view.getContext(), "No responsive users to add.", Toast.LENGTH_SHORT).show();
                                 }
@@ -285,10 +267,90 @@ public class EventResultList extends AppCompatActivity {
                         });
             }
         });
-
-
-
     }
+    private void deleteNotificationAndUpdateLists(String deviceID, String eventID) {
+        // Step 1: Find the notification document and update its "responsive" field
+        notificationRef
+                .whereEqualTo("deviceID", deviceID)
+                .whereEqualTo("eventID", eventID)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                            // Check if the "responsive" field exists
+                            if (document.contains("responsive")) {
+                                DocumentReference docRef = document.getReference();
+                                docRef.update("responsive", "no")
+                                        .addOnSuccessListener(aVoid -> {
+                                            // Step 2: Update the selected and cancelled arrays in Firestore
+                                            updateFirestoreLists(deviceID, eventID);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(EventResultList.this, "Failed to update notification.", Toast.LENGTH_SHORT).show();
+                                            e.printStackTrace();
+                                        });
+                            } else {
+                                Toast.makeText(EventResultList.this, "No 'responsive' field found.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } else {
+                        Toast.makeText(EventResultList.this, "No matching notification found.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(EventResultList.this, "Error querying notifications.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                });
+    }
+
+    private void updateFirestoreLists(String deviceID, String eventID) {
+        DocumentReference eventRef = eventsRef.document(eventID);
+
+        eventRef.update("selectedEntrants", FieldValue.arrayRemove(deviceID)) // Remove from selectedEntrants
+                .addOnSuccessListener(aVoid -> {
+                    eventRef.update("cancelledEntrants", FieldValue.arrayUnion(deviceID)) // Add to cancelledEntrants
+                            .addOnSuccessListener(aVoid2 -> {
+                                // Step 3: Reflect the changes locally
+                                moveUserBetweenLists(deviceID);
+                                // Fetch the updated lists
+                                fetchSelectedList(eventID);
+                                fetchCancelledList(eventID);
+
+                                Toast.makeText(EventResultList.this, "User moved to cancelled entrants.", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(EventResultList.this, "Failed to add user to cancelled entrants.", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(EventResultList.this, "Failed to remove user from selected entrants.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                });
+    }
+    private void moveUserBetweenLists(String deviceID) {
+        UserProfile userToMove = null;
+
+        // Find the user in selectedEntrants
+        for (UserProfile user : selectedEntrants) {
+            if (user.getDeviceId().equals(deviceID)) {
+                userToMove = user;
+                break;
+            }
+        }
+
+        if (userToMove != null) {
+            // Remove from selectedEntrants and add to canceledEntrants
+            selectedEntrants.remove(userToMove);
+            canceledEntrants.add(userToMove);
+
+            // Notify adapters to update the UI
+            selectedEntrantsAdapter.notifyDataSetChanged();
+            canceledEntrantsAdapter.notifyDataSetChanged();
+        }
+    }
+
+
 
     /**
      * Sends a notification to a specific user to inform them that they have been selected for the event.
@@ -331,7 +393,6 @@ public class EventResultList extends AppCompatActivity {
      */
     void fetchSelectedList(String eventID) {
         selectedEntrants.clear(); // Clear the list to avoid duplicates
-
         // Query the event document by eventID to get the selectedEntrants array
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -382,8 +443,6 @@ public class EventResultList extends AppCompatActivity {
                     e.printStackTrace();
                 });
     }
-
-
     /**
      * Fetches the list of canceled entrants for the specified event from Firestore
      * and updates the ListView with the canceled entrants.
@@ -445,16 +504,4 @@ public class EventResultList extends AppCompatActivity {
                     e.printStackTrace();
                 });
     }
-
-
-
 }
-
-
-
-//when picking a replacement, notify them as well
-//change sp tjat you use a proper getter for device id not name lol
-//toast message for cancelled usaer
-//no way to cancel a user who has not responded, except for the fact
-//that they are not put into the final list
-//cancelled = amount of times I can press pick new user
