@@ -31,7 +31,7 @@ public class EventFinalListActivity extends AppCompatActivity {
     private UserProfileArrayAdapter finalEntrantsAdapter;
     private ArrayList<UserProfile> finalEntrantsList = new ArrayList<>();
     private FirebaseFirestore db;
-    private String eventID;  // Pass the eventID from the previous activity
+    private String eventID;
 
     /**
      * Default constructor for EventFinalListActivity.
@@ -51,6 +51,7 @@ public class EventFinalListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_final_list);
 
+        // Initialize final list and firestore instance
         finalListView = findViewById(R.id.final_list_view);
         db = FirebaseFirestore.getInstance();
 
@@ -122,7 +123,6 @@ public class EventFinalListActivity extends AppCompatActivity {
                                 .get()
                                 .addOnSuccessListener(queryDocumentSnapshots -> {
                                     if (!queryDocumentSnapshots.isEmpty()) {
-                                        // Assuming only one document per deviceID
                                         DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
                                         String userName = userDoc.getString("name");
                                         userProfile.setName(userName); // Set the user's name

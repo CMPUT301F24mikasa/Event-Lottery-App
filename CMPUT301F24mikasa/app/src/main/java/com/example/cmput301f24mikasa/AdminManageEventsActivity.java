@@ -30,12 +30,15 @@ public class AdminManageEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_events_list);
 
+        // Initialize the event list and firestore instance
         eventList = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Initialize RecyclerView and set its layout manager
         recyclerView = findViewById(R.id.events_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Create and set the adapter for the RecyclerView
         adapter = new AdminEventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
 
@@ -55,6 +58,8 @@ public class AdminManageEventsActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         eventList.clear();
+
+                        // Add all events from firebase to the event list
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Event event = document.toObject(Event.class);
                             event.setEventID(document.getId());

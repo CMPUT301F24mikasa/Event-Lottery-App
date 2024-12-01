@@ -15,6 +15,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+/**
+ * ProfileDetailActivity displays and manages user profile details, including name, email, phone number, and profile picture.
+ * It allows users to view and delete their profile picture stored in Firebase Storage, and navigate back to the ManageProfileActivity.
+ */
 public class ProfileDetailActivity extends AppCompatActivity {
     static ImageView profileImageView;
     TextView nameTextView;
@@ -38,7 +42,6 @@ public class ProfileDetailActivity extends AppCompatActivity {
         UserProfile userProfile = UserProfileManager.getInstance().getUserProfile();
         if (userProfile != null) {
             deviceId = userProfile.getDeviceId();
-            Log.d("ProfileDetailActivity", "deviceId from UserProfile: " + deviceId);
 
             nameTextView.setText(userProfile.getName());
             emailTextView.setText(userProfile.getGmailAddress());
@@ -52,13 +55,10 @@ public class ProfileDetailActivity extends AppCompatActivity {
                 profileImageView.setTag("placeholder");
             }
         } else {
-            // Log error if user profile is null
-            Log.e("ProfileDetailActivity", "userProfile is null");
             // Fallback to retrieving deviceId using the intent
             Intent intent = getIntent();
             if (intent != null && intent.hasExtra("deviceId")) {
                 deviceId = intent.getStringExtra("deviceId");
-                Log.d("ProfileDetailActivity", "deviceId from intent: " + deviceId);
             } else {
                 Log.e("ProfileDetailActivity", "No deviceId in UserProfile or intent");
             }
@@ -67,17 +67,22 @@ public class ProfileDetailActivity extends AppCompatActivity {
         Button deleteButton = findViewById(R.id.remove_image_button);
         Button backButton = findViewById(R.id.back_button);
 
+        // Handle back button click listener
         backButton.setOnClickListener(v -> {
             Intent new_intent = new Intent(ProfileDetailActivity.this, ManageProfileActivity.class);
             startActivity(new_intent);
         });
 
+        // Handle delete button on click listener
         deleteButton.setOnClickListener(v -> removeProfileImage());
     }
 
+    /**
+     * Removes the profile image from Firebase Storage and updates Firestore.
+     * Displays a toast if the device ID is missing or if no profile image exists.
+     */
     public void removeProfileImage() {
         if (deviceId == null || deviceId.isEmpty()) {
-            Log.e("ProfileDetailActivity", "deviceId is null or empty, cannot remove profile image");
             Toast.makeText(this, "Cannot remove profile image: Device ID is missing", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -87,26 +92,23 @@ public class ProfileDetailActivity extends AppCompatActivity {
                 String profilePictureUrl = documentSnapshot.getString("profilePicture");
                 if (profilePictureUrl != null) {
                     StorageReference fileReference = storageReference.child(deviceId + ".jpg");
+
                     // Attempt to delete the image from Firebase Storage
                     fileReference.delete().addOnSuccessListener(aVoid -> {
                         updateProfileImageView(true);
                         updateFirestoreProfilePicture();
                     }).addOnFailureListener(e -> {
                         // Even if the image doesn't exist, proceed to update Firestore
-                        Log.w("ProfileDetailActivity", "Image file not found in storage. Updating Firestore only.");
                         updateProfileImageView(true);
                         updateFirestoreProfilePicture();
                     });
                 } else {
-                    Log.w("ProfileDetailActivity", "No profile picture URL in Firestore");
                     updateProfileImageView(false);
                 }
             } else {
-                Log.w("ProfileDetailActivity", "No profile document or profile picture field in Firestore");
                 updateProfileImageView(false);
             }
         }).addOnFailureListener(e -> {
-            Log.e("ProfileDetailActivity", "Failed to retrieve Firestore document: ", e);
             Toast.makeText(ProfileDetailActivity.this, "Failed to retrieve profile", Toast.LENGTH_SHORT).show();
         });
     }
@@ -129,7 +131,6 @@ public class ProfileDetailActivity extends AppCompatActivity {
                     Log.d("ProfileDetailActivity", "Profile picture URL removed from Firestore");
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("ProfileDetailActivity", "Failed to update Firestore: ", e);
                     Toast.makeText(ProfileDetailActivity.this, "Failed to remove profile picture URL from Firestore", Toast.LENGTH_SHORT).show();
                 });
     }

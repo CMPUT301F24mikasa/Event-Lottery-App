@@ -24,7 +24,7 @@ import java.util.List;
 public class EventArrayAdapter extends ArrayAdapter<Event> {
     private final Context context;
     private final List<Event> eventList;
-    private final OnEventClickListener listener; // Add listener
+    private final OnEventClickListener listener;
 
 
     /**
@@ -85,7 +85,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
         // Event data
         TextView titleTextView = rowView.findViewById(R.id.event_title);
 
-        // Buttons
+        // Initialize Buttons
         Button viewButton = rowView.findViewById(R.id.view_button);
         Button deleteButton = rowView.findViewById(R.id.delete_button);
         Button editButton = rowView.findViewById(R.id.edit_button);
@@ -94,19 +94,21 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
         Event event = eventList.get(position);
         titleTextView.setText(event.getTitle());
 
-        // Set button click listeners
+        // Set view button click listener
         viewButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onViewButtonClick(event);
             }
         });
 
+        // Set delete button click listener
         deleteButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onDeleteButtonClick(event);
             }
         });
 
+        // Set edit button click listener
         editButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEditButtonClick(event);

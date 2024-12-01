@@ -9,18 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * AdminActivity provides the main dashboard for administrators to manage various
- * application aspects such as facilities, user profiles, images, and events. It
+ * application aspects such as facilities, user profiles, and events. It
  * offers navigation buttons that redirect to specific management sections for each
  * functionality.
  *
  * <p>This activity contains:
  * <ul>
- *   <li>Buttons to navigate to sections for managing facilities, user profiles, images, and events.</li>
+ *   <li>Buttons to navigate to sections for managing facilities, user profiles, and events.</li>
  *   <li>Bottom navigation buttons for quick access to profiles, events, notifications, and the admin dashboard.</li>
  * </ul>
  *
- * <p><b>Note:</b> Some buttons have placeholders for functionality that needs to be implemented
- * in future updates (e.g., managing images and events).
  *
  * @version 1.0
  * @since 2024-11-08

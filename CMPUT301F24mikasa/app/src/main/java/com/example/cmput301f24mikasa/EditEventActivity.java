@@ -288,6 +288,7 @@ public class EditEventActivity extends AppCompatActivity {
         );
     }
 
+    // Referenced https://www.geeksforgeeks.org/datepickerdialog-in-android/ by gupta_shrinath, 2024-11-30
     private void setupDatePicker() {
         editTextDate.setFocusable(false);
         editTextDate.setOnClickListener(v -> {
