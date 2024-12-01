@@ -26,6 +26,7 @@ public class AdminVerification {
         String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Initially set to no admin access for user until their deviceID is verified
         buttonAdmin.setVisibility(ImageButton.GONE);
 
         // Checks to see if deviceId is in the admin collection so admin icon will be visible

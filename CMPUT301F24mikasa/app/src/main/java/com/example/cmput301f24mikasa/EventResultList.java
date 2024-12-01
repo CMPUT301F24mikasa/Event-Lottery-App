@@ -35,12 +35,14 @@ public class EventResultList extends AppCompatActivity {
     ArrayList<UserProfile> canceledEntrants;
     ArrayList<String> toUpdateFireStoreList;
     private String eventTitle;
-    // List for canceled entrants
-    ListView selectedEntrantsListView;             // ListView for selected entrants
+
+    // List for selected and cancelled entrants
+    ListView selectedEntrantsListView;
     ListView canceledEntrantsListView;
-    // ListView for canceled entrants
-    UserProfileArrayAdapter selectedEntrantsAdapter; // Adapter for selected entrants
-    UserProfileArrayAdapter canceledEntrantsAdapter; // Adapter for canceled entrants
+
+    // Adapter for selected and cancelled entrants
+    UserProfileArrayAdapter selectedEntrantsAdapter;
+    UserProfileArrayAdapter canceledEntrantsAdapter;
     Button notifyButton;
     private Button backButton;
     private Button pickNewUserButton;
@@ -48,26 +50,27 @@ public class EventResultList extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference eventsRef = db.collection("event");
     private CollectionReference notificationRef = db.collection("notification");
+
     /**
      * Default constructor for EventResultList.
-     * This constructor is required for the Android activity lifecycle.
      */
     public EventResultList() {
-        // Constructor is provided by default
     }
-    @Override
+
     /**
      * Initializes the EventResultList activity, setting up the layout, retrieving event details, and
      * populating the lists of selected and canceled entrants.
      *
      * @param savedInstanceState The saved state of the activity
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_result_list);
         Intent intent = getIntent();
         selectedEntrants=new ArrayList<>();
         canceledEntrants=new ArrayList<>();
+
         // Fetch the event ID from the intent
         String eventID = intent.getStringExtra("eventID");
         String eventTitle = intent.getStringExtra("eventTitle");
@@ -78,6 +81,7 @@ public class EventResultList extends AppCompatActivity {
         }
         fetchSelectedList(eventID);
         fetchCancelledList(eventID);
+
         //set the name of the result list
         selectedEntrantsListView = findViewById(R.id.selected_entrants_list_view);
         canceledEntrantsListView = findViewById(R.id.canceled_entrants_list_view);
@@ -86,10 +90,7 @@ public class EventResultList extends AppCompatActivity {
         selectedEntrantsListView.setAdapter(selectedEntrantsAdapter);
         canceledEntrantsListView.setAdapter(canceledEntrantsAdapter);
         pickNewUserButton = findViewById(R.id.picker_button);
-        //have to notify those waitinglist that they have not been chosen
         notifyButton = findViewById(R.id.notify_the_selected);
-        //Cancelled users ie when they dont accept will automatically recieve
-        //a you canceled notification when they say no
         backButton = findViewById(R.id.go_back);
         createFinalButton=findViewById(R.id.make_final_list);
 
@@ -101,7 +102,6 @@ public class EventResultList extends AppCompatActivity {
                     .setTitle("Action Required")
                     .setMessage("Do you want to cancel or delete this entrant?")
                     .setPositiveButton("Delete", (dialog, which) -> {
-                        // Delete action
                         deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
@@ -119,7 +119,7 @@ public class EventResultList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //I can infinetly notify, that NEEDS TO BE FIXED!!!!!!!!!!!!! hha lol i fixed it
+
         notifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +132,7 @@ public class EventResultList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //I ALSO NEED TO NOTIFY THE USER THAT I PICKED THEM
+
         pickNewUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,7 +177,6 @@ public class EventResultList extends AppCompatActivity {
                                     eventsRef.document(eventID).update("waitingList", FieldValue.arrayRemove(randomDeviceID))
                                             .addOnSuccessListener(aVoid2 -> {
                                                 Toast.makeText(EventResultList.this, "User removed from waiting list.", Toast.LENGTH_SHORT).show();
-                                                //sending notification
                                                 sendNotificationToUser(randomDeviceID, eventID, eventTitle);
                                             })
                                             .addOnFailureListener(e -> {
@@ -242,7 +241,6 @@ public class EventResultList extends AppCompatActivity {
                                     Intent intent = new Intent(EventResultList.this, AutoNotChosenForFinalList.class);
                                     intent.putExtra("eventID", eventID);
                                     intent.putExtra("eventTitle", eventTitle);
-                                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(view.getContext(), "No responsive users to add.", Toast.LENGTH_SHORT).show();
@@ -375,7 +373,7 @@ public class EventResultList extends AppCompatActivity {
         notificationData.put("responsive", "1");
         notificationData.put("notificationID", notificationID);
 
-        // Add data to Firestore and show success/failure toasts
+        // Add data to Firestore and show success/failure messages
         documentReference.set(notificationData)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(EventResultList.this, "Notification sent successfully to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
@@ -412,7 +410,6 @@ public class EventResultList extends AppCompatActivity {
                                         .get()
                                         .addOnSuccessListener(queryDocumentSnapshots -> {
                                             if (!queryDocumentSnapshots.isEmpty()) {
-                                                // Assuming only one document per deviceID
                                                 DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
                                                 String userName = userDoc.getString("name");
                                                 userProfile.setName(userName); // Set the user's name
@@ -449,7 +446,6 @@ public class EventResultList extends AppCompatActivity {
      *
      * @param eventID The ID of the event
      */
-    //refactor to pull from CANCELLED LIST AND ALSO UPDATE NOTIFICATIONS
     private void fetchCancelledList(String eventID) {
         canceledEntrants.clear(); // Clear the list to avoid duplicates
 
@@ -473,7 +469,6 @@ public class EventResultList extends AppCompatActivity {
                                         .get()
                                         .addOnSuccessListener(queryDocumentSnapshots -> {
                                             if (!queryDocumentSnapshots.isEmpty()) {
-                                                // Assuming only one document per deviceID
                                                 DocumentSnapshot userDoc = queryDocumentSnapshots.getDocuments().get(0);
                                                 String userName = userDoc.getString("name");
                                                 userProfile.setName(userName); // Set the user's name
