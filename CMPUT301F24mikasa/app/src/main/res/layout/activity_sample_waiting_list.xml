@@ -7,7 +7,7 @@
     <!-- Gray Box -->
     <LinearLayout
         android:id="@+id/gray_box"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="#D3D3D3"
