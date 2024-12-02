@@ -37,22 +37,22 @@ import java.util.HashMap;
 public class EditEventActivity extends AppCompatActivity {
     private ImageView imgEvent;
     private Button btnUpload, btnUpdateEvent;
-    private EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;
-    private CheckBox checkBoxLimitWaitingList, checkBoxGeoLocation;
+    private EditText editTextTitle, editTextDate, editTextPrice, editTextDesc;
+
     private String eventID;
     private FirebaseFirestore db;
     private StorageReference storageReference;
     private ActivityResultLauncher<Intent> resultLauncher;
     private Uri imageUri;
     private boolean imageChanged = false;
-    private TextView txtStepIndex, headerTextView;
-    private Button btnGenerateQRCode, btnBack;
+    private TextView headerTextView;
+    private Button btnBack;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+        setContentView(R.layout.activity_edit_event);
 
         // Handle "Back" button click
         btnBack = findViewById(R.id.btn_back);
@@ -63,11 +63,10 @@ public class EditEventActivity extends AppCompatActivity {
 
         initializeUIElements();
 
-        txtStepIndex = findViewById(R.id.txtStepIndex);
-        txtStepIndex.setVisibility(View.GONE);
+
+
         headerTextView.setText("EDIT EVENT");
-        btnGenerateQRCode =findViewById(R.id.btnGenerateQRCode);
-        disableButton(btnGenerateQRCode);
+
 
         initializeFirebase();
 
@@ -104,9 +103,7 @@ public class EditEventActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextPrice = findViewById(R.id.editTextPrice);
         editTextDesc = findViewById(R.id.editTextDesc);
-        checkBoxLimitWaitingList = findViewById(R.id.checkBoxLimitWaitingList);
-        editTextLimitWaitingList = findViewById(R.id.editTextLimitWaitingList);
-        checkBoxGeoLocation = findViewById(R.id.checkBoxGeoLocation);
+
         headerTextView = findViewById(R.id.headerTextView);
     }
 
@@ -151,26 +148,6 @@ public class EditEventActivity extends AppCompatActivity {
         String description = documentSnapshot.getString("description");
         editTextDesc.setText(description != null ? description : "");
 
-        // Safely retrieve and set the waiting list limit
-        Boolean hasWaitingListLimit = documentSnapshot.getBoolean("hasWaitingListLimit");
-        if (hasWaitingListLimit != null && hasWaitingListLimit) {
-            checkBoxLimitWaitingList.setChecked(true);
-            editTextLimitWaitingList.setVisibility(View.VISIBLE);
-
-            Long waitingListLimit = documentSnapshot.getLong("waitingListLimit");
-            if (waitingListLimit != null) {
-                editTextLimitWaitingList.setText(String.valueOf(waitingListLimit));
-            } else {
-                editTextLimitWaitingList.setText(""); // Default empty if not provided
-            }
-        } else {
-            checkBoxLimitWaitingList.setChecked(false);
-            editTextLimitWaitingList.setVisibility(View.GONE);
-        }
-
-        // Safely retrieve and set geo-location required
-        String geoLocationRequired = documentSnapshot.getString("geo-location required");
-        checkBoxGeoLocation.setChecked("yes".equalsIgnoreCase(geoLocationRequired));
 
         // Safely retrieve and set the image
         String imageURL = documentSnapshot.getString("imageURL");
@@ -224,19 +201,15 @@ public class EditEventActivity extends AppCompatActivity {
         String date = editTextDate.getText().toString();
         String price = editTextPrice.getText().toString();
         String desc = editTextDesc.getText().toString();
-        Boolean hasWaitingListLimit = checkBoxLimitWaitingList.isChecked();
-        String waitingListLimitText = editTextLimitWaitingList.getText().toString();
-        int waitingListLimit = hasWaitingListLimit && !waitingListLimitText.isEmpty() ? Integer.parseInt(waitingListLimitText) : 10000;
-        String geoLocationRequired = checkBoxGeoLocation.isChecked() ? "yes" : "no";
+
+
 
         HashMap<String, Object> updatedData = new HashMap<>();
         updatedData.put("title", title);
         updatedData.put("startDate", date);
         updatedData.put("price", price);
         updatedData.put("description", desc);
-        updatedData.put("hasWaitingListLimit", hasWaitingListLimit);
-        updatedData.put("waitingListLimit", waitingListLimit);
-        updatedData.put("geo-location required", geoLocationRequired);
+
 
         if (imageChanged && imageUri != null) {
             uploadImageAndUpdateEvent(updatedData);
