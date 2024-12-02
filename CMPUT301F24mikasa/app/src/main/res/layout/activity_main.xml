@@ -9,24 +9,88 @@
         android:id="@+id/header_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/home"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
         android:background="#0D47A1"
         android:gravity="center"
-        android:padding="16dp" />
-
-        <TextView
-        android:id="@+id/welcome_message"
+        android:padding="16dp"
+        android:text="@string/home"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+    
+    <!-- Welcome Layout -->
+    <LinearLayout
+        android:id="@+id/welcome_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/header_text"
-        android:layout_marginTop="16dp"
-        android:text="Welcome!"
-        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <!-- Welcome Message (Welcome, [User's Name])-->
+        <TextView
+            android:id="@+id/welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="#0D47A1"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1.5" />
+
+        <!-- Wave Icon (Beside Welcome Message) -->
+        <ImageView
+            android:id="@+id/wave_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/wave_icon"
+            android:contentDescription="Wave icon"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Home Screen Image -->
+    <ImageView
+        android:id="@+id/event_image"
+        android:layout_width="match_parent"
+        android:layout_height="378dp"
+        android:layout_below="@id/welcome_layout"
+        android:layout_marginTop="-60dp"
+        android:contentDescription="@string/event"
+        android:src="@drawable/event" />
+
+    <!-- Navigation Instructions Header -->
+    <TextView
+        android:id="@+id/navigation_instructions_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-48dp"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/navigation_instructions_header"
         android:textColor="#0D47A1"
-        android:visibility="gone" />
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- Navigation Instructions -->
+    <TextView
+        android:id="@+id/navigation_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/navigation_instructions_header"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="-8dp"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/navigation_instructions"
+        android:textColor="#0D47A1"
+        android:textSize="18sp" />
+        android:textSize="18sp" />
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
