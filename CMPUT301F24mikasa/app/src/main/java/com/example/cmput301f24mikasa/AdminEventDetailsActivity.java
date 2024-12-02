@@ -78,7 +78,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                         // Populate the UI items with the retrieved data
                         eventTitle.setText(title);
                         eventDate.setText(startDate);
-                        eventPrice.setText(price);
+                        eventPrice.setText("$"+ price);
                         eventDescription.setText(description);
 
                         //  Load the Event image if the URL is not null. Otherwise, set it to the placeholder image

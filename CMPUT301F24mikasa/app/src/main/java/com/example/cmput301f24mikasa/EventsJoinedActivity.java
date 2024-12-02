@@ -26,7 +26,6 @@ import java.util.List;
  * @version 1.0
  */
 public class EventsJoinedActivity extends AppCompatActivity {
-
     private FirebaseFirestore db;
     private String deviceId;
     private List<QueryDocumentSnapshot> eventsJoined; // List to store matched event snapshots
@@ -38,7 +37,6 @@ public class EventsJoinedActivity extends AppCompatActivity {
     public EventsJoinedActivity() {
     }
 
-
     /**
      * Called when the activity is first created. Initializes Firestore, retrieves the device ID,
      * sets up the ListView and adapter for displaying joined events, and triggers fetching events
@@ -47,17 +45,18 @@ public class EventsJoinedActivity extends AppCompatActivity {
      * @param savedInstanceState If the activity is re-initialized after previously being shut down,
      *                           this Bundle contains the data it most recently supplied. Otherwise, it is null.
      */
-
     @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_signed_up_for);
 
+        // Initialize firestore instance and events joined list, and retrieve deviceId
         db = FirebaseFirestore.getInstance();
         deviceId = android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         eventsJoined = new ArrayList<>();
 
+        // Initalize list and adapter for events joined
         ListView listView = findViewById(R.id.list_events_joined);
         adapter = new EventsJoinedAdapter(this, eventsJoined);
         listView.setAdapter(adapter);
@@ -99,7 +98,6 @@ public class EventsJoinedActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("FirestoreError", "Error fetching events: ", e);
                     Toast.makeText(this, "Failed to load events", Toast.LENGTH_SHORT).show();
                 });
     }

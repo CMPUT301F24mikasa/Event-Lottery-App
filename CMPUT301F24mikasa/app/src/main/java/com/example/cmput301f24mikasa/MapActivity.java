@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
     private MapView mapView;
     private GoogleMap googleMap;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();

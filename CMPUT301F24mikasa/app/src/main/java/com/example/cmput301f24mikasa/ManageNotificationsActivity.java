@@ -53,6 +53,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_list);
 
+        // Initialize notification list and the adapter for the list of notifications
         notificationList = new ArrayList<>();
         notificationListView = findViewById(R.id.notification_list_view);
         adapter = new NotificationArrayAdapter(this, notificationList);
