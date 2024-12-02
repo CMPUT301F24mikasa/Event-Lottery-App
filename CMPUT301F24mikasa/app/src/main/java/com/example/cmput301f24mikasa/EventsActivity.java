@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * This activity serves as the main interface for managing and navigating event-related features
@@ -94,7 +97,10 @@ public class EventsActivity extends AppCompatActivity {
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
-        AdminVerification.checkIfAdmin(this, buttonAdmin);
+        String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        // Initialize Firebase Firestore
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        AdminVerification.checkIfAdmin(this, buttonAdmin, deviceId, firestore);
 
         // Bottom Navigation onClick Listeners
         buttonHome.setOnClickListener(view -> startActivity(new Intent(EventsActivity.this, MainActivity.class)));
