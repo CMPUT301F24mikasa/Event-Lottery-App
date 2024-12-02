@@ -89,6 +89,7 @@ public class QRScannerActivity extends AppCompatActivity {
         backButton.setOnClickListener(view -> startActivity(new Intent(QRScannerActivity.this, EventsActivity.class)));
     }
 
+    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Initializes the camera preview and image analysis to scan QR codes.
      */
@@ -116,6 +117,7 @@ public class QRScannerActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
+    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Analyzes each frame captured by the camera for QR codes.
      * Processes the frame and initiates barcode scanning if a QR code is detected.
@@ -198,6 +200,7 @@ public class QRScannerActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(this, "Error loading event", Toast.LENGTH_SHORT).show());
     }
 
+    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Handles the result of the permission request for camera access.
      * If the permission is granted, it starts the camera; otherwise, a toast message is shown.
