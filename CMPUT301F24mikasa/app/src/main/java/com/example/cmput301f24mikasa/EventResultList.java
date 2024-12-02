@@ -428,13 +428,7 @@ public class EventResultList extends AppCompatActivity {
         notificationData.put("notificationID", notificationID);
 
         // Add data to Firestore and show success/failure messages
-        documentReference.set(notificationData)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(EventResultList.this, "Notification sent successfully to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(EventResultList.this, "Failed to send notification to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
-                });
+        documentReference.set(notificationData);
     }
 
     /**
