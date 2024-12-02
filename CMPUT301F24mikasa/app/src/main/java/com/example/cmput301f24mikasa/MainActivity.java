@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.Manifest;
 
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -108,8 +109,10 @@ public class MainActivity extends AppCompatActivity {
                             String userName = document.getString("name");
                             if (userName != null && !userName.isEmpty()) {
                                 TextView welcomeMessage = findViewById(R.id.welcome_message);
+                                ImageView waveIcon = findViewById(R.id.wave_icon); 
                                 welcomeMessage.setText("Welcome, " + userName + "!");
                                 welcomeMessage.setVisibility(View.VISIBLE);
+                                waveIcon.setVisibility(View.VISIBLE); 
                             }
                         } else {
                             // User profile does not exist, redirect to UserProfileActivity
