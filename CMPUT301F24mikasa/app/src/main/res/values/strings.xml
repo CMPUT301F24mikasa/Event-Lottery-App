@@ -102,5 +102,13 @@
     <string name="create_poster">Create Poster</string>
     <string name="create_event_lowercase">Create Event</string>
     <string name="final_list_for_event">Final List for Event</string>
+    <string name="date_colon">Date:</string>
+    <string name="price_colon">Price:</string>
+    <string name="location_only">Location</string>
+    <string name="how_many_participants_would_you_like_to_sample">How many participants would you like to sample?</string>
+    <string name="current_entrants_0">Current Entrants = 0</string>
+    <string name="enter_number">Enter number</string>
+    <string name="cancel">Cancel</string>
+    <string name="generate">Generate</string>
 
 </resources>
