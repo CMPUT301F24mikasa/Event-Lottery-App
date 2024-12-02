@@ -13,7 +13,6 @@ import androidx.appcompat.widget.SwitchCompat;
  * The notification setting is saved using SharedPreferences.
  */
 public class NotificationSettingsActivity extends AppCompatActivity {
-
     private SwitchCompat switchNotifications;
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "notification_prefs";

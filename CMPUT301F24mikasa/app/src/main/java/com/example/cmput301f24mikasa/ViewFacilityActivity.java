@@ -22,7 +22,6 @@ import com.google.firebase.storage.StorageReference;
  * The user can navigate back to the previous screen using the back button.
  */
 public class ViewFacilityActivity extends AppCompatActivity {
-
     TextView tvFacilityName;
     TextView tvFacilityDescription;
     TextView tvFacilityLocation;

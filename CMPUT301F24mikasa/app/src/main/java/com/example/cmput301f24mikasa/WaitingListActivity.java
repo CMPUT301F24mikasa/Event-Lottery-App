@@ -26,7 +26,7 @@ public class WaitingListActivity extends AppCompatActivity {
     private int setting_buttons = 0;
     private ArrayList<UserProfile> dataList;
     private ListView userList;
-    private WaitingListArrayAdapter userAdapter; // Updated adapter
+    private WaitingListArrayAdapter userAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference eventsRef = db.collection("event");
 
@@ -68,6 +68,7 @@ public class WaitingListActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
+        // Initialize buttons
         Button sampleButton = findViewById(R.id.sample_button);
         Button viewResults = findViewById(R.id.view_results);
 
@@ -179,5 +180,4 @@ public class WaitingListActivity extends AppCompatActivity {
                     Toast.makeText(this, "Error fetching event details.", Toast.LENGTH_SHORT).show();
                 });
     }
-
 }

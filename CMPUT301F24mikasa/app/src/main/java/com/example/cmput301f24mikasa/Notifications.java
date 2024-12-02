@@ -38,9 +38,9 @@ public class Notifications {
      * @param eventID the ID of the associated event
      */
     public Notifications(String ID, String notificationText, String eventID) {
-        this.notificationID=ID;
+        this.notificationID = ID;
         this.notificationText = notificationText;
-        this.eventID=eventID;
+        this.eventID = eventID;
     }
 
     /**

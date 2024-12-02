@@ -171,11 +171,11 @@ public class UserProfileActivity extends AppCompatActivity {
                             emailEditText.setText(user.getGmailAddress() != null ? user.getGmailAddress() : "");
                             phoneEditText.setText(user.getPhoneNumber() != null ? user.getPhoneNumber() : "");
                             
-                            // Load the profile image if exists
+                            // Load the profile image if exists, otherwise use placeholder
                             if (user.getProfilePicture() != null && !user.getProfilePicture().isEmpty()) {
                                 Picasso.get().load(user.getProfilePicture()).into(profileImageView);
                             } else {
-                                profileImageView.setImageResource(R.drawable.placeholder_image); // Set a default image or clear the ImageView
+                                profileImageView.setImageResource(R.drawable.placeholder_image);
                             }
                         }
                     }
