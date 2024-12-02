@@ -15,6 +15,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+/**
+ * Activity for displaying and managing the details of a user profile.
+ * Allows users to view their profile information, remove their profile image,
+ * and navigate back to the profile management screen.
+ */
 public class ProfileDetailActivity extends AppCompatActivity {
     static ImageView profileImageView;
     TextView nameTextView;
@@ -28,6 +33,11 @@ public class ProfileDetailActivity extends AppCompatActivity {
         db = firestoreInstance;
     }
 
+    /**
+     * Initializes the activity, sets up UI components, and loads user profile data.
+     *
+     * @param savedInstanceState The saved state of the activity.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +84,10 @@ public class ProfileDetailActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(v -> removeProfileImage());
     }
 
+    /**
+     * Removes the user's profile image from Firebase Storage and updates the Firestore record.
+     * Displays appropriate messages based on the success or failure of the operation.
+     */
     public void removeProfileImage() {
         if (deviceId == null || deviceId.isEmpty()) {
             Toast.makeText(this, "Cannot remove profile image: Device ID is missing", Toast.LENGTH_SHORT).show();
