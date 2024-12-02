@@ -64,21 +64,19 @@ public class QRScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
 
-        // Initialize UI elements
         previewView = findViewById(R.id.previewView);
+
         Button startScanningButton = findViewById(R.id.btnScanQR);
         Button backButton = findViewById(R.id.back_button);
 
-        // Handle startScanning button
         startScanningButton.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {
-                // Disable the button and grey it out immediately
+                startCamera();
+
+                // Disable the button and grey it out
                 startScanningButton.setEnabled(false);
                 startScanningButton.setAlpha(0.5f); // Make it look greyed out
-
-                // Start the camera
-                startCamera();
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA}, 1001);
@@ -89,7 +87,6 @@ public class QRScannerActivity extends AppCompatActivity {
         backButton.setOnClickListener(view -> startActivity(new Intent(QRScannerActivity.this, EventsActivity.class)));
     }
 
-    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Initializes the camera preview and image analysis to scan QR codes.
      */
@@ -117,7 +114,6 @@ public class QRScannerActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
-    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Analyzes each frame captured by the camera for QR codes.
      * Processes the frame and initiates barcode scanning if a QR code is detected.
@@ -153,7 +149,7 @@ public class QRScannerActivity extends AppCompatActivity {
                 scannedQRContent = qrText; // Store the scanned QR code content in a variable
                 hasScanned = true;
                 Toast.makeText(this, "QR Code Scanned!", Toast.LENGTH_SHORT).show();
-                fetchEventDetailsAndNavigate();
+                fetchEventDetailsAndNavigate(null);
                 break; // Stop processing after finding a QR code
             }
         }
@@ -164,12 +160,15 @@ public class QRScannerActivity extends AppCompatActivity {
      * If the event is found and the 'qrCodeHash' field is not null, it navigates to the event details screen.
      * If the 'qrCodeHash' field is null, it shows an alert to the user.
      */
-    private void fetchEventDetailsAndNavigate() {
-        db.collection("event").document(scannedQRContent).get()
+    void fetchEventDetailsAndNavigate(String eventId) {
+        // Use the provided eventId, or fall back to the scanned QR content
+        String idToUse = (eventId != null) ? eventId : scannedQRContent;
+
+        db.collection("event").document(idToUse).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Event details retrieved successfully
-                        String eventId = documentSnapshot.getId();
+                        String eventIdFromFirestore = documentSnapshot.getId();
                         String title = documentSnapshot.getString("title");
                         String description = documentSnapshot.getString("description");
                         String date = documentSnapshot.getString("date");
@@ -186,7 +185,7 @@ public class QRScannerActivity extends AppCompatActivity {
                         } else {
                             // qrCodeHash is not null, proceed to event details screen
                             Intent intent = new Intent(this, ViewEventActivity.class);
-                            intent.putExtra("eventId", eventId);
+                            intent.putExtra("eventId", eventIdFromFirestore);
                             intent.putExtra("title", title);
                             intent.putExtra("description", description);
                             intent.putExtra("date", date);
@@ -200,7 +199,6 @@ public class QRScannerActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(this, "Error loading event", Toast.LENGTH_SHORT).show());
     }
 
-    // Referenced the following function from OpenAI, ChatGPT, 2024-11-07
     /**
      * Handles the result of the permission request for camera access.
      * If the permission is granted, it starts the camera; otherwise, a toast message is shown.
@@ -225,6 +223,7 @@ public class QRScannerActivity extends AppCompatActivity {
      *
      * @param message the message to be displayed
      */
+    // In QRScannerActivity.java
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
