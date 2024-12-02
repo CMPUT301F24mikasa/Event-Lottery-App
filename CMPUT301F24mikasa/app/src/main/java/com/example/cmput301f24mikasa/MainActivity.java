@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         checkUserProfile();  // Check if user profile exists on launch
-        AdminVerification.checkIfAdmin(this, buttonAdmin);
+        // Initialize Firebase Firestore
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        AdminVerification.checkIfAdmin(this, buttonAdmin, deviceId, firestore);
 
         // Set onClick listeners for navigation
         buttonHome.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
