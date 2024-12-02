@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
