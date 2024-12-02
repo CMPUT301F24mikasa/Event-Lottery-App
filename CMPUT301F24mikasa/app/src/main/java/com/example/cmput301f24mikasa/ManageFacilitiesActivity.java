@@ -44,12 +44,15 @@ public class ManageFacilitiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_manage_facilities);
 
+        // Initialize firestore instance and facilities list
         db = FirebaseFirestore.getInstance();
         facilitiesList = new ArrayList<>();
 
+        // Initialize UI elements
         ListView lvFacilities = findViewById(R.id.lv_facilities);
         Button btnBack = findViewById(R.id.btn_back);
 
+        // Initialize the adapter and populate it with the facilities
         adapter = new FacilityAdapter(this, facilitiesList);
         lvFacilities.setAdapter(adapter);
 

@@ -26,7 +26,6 @@ import java.util.List;
  * based on the intent type (1 = Waiting List, 2 = Selected Entrants, 3 = Final Entrants).
  */
 public class CustomToAllActivity extends AppCompatActivity {
-
     private String eventID;
     private String eventTitle;
     private int listType;

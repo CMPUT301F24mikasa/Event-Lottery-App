@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="How many participants would you like to sample?"
+            android:text="@string/how_many_participants_would_you_like_to_sample"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Current Entrants = 0"
+            android:text="@string/current_entrants_0"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#000000"
-            android:hint="Enter number"
+            android:hint="@string/enter_number"
             android:inputType="number"
             android:padding="10dp" />
 
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#3F51B5"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
             <!-- Generate Button -->
             <Button
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="#3F51B5"
-                android:text="Generate" />
+                android:text="@string/generate" />
         </LinearLayout>
     </LinearLayout>
 

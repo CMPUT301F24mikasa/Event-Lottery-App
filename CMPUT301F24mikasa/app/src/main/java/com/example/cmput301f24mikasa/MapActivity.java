@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
     private MapView mapView;
     private GoogleMap googleMap;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -63,6 +62,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         geocodingApi = retrofit.create(GeocodingApi.class);
     }
 
+    // Referenced from Google MAPS Platform API by Google, 2024-11-27
     /**
      * Called when the map is ready. Sets the initial camera position to the center of the world
      * and zooms out. Fetches and marks locations based on the provided eventID.

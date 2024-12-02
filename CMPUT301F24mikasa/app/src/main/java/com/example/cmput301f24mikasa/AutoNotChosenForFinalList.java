@@ -75,7 +75,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         String eventText = "You did not respond in time! Final list has been created! You were NOT selected for the " + eventTitle;
         totalNotifications = nonRespondedEntrants.size();
         for (UserProfile userProfile : nonRespondedEntrants) {
-            String deviceID = userProfile.getName();  // Assuming deviceID is stored in the name field of UserProfile
+            String deviceID = userProfile.getName();
 
             DocumentReference documentReference = notificationRef.document();
             String notificationID = documentReference.getId();
@@ -117,8 +117,8 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
                         }
 
                         if (!deviceIDsToNotify.isEmpty()) {
-                            // Create UserProfile objects for each non-responding entrant
 
+                            // Create UserProfile objects for each non-responding entrant
                             for (String deviceID : deviceIDsToNotify) {
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(deviceID);  // Set deviceID as a placeholder for name

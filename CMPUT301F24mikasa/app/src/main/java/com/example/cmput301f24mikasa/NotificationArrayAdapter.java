@@ -10,8 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * ArrayAdapter to display notifications in a ListView.
- * This adapter binds the notification data to the ListView for rendering.
+ * NotificationArrayAdapter is to display notifications in a ListView.
+ * It maps each notification object to a list item view.
  */
 public class NotificationArrayAdapter extends ArrayAdapter<Notifications> {
     private final Context context;

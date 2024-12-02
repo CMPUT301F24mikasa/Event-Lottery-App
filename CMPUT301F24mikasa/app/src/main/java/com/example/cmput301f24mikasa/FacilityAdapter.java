@@ -57,10 +57,11 @@ public class FacilityAdapter extends ArrayAdapter<String> {
             convertView = LayoutInflater.from(context).inflate(R.layout.facility_item, parent, false);
         }
 
+        // Initialize UI elements
         String facilityDetails = facilityNames.get(position);
         TextView tvFacilityName = convertView.findViewById(R.id.txt_facility_name);
         Button btnViewFacility = convertView.findViewById(R.id.btn_view_facility);
-        Button btnDeleteFacility = convertView.findViewById(R.id.btn_delete_facility); // Correct the ID
+        Button btnDeleteFacility = convertView.findViewById(R.id.btn_delete_facility);
 
         tvFacilityName.setText(facilityDetails);
 

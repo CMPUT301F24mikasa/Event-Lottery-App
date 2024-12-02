@@ -35,7 +35,6 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
     private final Context context;
     private final List<QueryDocumentSnapshot> events;
 
-
     /**
      * Constructs an EventsJoinedAdapter with the specified context and list of events.
      *
@@ -64,7 +63,7 @@ public class EventsJoinedAdapter extends ArrayAdapter<QueryDocumentSnapshot> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ViewHolder") View rowView = inflater.inflate(R.layout.activity_events_signed_up_item, parent, false);
 
-
+        // Initialize UI elements
         ImageView eventImageView = rowView.findViewById(R.id.event_image);
         TextView eventTitleText = rowView.findViewById(R.id.event_title);
         Button viewButton = rowView.findViewById(R.id.view_button);

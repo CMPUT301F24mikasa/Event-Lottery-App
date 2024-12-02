@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Activity for managing the random selection of participants from the event's waiting list.
+ * ListSamplingActivity is for managing the random selection of participants from the event's waiting list.
  * Displays the current entrants, allows the user to specify how many participants to select,
  * and updates the Firestore database accordingly.
  */
@@ -65,7 +65,7 @@ public class ListSamplingActivity extends AppCompatActivity {
         // Display the number of entrants
         changetext.setText(newtext + numberOfEntrants);
 
-        // Initialize views
+        // Initialize UI elements
         participantInput = findViewById(R.id.participant_input);
         generateButton = findViewById(R.id.generate_button);
         cancelButton = findViewById(R.id.cancel_button);
@@ -73,7 +73,7 @@ public class ListSamplingActivity extends AppCompatActivity {
         // Initialize the list to hold selected entrants
         selectedEntrants = new ArrayList<>();
         dataList = new ArrayList<>();
-        fetchWaitingList(eventID); // Copy to avoid modifying the original list
+        fetchWaitingList(eventID);
 
         // Set up the Generate button to handle random selection
         generateButton.setOnClickListener(new View.OnClickListener() {

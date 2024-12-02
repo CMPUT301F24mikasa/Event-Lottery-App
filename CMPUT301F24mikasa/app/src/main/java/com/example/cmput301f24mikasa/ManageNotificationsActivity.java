@@ -37,10 +37,8 @@ public class ManageNotificationsActivity extends AppCompatActivity {
 
     /**
      * Default constructor for ManageNotificationsActivity.
-     * This constructor is required for the Android activity lifecycle.
      */
     public ManageNotificationsActivity() {
-        // Constructor is provided by default
     }
 
 
@@ -55,6 +53,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_list);
 
+        // Initialize notification list and the adapter for the list of notifications
         notificationList = new ArrayList<>();
         notificationListView = findViewById(R.id.notification_list_view);
         adapter = new NotificationArrayAdapter(this, notificationList);
@@ -71,7 +70,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
             Toast.makeText(this, "Notifications are disabled.", Toast.LENGTH_SHORT).show();
         }
 
-        // Settings button
+        // Initialize and set click listener for Settings button
         ImageButton settingsButton = findViewById(R.id.settings_button);
         settingsButton.setOnClickListener(v -> {
             Intent intent = new Intent(ManageNotificationsActivity.this, NotificationSettingsActivity.class);
@@ -88,7 +87,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
         reloadButton.setOnClickListener(view -> {
             // Load notifications only if enabled
             if (notificationsEnabled) {
-                loadNotifications(); // Reload notifications
+                loadNotifications();
                 Toast.makeText(ManageNotificationsActivity.this, "Notifications reloaded", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(ManageNotificationsActivity.this, "Notifications Disabled", Toast.LENGTH_SHORT).show();
@@ -140,7 +139,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
      * Loads notifications for the current device from Firebase Firestore.
      * Notifications are retrieved based on the device's unique ID and displayed in the ListView.
      */
-    // Nikita's code:
     private void loadNotifications() {
         @SuppressLint("HardwareIds") String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -157,7 +155,7 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String text = document.getString("text");
                             String notificationId = document.getId();
-                            String eventID=document.getString("eventID");
+                            String eventID = document.getString("eventID");
                             Notifications notification = new Notifications(notificationId, text, eventID); // Include ID for reference
                             notificationList.add(notification);
                         }
@@ -165,7 +163,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("FirestoreError", "Error fetching notifications: ", e);
                     Toast.makeText(this, "Failed to load notifications.", Toast.LENGTH_SHORT).show();
                 });
     }
@@ -246,10 +243,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Failed to delete notification.", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
-
-
 
     /**
      * Updates the list of selected entrants for a specific event when a user declines a notification.

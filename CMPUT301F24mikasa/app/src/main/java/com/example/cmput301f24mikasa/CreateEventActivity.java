@@ -43,7 +43,6 @@ import java.util.HashMap;
  * generation and upload.
  */
 public class CreateEventActivity extends AppCompatActivity {
-
     ImageView imgEvent;
     Button btnUpload, btnGenerateQRCode, btnCreateEvent, btnCreatePoster;
     EditText editTextTitle, editTextDate, editTextPrice, editTextDesc, editTextLimitWaitingList;

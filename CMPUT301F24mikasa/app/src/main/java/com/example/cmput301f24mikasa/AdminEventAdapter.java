@@ -18,11 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 /**
- * AdminEventAdapter is a custom ArrayAdapter for displaying a list of Event objects
+ * AdminEventAdapter is a custom ArrayAdapter for displaying a list of events
  * in a ListView, with buttons for viewing and deleting each event.
- * It enables interaction with each event item in the list through button click listeners,
- * without the edit button.
+ * It enables interaction with each event item in the list through button click listeners.
  */
+
 public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.EventViewHolder> {
     private Context context;
     private List<Event> eventList;
