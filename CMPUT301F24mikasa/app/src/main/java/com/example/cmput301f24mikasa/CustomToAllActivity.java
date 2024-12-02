@@ -171,10 +171,10 @@ public class CustomToAllActivity extends AppCompatActivity {
 
             notificationDoc.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Notification sent to: " + user.getName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Notification sent", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Failed to send notification to: " + user.getName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Failed to send notification", Toast.LENGTH_SHORT).show();
                     });
         }
 
