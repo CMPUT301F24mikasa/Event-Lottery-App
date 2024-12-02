@@ -136,13 +136,7 @@ public class EventPosterActivity extends AppCompatActivity {
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 DocumentReference eventRef = db.collection("event").document(eventId);
-                                eventRef.update("posterURL", downloadUrl)
-                                        .addOnSuccessListener(aVoid -> {
-                                            Toast.makeText(EventPosterActivity.this, "Poster saved successfully to Firestore.", Toast.LENGTH_SHORT).show();
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Toast.makeText(EventPosterActivity.this, "Failed to save poster URL to Firestore.", Toast.LENGTH_SHORT).show();
-                                        });
+                                eventRef.update("posterURL", downloadUrl);
                             });
                         })
                         .addOnFailureListener(e -> {
