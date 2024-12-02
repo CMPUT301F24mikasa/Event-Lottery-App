@@ -3,6 +3,7 @@ package com.example.cmput301f24mikasa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -29,7 +30,6 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
      */
     public AutoNotChosenForFinalList() {
     }
-
     ArrayList<UserProfile> nonRespondedEntrants;
     ArrayList<UserProfile> dataList;
     private int totalNotifications=0;
@@ -52,11 +52,15 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         Intent intent = getIntent();
         String eventID = intent.getStringExtra("eventID");
         String eventTitle = intent.getStringExtra("eventTitle");
+        if (eventID==null){
+            eventID="tester123";
+            eventTitle="Test Event Title";
+        }
         nonRespondedEntrants = new ArrayList<>();
         dataList = new ArrayList<>();
         fetchNonRespondedList(eventID, eventTitle);
-        fetchWaitingList(eventID,eventTitle);
-
+        fetchWaitingList(eventID, eventTitle);
+        // Proceed with intent navigation only after all operations are complete
         Intent intent2 = new Intent(AutoNotChosenForFinalList.this, EventResultList.class);
         intent2.putExtra("eventID", eventID);
         intent2.putExtra("eventTitle", eventTitle);
@@ -75,7 +79,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         String eventText = "You did not respond in time! Final list has been created! You were NOT selected for the " + eventTitle;
         totalNotifications = nonRespondedEntrants.size();
         for (UserProfile userProfile : nonRespondedEntrants) {
-            String deviceID = userProfile.getName();
+            String deviceID = userProfile.getName();  // Assuming deviceID is stored in the name field of UserProfile
 
             DocumentReference documentReference = notificationRef.document();
             String notificationID = documentReference.getId();
@@ -99,7 +103,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
         }
     }
 
-    private void fetchNonRespondedList(String eventID, String eventTitle) {
+    void fetchNonRespondedList(String eventID, String eventTitle) {
         // Query the notification collection for notifications with responsive = "1"
         notificationRef.whereEqualTo("eventID", eventID)
                 .whereEqualTo("responsive", "1")
@@ -117,8 +121,8 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
                         }
 
                         if (!deviceIDsToNotify.isEmpty()) {
-
                             // Create UserProfile objects for each non-responding entrant
+
                             for (String deviceID : deviceIDsToNotify) {
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(deviceID);  // Set deviceID as a placeholder for name
@@ -198,7 +202,7 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
      * @param eventID    the ID of the event
      * @param eventTitle the title of the event
      */
-    private void fetchWaitingList(String eventID, String eventTitle) {
+    void fetchWaitingList(String eventID, String eventTitle) {
         // Query the event document by eventID to get the waitingList array
         eventsRef.document(eventID).get()
                 .addOnSuccessListener(documentSnapshot -> {
