@@ -21,16 +21,13 @@ public class AdminVerification {
      *
      * @param context     The Activity context to update UI elements.
      * @param buttonAdmin The ImageButton to show or hide based on admin status.
+     * @param deviceId    The device ID to verify admin status.
+     * @param firestore   The Firestore instance to use for the check.
      */
-    public static void checkIfAdmin(Context context, ImageButton buttonAdmin) {
-        String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // Initially set to no admin access for user until their deviceID is verified
+    public static void checkIfAdmin(Context context, ImageButton buttonAdmin, String deviceId, FirebaseFirestore firestore) {
         buttonAdmin.setVisibility(ImageButton.GONE);
 
-        // Checks to see if deviceId is in the admin collection so admin icon will be visible
-        db.collection("admin").document(deviceId).get()
+        firestore.collection("admin").document(deviceId).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
@@ -45,4 +42,3 @@ public class AdminVerification {
                 });
     }
 }
-
