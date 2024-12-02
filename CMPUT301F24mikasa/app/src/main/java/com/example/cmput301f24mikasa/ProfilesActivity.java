@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 /**
  * ProfilesActivity is responsible for displaying the profile options to the user.
  * This activity provides navigation to the UserProfileActivity and FacilityProfileActivity
