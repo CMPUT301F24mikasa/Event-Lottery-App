@@ -90,7 +90,6 @@
         android:text="@string/navigation_instructions"
         android:textColor="#0D47A1"
         android:textSize="18sp" />
-        android:textSize="18sp" />
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
