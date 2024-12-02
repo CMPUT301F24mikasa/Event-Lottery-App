@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,15 +98,70 @@ public class EventResultList extends AppCompatActivity {
         selectedEntrantsListView.setOnItemClickListener((parent, view, position, id) -> {
             UserProfile selectedUser = selectedEntrants.get(position);
 
-            // Show a dialog with Cancel and Delete buttons
-            new AlertDialog.Builder(EventResultList.this)
-                    .setTitle("Action Required")
-                    .setMessage("Do you want to cancel or delete this entrant?")
-                    .setPositiveButton("Delete", (dialog, which) -> {
-                        deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
-                    })
-                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                    .show();
+            // Reference to Firestore
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Query the notification collection for documents matching the selected user's deviceId and eventID
+            db.collection("notification")
+                    .whereEqualTo("deviceID", selectedUser.getDeviceId())
+                    .whereEqualTo("eventID", eventID) // Add the eventID condition
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            boolean documentFound = false;
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                documentFound = true;
+
+                                // Check the "responsive" field
+                                String responsive = document.getString("responsive");
+
+                                if ("1".equals(responsive)) {
+                                    // Entrant hasn't responded yet
+                                    new AlertDialog.Builder(EventResultList.this)
+                                            .setTitle("Action Required")
+                                            .setMessage("The entrant hasn't responded yet. Do you want to remove them?")
+                                            .setPositiveButton("Remove", (dialog, which) -> {
+                                                deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
+                                            })
+                                            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                                            .show();
+                                } else if ("yes".equalsIgnoreCase(responsive)) {
+                                    // Entrant has accepted the invitation
+                                    new AlertDialog.Builder(EventResultList.this)
+                                            .setTitle("Action Required")
+                                            .setMessage("The entrant has accepted the invitation for the event. Would you like to remove them?")
+                                            .setPositiveButton("Remove", (dialog, which) -> {
+                                                deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
+                                            })
+                                            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                                            .show();
+                                }
+
+                                // Break after processing the first matching document
+                                break;
+                            }
+
+                            if (!documentFound) {
+                                // No matching document found
+                                new AlertDialog.Builder(EventResultList.this)
+                                        .setTitle("No Record Found")
+                                        .setMessage("No notification record found for this entrant and event. Do you want to remove them anyway?")
+                                        .setPositiveButton("Remove", (dialog, which) -> {
+                                            deleteNotificationAndUpdateLists(selectedUser.getDeviceId(), eventID);
+                                        })
+                                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                                        .show();
+                            }
+                        } else {
+                            // Handle query failure
+                            new AlertDialog.Builder(EventResultList.this)
+                                    .setTitle("Error")
+                                    .setMessage("Failed to retrieve notification data. Please try again.")
+                                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                    .show();
+                        }
+                    });
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
