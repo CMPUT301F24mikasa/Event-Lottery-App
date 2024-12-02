@@ -58,7 +58,6 @@ public class TestCreateEventActivity {
         StorageReference testImageRef = storageRef.child("test_event_image.jpg");
         testImageRef.putFile(testImageUri).addOnSuccessListener(taskSnapshot -> {
             testImageRef.getDownloadUrl().addOnSuccessListener(imageUri -> {
-                // Image upload successful, proceed to create event in Firestore
                 HashMap<String, Object> eventData = new HashMap<>();
                 eventData.put("title", testTitle);
                 eventData.put("startDate", testDate);
