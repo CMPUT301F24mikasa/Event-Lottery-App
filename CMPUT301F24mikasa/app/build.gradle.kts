@@ -120,14 +120,11 @@ dependencies {
     // Mockito for mocking dependencies (optional for instrumented tests)
     androidTestImplementation(libs.mockito.android.v460)
 
-    // Robolectric for Android unit testing
-    androidTestImplementation(libs.robolectric.v49)
     // Mockito for mocking
     androidTestImplementation(libs.mockito.core.v461)
     // Glide for image loading
     androidTestImplementation(libs.glide.v4142)
 
-    testImplementation(libs.robolectric.v482) // Update to the latest version
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.engine)
     testImplementation(libs.mockito.core.v461) // Mockito for mocking
