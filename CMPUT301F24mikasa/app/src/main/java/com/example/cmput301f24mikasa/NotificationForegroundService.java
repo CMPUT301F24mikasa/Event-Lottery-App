@@ -38,6 +38,7 @@ public class NotificationForegroundService extends Service {
         fetchNotifications();
     }
 
+    // Referenced the following function from OpenAI, ChatGPT, 2024-11-27
     /**
      * Called when the service is started.
      * Sets up the persistent notification for the foreground service.
@@ -116,6 +117,7 @@ public class NotificationForegroundService extends Service {
                 });
     }
 
+    // Referenced the following function from OpenAI, ChatGPT, 2024-11-27
     private void showNotification(String text) {
         Log.d(TAG, "showNotification called with text: " + text);
 
