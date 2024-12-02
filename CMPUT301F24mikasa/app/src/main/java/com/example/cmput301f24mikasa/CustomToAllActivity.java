@@ -116,13 +116,12 @@ public class CustomToAllActivity extends AppCompatActivity {
         dialogLayout.addView(titleTextView);
 
         TextView eventDescription = new TextView(this);
-        eventDescription.setText("You are about to send notifications to all users in the list for \"" + eventTitle + "\".");
+        eventDescription.setText("You are about to send notifications to users in the list for \"" + eventTitle + "\".");
         eventDescription.setPadding(0, 20, 0, 20);
         dialogLayout.addView(eventDescription);
 
         EditText messageInput = new EditText(this);
         messageInput.setHint("Enter notification message here...");
-        messageInput.setText("You have been selected for the event \"" + eventTitle + "\". Stay tuned for updates!");
         messageInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         messageInput.setPadding(0, 20, 0, 20);
         dialogLayout.addView(messageInput);

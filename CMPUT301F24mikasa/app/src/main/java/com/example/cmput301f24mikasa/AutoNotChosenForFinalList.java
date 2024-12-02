@@ -93,11 +93,9 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
 
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Notification sent to: " + deviceID, Toast.LENGTH_SHORT).show();
                         checkAndClearLists(--totalNotifications, eventID); // Decrement and check completion
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Failed to send notification to: " + deviceID, Toast.LENGTH_SHORT).show();
                         checkAndClearLists(--totalNotifications, eventID); // Decrement and check even on failure
                     });
         }
@@ -168,11 +166,9 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
 
             documentReference.set(notificationData)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Notification sent to: " + deviceID, Toast.LENGTH_SHORT).show();
                         checkAndClearLists(--totalNotifications, eventID); // Decrement and check completion
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Failed to send notification to: " + deviceID, Toast.LENGTH_SHORT).show();
                         checkAndClearLists(--totalNotifications, eventID); // Decrement and check even on failure
                     });
         }
@@ -184,7 +180,6 @@ public class AutoNotChosenForFinalList extends AppCompatActivity{
             eventsRef.document(eventID)
                     .update("selectedEntrants", new ArrayList<>(), "waitingList", new ArrayList<>())
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Lists cleared successfully.", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(this, "Failed to clear lists.", Toast.LENGTH_SHORT).show();

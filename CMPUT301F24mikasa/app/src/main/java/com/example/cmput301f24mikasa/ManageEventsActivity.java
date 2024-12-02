@@ -99,8 +99,6 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
                     }
                 })
                 .addOnFailureListener(e -> {
-                    // Handle any errors here
-                    Log.e("FirestoreError", "Error fetching events: ", e);
                 });
     }
 

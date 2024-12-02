@@ -110,7 +110,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                                 setResult(RESULT_OK, resultIntent);
                             })
                             .addOnFailureListener(e -> {
-                                Toast.makeText(AdminEventDetailsActivity.this, "Failed to update Firestore", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminEventDetailsActivity.this, "Failed to update the image", Toast.LENGTH_SHORT).show();
                             });
                 }).addOnFailureListener(e -> {
                     Toast.makeText(AdminEventDetailsActivity.this, "Failed to delete image from Storage", Toast.LENGTH_SHORT).show();
@@ -130,7 +130,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                             Toast.makeText(AdminEventDetailsActivity.this, "QR Code removed successfully", Toast.LENGTH_SHORT).show();
                         })
                         .addOnFailureListener(e -> {
-                            Toast.makeText(AdminEventDetailsActivity.this, "Failed to update Firestore", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminEventDetailsActivity.this, "Failed to update QR code", Toast.LENGTH_SHORT).show();
                         });
             } else {
                 Toast.makeText(AdminEventDetailsActivity.this, "No QR code to remove", Toast.LENGTH_SHORT).show();

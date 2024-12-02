@@ -32,7 +32,6 @@ public class NotificationForegroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "Service onCreate started");
         db = FirebaseFirestore.getInstance();
         createNotificationChannel();
         fetchNotifications();
@@ -51,7 +50,6 @@ public class NotificationForegroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.d(TAG, "Service onStartCommand started");
 
         // Create the persistent notification
         Intent notificationIntent = new Intent(this, MainActivity.class);
@@ -67,21 +65,18 @@ public class NotificationForegroundService extends Service {
                 .setContentIntent(pendingIntent);
 
         startForeground(1, builder.build());
-        Log.d(TAG, "Foreground service started");
 
         // Return START_STICKY to keep the service alive
         return START_STICKY;
     }
 
     private void fetchNotifications() {
-        Log.d(TAG, "fetchNotifications called");
 
         // Fetch deviceID from shared preferences
         String deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
 
         if (deviceID.isEmpty()) {
-            Log.e(TAG, "No device ID found, stopping service");
             stopSelf(); // Stop service if no device ID is found
             return;
         }
@@ -92,7 +87,6 @@ public class NotificationForegroundService extends Service {
                 .whereEqualTo("appeared", "no")
                 .addSnapshotListener((querySnapshot, error) -> {
                     if (error != null) {
-                        Log.e(TAG, "Error fetching notifications: " + error.getMessage());
                         return;
                     }
 
@@ -112,14 +106,12 @@ public class NotificationForegroundService extends Service {
                                     .addOnFailureListener(e -> Log.e(TAG, "Failed to update notification: " + e.getMessage()));
                         }
                     } else {
-                        Log.d(TAG, "No new notifications found");
                     }
                 });
     }
 
     // Referenced the following function from OpenAI, ChatGPT, 2024-11-27
     private void showNotification(String text) {
-        Log.d(TAG, "showNotification called with text: " + text);
 
         Intent intent = new Intent(this, ManageNotificationsActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -139,9 +131,7 @@ public class NotificationForegroundService extends Service {
 
         if (notificationManager != null) {
             notificationManager.notify((int) System.currentTimeMillis(), builder.build());
-            Log.d(TAG, "Notification shown");
         } else {
-            Log.e(TAG, "Notification manager is null");
         }
     }
 
@@ -157,9 +147,7 @@ public class NotificationForegroundService extends Service {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
-                Log.d(TAG, "Notification channel created");
             } else {
-                Log.e(TAG, "Notification manager is null while creating channel");
             }
         }
     }

@@ -21,11 +21,6 @@ public class FirestoreHelper {
         return firestore.collection("users").document(deviceId)
                 .set(userProfileData, SetOptions.merge())
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d("FirestoreHelper", "User profile set up successfully.");
-                    } else {
-                        Log.e("FirestoreHelper", "Failed to set up user profile: ", task.getException());
-                    }
                 });
     }
 

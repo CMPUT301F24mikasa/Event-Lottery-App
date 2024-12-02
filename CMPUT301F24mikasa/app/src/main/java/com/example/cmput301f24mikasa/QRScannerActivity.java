@@ -109,7 +109,6 @@ public class QRScannerActivity extends AppCompatActivity {
                 // Bind camera to lifecycle
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
             } catch (ExecutionException | InterruptedException e) {
-                Log.e(TAG, "Error starting camera: " + e.getMessage());
             }
         }, ContextCompat.getMainExecutor(this));
     }
@@ -156,12 +155,9 @@ public class QRScannerActivity extends AppCompatActivity {
     }
 
     /**
-     * Fetches event details from Firebase Firestore using the provided event ID or the scanned QR code content.
-     * If the event exists in Firestore and the `qrCodeHash` field is not null, it navigates the user to the event details screen.
-     * If the `qrCodeHash` field is null, it displays an alert informing the user that the event cannot be signed up for.
-     * If the event does not exist or an error occurs during retrieval, an appropriate error message is shown to the user.
-     *
-     * @param eventId The ID of the event to fetch details for.
+     * Fetches the event details from Firebase Firestore based on the scanned QR code content.
+     * If the event is found and the 'qrCodeHash' field is not null, it navigates to the event details screen.
+     * If the 'qrCodeHash' field is null, it shows an alert to the user.
      */
     void fetchEventDetailsAndNavigate(String eventId) {
         // Use the provided eventId, or fall back to the scanned QR content
