@@ -38,7 +38,6 @@ import java.util.concurrent.TimeUnit;
  * in Firebase Firestore and prompts the user to create a profile if none is found.
  */
 public class MainActivity extends AppCompatActivity {
-
     private FirebaseFirestore db;
     private String deviceId;
     private static final int REQUEST_CODE_CREATE_PROFILE = 1;
@@ -83,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
         }
+
         // Start the foreground service
         Intent serviceIntent = new Intent(this, NotificationForegroundService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
      * @param resultCode The result code returned by the called activity.
      * @param data The Intent that contains result data.
      */
-    // Handle result from UserProfileActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

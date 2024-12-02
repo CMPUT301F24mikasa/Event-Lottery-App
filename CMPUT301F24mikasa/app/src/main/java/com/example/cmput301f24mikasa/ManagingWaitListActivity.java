@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Activity to manage the waiting list of an event.
+ * ManagingWaitListActivity to manage the waiting list of an event.
  * Allows the admin to view and delete users from the waiting list of a specific event.
  */
 public class ManagingWaitListActivity extends AppCompatActivity {
-
     private String eventID;
     private List<String> waitingList = new ArrayList<>();
     private ArrayAdapter<String> adapter;
@@ -83,6 +82,8 @@ public class ManagingWaitListActivity extends AppCompatActivity {
                     })
                     .show();
         });
+
+        // Handle back button click
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,12 +108,13 @@ public class ManagingWaitListActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document != null && document.exists()) {
+
                     // Fetch the waiting list from the event document
                     List<String> waitingListFromFirestore = (List<String>) document.get("waitingList");
                     if (waitingListFromFirestore != null) {
                         waitingList.clear();
                         waitingList.addAll(waitingListFromFirestore);
-                        adapter.notifyDataSetChanged(); // Refresh the ListView
+                        adapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(this, "Event not found!", Toast.LENGTH_SHORT).show();
@@ -136,9 +138,9 @@ public class ManagingWaitListActivity extends AppCompatActivity {
         // Remove the user from the waiting list in Firestore
         eventRef.update("waitingList", com.google.firebase.firestore.FieldValue.arrayRemove(userToDelete))
                 .addOnSuccessListener(aVoid -> {
-                    // Successfully removed user
+                    // Successfully removed user and update the adapter
                     waitingList.remove(userToDelete);
-                    adapter.notifyDataSetChanged(); // Refresh the ListView
+                    adapter.notifyDataSetChanged();
                     Toast.makeText(ManagingWaitListActivity.this, "User removed from waiting list", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {

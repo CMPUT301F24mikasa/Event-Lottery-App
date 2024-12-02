@@ -28,12 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Activity to manage and view user profiles.
+ * ManageProfileActivity is to manage and view user profiles.
  * Displays a list of user profiles and provides options to view or delete them.
  * Also handles removal of users from waiting lists of events when deleted.
  */
 public class ManageProfileActivity extends AppCompatActivity {
-
     private ListView userProfilesListView;
     private UserProfileArrayAdapter adapter;
     private List<UserProfile> userProfileList;
@@ -58,6 +57,7 @@ public class ManageProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_profiles);
 
+        // Initializes user profiles list and the adapter for the list of user profiles
         userProfilesListView = findViewById(R.id.user_profiles_list);
         userProfileList = new ArrayList<>();
         adapter = new UserProfileArrayAdapter(this, userProfileList);
@@ -69,7 +69,6 @@ public class ManageProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(ManageProfileActivity.this, AdminActivity.class);
             startActivity(intent);
         });
-
 
         loadUserProfiles();
     }
@@ -98,9 +97,9 @@ public class ManageProfileActivity extends AppCompatActivity {
                     if (adminTask.isSuccessful()) {
                         List<String> adminDeviceIds = new ArrayList<>();
                         for (QueryDocumentSnapshot document : adminTask.getResult()) {
-                            // Assuming deviceId is the field name in admin collection
                             String adminDeviceId = document.getString("deviceID");
                             if (adminDeviceId != null) {
+                                // if admin deviceID is present, store this deviceID
                                 adminDeviceIds.add(adminDeviceId);
                             }
                         }
@@ -165,6 +164,7 @@ public class ManageProfileActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             @SuppressLint("ViewHolder") View rowView = inflater.inflate(R.layout.activity_manage_profile_list_item, parent, false);
 
+            // Initialize UI elements
             ImageView profileImageView = rowView.findViewById(R.id.profile_image);
             TextView nameTextView = rowView.findViewById(R.id.user_name);
             Button deleteButton = rowView.findViewById(R.id.delete_button);

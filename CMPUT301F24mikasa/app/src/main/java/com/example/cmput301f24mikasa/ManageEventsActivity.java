@@ -47,15 +47,16 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_events);
 
+        // Initialize event list
         eventList = new ArrayList<>();
 
-        // Initialize Firestore
+        // Initialize Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        loadEvents(); // Load events from Firestore
+        loadEvents();
 
         eventListView = findViewById(R.id.event_list_view);
-        adapter = new EventArrayAdapter(this, eventList, this); // Pass the activity as the listener
+        adapter = new EventArrayAdapter(this, eventList, this);
         eventListView.setAdapter(adapter);
 
         // Back button to return to Organizer Dashboard
@@ -87,8 +88,6 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     // Check if the query returned any documents
                     if (queryDocumentSnapshots.isEmpty()) {
-                        // Handle case where no events are found for the device
-                        // e.g., display a message to the user
                         Toast.makeText(ManageEventsActivity.this, "You do not have any active events created.", Toast.LENGTH_SHORT).show();
                     } else {
                         // Loop through the results and add them to the event list
@@ -114,9 +113,6 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
      */
     @Override
     public void onViewButtonClick(Event event) {
-        Log.d("OrganizerManageEvents", "View button clicked for event with ID: " + event.getEventID());
-
-        // Check if eventID is not null
         if (event.getEventID() != null) {
             // Initialize Firestore
             FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -138,7 +134,7 @@ public class ManageEventsActivity extends AppCompatActivity implements EventArra
                             // If finalListField is "1", navigate to EventFinalListActivity
                             Intent intent = new Intent(ManageEventsActivity.this, EventFinalListActivity.class);
                             intent.putExtra("eventID", event.getEventID());
-                            intent.putExtra("eventTitle", eventTitle);  // Optional: Pass the event title as well
+                            intent.putExtra("eventTitle", eventTitle);
                             startActivity(intent);
                         } else {
                             // If finalListField is not "1", navigate to WaitingListActivity as usual

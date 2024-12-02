@@ -44,7 +44,6 @@ public class EventPosterActivity extends AppCompatActivity {
      * Default constructor for EventPosterActivity.
      */
     public EventPosterActivity() {
-
     }
 
     /**
@@ -77,12 +76,13 @@ public class EventPosterActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Initialize UI Elements
         TextView txtTitle = findViewById(R.id.txtTitle);
         TextView txtDate = findViewById(R.id.txtDate);
         TextView txtPrice = findViewById(R.id.txtPrice);
         TextView txtDesc = findViewById(R.id.txtDesc);
         ImageView imgEventImage = findViewById(R.id.imgEventImage);
-        ImageView imgQRCode = findViewById(R.id.imgQRCode); // New ImageView for QR code
+        ImageView imgQRCode = findViewById(R.id.imgQRCode);
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
@@ -90,7 +90,9 @@ public class EventPosterActivity extends AppCompatActivity {
         String desc = intent.getStringExtra("desc");
         String price = intent.getStringExtra("price");
         String imageURL = intent.getStringExtra("imageURL");
-        byte[] qrCodeBytes = intent.getByteArrayExtra("qrCodeBytes"); // Retrieve QR code byte array
+
+        // Retrieve QR code byte array
+        byte[] qrCodeBytes = intent.getByteArrayExtra("qrCodeBytes");
 
         txtTitle.setText(title);
         txtDate.setText(startDate);

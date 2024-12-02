@@ -27,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class EventsActivity extends AppCompatActivity {
 
-
     /**
      * Default constructor for EventsActivity.
      */
@@ -41,12 +40,12 @@ public class EventsActivity extends AppCompatActivity {
      * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
      *                           this Bundle contains the data it most recently supplied. Otherwise, it is null.
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
+        // Initialize event Buttons
         Button qrScannerButton = findViewById(R.id.qr_scanner_button);
         Button eventsSignedUpButton = findViewById(R.id.events_signed_up_button);
         Button createEventButton = findViewById(R.id.create_event_button);

@@ -48,12 +48,13 @@ public class FacilityProfileActivity extends AppCompatActivity {
     public FacilityProfileActivity() {
     }
 
-
+    // Initialize UI elements
     ImageView imgProfilePicture;
     Boolean pictureUploaded;
     Button btnUploadPicture, btnUpdate;
     EditText editFacilityName, editFacilityLocation, editFacilityDesc;
     Uri imageUri;
+
     FirebaseFirestore db;
     ActivityResultLauncher<Intent> resultLauncher;
     StorageReference storageReference;
@@ -76,7 +77,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
 
         deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
-
+        // Handle Back button click
         Button btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> finish());
 
@@ -87,6 +88,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
         btnUploadPicture = findViewById(R.id.btnUploadPicture);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
 
+        // Handle Remove image button click
         Button btnRemovePicture = findViewById(R.id.btnRemovePicture);
         btnRemovePicture.setOnClickListener(v -> removeProfileImage());
 
@@ -99,7 +101,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
         registerResult();
         btnUploadPicture.setOnClickListener(view -> pickImage());
 
-
+        // Handle update image button click
         btnUpdate.setOnClickListener(v -> {
             if (!pictureUploaded) {
                 Toast.makeText(FacilityProfileActivity.this, "Please upload a picture of your facility.", Toast.LENGTH_SHORT).show();
@@ -115,7 +117,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
                 return;
             }
 
-            if(pictureUploaded || imageUri !=null){
+            if( pictureUploaded || imageUri != null){
                 uploadFacility(facilityName, facilityLocation, facilityDesc);
             } else {
                 Toast.makeText(this, "Please upload an image", Toast.LENGTH_SHORT).show();
