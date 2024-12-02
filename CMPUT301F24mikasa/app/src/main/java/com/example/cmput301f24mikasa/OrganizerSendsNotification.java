@@ -91,13 +91,7 @@ public class OrganizerSendsNotification extends AppCompatActivity{
             notificationData.put("appeared", "no");
 
             // Add data to Firestore and show success/failure message
-            documentReference.set(notificationData)
-                    .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(OrganizerSendsNotification.this, "Notification sent successfully to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(OrganizerSendsNotification.this, "Failed to send notification to selected entrant: " + deviceID, Toast.LENGTH_SHORT).show();
-                    });
+            documentReference.set(notificationData);
         }
     }
 
