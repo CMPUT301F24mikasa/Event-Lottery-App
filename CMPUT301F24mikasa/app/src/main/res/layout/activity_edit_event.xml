@@ -1,0 +1,166 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header Text -->
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D47A1"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/create_event"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <!-- Parent Panel -->
+    <LinearLayout
+        android:id="@+id/parentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/headerTextView"
+        android:layout_marginTop="16dp">
+
+        <!-- Left Panel -->
+        <LinearLayout
+            android:id="@+id/leftPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/imgEvent"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:background="@drawable/placeholder_image"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:text="@string/upload_picture"
+                android:textSize="12dp"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnGenerateQRCode"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:textSize="11dp"
+                android:text="@string/generate_qr_code"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/btnCreatePoster"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:text="@string/create_poster"
+                android:backgroundTint="#0D47A1"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
+        <!-- Top Panel -->
+        <LinearLayout
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="8dp">
+
+            <!-- Title Field -->
+            <EditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title *"
+                android:background="#D4D4D4"
+                android:padding="12dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black" />
+
+            <!-- Date Field -->
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Date *"
+                android:background="#D4D4D4"
+                android:padding="12dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <!-- Price Field -->
+            <EditText
+                android:id="@+id/editTextPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price ($) *"
+                android:inputType="numberDecimal"
+                android:background="#D4D4D4"
+                android:padding="12dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/editTextDesc"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/parentPanel"
+        android:layout_marginTop="16dp"
+        android:background="#D4D4D4"
+        android:gravity="start|top"
+        android:hint="Event Description *"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black" />
+
+
+    <!-- Bottom Panel -->
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/back"
+            android:backgroundTint="#0D47A1"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnCreateEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/create_event_lowercase"
+            android:backgroundTint="#0D47A1"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</RelativeLayout>
