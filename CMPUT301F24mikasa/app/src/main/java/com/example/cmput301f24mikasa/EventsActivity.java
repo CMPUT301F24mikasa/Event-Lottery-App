@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 /**
  * This activity serves as the main interface for managing and navigating event-related features
  * in the application. It provides buttons to navigate to activities for scanning QR codes,
