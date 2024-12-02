@@ -104,9 +104,27 @@ public class ViewEventActivity extends AppCompatActivity {
     }
 
     /**
-     * Adds the current device to the event's waiting list if the list is not full
-     * and if the device is not already in the list.
-     */
+         * Adds the current device to the event's waiting list, provided the list is not full
+         * and the device is not already present in it. If the event requires geo-location information,
+         * the user's input is validated and saved along with the waiting list entry.
+         *
+         * Behavior:
+         * 1. Checks if the event exists in Firestore.
+         * 2. Validates whether the waiting list has reached its limit (if specified).
+         * 3. Ensures the device is not already in the waiting list.
+         * 4. Handles geo-location requirements by prompting the user for city and province.
+         * 5. Saves the user's location to the event's "LocationList" field if geo-location is required.
+         * 6. Updates the event's waiting list in Firestore and provides user feedback.
+         *
+         * Error Handling:
+         * - Displays an appropriate message if:
+         *   - The waiting list is full.
+         *   - The user is already signed up.
+         *   - The event does not exist.
+         *   - There are failures during Firestore operations.
+         *
+         * @throws IllegalStateException If the user fails to provide required location information when geo-location is enabled.
+         */
     void addDeviceToWaitingList() {
         DocumentReference eventRef = db.collection("event").document(eventId);
         String deviceId = fetchDeviceId();
