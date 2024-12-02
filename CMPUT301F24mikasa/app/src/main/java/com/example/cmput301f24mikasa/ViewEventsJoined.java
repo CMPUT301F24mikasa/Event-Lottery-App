@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 /**
- * Activity that displays the details of an event the user has joined.
+ * ViewsEventsJoined is an activity that displays the details of an event the user has joined.
  * It shows the event title, description, date, price, and image.
  * The user can navigate back to the previous screen using the back button.
  */

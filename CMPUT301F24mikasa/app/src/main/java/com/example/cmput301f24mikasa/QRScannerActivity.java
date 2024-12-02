@@ -64,11 +64,12 @@ public class QRScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
 
+        // Initialize UI elements
         previewView = findViewById(R.id.previewView);
-
         Button startScanningButton = findViewById(R.id.btnScanQR);
         Button backButton = findViewById(R.id.back_button);
 
+        // Handle startScanning button
         startScanningButton.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_GRANTED) {

@@ -33,6 +33,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_detail);
 
+        // Initialize UI elements
         profileImageView = findViewById(R.id.profile_image_detail);
         nameTextView = findViewById(R.id.user_name_detail);
         emailTextView = findViewById(R.id.user_email_detail);

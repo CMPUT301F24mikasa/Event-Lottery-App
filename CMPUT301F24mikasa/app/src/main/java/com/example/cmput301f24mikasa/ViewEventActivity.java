@@ -22,12 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Activity to view event details and sign up for an event by adding the device to the waiting list.
+ * ViewEventActivity is to view event details and sign up for an event by adding the device to the waiting list.
  * Displays event information such as title, description, date, and price.
  * Allows users to sign up by adding their device ID to the event's waiting list.
  */
 public class ViewEventActivity extends AppCompatActivity {
-
     private FirebaseFirestore db;
     private String eventId;
     private TextView txtEventTitle, txtEventDescription, txtEventDate, txtEventPrice;
@@ -67,6 +66,7 @@ public class ViewEventActivity extends AppCompatActivity {
         // Load event details
         loadEventDetails();
 
+        // Handle button sign up and back button click listeners
         btnSignUp.setOnClickListener(v -> addDeviceToWaitingList());
         backButton.setOnClickListener(view -> startActivity(new Intent(ViewEventActivity.this, QRScannerActivity.class)));
     }
@@ -170,7 +170,6 @@ public class ViewEventActivity extends AppCompatActivity {
      */
     @SuppressLint("HardwareIds")
     public String fetchDeviceId() {
-        // Replace with your device ID retrieval method
         return android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
     }
 }

@@ -3,7 +3,7 @@ package com.example.cmput301f24mikasa;
 import java.util.List;
 
 /**
- * GeocodeResponse represents the response from a geocoding API, containing a list of results with location coordinates.
+ * GeocodeResponse class represents the response from a geocoding API, containing a list of results with location coordinates.
  */
 public class GeocodeResponse {
     public List<Result> results;
