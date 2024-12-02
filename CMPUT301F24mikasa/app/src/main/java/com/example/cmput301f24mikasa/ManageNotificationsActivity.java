@@ -194,7 +194,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     }
                 }
             }).addOnFailureListener(e -> {
-                Log.e("ManageNotificationsActivity", "Error retrieving notification", e);
             });
         });
     }
@@ -242,7 +241,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("ManageNotificationsActivity", "Error deleting notification", e);
                     Toast.makeText(this, "Failed to delete notification.", Toast.LENGTH_SHORT).show();
                 });
     }
@@ -271,23 +269,18 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     // Update the event document with the new selectedEntrants list
                     eventRef.update("selectedEntrants", selectedEntrants)
                             .addOnSuccessListener(aVoid -> {
-                                Log.d("EventResultList", "User removed from selected list");
                             })
                             .addOnFailureListener(e -> {
-                                Log.e("EventResultList", "Error removing user from selected list", e);
                             });
                     //update cancelled list
                     eventRef.update("cancelledEntrants", cancelledEntrants)
                             .addOnSuccessListener(aVoid -> {
-                                Log.d("EventResultList", "User added to  from cancelled list");
                             })
                             .addOnFailureListener(e -> {
-                                Log.e("EventResultList", "Error adding user to cancelled list", e);
                             });
                 }
             }
         }).addOnFailureListener(e -> {
-            Log.e("EventResultList", "Error retrieving event details", e);
         });
     }
 
@@ -304,7 +297,6 @@ public class ManageNotificationsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Response updated successfully", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("ManageNotificationsActivity", "Error updating response", e);
                     Toast.makeText(this, "Failed to update response", Toast.LENGTH_SHORT).show();
                 });
     }

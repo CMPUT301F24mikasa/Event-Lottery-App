@@ -205,8 +205,6 @@ public class EventResultList extends AppCompatActivity {
                             return;
                         }
                         int selectedEntrantsSize = selectedEntrants.size();
-                        Toast.makeText(EventResultList.this, "current size " + selectedEntrantsSize, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(EventResultList.this, "selected size  " + chosenAmount.intValue(), Toast.LENGTH_SHORT).show();
                         int remainingSelections = chosenAmount.intValue() - selectedEntrantsSize;
                         Toast.makeText(EventResultList.this, "choice left " + remainingSelections, Toast.LENGTH_SHORT).show();
                         if (remainingSelections <= 0) {
@@ -312,7 +310,7 @@ public class EventResultList extends AppCompatActivity {
                                 }, 200); // 200 milliseconds delay
 
                             } else {
-                                Toast.makeText(view.getContext(), "No matching notifications found.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "No one accepted the event or selected list is empty.", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(e -> {

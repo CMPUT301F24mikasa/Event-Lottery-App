@@ -431,7 +431,6 @@ public class UserProfileActivity extends AppCompatActivity {
                                                 .addOnFailureListener(e -> Log.e("UserProfileActivity", "Failed to update Firestore", e));
                                     })
                                     .addOnFailureListener(e -> {
-                                        Log.e("UserProfileActivity", "Failed to remove image from storage", e);
                                         Toast.makeText(this, "Failed to remove profile image", Toast.LENGTH_SHORT).show();
                                     });
                         } else {
@@ -445,7 +444,6 @@ public class UserProfileActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("UserProfileActivity", "Failed to retrieve profile data", e);
                     Toast.makeText(this, "Failed to check profile image", Toast.LENGTH_SHORT).show();
                 });
     }

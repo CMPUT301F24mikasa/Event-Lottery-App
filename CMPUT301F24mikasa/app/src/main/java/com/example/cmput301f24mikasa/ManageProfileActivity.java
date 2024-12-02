@@ -214,14 +214,11 @@ public class ManageProfileActivity extends AppCompatActivity {
 
                         db.collection("event").document(eventId).delete()
                                 .addOnSuccessListener(aVoid -> {
-                                    Log.d("Firebase", "Event deleted: " + eventId);
                                 })
                                 .addOnFailureListener(e -> {
-                                    Log.e("Firebase", "Error deleting event: " + eventId, e);
                                 });
                     }
-                })
-                .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
+                });
 
         // Remove the user from all event participant lists
         db.collection("event")
@@ -237,14 +234,11 @@ public class ManageProfileActivity extends AppCompatActivity {
                                         "finalEntrants", FieldValue.arrayRemove(deviceID)
                                 )
                                 .addOnSuccessListener(aVoid -> {
-                                    Log.d("Firebase", "Removed user from lists in event: " + eventId);
                                 })
                                 .addOnFailureListener(e -> {
-                                    Log.e("Firebase", "Error updating lists for event: " + eventId, e);
                                 });
                     }
-                })
-                .addOnFailureListener(e -> Log.e("Firebase", "Error querying events", e));
+                });
 
         // Retrieves and deletes all facilities created by the user
         db.collection("facility")

@@ -109,7 +109,6 @@ public class QRScannerActivity extends AppCompatActivity {
                 // Bind camera to lifecycle
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
             } catch (ExecutionException | InterruptedException e) {
-                Log.e(TAG, "Error starting camera: " + e.getMessage());
             }
         }, ContextCompat.getMainExecutor(this));
     }

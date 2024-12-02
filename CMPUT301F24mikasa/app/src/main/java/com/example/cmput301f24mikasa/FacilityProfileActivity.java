@@ -288,7 +288,7 @@ public class FacilityProfileActivity extends AppCompatActivity {
                                 // Remove the image URL reference from the database
                                 documentSnapshot.getReference().update("imageURL", null)
                                         .addOnSuccessListener(aVoid1 ->
-                                                Toast.makeText(FacilityProfileActivity.this, "Image reference removed from database", Toast.LENGTH_SHORT).show())
+                                                Toast.makeText(FacilityProfileActivity.this, "Image reference removed", Toast.LENGTH_SHORT).show())
                                         .addOnFailureListener(e -> e.printStackTrace()); // Log any errors during database update
 
                                 // Mark the removal process as complete
