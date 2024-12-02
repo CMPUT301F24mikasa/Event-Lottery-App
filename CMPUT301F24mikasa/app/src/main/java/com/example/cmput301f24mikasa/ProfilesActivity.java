@@ -65,7 +65,10 @@ public class ProfilesActivity extends AppCompatActivity {
         ImageButton buttonNotifications = findViewById(R.id.button_notifications);
         ImageButton buttonAdmin = findViewById(R.id.button_admin);
 
-        AdminVerification.checkIfAdmin(this, buttonAdmin);
+        String deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        // Initialize Firebase Firestore
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        AdminVerification.checkIfAdmin(this, buttonAdmin, deviceId, firestore);
         
         // Bottom Navigation onClick Listeners
         buttonHome.setOnClickListener(view -> startActivity(new Intent(ProfilesActivity.this, MainActivity.class)));
